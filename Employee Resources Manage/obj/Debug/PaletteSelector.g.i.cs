@@ -11,7 +11,6 @@
 
 using Employee_Resources_Manage;
 using MaterialDesignColors;
-using MaterialDesignThemes.MahApps;
 using MaterialDesignThemes.Wpf;
 using MaterialDesignThemes.Wpf.Transitions;
 using System;

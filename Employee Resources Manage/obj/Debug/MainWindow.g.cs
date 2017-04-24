@@ -14,7 +14,6 @@ using Dragablz.Dockablz;
 using Employee_Resources_Manage;
 using Employee_Resources_Manage.Domain;
 using MahApps.Metro.Controls;
-using MaterialDesignThemes.MahApps;
 using MaterialDesignThemes.Wpf;
 using MaterialDesignThemes.Wpf.Transitions;
 using System;

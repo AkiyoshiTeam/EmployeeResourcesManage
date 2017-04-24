@@ -147,11 +147,5 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\..\..\..\..\..\Desktop\Project Employee Manager\MaterialDesignInXamlToolkit-master\MaterialDesignThemes.MahApps\MaterialDesignThemes.MahApps.csproj">
-      <Project>{81556a2d-d467-43e7-945b-fd987c676cf6}</Project>
-      <Name>MaterialDesignThemes.MahApps</Name>
-    </ProjectReference>
-  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
