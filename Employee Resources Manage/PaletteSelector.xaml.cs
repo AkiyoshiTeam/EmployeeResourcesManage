@@ -25,8 +25,9 @@ namespace Employee_Resources_Manage
             InitializeComponent();
             PaletteSelectorViewModel palDataContext = new PaletteSelectorViewModel();
             DataContext = palDataContext;
-            togDarkMode.DataContext = palDataContext;
-
+            //togDarkMode.DataContext = palDataContext;
+            togStyleMode.IsChecked = true;
+            togDarkMode.IsChecked = true;
         }
     }
 }

@@ -93,7 +93,7 @@
             </Grid.RowDefinitions>
             <StackPanel Orientation="Horizontal" Margin="8">
                 <TextBlock VerticalAlignment="Center">Standard Style</TextBlock>
-                <ToggleButton Grid.Column="1" Margin="8 4 16 4" Command="{Binding ToggleStyleCommand}" CommandParameter="{Binding RelativeSource={RelativeSource Self}, Path=IsChecked}" />
+                <ToggleButton Name="togStyleMode" Grid.Column="1" Margin="8 4 16 4" Command="{Binding ToggleStyleCommand}" CommandParameter="{Binding RelativeSource={RelativeSource Self}, Path=IsChecked}" />
                 <TextBlock Grid.Column="2" VerticalAlignment="Center">Alternate Style</TextBlock>
                 <TextBlock VerticalAlignment="Center">Light</TextBlock>
                 <ToggleButton Name="togDarkMode"  Margin="8 0 16 0" Command="{Binding ToggleBaseCommand}" CommandParameter="{Binding RelativeSource={RelativeSource Self}, Path=IsChecked}" IsChecked="{Binding Path=IsCheckedDark}" />
