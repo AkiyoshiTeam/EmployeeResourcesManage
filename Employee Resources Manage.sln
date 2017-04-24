@@ -1,0 +1,74 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.26403.3
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Employee Resources Manage", "Employee Resources Manage\Employee Resources Manage.csproj", "{FDFD1398-6EF5-497D-870E-5C6B6510F56A}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "MetarialDesign", "MetarialDesign", "{1211CF3B-316B-44DA-8C57-5F03BF2B1A93}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MaterialDesignColors.Wpf", "..\..\..\..\..\Desktop\Project Employee Manager\MaterialDesignInXamlToolkit-master\MaterialDesignColors.Wpf\MaterialDesignColors.Wpf.csproj", "{90B53209-C60C-4655-B28D-A1B3E1044BA3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MaterialDesignColors.Wpf.Tests", "..\..\..\..\..\Desktop\Project Employee Manager\MaterialDesignInXamlToolkit-master\MaterialDesignColors.Wpf.Tests\MaterialDesignColors.Wpf.Tests.csproj", "{FD1D557A-251C-4D00-9FDE-6FF9FFA747B8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MaterialDesignThemes.Wpf", "..\..\..\..\..\Desktop\Project Employee Manager\MaterialDesignInXamlToolkit-master\MaterialDesignThemes.Wpf\MaterialDesignThemes.Wpf.csproj", "{F079FB0A-A8ED-4216-B6A5-345756751A04}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MaterialDesignThemes.Wpf.Tests", "..\..\..\..\..\Desktop\Project Employee Manager\MaterialDesignInXamlToolkit-master\MaterialDesignThemes.Wpf.Tests\MaterialDesignThemes.Wpf.Tests.csproj", "{A361C80E-F6CD-4C57-A96C-002DB159C1F4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MaterialDesignThemes.MahApps", "..\..\..\..\..\Desktop\Project Employee Manager\MaterialDesignInXamlToolkit-master\MaterialDesignThemes.MahApps\MaterialDesignThemes.MahApps.csproj", "{81556A2D-D467-43E7-945B-FD987C676CF6}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		AppVeyor|Any CPU = AppVeyor|Any CPU
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{FDFD1398-6EF5-497D-870E-5C6B6510F56A}.AppVeyor|Any CPU.ActiveCfg = Release|Any CPU
+		{FDFD1398-6EF5-497D-870E-5C6B6510F56A}.AppVeyor|Any CPU.Build.0 = Release|Any CPU
+		{FDFD1398-6EF5-497D-870E-5C6B6510F56A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FDFD1398-6EF5-497D-870E-5C6B6510F56A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FDFD1398-6EF5-497D-870E-5C6B6510F56A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FDFD1398-6EF5-497D-870E-5C6B6510F56A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{90B53209-C60C-4655-B28D-A1B3E1044BA3}.AppVeyor|Any CPU.ActiveCfg = AppVeyor|Any CPU
+		{90B53209-C60C-4655-B28D-A1B3E1044BA3}.AppVeyor|Any CPU.Build.0 = AppVeyor|Any CPU
+		{90B53209-C60C-4655-B28D-A1B3E1044BA3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{90B53209-C60C-4655-B28D-A1B3E1044BA3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{90B53209-C60C-4655-B28D-A1B3E1044BA3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{90B53209-C60C-4655-B28D-A1B3E1044BA3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FD1D557A-251C-4D00-9FDE-6FF9FFA747B8}.AppVeyor|Any CPU.ActiveCfg = Release|Any CPU
+		{FD1D557A-251C-4D00-9FDE-6FF9FFA747B8}.AppVeyor|Any CPU.Build.0 = Release|Any CPU
+		{FD1D557A-251C-4D00-9FDE-6FF9FFA747B8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FD1D557A-251C-4D00-9FDE-6FF9FFA747B8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FD1D557A-251C-4D00-9FDE-6FF9FFA747B8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FD1D557A-251C-4D00-9FDE-6FF9FFA747B8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F079FB0A-A8ED-4216-B6A5-345756751A04}.AppVeyor|Any CPU.ActiveCfg = AppVeyor|Any CPU
+		{F079FB0A-A8ED-4216-B6A5-345756751A04}.AppVeyor|Any CPU.Build.0 = AppVeyor|Any CPU
+		{F079FB0A-A8ED-4216-B6A5-345756751A04}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F079FB0A-A8ED-4216-B6A5-345756751A04}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F079FB0A-A8ED-4216-B6A5-345756751A04}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F079FB0A-A8ED-4216-B6A5-345756751A04}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A361C80E-F6CD-4C57-A96C-002DB159C1F4}.AppVeyor|Any CPU.ActiveCfg = Release|Any CPU
+		{A361C80E-F6CD-4C57-A96C-002DB159C1F4}.AppVeyor|Any CPU.Build.0 = Release|Any CPU
+		{A361C80E-F6CD-4C57-A96C-002DB159C1F4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A361C80E-F6CD-4C57-A96C-002DB159C1F4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A361C80E-F6CD-4C57-A96C-002DB159C1F4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A361C80E-F6CD-4C57-A96C-002DB159C1F4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{81556A2D-D467-43E7-945B-FD987C676CF6}.AppVeyor|Any CPU.ActiveCfg = Release|Any CPU
+		{81556A2D-D467-43E7-945B-FD987C676CF6}.AppVeyor|Any CPU.Build.0 = Release|Any CPU
+		{81556A2D-D467-43E7-945B-FD987C676CF6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{81556A2D-D467-43E7-945B-FD987C676CF6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{81556A2D-D467-43E7-945B-FD987C676CF6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{81556A2D-D467-43E7-945B-FD987C676CF6}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{90B53209-C60C-4655-B28D-A1B3E1044BA3} = {1211CF3B-316B-44DA-8C57-5F03BF2B1A93}
+		{FD1D557A-251C-4D00-9FDE-6FF9FFA747B8} = {1211CF3B-316B-44DA-8C57-5F03BF2B1A93}
+		{F079FB0A-A8ED-4216-B6A5-345756751A04} = {1211CF3B-316B-44DA-8C57-5F03BF2B1A93}
+		{A361C80E-F6CD-4C57-A96C-002DB159C1F4} = {1211CF3B-316B-44DA-8C57-5F03BF2B1A93}
+		{81556A2D-D467-43E7-945B-FD987C676CF6} = {1211CF3B-316B-44DA-8C57-5F03BF2B1A93}
+	EndGlobalSection
+EndGlobal
