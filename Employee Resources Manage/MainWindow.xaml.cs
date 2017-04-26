@@ -18,6 +18,7 @@ using System.Windows.Controls.Primitives;
 using System.Threading;
 using MaterialDesignThemes.Wpf.Transitions;
 using MahApps.Metro;
+using MaterialDesignThemes.Wpf;
 
 namespace Employee_Resources_Manage
 {
@@ -78,6 +79,7 @@ namespace Employee_Resources_Manage
 
         bool IsChangedTheme = false;
         object palContent;
+
         private void MenuItemTheme_Click(object sender, RoutedEventArgs e)
         {
             TransitioningContent transitioningContent = new TransitioningContent();
@@ -98,6 +100,13 @@ namespace Employee_Resources_Manage
                 contentControl.Content = transitioningContent;
             }
         }
+
+        private void MenuItemChangePassword_Click(object sender, RoutedEventArgs e)
+        {
+            ChangePassword changePw = new ChangePassword();
+            DialogHost.Show(changePw);
+        }
+        
 
         private void UIManageControl_OnPreviewMouseLeftButtonUp(object sender, MouseButtonEventArgs e)
         {

@@ -84,6 +84,11 @@
                             <materialDesign:PackIcon Kind="Palette" />
                         </MenuItem.Icon>
                     </MenuItem>
+                    <MenuItem Header="_Change Password" Click="MenuItemChangePassword_Click" >
+                        <MenuItem.Icon>
+                            <materialDesign:PackIcon Kind="Settings" />
+                        </MenuItem.Icon>
+                    </MenuItem>
                 </MenuItem>
             </Menu>
         </materialDesign:ColorZone>
@@ -237,6 +242,11 @@
                 </Grid>
 
                 <GridSplitter Grid.Column="1" HorizontalAlignment="Stretch" Width="5" />
+                <!--<materialDesign:TransitioningContent Grid.Column="2">
+                    <materialDesign:TransitioningContent.OpeningEffects>
+                        <materialDesign:TransitionEffect Kind="SlideInFromBottom" />
+                    </materialDesign:TransitioningContent.OpeningEffects>
+                </materialDesign:TransitioningContent>-->
                 <dockablz:Layout Grid.Column="2">
                     <dragablz:TabablzControl BorderThickness="1"
                                  Margin="0,-1,0,1">
@@ -249,6 +259,8 @@
                         </TabItem>
                     </dragablz:TabablzControl>
                 </dockablz:Layout>
+
+                <materialDesign:DialogHost IsOpen="false" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="3"/>
                 <ContentControl Grid.Column="2" Name="contentControl" />
 
                 <!--<StackPanel Grid.Column="2">

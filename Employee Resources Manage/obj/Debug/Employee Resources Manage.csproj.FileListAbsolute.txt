@@ -72,3 +72,7 @@ C:\Users\mjnht\Desktop\Project Employee Manager\EmployeeResourcesManage\Employee
 C:\Users\mjnht\Desktop\Project Employee Manager\EmployeeResourcesManage\Employee Resources Manage\obj\Debug\Employee Resources Manage.csproj.GenerateResource.Cache
 C:\Users\mjnht\Desktop\Project Employee Manager\EmployeeResourcesManage\Employee Resources Manage\obj\Debug\Employee Resources Manage.exe
 C:\Users\mjnht\Desktop\Project Employee Manager\EmployeeResourcesManage\Employee Resources Manage\obj\Debug\Employee Resources Manage.pdb
+C:\Users\mjnht\Desktop\Project Employee Manager\EmployeeResourcesManage\Employee Resources Manage\obj\Debug\Login.g.cs
+C:\Users\mjnht\Desktop\Project Employee Manager\EmployeeResourcesManage\Employee Resources Manage\obj\Debug\Login.baml
+C:\Users\mjnht\Desktop\Project Employee Manager\EmployeeResourcesManage\Employee Resources Manage\obj\Debug\ChangePassword.g.cs
+C:\Users\mjnht\Desktop\Project Employee Manager\EmployeeResourcesManage\Employee Resources Manage\obj\Debug\ChangePassword.baml
