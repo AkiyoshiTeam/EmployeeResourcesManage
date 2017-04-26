@@ -59,18 +59,18 @@ namespace Employee_Resources_Manage
             }
             if (Transitioner.SelectedIndex == 0)
             {
-                borderManageControl2.SetResourceReference(Border.BackgroundProperty, "PrimaryHueLightBrush");
-                borderManageControl1.SetResourceReference(Border.BackgroundProperty, "PrimaryHueMidBrush");
+                borderManageControl2.SetResourceReference(Border.BackgroundProperty, "PrimaryHueMidBrush");
+                borderManageControl1.SetResourceReference(Border.BackgroundProperty, "PrimaryHueLightBrush");
                 tbManage2.Text = ((SelectableViewModel)manageItemsControl.SelectedItem).Name;
-                
+
                 Transitioner.SelectedIndex = 1;
             }
             else
             {
-                borderManageControl1.SetResourceReference(Border.BackgroundProperty, "PrimaryHueLightBrush");
-                borderManageControl2.SetResourceReference(Border.BackgroundProperty, "PrimaryHueMidBrush");
+                borderManageControl1.SetResourceReference(Border.BackgroundProperty, "PrimaryHueMidBrush");
+                borderManageControl2.SetResourceReference(Border.BackgroundProperty, "PrimaryHueLightBrush");
                 tbManage1.Text = ((SelectableViewModel)manageItemsControl.SelectedItem).Name;
-                
+
                 Transitioner.SelectedIndex = 0;
             }
 
@@ -106,11 +106,31 @@ namespace Employee_Resources_Manage
             ChangePassword changePw = new ChangePassword();
             DialogHost.Show(changePw);
         }
-        
+
 
         private void UIManageControl_OnPreviewMouseLeftButtonUp(object sender, MouseButtonEventArgs e)
         {
-            MenuToggleButton.IsChecked = (MenuToggleButton.IsChecked==false)? true:false;
+            MenuToggleButton.IsChecked = (MenuToggleButton.IsChecked == false) ? true : false;
+        }
+
+        bool collapseIsCheck = false;
+
+        private void btnCollapse_Click(object sender, RoutedEventArgs e)
+        {
+            if (collapseIsCheck == false)
+            {
+                colChucNang.MinWidth = 40;
+                colChucNang.MaxWidth = 40;
+                packIconCollapse.Kind = PackIconKind.ChevronRight;
+                collapseIsCheck = true;
+            }
+            else
+            {
+                colChucNang.MinWidth = 200;
+                colChucNang.MaxWidth = 400;
+                packIconCollapse.Kind = PackIconKind.ChevronLeft;
+                collapseIsCheck = false;
+            }
         }
     }
 }

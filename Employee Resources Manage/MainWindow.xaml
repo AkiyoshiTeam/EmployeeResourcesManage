@@ -13,7 +13,7 @@
                       xmlns:system="clr-namespace:System;assembly=mscorlib" 
                       xmlns:domain="clr-namespace:Employee_Resources_Manage.Domain"
                       mc:Ignorable="d"
-                      Title="Employee Resources Manage" Height="600" Width="1100"     
+                      Title="Employee Resources Manage" Height="600" Width="1100" MinWidth="500" MinHeight="300"
                       WindowStartupLocation="CenterScreen"
                       TextElement.Foreground="{DynamicResource MaterialDesignBody}"
                       TextElement.FontWeight="Regular"
@@ -33,58 +33,58 @@
     </Window.Resources>
 
     <DockPanel VerticalAlignment="Stretch" Margin="0,0,0,1" Height="Auto">
-        <materialDesign:ColorZone materialDesign:ShadowAssist.ShadowDepth="Depth3" Mode="PrimaryLight" Height="30" VerticalAlignment="Top" VerticalContentAlignment="Center" HorizontalContentAlignment="Stretch" DockPanel.Dock="Top" Panel.ZIndex="20">
-            <Menu IsMainMenu="True" Height="30" Background="{DynamicResource PrimaryHueMidBrush}" Foreground="{DynamicResource PrimaryHueMidForegroundBrush}" VerticalAlignment="Top">
-                <MenuItem Header="_Hệ thống" Height="30" >
-                    <MenuItem Header="Save">
+        <materialDesign:ColorZone materialDesign:ShadowAssist.ShadowDepth="Depth2" Height="22" VerticalAlignment="Top" VerticalContentAlignment="Center" HorizontalContentAlignment="Stretch" DockPanel.Dock="Top" Panel.ZIndex="20">
+            <Menu IsMainMenu="True" Height="22" Background="{DynamicResource MaterialDesignPaper}" Foreground="{DynamicResource MaterialDesignBody}" VerticalAlignment="Top" FontSize="12">
+                <MenuItem Header="_Hệ thống" Height="22" >
+                    <MenuItem Header="Save" Height="22">
                         <MenuItem.Icon>
                             <materialDesign:PackIcon Kind="ContentSave" />
                         </MenuItem.Icon>
                     </MenuItem>
-                    <MenuItem Header="Save As.." />
-                    <MenuItem Header="Exit" InputGestureText="Ctrl+E" Click="MenuItemExit_Click">
+                    <MenuItem Header="Save As.." Height="22"/>
+                    <MenuItem Header="Exit" Height="22" InputGestureText="Ctrl+E" Click="MenuItemExit_Click">
                         <MenuItem.Icon>
                             <materialDesign:PackIcon Kind="ExitToApp" />
                         </MenuItem.Icon>
                     </MenuItem>
                     <Separator />
-                    <MenuItem Header="Excellent" IsCheckable="True" IsChecked="True" />
+                    <MenuItem Header="Excellent" Height="22" IsCheckable="True" IsChecked="True" />
 
                 </MenuItem>
-                <MenuItem Header="_Phụ lục" Height="30">
-                    <MenuItem Header="_Cut" Command="Cut">
+                <MenuItem Header="_Phụ lục" Height="22" >
+                    <MenuItem Header="_Cut" Height="22" Command="Cut">
                         <MenuItem.Icon>
                             <materialDesign:PackIcon Kind="ContentCut" />
                         </MenuItem.Icon>
                     </MenuItem>
-                    <MenuItem Header="_Copy" Command="Copy">
+                    <MenuItem Header="_Copy" Height="22" Command="Copy">
                         <MenuItem.Icon>
                             <materialDesign:PackIcon Kind="ContentCopy" />
                         </MenuItem.Icon>
                     </MenuItem>
-                    <MenuItem Header="_Paste" Command="Paste">
+                    <MenuItem Header="_Paste" Height="22" Command="Paste">
                         <MenuItem.Icon>
                             <materialDesign:PackIcon Kind="ContentPaste" />
                         </MenuItem.Icon>
                     </MenuItem>
                 </MenuItem>
-                <MenuItem Header="_Tìm kiếm" Height="30" >
+                <MenuItem Header="_Tìm kiếm"  Height="22" >
                 </MenuItem>
-                <MenuItem Header="_Nhân sự" Height="30" >
+                <MenuItem Header="_Nhân sự"  Height="22" >
                 </MenuItem>
-                <MenuItem Header="_Tiền lương" Height="30" >
+                <MenuItem Header="_Tiền lương"  Height="22" >
                 </MenuItem>
-                <MenuItem Header="_Công cụ" Height="30">
+                <MenuItem Header="_Công cụ"  Height="22">
                 </MenuItem>
-                <MenuItem Header="_Cửa sổ" Height="30" >
+                <MenuItem Header="_Cửa sổ" Height="22" >
                 </MenuItem>
-                <MenuItem Header="_Trợ giúp" Height="30" >
-                    <MenuItem Header="_Theme" Click="MenuItemTheme_Click" >
+                <MenuItem Header="_Trợ giúp"  Height="22">
+                    <MenuItem Header="_Theme" Height="22" Click="MenuItemTheme_Click" >
                         <MenuItem.Icon>
                             <materialDesign:PackIcon Kind="Palette" />
                         </MenuItem.Icon>
                     </MenuItem>
-                    <MenuItem Header="_Change Password" Click="MenuItemChangePassword_Click" >
+                    <MenuItem Header="_Change Password" Height="22" Click="MenuItemChangePassword_Click" >
                         <MenuItem.Icon>
                             <materialDesign:PackIcon Kind="Settings" />
                         </MenuItem.Icon>
@@ -92,131 +92,135 @@
                 </MenuItem>
             </Menu>
         </materialDesign:ColorZone>
-        <materialDesign:ColorZone materialDesign:ShadowAssist.ShadowDepth="Depth2" Mode="PrimaryLight" Height="30" VerticalAlignment="Top" VerticalContentAlignment="Center" HorizontalContentAlignment="Stretch" DockPanel.Dock="Top" Panel.ZIndex="10">
+        <materialDesign:ColorZone materialDesign:ShadowAssist.ShadowDepth="Depth1" Mode="PrimaryLight" Height="20" VerticalAlignment="Top" VerticalContentAlignment="Center" HorizontalContentAlignment="Stretch" DockPanel.Dock="Top" Panel.ZIndex="10">
             <ToolBarTray DockPanel.Dock="Top">
-                <ToolBar Style="{DynamicResource MaterialDesignToolBar}" ClipToBounds="False">
+                <ToolBar Style="{DynamicResource MaterialDesignToolBar}" ClipToBounds="False" VerticalAlignment="Top" Height="20">
                     <ToolBar.Resources>
                         <Style x:Key="ToolbarButton" TargetType="{x:Type Button}"  BasedOn="{StaticResource MaterialDesignFlatButton}" >
                             <Setter Property="Margin" Value="8,0"/>
-                            <Setter Property="Height" Value="30"/>
-                            <Setter Property="Width" Value="30"/>
+                            <Setter Property="Height" Value="20"/>
+                            <Setter Property="Width" Value="20"/>
                             <Setter Property="Padding" Value="0"/>
                             <Setter Property="Foreground" Value="{DynamicResource MaterialDesignBody}"/>
                         </Style>
                         <Style x:Key="ToolbarListBoxItem" TargetType="ListBoxItem" BasedOn="{StaticResource MaterialDesignToolToggleListBoxItem}">
-                            <Setter Property="MinWidth" Value="30"/>
-                            <Setter Property="Height" Value="30"/>
-                            <Setter Property="Width" Value="30"/>
+                            <Setter Property="MinWidth" Value="20"/>
+                            <Setter Property="Height" Value="20"/>
+                            <Setter Property="Width" Value="20"/>
                             <Setter Property="Padding" Value="0"/>
                             <Setter Property="HorizontalContentAlignment" Value="Center"/>
                         </Style>
                     </ToolBar.Resources>
-                    <Button ToolTip="Quay về trang chính" Style="{DynamicResource ToolbarButton}" >
-                        <materialDesign:PackIcon Kind="HomeVariant" />
+                    <Button ToolTip="Quay về trang chính" Style="{DynamicResource ToolbarButton}" VerticalAlignment="Top" >
+                        <materialDesign:PackIcon Kind="HomeVariant" Width="17" Height="17"/>
                     </Button>
-                    <Button ToolTip="Chọn nhân viên" Style="{StaticResource ToolbarButton}">
-                        <materialDesign:PackIcon Kind="HumanMaleFemale" />
+                    <Button ToolTip="Chọn nhân viên" Style="{StaticResource ToolbarButton}" VerticalAlignment="Top">
+                        <materialDesign:PackIcon Kind="HumanMaleFemale" Width="17" Height="17"/>
                     </Button>
-                    <Button ToolTip="Chọn ngôn ngữ" Style="{StaticResource ToolbarButton}">
-                        <materialDesign:PackIcon Kind="Translate" />
-                    </Button>
-                    <Separator />
-                    <Button Command="Cut" ToolTip="Cut" ToolBar.OverflowMode="AsNeeded" Style="{StaticResource ToolbarButton}" >
-                        <materialDesign:PackIcon Kind="ContentCut" />
-                    </Button>
-                    <Button Command="Copy" ToolTip="Copy" ToolBar.OverflowMode="AsNeeded" Style="{StaticResource ToolbarButton}">
-                        <materialDesign:PackIcon Kind="ContentCopy" />
+                    <Button ToolTip="Chọn ngôn ngữ" Style="{StaticResource ToolbarButton}" VerticalAlignment="Top">
+                        <materialDesign:PackIcon Kind="Translate" Width="17" Height="17"/>
                     </Button>
                     <Separator />
-                    <Button Command="Paste" ToolTip="Paste" ToolBar.OverflowMode="AsNeeded" Style="{StaticResource ToolbarButton}">
-                        <materialDesign:PackIcon Kind="ContentPaste" />
+                    <Button Command="Cut" ToolTip="Cut" ToolBar.OverflowMode="AsNeeded" Style="{StaticResource ToolbarButton}" VerticalAlignment="Top" >
+                        <materialDesign:PackIcon Kind="ContentCut" Width="17" Height="17"/>
+                    </Button>
+                    <Button Command="Copy" ToolTip="Copy" ToolBar.OverflowMode="AsNeeded" Style="{StaticResource ToolbarButton}" VerticalAlignment="Top">
+                        <materialDesign:PackIcon Kind="ContentCopy" Width="17" Height="17"/>
+                    </Button>
+                    <Separator />
+                    <Button Command="Paste" ToolTip="Paste" ToolBar.OverflowMode="AsNeeded" Style="{StaticResource ToolbarButton}" VerticalAlignment="Top">
+                        <materialDesign:PackIcon Kind="ContentPaste" Width="17" Height="17"/>
                     </Button>
                     <Separator/>
-                    <ListBox SelectedIndex="0" Margin="8 0">
+                    <ListBox SelectedIndex="0" Margin="8 0" Height="20" VerticalAlignment="Top">
                         <ListBoxItem Style="{StaticResource ToolbarListBoxItem}">
-                            <materialDesign:PackIcon Kind="FormatAlignLeft"/>
+                            <materialDesign:PackIcon Kind="FormatAlignLeft" Width="17" Height="17"/>
                         </ListBoxItem>
                         <ListBoxItem Style="{StaticResource ToolbarListBoxItem}">
-                            <materialDesign:PackIcon Kind="FormatAlignCenter"/>
+                            <materialDesign:PackIcon Kind="FormatAlignCenter" Width="17" Height="17"/>
                         </ListBoxItem>
                         <ListBoxItem Style="{StaticResource ToolbarListBoxItem}">
-                            <materialDesign:PackIcon Kind="FormatAlignRight"/>
+                            <materialDesign:PackIcon Kind="FormatAlignRight" Width="17" Height="17"/>
                         </ListBoxItem>
                         <ListBoxItem Style="{StaticResource ToolbarListBoxItem}">
-                            <materialDesign:PackIcon Kind="FormatAlignJustify"/>
+                            <materialDesign:PackIcon Kind="FormatAlignJustify" Width="17" Height="17"/>
                         </ListBoxItem>
                     </ListBox>
                     <Separator/>
-                    <ListBox SelectionMode="Extended" Margin="8 0" >
+                    <ListBox SelectionMode="Extended" Margin="8 0" Height="20" VerticalAlignment="Top" >
                         <ListBoxItem Style="{StaticResource ToolbarListBoxItem}">
-                            <materialDesign:PackIcon Kind="FormatBold"/>
+                            <materialDesign:PackIcon Kind="FormatBold" Width="17" Height="17"/>
                         </ListBoxItem>
                         <ListBoxItem Style="{StaticResource ToolbarListBoxItem}">
-                            <materialDesign:PackIcon Kind="FormatItalic"/>
+                            <materialDesign:PackIcon Kind="FormatItalic" Width="17" Height="17"/>
                         </ListBoxItem>
                         <ListBoxItem x:Name="UnderlineCheckbox" Style="{StaticResource ToolbarListBoxItem}">
-                            <materialDesign:PackIcon Kind="FormatUnderline"/>
+                            <materialDesign:PackIcon Kind="FormatUnderline" Width="17" Height="17"/>
                         </ListBoxItem>
                     </ListBox>
                     <Separator/>
-                    <Label Content="Font size:" VerticalAlignment="Center"/>
-                    <ComboBox>
+                    <Label Content="Font size:" VerticalAlignment="Top" Height="20" FontSize="11"/>
+                    <ComboBox VerticalAlignment="Top" Height="20" FontSize="8" Margin="8,-2,8,0">
                         <ComboBoxItem Content="10"/>
                         <ComboBoxItem IsSelected="True" Content="12"/>
                         <ComboBoxItem Content="14"/>
                         <ComboBoxItem Content="16"/>
                     </ComboBox>
-                    <CheckBox>
+                    <CheckBox VerticalAlignment="Top" Height="17">
                         Check
                     </CheckBox>
-                    <Button ToolTip="Take a nap" ToolBar.OverflowMode="Always" Height="30" Width="30" Padding="0" Margin="8 0">
-                        <materialDesign:PackIcon Kind="Hotel" />
+                    <Button ToolTip="Take a nap" ToolBar.OverflowMode="Always" Height="30" Width="30" Padding="0" Margin="8 0" VerticalAlignment="Top">
+                        <materialDesign:PackIcon Kind="Hotel" Width="18" Height="18"/>
                     </Button>
-                    <RadioButton GroupName="XXX" Content="Radio" />
-                    <RadioButton GroupName="XXX" Content="Ga Ga" />
-                    <ToggleButton/>
+                    <ToggleButton VerticalAlignment="Bottom" Height="17"/>
                 </ToolBar>
             </ToolBarTray>
         </materialDesign:ColorZone>
-        <materialDesign:ColorZone Mode="Accent" Height="30" VerticalAlignment="Bottom" VerticalContentAlignment="Stretch" HorizontalContentAlignment="Stretch" DockPanel.Dock="Bottom"/>
-        <materialDesign:ColorZone materialDesign:ShadowAssist.ShadowDepth="Depth1" DockPanel.Dock="Top" VerticalAlignment="Stretch">
+        
+        <materialDesign:ColorZone Background="{DynamicResource IdealForegroundDisabledBrush}" Height="23" VerticalAlignment="Bottom" VerticalContentAlignment="Stretch" 
+                                  HorizontalContentAlignment="Stretch" DockPanel.Dock="Bottom" BorderThickness="0,2,0,0" BorderBrush="#99838383"/>
+        <materialDesign:ColorZone materialDesign:ShadowAssist.ShadowDepth="Depth0" DockPanel.Dock="Top" VerticalAlignment="Stretch">
             <Grid DockPanel.Dock="Top" Background="{DynamicResource MaterialDesignPaper}">
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition MinWidth="200" MaxWidth="400" Width="200"/>
-                    <ColumnDefinition Width="5"/>
+                    <ColumnDefinition Name="colChucNang" MinWidth="200" MaxWidth="400" Width="200"/>
+                    <ColumnDefinition Width="3"/>
                     <ColumnDefinition />
                 </Grid.ColumnDefinitions>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
                 <Grid Grid.Column="0">
+                    <materialDesign:DialogHost IsOpen="false" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="3"/>
+
                     <DockPanel Panel.ZIndex="6">
-                        <DockPanel DockPanel.Dock="Top" Background="{DynamicResource PrimaryHueLightBrush}" >
-                            <ToggleButton Style="{StaticResource MaterialDesignHamburgerToggleButton}" IsChecked="False"
+                        <materialDesign:ColorZone DockPanel.Dock="Top" materialDesign:ShadowAssist.ShadowDepth="Depth2">
+                            <DockPanel  Background="{DynamicResource PrimaryHueMidBrush}" >
+                                <ToggleButton Style="{StaticResource MaterialDesignHamburgerToggleButton}" IsChecked="False"
                                             x:Name="MenuToggleButton" HorizontalAlignment="Right" VerticalAlignment="Top" Width="20" Height="20" Margin="10" DockPanel.Dock="Right" />
-                            <materialDesign:Transitioner Name="Transitioner" SelectedIndex="0" DefaultTransitionOrigin="1,1" DockPanel.Dock="Right" PreviewMouseLeftButtonUp="UIManageControl_OnPreviewMouseLeftButtonUp">
-                                <Border Name="borderManageControl1" Background="{DynamicResource PrimaryHueLightBrush}" >
-                                    <StackPanel Orientation="Horizontal">
-                                        <materialDesign:PackIcon Kind="Console" Height="20" Width="20" Margin="10"/>
-                                        <TextBlock Name="tbManage1" Margin="8 0 0 0" FontSize="14" VerticalAlignment="Center" FontWeight="Bold">Chọn chức năng</TextBlock>
-                                    </StackPanel>
-                                </Border>
-                                <materialDesign:TransitionerSlide TransitionOrigin="0.25, 0.25">
-                                    <materialDesign:TransitionerSlide.BackwardWipe>
-                                        <materialDesign:CircleWipe/>
-                                    </materialDesign:TransitionerSlide.BackwardWipe>
-                                    <Border Name="borderManageControl2" Background="{DynamicResource PrimaryHueLightBrush}">
+                                <materialDesign:Transitioner Name="Transitioner" SelectedIndex="0" DefaultTransitionOrigin="1,1" DockPanel.Dock="Right" PreviewMouseLeftButtonUp="UIManageControl_OnPreviewMouseLeftButtonUp">
+                                    <Border Name="borderManageControl1" Background="{DynamicResource PrimaryHueMidBrush}" >
                                         <StackPanel Orientation="Horizontal">
                                             <materialDesign:PackIcon Kind="Console" Height="20" Width="20" Margin="10"/>
-                                            <TextBlock Name="tbManage2" Style="{DynamicResource MaterialDesignHeadlineTextBlock}" Margin="8 0 0 0" FontSize="14" VerticalAlignment="Center" FontWeight="Bold"/>
+                                            <TextBlock Name="tbManage1" Margin="8 0 0 0" FontSize="14" VerticalAlignment="Center" FontWeight="Bold">Chọn chức năng</TextBlock>
                                         </StackPanel>
                                     </Border>
-                                </materialDesign:TransitionerSlide>
-                            </materialDesign:Transitioner>
+                                    <materialDesign:TransitionerSlide TransitionOrigin="0.25, 0.25">
+                                        <materialDesign:TransitionerSlide.BackwardWipe>
+                                            <materialDesign:CircleWipe/>
+                                        </materialDesign:TransitionerSlide.BackwardWipe>
+                                        <Border Name="borderManageControl2" Background="{DynamicResource PrimaryHueMidBrush}">
+                                            <StackPanel Orientation="Horizontal">
+                                                <materialDesign:PackIcon Kind="Console" Height="20" Width="20" Margin="10"/>
+                                                <TextBlock Name="tbManage2" Style="{DynamicResource MaterialDesignHeadlineTextBlock}" Margin="8 0 0 0" FontSize="14" VerticalAlignment="Center" FontWeight="Bold"/>
+                                            </StackPanel>
+                                        </Border>
+                                    </materialDesign:TransitionerSlide>
+                                </materialDesign:Transitioner>
                             </DockPanel>
+                        </materialDesign:ColorZone>
                         <materialDesign:DrawerHost IsTopDrawerOpen="{Binding ElementName=MenuToggleButton, Path=IsChecked}" Panel.ZIndex="5" DockPanel.Dock="Top">
                             <materialDesign:DrawerHost.TopDrawerContent>
-                                <DockPanel MinHeight="300" Background="{DynamicResource PrimaryHueLightBrush}">
+                                <DockPanel MinHeight="300" Background="{DynamicResource PrimaryHueMidBrush}">
                                     <ListView Name="manageItemsControl" ItemsSource="{Binding Items2}" PreviewMouseLeftButtonUp="UIElement_OnPreviewMouseLeftButtonUp" VerticalAlignment="Top" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
                                         <ListView.ItemTemplate>
                                             <DataTemplate>
@@ -240,16 +244,21 @@
                         </ListBox>
                     </DockPanel>
                 </Grid>
-
-                <GridSplitter Grid.Column="1" HorizontalAlignment="Stretch" Width="5" />
+                <Border Grid.Column="0" VerticalAlignment="Bottom" HorizontalAlignment="Right" Margin="0,0,-21,30" Panel.ZIndex="20" 
+                        Background="{DynamicResource MaterialDesignPaper}" CornerRadius="24">
+                    <Button Name="btnCollapse" Style="{StaticResource MaterialDesignFloatingActionMiniButton}" Background="{DynamicResource MaterialDesignDivider}" 
+                        Foreground="{DynamicResource MaterialDesignBody}" materialDesign:ShadowAssist.ShadowDepth="Depth0" BorderBrush="#00000000" Click="btnCollapse_Click">
+                        <materialDesign:PackIcon Name="packIconCollapse"  Kind="ChevronLeft" Height="24" Width="24" />
+                    </Button>
+                </Border>
+                <GridSplitter Grid.Column="1" HorizontalAlignment="Stretch" Width="3" Panel.ZIndex="5" />
                 <!--<materialDesign:TransitioningContent Grid.Column="2">
                     <materialDesign:TransitioningContent.OpeningEffects>
                         <materialDesign:TransitionEffect Kind="SlideInFromBottom" />
                     </materialDesign:TransitioningContent.OpeningEffects>
                 </materialDesign:TransitioningContent>-->
-                <dockablz:Layout Grid.Column="2">
-                    <dragablz:TabablzControl BorderThickness="1"
-                                 Margin="0,-1,0,1">
+                <dockablz:Layout Grid.Column="2" Panel.ZIndex="5" >
+                    <dragablz:TabablzControl BorderThickness="1" Margin="0,-1,0,1">
                         <dragablz:TabablzControl.InterTabController>
                             <dragablz:InterTabController />
                         </dragablz:TabablzControl.InterTabController>
@@ -259,28 +268,7 @@
                         </TabItem>
                     </dragablz:TabablzControl>
                 </dockablz:Layout>
-
-                <materialDesign:DialogHost IsOpen="false" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="3"/>
-                <ContentControl Grid.Column="2" Name="contentControl" />
-
-                <!--<StackPanel Grid.Column="2">
-                    <TextBox  Margin="16" VerticalAlignment="Top" HorizontalAlignment="Left">
-                        With Default Context Menu
-                    </TextBox>
-
-                    <TextBox Margin="16" VerticalAlignment="Top" HorizontalAlignment="Left">
-                        <TextBox.ContextMenu>
-                            <ContextMenu>
-                                <MenuItem Header="Hello World" />
-                                <MenuItem Header="Clickety Click">
-                                    <MenuItem Header="Clackety Clack" />
-                                </MenuItem>
-                            </ContextMenu>
-                        </TextBox.ContextMenu>
-                        With Custom Context Menu
-                    </TextBox>
-                </StackPanel>-->
-
+                <ContentControl Grid.Column="2" Name="contentControl" Panel.ZIndex="5"/>
             </Grid>
         </materialDesign:ColorZone>
     </DockPanel>
