@@ -49,26 +49,31 @@ namespace Employee_Resources_Manage.Domain
                 new SelectableViewModel
                 {                    
                     IsSelected=true,
-                    Code = 'M',
-                    Name = "Material Design",
+                    Icon = "AccountSettingsVariant",
+                    IconNum = 24,
+                    Code = 'E',
+                    Name = "Employee Resources",
                     Numeric=1,
-                    Description = "Material Design in XAML Toolkit"
+                    Description = "Manage Employee Resources"
                 },
                 new SelectableViewModel
                 {
                     IsSelected=false,
-                    Code = 'D',
-                    Name = "Dragablz",
-                    Description = "Dragablz Tab Control",
-                    Numeric=2,
-                    Food = "Fries"
-                },
-                new SelectableViewModel
-                {
-                    IsSelected=false,
+                    Icon = "Coin",
+                    IconNum = 417,
                     Code = 'P',
-                    Name = "Predator",
-                    Description = "If it bleeds, we can kill it",
+                    Name = "Payroll",
+                    Description = "Payroll for Employee",
+                    Numeric=2,
+                },
+                new SelectableViewModel
+                {
+                    IsSelected=false,
+                    Icon = "Timetable",
+                    IconNum = 1477,
+                    Code = 'T',
+                    Name = "Time Attendance",
+                    Description = "Download and Manage Time",
                     Numeric=3
                 }
             };

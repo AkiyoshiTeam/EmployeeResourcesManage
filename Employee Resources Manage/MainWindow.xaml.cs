@@ -32,6 +32,7 @@ namespace Employee_Resources_Manage
             InitializeComponent();
             ListsAndGridsViewModel manageItems = new ListsAndGridsViewModel();
             manageItemsControl.DataContext = manageItems;
+            manageItemsControl2.DataContext = manageItems;
         }
 
         private void MenuItemExit_Click(object sender, RoutedEventArgs e)
@@ -48,6 +49,8 @@ namespace Employee_Resources_Manage
             }
         }
 
+        private readonly Lazy<IEnumerable<PackIconKind>> _packIconKinds;
+
         private void UIElement_OnPreviewMouseLeftButtonUp(object sender, MouseButtonEventArgs e)
         {
             //until we had a StaysOpen glag to Drawer, this will help with scroll bars
@@ -62,13 +65,14 @@ namespace Employee_Resources_Manage
                 borderManageControl2.SetResourceReference(Border.BackgroundProperty, "PrimaryHueMidBrush");
                 borderManageControl1.SetResourceReference(Border.BackgroundProperty, "PrimaryHueLightBrush");
                 tbManage2.Text = ((SelectableViewModel)manageItemsControl.SelectedItem).Name;
-
+                packIconListViewSelected2.Kind = (PackIconKind)((SelectableViewModel)manageItemsControl.SelectedItem).IconNum;
                 Transitioner.SelectedIndex = 1;
             }
             else
             {
                 borderManageControl1.SetResourceReference(Border.BackgroundProperty, "PrimaryHueMidBrush");
                 borderManageControl2.SetResourceReference(Border.BackgroundProperty, "PrimaryHueLightBrush");
+                packIconListViewSelected1.Kind = (PackIconKind)((SelectableViewModel)manageItemsControl.SelectedItem).IconNum;
                 tbManage1.Text = ((SelectableViewModel)manageItemsControl.SelectedItem).Name;
 
                 Transitioner.SelectedIndex = 0;

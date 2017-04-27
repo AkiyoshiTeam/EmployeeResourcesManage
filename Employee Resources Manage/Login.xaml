@@ -18,6 +18,13 @@
         TextElement.FontSize="13"
         TextOptions.TextFormattingMode="Ideal" 
         TextOptions.TextRenderingMode="Auto" KeyDown="Window_KeyDown">
+    <Window.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Dark.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Window.Resources>  
     <materialDesign:ColorZone Mode="Dark" materialDesign:ShadowAssist.ShadowDepth="Depth2" Height="286" CornerRadius="4">
         <Grid Name="gridSumary" >
             <Grid.ColumnDefinitions>

@@ -176,9 +176,9 @@
                 </ToolBar>
             </ToolBarTray>
         </materialDesign:ColorZone>
-        
-        <materialDesign:ColorZone Background="{DynamicResource IdealForegroundDisabledBrush}" Height="23" VerticalAlignment="Bottom" VerticalContentAlignment="Stretch" 
-                                  HorizontalContentAlignment="Stretch" DockPanel.Dock="Bottom" BorderThickness="0,2,0,0" BorderBrush="#99838383"/>
+
+        <materialDesign:ColorZone Background="{DynamicResource PrimaryHueLightBrush}" Height="23" VerticalAlignment="Bottom" VerticalContentAlignment="Stretch" 
+                                  HorizontalContentAlignment="Stretch" DockPanel.Dock="Bottom" BorderThickness="0,2,0,0" BorderBrush="{DynamicResource MaterialDesignDivider}"/>
         <materialDesign:ColorZone materialDesign:ShadowAssist.ShadowDepth="Depth0" DockPanel.Dock="Top" VerticalAlignment="Stretch">
             <Grid DockPanel.Dock="Top" Background="{DynamicResource MaterialDesignPaper}">
                 <Grid.ColumnDefinitions>
@@ -191,7 +191,6 @@
                 </Grid.RowDefinitions>
                 <Grid Grid.Column="0">
                     <materialDesign:DialogHost IsOpen="false" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="3"/>
-
                     <DockPanel Panel.ZIndex="6">
                         <materialDesign:ColorZone DockPanel.Dock="Top" materialDesign:ShadowAssist.ShadowDepth="Depth2">
                             <DockPanel  Background="{DynamicResource PrimaryHueMidBrush}" >
@@ -200,8 +199,8 @@
                                 <materialDesign:Transitioner Name="Transitioner" SelectedIndex="0" DefaultTransitionOrigin="1,1" DockPanel.Dock="Right" PreviewMouseLeftButtonUp="UIManageControl_OnPreviewMouseLeftButtonUp">
                                     <Border Name="borderManageControl1" Background="{DynamicResource PrimaryHueMidBrush}" >
                                         <StackPanel Orientation="Horizontal">
-                                            <materialDesign:PackIcon Kind="Console" Height="20" Width="20" Margin="10"/>
-                                            <TextBlock Name="tbManage1" Margin="8 0 0 0" FontSize="14" VerticalAlignment="Center" FontWeight="Bold">Chọn chức năng</TextBlock>
+                                            <materialDesign:PackIcon Name="packIconListViewSelected1" Kind="AccountSettingsVariant" Height="20" Width="20" Margin="10"/>
+                                            <TextBlock Name="tbManage1" FontSize="14" VerticalAlignment="Center" FontWeight="Bold">Employee Resources</TextBlock>
                                         </StackPanel>
                                     </Border>
                                     <materialDesign:TransitionerSlide TransitionOrigin="0.25, 0.25">
@@ -210,8 +209,8 @@
                                         </materialDesign:TransitionerSlide.BackwardWipe>
                                         <Border Name="borderManageControl2" Background="{DynamicResource PrimaryHueMidBrush}">
                                             <StackPanel Orientation="Horizontal">
-                                                <materialDesign:PackIcon Kind="Console" Height="20" Width="20" Margin="10"/>
-                                                <TextBlock Name="tbManage2" Style="{DynamicResource MaterialDesignHeadlineTextBlock}" Margin="8 0 0 0" FontSize="14" VerticalAlignment="Center" FontWeight="Bold"/>
+                                                <materialDesign:PackIcon Name="packIconListViewSelected2" Kind="AccountSettingsVariant" Height="20" Width="20" Margin="10"/>
+                                                <TextBlock Name="tbManage2" FontSize="14" VerticalAlignment="Center" FontWeight="Bold"/>
                                             </StackPanel>
                                         </Border>
                                     </materialDesign:TransitionerSlide>
@@ -220,13 +219,16 @@
                         </materialDesign:ColorZone>
                         <materialDesign:DrawerHost IsTopDrawerOpen="{Binding ElementName=MenuToggleButton, Path=IsChecked}" Panel.ZIndex="5" DockPanel.Dock="Top">
                             <materialDesign:DrawerHost.TopDrawerContent>
-                                <DockPanel MinHeight="300" Background="{DynamicResource PrimaryHueMidBrush}">
-                                    <ListView Name="manageItemsControl" ItemsSource="{Binding Items2}" PreviewMouseLeftButtonUp="UIElement_OnPreviewMouseLeftButtonUp" VerticalAlignment="Top" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+                                <DockPanel  Background="{DynamicResource PrimaryHueMidBrush}">
+                                    <ListView Name="manageItemsControl" ItemsSource="{Binding Items2}" PreviewMouseLeftButtonUp="UIElement_OnPreviewMouseLeftButtonUp" VerticalAlignment="Top" ScrollViewer.HorizontalScrollBarVisibility="Disabled" ScrollViewer.VerticalScrollBarVisibility="Hidden" >
                                         <ListView.ItemTemplate>
                                             <DataTemplate>
-                                                <StackPanel Margin="8 0 0 0" >
-                                                    <TextBlock FontWeight="Bold" Text="{Binding Name}"/>
-                                                    <TextBlock Text="{Binding Description}"/>
+                                                <StackPanel Orientation="Horizontal" >
+                                                    <materialDesign:PackIcon Kind="{Binding Icon}" Height="20" Width="20" Margin="2" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                                                    <StackPanel Margin="8 0 0 0" >
+                                                        <TextBlock FontWeight="Bold" Text="{Binding Name}"/>
+                                                        <TextBlock Text="{Binding Description}"/>
+                                                    </StackPanel>
                                                 </StackPanel>
                                             </DataTemplate>
                                         </ListView.ItemTemplate>
@@ -236,12 +238,19 @@
                         </materialDesign:DrawerHost>
                     </DockPanel>
                     <DockPanel Panel.ZIndex="4" Margin="0 40 0 0">
-                        <ListBox Name="listboxControl" DockPanel.Dock="Top">
-                            <TextBlock><Run Text="Plain"/></TextBlock>
-                            <TextBlock><Run Text="Old"/></TextBlock>
-                            <TextBlock><Run Text="ListBox"/></TextBlock>
-                            <TextBlock><Run Text="Full of junk"/></TextBlock>
-                        </ListBox>
+                        <ListView Name="manageItemsControl2" ItemsSource="{Binding Items2}" DockPanel.Dock="Top" ScrollViewer.HorizontalScrollBarVisibility="Disabled" ScrollViewer.VerticalScrollBarVisibility="Hidden">
+                            <ListView.ItemTemplate>
+                                <DataTemplate>
+                                    <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                                        <materialDesign:PackIcon Kind="{Binding Icon}" Height="20" Width="20" Margin="2 0 2 0" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                                        <StackPanel Margin="8 0 0 0"  >
+                                            <TextBlock FontWeight="Bold" Text="{Binding Name}"/>
+                                            <TextBlock Text="{Binding Description}"/>
+                                        </StackPanel>
+                                    </StackPanel>
+                                </DataTemplate>
+                            </ListView.ItemTemplate>
+                        </ListView>
                     </DockPanel>
                 </Grid>
                 <Border Grid.Column="0" VerticalAlignment="Bottom" HorizontalAlignment="Right" Margin="0,0,-21,30" Panel.ZIndex="20" 

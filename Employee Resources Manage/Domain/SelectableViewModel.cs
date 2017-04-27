@@ -12,6 +12,8 @@ namespace Employee_Resources_Manage.Domain
         private char _code;
         private double _numeric;
         private string _food;
+        private string _icon;
+        private int _iconNum;
 
         public bool IsSelected
         {
@@ -75,6 +77,28 @@ namespace Employee_Resources_Manage.Domain
             {
                 if (_food == value) return;
                 _food = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public string Icon
+        {
+            get { return _icon; }
+            set
+            {
+                if (_icon == value) return;
+                _icon = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public int IconNum
+        {
+            get { return _iconNum; }
+            set
+            {
+                if (_iconNum == value) return;
+                _iconNum = value;
                 OnPropertyChanged();
             }
         }
