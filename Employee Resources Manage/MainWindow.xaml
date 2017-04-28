@@ -27,7 +27,7 @@
     <Window.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
-
+                
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Window.Resources>
@@ -238,7 +238,7 @@
                         </materialDesign:DrawerHost>
                     </DockPanel>
                     <DockPanel Panel.ZIndex="4" Margin="0 40 0 0">
-                        <ListView Name="manageItemsControl2" ItemsSource="{Binding Items2}" DockPanel.Dock="Top" ScrollViewer.HorizontalScrollBarVisibility="Disabled" ScrollViewer.VerticalScrollBarVisibility="Hidden">
+                        <ListView Name="manageItemsControl2" ItemsSource="{Binding Items2}" PreviewMouseLeftButtonUp="UIElementChild_OnPreviewMouseLeftButtonUp" DockPanel.Dock="Top" ScrollViewer.HorizontalScrollBarVisibility="Disabled" ScrollViewer.VerticalScrollBarVisibility="Hidden">
                             <ListView.ItemTemplate>
                                 <DataTemplate>
                                     <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
@@ -266,14 +266,12 @@
                         <materialDesign:TransitionEffect Kind="SlideInFromBottom" />
                     </materialDesign:TransitioningContent.OpeningEffects>
                 </materialDesign:TransitioningContent>-->
-                <dockablz:Layout Grid.Column="2" Panel.ZIndex="5" >
-                    <dragablz:TabablzControl BorderThickness="1" Margin="0,-1,0,1">
+                <dockablz:Layout Grid.Column="2" Panel.ZIndex="5"  >
+                    <dragablz:TabablzControl Name="tabMain" BorderThickness="1" Margin="0,-1,0,1" PreviewMouseLeftButtonUp="UIElementCloseTab_OnPreviewMouseLeftButtonUp"  ShowDefaultCloseButton="True"  ClosingItemCallback="{Binding ClosingTabItemHandler}" >
                         <dragablz:TabablzControl.InterTabController>
-                            <dragablz:InterTabController />
+                            <dragablz:InterTabController  />
                         </dragablz:TabablzControl.InterTabController>
-                        <TabItem Header="MAHAPPS">
-                        </TabItem>
-                        <TabItem Header="PALETTE">
+                        <TabItem Header="Home" >
                         </TabItem>
                     </dragablz:TabablzControl>
                 </dockablz:Layout>

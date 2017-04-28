@@ -74,11 +74,41 @@ namespace Employee_Resources_Manage
                 borderManageControl2.SetResourceReference(Border.BackgroundProperty, "PrimaryHueLightBrush");
                 packIconListViewSelected1.Kind = (PackIconKind)((SelectableViewModel)manageItemsControl.SelectedItem).IconNum;
                 tbManage1.Text = ((SelectableViewModel)manageItemsControl.SelectedItem).Name;
-
                 Transitioner.SelectedIndex = 0;
             }
 
             MenuToggleButton.IsChecked = false;
+        }
+
+        private void UIElementChild_OnPreviewMouseLeftButtonUp(object sender, MouseButtonEventArgs e)
+        {
+            //until we had a StaysOpen glag to Drawer, this will help with scroll bars
+            var dependencyObject = Mouse.Captured as DependencyObject;
+            while (dependencyObject != null)
+            {
+                if (dependencyObject is ScrollBar) return;
+                dependencyObject = VisualTreeHelper.GetParent(dependencyObject);
+            }
+            TabItem tab = new TabItem();
+            tab.Header = ((SelectableViewModel)manageItemsControl2.SelectedItem).Name;
+            tabMain.Items.Add(tab);
+        }
+
+        private void UIElementCloseTab_OnPreviewMouseLeftButtonUp(object sender, MouseButtonEventArgs e)
+        {
+            var dependencyObject = Mouse.Captured as DependencyObject;
+            while (dependencyObject != null)
+            {
+                if (dependencyObject is Button)
+                {
+                    if (tabMain.Items.Count == 1)
+                    {
+                        tabMain.Items.RemoveAt(0);
+                    }
+                    return;
+                }
+                dependencyObject = VisualTreeHelper.GetParent(dependencyObject);
+            }
         }
 
         bool IsChangedTheme = false;
