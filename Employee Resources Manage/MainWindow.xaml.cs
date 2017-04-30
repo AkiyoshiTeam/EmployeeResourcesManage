@@ -19,6 +19,7 @@ using System.Threading;
 using MaterialDesignThemes.Wpf.Transitions;
 using MahApps.Metro;
 using MaterialDesignThemes.Wpf;
+using Dragablz;
 
 namespace Employee_Resources_Manage
 {
@@ -94,21 +95,36 @@ namespace Employee_Resources_Manage
             tabMain.Items.Add(tab);
         }
 
+        bool tabHeaderFocus = false;
+
         private void UIElementCloseTab_OnPreviewMouseLeftButtonUp(object sender, MouseButtonEventArgs e)
         {
             var dependencyObject = Mouse.Captured as DependencyObject;
             while (dependencyObject != null)
             {
-                if (dependencyObject is Button)
+                if (dependencyObject is DragablzItemsControl)
+                {
+                    tabHeaderFocus = true;
+                    break;
+                }
+                dependencyObject = VisualTreeHelper.GetParent(dependencyObject);
+            }
+            
+            dependencyObject = Mouse.Captured as DependencyObject;
+            while (dependencyObject != null)
+            {
+                if (dependencyObject is Button && tabHeaderFocus == true)
                 {
                     if (tabMain.Items.Count == 1)
                     {
                         tabMain.Items.RemoveAt(0);
                     }
+                    tabHeaderFocus = false;
                     return;
                 }
                 dependencyObject = VisualTreeHelper.GetParent(dependencyObject);
             }
+            tabHeaderFocus = false;
         }
 
         bool IsChangedTheme = false;

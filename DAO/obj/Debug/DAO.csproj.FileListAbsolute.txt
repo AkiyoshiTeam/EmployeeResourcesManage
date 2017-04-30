@@ -1,0 +1,12 @@
+C:\Users\mjnht\Desktop\Project Employee Manager\EmployeeResourcesManage\DAO\bin\Debug\DAO.dll.config
+C:\Users\mjnht\Desktop\Project Employee Manager\EmployeeResourcesManage\DAO\bin\Debug\DAO.dll
+C:\Users\mjnht\Desktop\Project Employee Manager\EmployeeResourcesManage\DAO\bin\Debug\DAO.pdb
+C:\Users\mjnht\Desktop\Project Employee Manager\EmployeeResourcesManage\DAO\bin\Debug\EntityFramework.dll
+C:\Users\mjnht\Desktop\Project Employee Manager\EmployeeResourcesManage\DAO\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\mjnht\Desktop\Project Employee Manager\EmployeeResourcesManage\DAO\bin\Debug\EntityFramework.xml
+C:\Users\mjnht\Desktop\Project Employee Manager\EmployeeResourcesManage\DAO\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\mjnht\Desktop\Project Employee Manager\EmployeeResourcesManage\DAO\obj\Debug\DAO.dll
+C:\Users\mjnht\Desktop\Project Employee Manager\EmployeeResourcesManage\DAO\obj\Debug\DAO.pdb
+C:\Users\mjnht\Desktop\Project Employee Manager\EmployeeResourcesManage\DAO\bin\Debug\DTO.dll
+C:\Users\mjnht\Desktop\Project Employee Manager\EmployeeResourcesManage\DAO\bin\Debug\DTO.pdb
+C:\Users\mjnht\Desktop\Project Employee Manager\EmployeeResourcesManage\DAO\obj\Debug\DAO.csprojResolveAssemblyReference.cache

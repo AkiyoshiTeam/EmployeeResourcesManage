@@ -1,0 +1,9 @@
+C:\Users\mjnht\Desktop\Project Employee Manager\EmployeeResourcesManage\DTO\bin\Debug\DTO.dll
+C:\Users\mjnht\Desktop\Project Employee Manager\EmployeeResourcesManage\DTO\bin\Debug\DTO.pdb
+C:\Users\mjnht\Desktop\Project Employee Manager\EmployeeResourcesManage\DTO\bin\Debug\EntityFramework.dll
+C:\Users\mjnht\Desktop\Project Employee Manager\EmployeeResourcesManage\DTO\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\mjnht\Desktop\Project Employee Manager\EmployeeResourcesManage\DTO\bin\Debug\EntityFramework.xml
+C:\Users\mjnht\Desktop\Project Employee Manager\EmployeeResourcesManage\DTO\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\mjnht\Desktop\Project Employee Manager\EmployeeResourcesManage\DTO\obj\Debug\DTO.csprojResolveAssemblyReference.cache
+C:\Users\mjnht\Desktop\Project Employee Manager\EmployeeResourcesManage\DTO\obj\Debug\DTO.dll
+C:\Users\mjnht\Desktop\Project Employee Manager\EmployeeResourcesManage\DTO\obj\Debug\DTO.pdb

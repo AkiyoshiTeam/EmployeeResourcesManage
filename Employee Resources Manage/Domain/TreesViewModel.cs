@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Employee_Resources_Manage.Domain;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
@@ -10,13 +11,27 @@ using System.Threading.Tasks;
 
 namespace Employee_Resources_Manage.Domain
 {
+    public sealed class Information
+    {
+        public Information(string content)
+        {
+            Content = content;
+        }
+        
+        public string Content { get; }
+    }
+
     public sealed class Movie
     {
-        public Movie(string name, string director)
+
+        public Movie(string name, string director, params Information[] infos)
         {
             Name = name;
             Director = director;
+            Infos = new ObservableCollection<Information>(infos);
         }
+
+        public ObservableCollection<Information> Infos { get; }
 
         public string Name { get; }
 
@@ -59,16 +74,15 @@ namespace Employee_Resources_Manage.Domain
         {
             MovieCategories = new ObservableCollection<MovieCategory>
             {
-                new MovieCategory("Action",                
-                    new Movie ("Predator", "John McTiernan"),
-                    new Movie("Alien", "Ridley Scott"),
-                    new Movie("Prometheus", "Ridley Scott")),
+                new MovieCategory("Action",
+                    new Movie ("Predator", "John McTiernan", new Information("This is Content of Movie")),
+                    new Movie("Alien", "Ridley Scott",new Information("This is Content of Movie")),
+                    new Movie("Prometheus", "Ridley Scott",new Information("This is Content of Movie"))),
                 new MovieCategory("Comedy",
-                    new Movie("EuroTrip", "Jeff Schaffer"),
-                    new Movie("EuroTrip", "Jeff Schaffer")                                            
+                    new Movie("EuroTrip", "Jeff Schaffer",new Information("This is Content of Movie")),
+                    new Movie("EuroTrip", "Jeff Schaffer",new Information("This is Content of Movie"))
                 )
             };
-
             AddCommand = new AnotherCommandImplementation(
                 _ =>
                 {
@@ -81,7 +95,7 @@ namespace Employee_Resources_Manage.Domain
                         var index = new Random().Next(0, MovieCategories.Count);
 
                         MovieCategories[index].Movies.Add(
-                            new Movie(GenerateString(15), GenerateString(20)));
+                            new Movie(GenerateString(15), GenerateString(20), new Information("This is Content of Movie")));
                     }
                 });
 
@@ -109,7 +123,7 @@ namespace Employee_Resources_Manage.Domain
 
             return string.Join(string.Empty,
                 Enumerable.Range(0, length)
-                .Select(v => (char) random.Next('a', 'z' + 1)));
+                .Select(v => (char)random.Next('a', 'z' + 1)));
         }
 
         public event PropertyChangedEventHandler PropertyChanged;

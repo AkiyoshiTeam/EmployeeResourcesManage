@@ -1,0 +1,15 @@
+C:\Users\mjnht\Desktop\Project Employee Manager\EmployeeResourcesManage\BUS\bin\Debug\BUS.dll
+C:\Users\mjnht\Desktop\Project Employee Manager\EmployeeResourcesManage\BUS\bin\Debug\BUS.pdb
+C:\Users\mjnht\Desktop\Project Employee Manager\EmployeeResourcesManage\BUS\bin\Debug\DAO.dll
+C:\Users\mjnht\Desktop\Project Employee Manager\EmployeeResourcesManage\BUS\bin\Debug\DTO.dll
+C:\Users\mjnht\Desktop\Project Employee Manager\EmployeeResourcesManage\BUS\bin\Debug\EntityFramework.dll
+C:\Users\mjnht\Desktop\Project Employee Manager\EmployeeResourcesManage\BUS\bin\Debug\DAO.pdb
+C:\Users\mjnht\Desktop\Project Employee Manager\EmployeeResourcesManage\BUS\bin\Debug\DAO.dll.config
+C:\Users\mjnht\Desktop\Project Employee Manager\EmployeeResourcesManage\BUS\bin\Debug\DTO.pdb
+C:\Users\mjnht\Desktop\Project Employee Manager\EmployeeResourcesManage\BUS\bin\Debug\EntityFramework.xml
+C:\Users\mjnht\Desktop\Project Employee Manager\EmployeeResourcesManage\BUS\obj\Debug\BUS.csprojResolveAssemblyReference.cache
+C:\Users\mjnht\Desktop\Project Employee Manager\EmployeeResourcesManage\BUS\obj\Debug\BUS.dll
+C:\Users\mjnht\Desktop\Project Employee Manager\EmployeeResourcesManage\BUS\obj\Debug\BUS.pdb
+C:\Users\mjnht\Desktop\Project Employee Manager\EmployeeResourcesManage\BUS\bin\Debug\BUS.dll.config
+C:\Users\mjnht\Desktop\Project Employee Manager\EmployeeResourcesManage\BUS\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\mjnht\Desktop\Project Employee Manager\EmployeeResourcesManage\BUS\bin\Debug\EntityFramework.SqlServer.xml

@@ -76,3 +76,19 @@ C:\Users\mjnht\Desktop\Project Employee Manager\EmployeeResourcesManage\Employee
 C:\Users\mjnht\Desktop\Project Employee Manager\EmployeeResourcesManage\Employee Resources Manage\obj\Debug\Employee Resources Manage.exe
 C:\Users\mjnht\Desktop\Project Employee Manager\EmployeeResourcesManage\Employee Resources Manage\obj\Debug\Employee Resources Manage.pdb
 C:\Users\mjnht\Desktop\Project Employee Manager\EmployeeResourcesManage\Employee Resources Manage\obj\Debug\Employee Resources Manage.csprojResolveAssemblyReference.cache
+C:\Users\mjnht\Desktop\Project Employee Manager\EmployeeResourcesManage\Employee Resources Manage\obj\Debug\SearchEmployee.g.cs
+C:\Users\mjnht\Desktop\Project Employee Manager\EmployeeResourcesManage\Employee Resources Manage\obj\Debug\SelectorEmployee.g.cs
+C:\Users\mjnht\Desktop\Project Employee Manager\EmployeeResourcesManage\Employee Resources Manage\obj\Debug\SearchEmployee.baml
+C:\Users\mjnht\Desktop\Project Employee Manager\EmployeeResourcesManage\Employee Resources Manage\obj\Debug\SelectorEmployee.baml
+C:\Users\mjnht\Desktop\Project Employee Manager\EmployeeResourcesManage\Employee Resources Manage\bin\Debug\BUS.dll
+C:\Users\mjnht\Desktop\Project Employee Manager\EmployeeResourcesManage\Employee Resources Manage\bin\Debug\DAO.dll
+C:\Users\mjnht\Desktop\Project Employee Manager\EmployeeResourcesManage\Employee Resources Manage\bin\Debug\DTO.dll
+C:\Users\mjnht\Desktop\Project Employee Manager\EmployeeResourcesManage\Employee Resources Manage\bin\Debug\EntityFramework.dll
+C:\Users\mjnht\Desktop\Project Employee Manager\EmployeeResourcesManage\Employee Resources Manage\bin\Debug\BUS.pdb
+C:\Users\mjnht\Desktop\Project Employee Manager\EmployeeResourcesManage\Employee Resources Manage\bin\Debug\DAO.pdb
+C:\Users\mjnht\Desktop\Project Employee Manager\EmployeeResourcesManage\Employee Resources Manage\bin\Debug\DAO.dll.config
+C:\Users\mjnht\Desktop\Project Employee Manager\EmployeeResourcesManage\Employee Resources Manage\bin\Debug\DTO.pdb
+C:\Users\mjnht\Desktop\Project Employee Manager\EmployeeResourcesManage\Employee Resources Manage\bin\Debug\EntityFramework.xml
+C:\Users\mjnht\Desktop\Project Employee Manager\EmployeeResourcesManage\Employee Resources Manage\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\mjnht\Desktop\Project Employee Manager\EmployeeResourcesManage\Employee Resources Manage\bin\Debug\BUS.dll.config
+C:\Users\mjnht\Desktop\Project Employee Manager\EmployeeResourcesManage\Employee Resources Manage\bin\Debug\EntityFramework.SqlServer.xml
