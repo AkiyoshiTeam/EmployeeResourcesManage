@@ -10,3 +10,10 @@ C:\Users\mjnht\Desktop\Project Employee Manager\EmployeeResourcesManage\DAO\obj\
 C:\Users\mjnht\Desktop\Project Employee Manager\EmployeeResourcesManage\DAO\bin\Debug\DTO.dll
 C:\Users\mjnht\Desktop\Project Employee Manager\EmployeeResourcesManage\DAO\bin\Debug\DTO.pdb
 C:\Users\mjnht\Desktop\Project Employee Manager\EmployeeResourcesManage\DAO\obj\Debug\DAO.csprojResolveAssemblyReference.cache
+C:\Users\mjnht\Desktop\Project Employee Manager\EmployeeResourcesManage\DAO\bin\Debug\System.Linq.Dynamic.dll
+C:\Users\mjnht\Desktop\Project Employee Manager\EmployeeResourcesManage\DAO\bin\Debug\zxing.dll
+C:\Users\mjnht\Desktop\Project Employee Manager\EmployeeResourcesManage\DAO\bin\Debug\zxing.presentation.dll
+C:\Users\mjnht\Desktop\Project Employee Manager\EmployeeResourcesManage\DAO\bin\Debug\zxing.pdb
+C:\Users\mjnht\Desktop\Project Employee Manager\EmployeeResourcesManage\DAO\bin\Debug\zxing.xml
+C:\Users\mjnht\Desktop\Project Employee Manager\EmployeeResourcesManage\DAO\bin\Debug\zxing.presentation.pdb
+C:\Users\mjnht\Desktop\Project Employee Manager\EmployeeResourcesManage\DAO\bin\Debug\zxing.presentation.xml

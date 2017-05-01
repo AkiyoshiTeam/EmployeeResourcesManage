@@ -67,22 +67,14 @@
                 </Grid.RowDefinitions>
                 <ScrollViewer Grid.Row="0" ScrollViewer.HorizontalScrollBarVisibility="Auto" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" VerticalScrollBarVisibility="Disabled">
                     <DockPanel>
-                        <StackPanel Orientation="Horizontal" MinHeight="37" DockPanel.Dock="Top">
-                            <TextBox Name="txtFilterID" Style="{DynamicResource MaterialDesignFloatingHintTextBox}"  materialDesign:HintAssist.Hint="ID" Width="{Binding ElementName=colCode, Path=ActualWidth}"  Foreground="{DynamicResource MaterialDesignBody}" KeyDown="txtFilter_KeyDown" Padding="3,0,0,0"/>
-                            <Separator Style="{StaticResource {x:Static ToolBar.SeparatorStyleKey}}" MinWidth="1" Margin="0"  />
-                            <TextBox Name="txtFilterName" Style="{DynamicResource MaterialDesignFloatingHintTextBox}" materialDesign:HintAssist.Hint="Name" Width="{Binding ElementName=colName, Path=ActualWidth}" Foreground="{DynamicResource MaterialDesignBody}" KeyDown="txtFilter_KeyDown" Padding="3,0,0,0"/>
-                            <Separator Style="{StaticResource {x:Static ToolBar.SeparatorStyleKey}}" MinWidth="1" Margin="0"  />
-                            <TextBox Name="txtFilterDes" Style="{DynamicResource MaterialDesignFloatingHintTextBox}" materialDesign:HintAssist.Hint="Date Into" Width="{Binding ElementName=colDes, Path=ActualWidth}"  Foreground="{DynamicResource MaterialDesignBody}" KeyDown="txtFilter_KeyDown" Padding="3,0,0,0"/>
-                            <Separator Style="{StaticResource {x:Static ToolBar.SeparatorStyleKey}}" MinWidth="1" Margin="0"  />
-                            <TextBox Name="txtFilterNum" Style="{DynamicResource MaterialDesignFloatingHintTextBox}" ToolTip="=,>,&lt;,>=,&lt;= operator" materialDesign:HintAssist.Hint="CV" Width="{Binding ElementName=colNum, Path=ActualWidth}" Foreground="{DynamicResource MaterialDesignBody}" KeyDown="txtFilter_KeyDown" PreviewTextInput="txtFilterNum_PreviewTextInput" Padding="3,0,0,0"/>
-                            <Separator Style="{StaticResource {x:Static ToolBar.SeparatorStyleKey}}" MinWidth="1" Margin="0"  />
-                            <TextBox Name="txtFilterFood" Style="{DynamicResource MaterialDesignFloatingHintTextBox}" materialDesign:HintAssist.Hint="BP" Width="{Binding ElementName=colFood, Path=ActualWidth}"  Foreground="{DynamicResource MaterialDesignBody}" KeyDown="txtFilter_KeyDown" Padding="3,0,0,0"></TextBox>
+                        <StackPanel Name="stFilter" Orientation="Horizontal" MinHeight="37" DockPanel.Dock="Top">
                         </StackPanel>
                         <DataGrid Name="dataGridCustom"  Style="{StaticResource MaterialDesignDataGrid}" ItemsSource="{Binding}"
-                      CanUserSortColumns="True" CanUserAddRows="False" AutoGenerateColumns="False" MaxHeight="500"
-                       materialDesign:DataGridAssist.CellPadding="4 2 2 2" materialDesign:DataGridAssist.ColumnHeaderPadding="4 2 2 2" VerticalScrollBarVisibility="Visible"  HeadersVisibility="Column" HorizontalScrollBarVisibility="Auto" DockPanel.Dock="Top">
-                            <DataGrid.Columns>
-                                <!--<DataGridCheckBoxColumn x:Name="colCheck"  Binding="{Binding IsSelected}" HeaderStyle="{StaticResource MaterialDesignDataGridColumnHeader}"
+                      CanUserSortColumns="True" CanUserAddRows="False" AutoGenerateColumns="True" MaxHeight="500"
+                       materialDesign:DataGridAssist.CellPadding="4 2 2 2" materialDesign:DataGridAssist.ColumnHeaderPadding="4 2 2 2" VerticalScrollBarVisibility="Visible"  HeadersVisibility="Column" HorizontalScrollBarVisibility="Auto" DockPanel.Dock="Top" GridLinesVisibility="Horizontal">
+                            
+                            <!--<DataGrid.Columns>
+                                --><!--<DataGridCheckBoxColumn x:Name="colCheck"  Binding="{Binding IsSelected}" HeaderStyle="{StaticResource MaterialDesignDataGridColumnHeader}"
                                             ElementStyle="{StaticResource MaterialDesignAccentCheckBox}"
                                             EditingElementStyle="{StaticResource MaterialDesignDataGridCheckBoxColumnEditingStyle}" >
                             <DataGridCheckBoxColumn.Header>
@@ -93,20 +85,18 @@
                                     <CheckBox Name="checkboxSlAll" Style="{StaticResource MaterialDesignAccentCheckBox}" IsChecked="{Binding Path=IsAllSelected}"/>
                                 </Border>
                             </DataGridCheckBoxColumn.Header>
-                        </DataGridCheckBoxColumn>-->
-                                <DataGridTextColumn x:Name="colCode" Binding="{Binding MaNV}" Header="ID"
-                                        EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnEditingStyle}" />
-                                <materialDesign:MaterialDataGridTextColumn x:Name="colName" Binding="{Binding HoTen}" Header="Name"                                     
-                                                               EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnPopupEditingStyle}"  />
-                                <materialDesign:MaterialDataGridTextColumn x:Name="colDes" Binding="{Binding NgayVaoLam}" Header="Date Into" MaxLength="255" 
-                                                               EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnPopupEditingStyle}" />
-                                <materialDesign:MaterialDataGridTextColumn x:Name="colNum" Binding="{Binding MaCV}" Header="CV" EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnPopupEditingStyle}"/>
-                                <materialDesign:MaterialDataGridTextColumn x:Name="colFood" Header="BP" Binding="{Binding MaBP}" EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnPopupEditingStyle}"/>
-                            </DataGrid.Columns>
+                        </DataGridCheckBoxColumn>--><!--
+                                <DataGridTextColumn x:Name="colCode" Binding="{Binding MaNV}" EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnEditingStyle}" />
+                                <materialDesign:MaterialDataGridTextColumn x:Name="colName" Binding="{Binding HoTen}" EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnPopupEditingStyle}"  />
+                                <materialDesign:MaterialDataGridTextColumn x:Name="colDes" Binding="{Binding NgayVaoLam}" MaxLength="255" EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnPopupEditingStyle}" />
+                                <materialDesign:MaterialDataGridTextColumn x:Name="colNum" Binding="{Binding MaCV}"  EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnPopupEditingStyle}"/>
+                                <materialDesign:MaterialDataGridTextColumn x:Name="colFood" Binding="{Binding MaBP}" EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnPopupEditingStyle}"/>
+                            </DataGrid.Columns>-->
                         </DataGrid>
                     </DockPanel>
                 </ScrollViewer>
-                <Button Name="btnExportExcel" Grid.Row="1" Style="{StaticResource MaterialDesignFlatButton}" Width="120" Click="btnExportExcel_Click" HorizontalAlignment="Left" VerticalAlignment="Center">Export Excel</Button>
+                <Button Name="btnSearch" Grid.Row="1" Style="{StaticResource MaterialDesignFlatButton}" Width="120" Click="btnSearch_Click" HorizontalAlignment="Left" VerticalAlignment="Center">Search</Button>
+                <Button Name="btnExportExcel" Grid.Row="1" Style="{StaticResource MaterialDesignFlatButton}" Width="120" Click="btnExportExcel_Click" HorizontalAlignment="Right" VerticalAlignment="Center">Export Excel</Button>
                 <Button Name="btnImportExcel" Grid.Row="1" Style="{StaticResource MaterialDesignFlatButton}" Width="120" Click="btnImportExcel_Click" HorizontalAlignment="Center" VerticalAlignment="Center">Import Excel</Button>
             </Grid>
         </GroupBox>

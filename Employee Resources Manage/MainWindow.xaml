@@ -272,7 +272,7 @@
                             <dragablz:InterTabController  />
                         </dragablz:TabablzControl.InterTabController>
                         <TabItem Name="tabHome"  Header="Home" IsSelected="True" >
-                            <Employee_Resources_Manage:SearchEmployee />
+                            <Employee_Resources_Manage:QRCode/>
                         </TabItem>
                     </dragablz:TabablzControl>
                 </dockablz:Layout>

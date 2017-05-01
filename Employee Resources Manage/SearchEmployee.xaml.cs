@@ -24,6 +24,7 @@ using BUS;
 using Excel = Microsoft.Office.Interop.Excel;
 using Microsoft.Win32;
 using System.Reflection;
+
 namespace Employee_Resources_Manage
 {
     /// <summary>
@@ -49,17 +50,13 @@ namespace Employee_Resources_Manage
     {
         public TreesViewModel ViewModel = new TreesViewModel();
         public ListsAndGridsViewModel GridModel = new ListsAndGridsViewModel();
-        public IEnumerable Model;
         public DataTable Table;
         public DataTable TableFilter;
+
         public SearchEmployee()
         {
             InitializeComponent();
-            Model = NhanVienBUS.GetNhanVien();
             treeView.DataContext = ViewModel;
-            Table = NhanVienBUS.GetTableNhanVien();
-            TableFilter = Table;
-            dataGridCustom.DataContext = TableFilter.DefaultView;
             //checkboxSlAll.DataContext = GridModel;
         }
 
@@ -84,12 +81,15 @@ namespace Employee_Resources_Manage
             e.Handled = !IsNumeric(e.Text);
         }
 
+
+
         private void FilterDataGrid()
         {
             try
             {
                 DataView dtView = new DataView(Table);
-                dtView.RowFilter = "MaNV LIKE '%"+txtFilterID.Text +"%'";
+                TextBox tbFilter = (TextBox)stFilter.FindName("txtFilterMaNV");
+                dtView.RowFilter = "MaNV LIKE '%" + tbFilter.Text + "%'";
                 TableFilter = dtView.ToTable();
                 dataGridCustom.DataContext = TableFilter.DefaultView;
             }
@@ -117,8 +117,6 @@ namespace Employee_Resources_Manage
             Regex regex = new Regex(@"[\d\<\>\=]");
             return regex.IsMatch(text);
         }
-
-
 
         private void btnExportExcel_Click(object sender, RoutedEventArgs e)
         {
@@ -154,8 +152,8 @@ namespace Employee_Resources_Manage
                     {
                         for (int j = 0; j < TableFilter.Rows.Count; j++)
                         {
-                            try{ sheet.Cells[j + 3, i + 1] = TableFilter.Rows[j].ItemArray[i]; }
-                            catch (Exception ex){ MessageBox.Show(ex.Message); }
+                            try { sheet.Cells[j + 3, i + 1] = TableFilter.Rows[j].ItemArray[i]; }
+                            catch (Exception ex) { MessageBox.Show(ex.Message); }
                         }
                     }
                     wb.SaveAs(fsave.FileName);
@@ -167,8 +165,9 @@ namespace Employee_Resources_Manage
                 }
                 finally
                 {
-                    app.Quit();
                     wb = null;
+                    app.Quit();
+
                 }
             }
         }
@@ -197,10 +196,10 @@ namespace Employee_Resources_Manage
                         string colName = range.Cells[2, i].Value.ToString();
                         dtTableTemp.Columns.Add(colName);
                     }
-                    for(int i=3;i<=rows; i++)
+                    for (int i = 3; i <= rows; i++)
                     {
                         DataRow dtRow = dtTableTemp.NewRow();
-                        for (int j=1; j<=cols;j++)
+                        for (int j = 1; j <= cols; j++)
                         {
                             dtRow[j - 1] = range.Cells[i, j].Value.ToString();
                         }
@@ -216,9 +215,31 @@ namespace Employee_Resources_Manage
                 }
                 finally
                 {
-                    app.Quit();
                     wb = null;
+                    app.Quit();
                 }
+            }
+        }
+
+        private void btnSearch_Click(object sender, RoutedEventArgs e)
+        {
+            Table = NhanVienBUS.GetNhanVien();
+            TableFilter = Table;
+            dataGridCustom.DataContext = TableFilter.DefaultView;
+            for (int i = 0; i < Table.Columns.Count; i++)
+            {
+                TextBox tbFilter = new TextBox();
+                tbFilter.Name = "txtFilter" + Table.Columns[i].ColumnName;
+                tbFilter.Style = (Style)FindResource("MaterialDesignFloatingHintTextBox");
+                tbFilter.SetResourceReference(ForegroundProperty, "MaterialDesignBody");
+                tbFilter.BorderThickness = new Thickness(0,0,1,0);
+                MaterialDesignThemes.Wpf.HintAssist.SetHint(tbFilter, Table.Columns[i].ColumnName);
+                Binding bnd = new Binding("Columns[" + i.ToString() + "].ActualWidth") { ElementName = "dataGridCustom" };
+                BindingOperations.SetBinding(tbFilter, TextBox.WidthProperty, bnd);
+                tbFilter.Padding = new Thickness(3, 0, 0, 0);
+                tbFilter.KeyDown += txtFilter_KeyDown;
+                stFilter.Children.Add(tbFilter);
+                stFilter.RegisterName(tbFilter.Name, tbFilter);
             }
         }
     }

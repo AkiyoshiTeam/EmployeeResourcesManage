@@ -11,14 +11,10 @@ namespace BUS
 {
     public class NhanVienBUS
     {
-        public static IEnumerable GetNhanVien()
+
+        public static DataTable GetNhanVien()
         {
             return DAO.NhanVienDAO.GetNhanVien();
-        }
-
-        public static DataTable GetTableNhanVien()
-        {
-            return DAO.NhanVienDAO.GetTableNhanVien();
         }
     }
 }
