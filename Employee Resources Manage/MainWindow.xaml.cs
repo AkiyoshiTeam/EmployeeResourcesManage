@@ -90,11 +90,28 @@ namespace Employee_Resources_Manage
                 if (dependencyObject is ScrollBar) return;
                 dependencyObject = VisualTreeHelper.GetParent(dependencyObject);
             }
+            if (tabHomeExist == true)
+            {
+                int i = 0;
+
+                foreach (TabItem ti in tabMain.Items)
+                {
+                    if (ti.Name == "tabHome")
+                        break;
+                    i++;
+                }
+                tabMain.Items.RemoveAt(i);
+                tabHomeExist = false;
+                tabMain.FixedHeaderCount = 0;
+            }
             TabItem tab = new TabItem();
             tab.Header = ((SelectableViewModel)manageItemsControl2.SelectedItem).Name;
+            SearchEmployee searchControl = new SearchEmployee();
+            tab.Content = searchControl;
+            tab.IsSelected = true;
             tabMain.Items.Add(tab);
         }
-
+        bool tabHomeExist = true;
         bool tabHeaderFocus = false;
 
         private void UIElementCloseTab_OnPreviewMouseLeftButtonUp(object sender, MouseButtonEventArgs e)
@@ -109,7 +126,7 @@ namespace Employee_Resources_Manage
                 }
                 dependencyObject = VisualTreeHelper.GetParent(dependencyObject);
             }
-            
+
             dependencyObject = Mouse.Captured as DependencyObject;
             while (dependencyObject != null)
             {
@@ -117,7 +134,14 @@ namespace Employee_Resources_Manage
                 {
                     if (tabMain.Items.Count == 1)
                     {
-                        tabMain.Items.RemoveAt(0);
+                        TabItem tabItem = new TabItem();
+                        tabItem.Content = new SearchEmployee();
+                        tabItem.Header = "Home";
+                        tabItem.Name = "tabHome";
+                        tabMain.Items.Add(tabItem);
+                        tabMain.FixedHeaderCount = 1;
+                        tabHomeExist = true;
+                        //tabMain.Items.RemoveAt(0);
                     }
                     tabHeaderFocus = false;
                     return;
@@ -134,7 +158,7 @@ namespace Employee_Resources_Manage
         {
             TransitioningContent transitioningContent = new TransitioningContent();
             TransitionEffect effect = new TransitionEffect();
-            effect.Kind = TransitionEffectKind.ExpandIn;
+            effect.Kind = TransitionEffectKind.FadeIn;
             transitioningContent.OpeningEffect = effect;
 
             if (IsChangedTheme == false)
@@ -180,6 +204,28 @@ namespace Employee_Resources_Manage
                 colChucNang.MaxWidth = 400;
                 packIconCollapse.Kind = PackIconKind.ChevronLeft;
                 collapseIsCheck = false;
+            }
+        }
+
+        private void btnHome_Click(object sender, RoutedEventArgs e)
+        {
+            if(tabHomeExist==false)
+            {
+                TabItem tabItem = new TabItem();
+                tabItem.Content = new SearchEmployee();
+                tabItem.Header = "Home";
+                tabItem.Name = "tabHome";
+                tabItem.IsSelected = true;
+                tabMain.Items.Add(tabItem);
+                tabHomeExist = true;
+            }
+            else {
+                foreach (TabItem ti in tabMain.Items)
+                {
+                    if (ti.Name == "tabHome")
+                    { ti.IsSelected = true; break; }
+                        
+                }
             }
         }
     }

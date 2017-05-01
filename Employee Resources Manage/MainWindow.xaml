@@ -111,7 +111,7 @@
                             <Setter Property="HorizontalContentAlignment" Value="Center"/>
                         </Style>
                     </ToolBar.Resources>
-                    <Button ToolTip="Quay về trang chính" Style="{DynamicResource ToolbarButton}" VerticalAlignment="Top" >
+                    <Button Name="btnHome" ToolTip="Quay về trang chính" Style="{DynamicResource ToolbarButton}" VerticalAlignment="Top" Click="btnHome_Click" >
                         <materialDesign:PackIcon Kind="HomeVariant" Width="17" Height="17"/>
                     </Button>
                     <Button ToolTip="Chọn nhân viên" Style="{StaticResource ToolbarButton}" VerticalAlignment="Top">
@@ -266,17 +266,13 @@
                         <materialDesign:TransitionEffect Kind="SlideInFromBottom" />
                     </materialDesign:TransitioningContent.OpeningEffects>
                 </materialDesign:TransitioningContent>-->
-                <dockablz:Layout Grid.Column="2" Panel.ZIndex="5" 
-                     FloatingItemHeaderMemberPath="Header"
-                     IsFloatDropZoneEnabled="True" >
-                    <dragablz:TabablzControl Name="tabMain" BorderThickness="1" Margin="0,-1,0,1" PreviewMouseLeftButtonUp="UIElementCloseTab_OnPreviewMouseLeftButtonUp" ShowDefaultCloseButton="True"  ClosingItemCallback="{Binding ClosingTabItemHandler}" >
+                <dockablz:Layout Grid.Column="2" Panel.ZIndex="5">
+                    <dragablz:TabablzControl Name="tabMain" BorderThickness="1" Margin="0,-1,0,1" PreviewMouseLeftButtonUp="UIElementCloseTab_OnPreviewMouseLeftButtonUp" ShowDefaultCloseButton="True" FixedHeaderCount="1">
                         <dragablz:TabablzControl.InterTabController>
                             <dragablz:InterTabController  />
                         </dragablz:TabablzControl.InterTabController>
-                        <TabItem Header="Home" IsSelected="True" >
-                            <Employee_Resources_Manage:SearchEmployee></Employee_Resources_Manage:SearchEmployee>
-                        </TabItem>
-                        <TabItem Header="TabFocus">
+                        <TabItem Name="tabHome"  Header="Home" IsSelected="True" >
+                            <Employee_Resources_Manage:SearchEmployee />
                         </TabItem>
                     </dragablz:TabablzControl>
                 </dockablz:Layout>

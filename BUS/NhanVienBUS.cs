@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using DTO;
 using System.Collections;
+using System.Data;
 
 namespace BUS
 {
@@ -13,6 +14,11 @@ namespace BUS
         public static IEnumerable GetNhanVien()
         {
             return DAO.NhanVienDAO.GetNhanVien();
+        }
+
+        public static DataTable GetTableNhanVien()
+        {
+            return DAO.NhanVienDAO.GetTableNhanVien();
         }
     }
 }

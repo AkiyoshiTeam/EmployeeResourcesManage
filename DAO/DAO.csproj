@@ -92,6 +92,7 @@
     <Compile Include="HopDong.cs">
       <DependentUpon>QLNhanVienEntity.tt</DependentUpon>
     </Compile>
+    <Compile Include="IEnumerableToDataTable.cs" />
     <Compile Include="KhenThuong.cs">
       <DependentUpon>QLNhanVienEntity.tt</DependentUpon>
     </Compile>

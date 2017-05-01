@@ -13,7 +13,6 @@
     <UserControl.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Dark.xaml" />
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </UserControl.Resources>
@@ -26,7 +25,7 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-        <GroupBox Grid.Column="0" Header="Chọn trường hiển thị" Style="{DynamicResource MaterialDesignGroupBox}" Margin="5,16,5,0" materialDesign:ShadowAssist.ShadowDepth="Depth2" BorderThickness="0" materialDesign:ColorZoneAssist.Mode="Accent" >
+        <GroupBox Grid.Column="0" Header="Chọn trường hiển thị" Style="{DynamicResource MaterialDesignGroupBox}" Margin="2,5,2,0" materialDesign:ShadowAssist.ShadowDepth="Depth2" BorderThickness="0" materialDesign:ColorZoneAssist.Mode="Accent" Padding="5" >
             <TreeView Name="treeView" Style="{StaticResource MaterialDesignTreeView}" 
                       ItemsSource="{Binding MovieCategories}" 
                       SelectedItemChanged="TreeView_SelectedItemChanged" MaxWidth="200" ScrollViewer.HorizontalScrollBarVisibility="Auto">
@@ -60,7 +59,7 @@
             </TreeView>
         </GroupBox>
         <GridSplitter Grid.Column="1" Width="3"/>
-        <GroupBox Grid.Column="1" Header="Kết quả tìm kiếm" Style="{DynamicResource MaterialDesignGroupBox}" Margin="5,16,5,0" materialDesign:ShadowAssist.ShadowDepth="Depth2" BorderThickness="0" materialDesign:ColorZoneAssist.Mode="Accent">
+        <GroupBox Grid.Column="1" Header="Kết quả tìm kiếm" Style="{DynamicResource MaterialDesignGroupBox}" Margin="2,5,2,0" materialDesign:ShadowAssist.ShadowDepth="Depth2" BorderThickness="0" materialDesign:ColorZoneAssist.Mode="Accent" Padding="5">
             <Grid>
                 <Grid.RowDefinitions>
                     <RowDefinition x:Name="rowDataGridView" Height="*" />
@@ -69,7 +68,7 @@
                 <ScrollViewer Grid.Row="0" ScrollViewer.HorizontalScrollBarVisibility="Auto" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" VerticalScrollBarVisibility="Disabled">
                     <DockPanel>
                         <StackPanel Orientation="Horizontal" MinHeight="37" DockPanel.Dock="Top">
-                            <TextBox Name="txtFilterCode" Style="{DynamicResource MaterialDesignFloatingHintTextBox}"  materialDesign:HintAssist.Hint="ID" Width="{Binding ElementName=colCode, Path=ActualWidth}"  Foreground="{DynamicResource MaterialDesignBody}" KeyDown="txtFilter_KeyDown" Padding="3,0,0,0"/>
+                            <TextBox Name="txtFilterID" Style="{DynamicResource MaterialDesignFloatingHintTextBox}"  materialDesign:HintAssist.Hint="ID" Width="{Binding ElementName=colCode, Path=ActualWidth}"  Foreground="{DynamicResource MaterialDesignBody}" KeyDown="txtFilter_KeyDown" Padding="3,0,0,0"/>
                             <Separator Style="{StaticResource {x:Static ToolBar.SeparatorStyleKey}}" MinWidth="1" Margin="0"  />
                             <TextBox Name="txtFilterName" Style="{DynamicResource MaterialDesignFloatingHintTextBox}" materialDesign:HintAssist.Hint="Name" Width="{Binding ElementName=colName, Path=ActualWidth}" Foreground="{DynamicResource MaterialDesignBody}" KeyDown="txtFilter_KeyDown" Padding="3,0,0,0"/>
                             <Separator Style="{StaticResource {x:Static ToolBar.SeparatorStyleKey}}" MinWidth="1" Margin="0"  />
@@ -79,7 +78,7 @@
                             <Separator Style="{StaticResource {x:Static ToolBar.SeparatorStyleKey}}" MinWidth="1" Margin="0"  />
                             <TextBox Name="txtFilterFood" Style="{DynamicResource MaterialDesignFloatingHintTextBox}" materialDesign:HintAssist.Hint="BP" Width="{Binding ElementName=colFood, Path=ActualWidth}"  Foreground="{DynamicResource MaterialDesignBody}" KeyDown="txtFilter_KeyDown" Padding="3,0,0,0"></TextBox>
                         </StackPanel>
-                        <DataGrid Name="dataGridCustom"  Style="{StaticResource MaterialDesignDataGrid}" 
+                        <DataGrid Name="dataGridCustom"  Style="{StaticResource MaterialDesignDataGrid}" ItemsSource="{Binding}"
                       CanUserSortColumns="True" CanUserAddRows="False" AutoGenerateColumns="False" MaxHeight="500"
                        materialDesign:DataGridAssist.CellPadding="4 2 2 2" materialDesign:DataGridAssist.ColumnHeaderPadding="4 2 2 2" VerticalScrollBarVisibility="Visible"  HeadersVisibility="Column" HorizontalScrollBarVisibility="Auto" DockPanel.Dock="Top">
                             <DataGrid.Columns>
@@ -101,13 +100,14 @@
                                                                EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnPopupEditingStyle}"  />
                                 <materialDesign:MaterialDataGridTextColumn x:Name="colDes" Binding="{Binding NgayVaoLam}" Header="Date Into" MaxLength="255" 
                                                                EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnPopupEditingStyle}" />
-                                <materialDesign:MaterialDataGridTextColumn x:Name="colNum" Binding="{Binding MaCV}" Header="CV" EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnPopupEditingStyle}">
-                                </materialDesign:MaterialDataGridTextColumn>
-                                <materialDesign:MaterialDataGridTextColumn x:Name="colFood" Header="BP" Binding="{Binding MaBP}" />
+                                <materialDesign:MaterialDataGridTextColumn x:Name="colNum" Binding="{Binding MaCV}" Header="CV" EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnPopupEditingStyle}"/>
+                                <materialDesign:MaterialDataGridTextColumn x:Name="colFood" Header="BP" Binding="{Binding MaBP}" EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnPopupEditingStyle}"/>
                             </DataGrid.Columns>
                         </DataGrid>
                     </DockPanel>
                 </ScrollViewer>
+                <Button Name="btnExportExcel" Grid.Row="1" Style="{StaticResource MaterialDesignFlatButton}" Width="120" Click="btnExportExcel_Click" HorizontalAlignment="Left" VerticalAlignment="Center">Export Excel</Button>
+                <Button Name="btnImportExcel" Grid.Row="1" Style="{StaticResource MaterialDesignFlatButton}" Width="120" Click="btnImportExcel_Click" HorizontalAlignment="Center" VerticalAlignment="Center">Import Excel</Button>
             </Grid>
         </GroupBox>
     </Grid>
