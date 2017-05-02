@@ -20,7 +20,7 @@ namespace DAO
             string connString = "Data Source=AKIYOSHI;Initial Catalog=QLNhanVien;Integrated Security=True";
             SqlConnection conn = null;
             DataTable tb = new DataTable();
-            string query = "Select * from NhanVien";
+            string query = "Select * from HopDong";
             try
             {
                 using (conn = new SqlConnection(connString))

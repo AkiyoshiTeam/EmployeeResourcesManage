@@ -226,6 +226,12 @@ namespace Employee_Resources_Manage
             Table = NhanVienBUS.GetNhanVien();
             TableFilter = Table;
             dataGridCustom.DataContext = TableFilter.DefaultView;
+            for(int i=0; i<stFilter.Children.Count;i++)
+            {
+                FrameworkElement children = (FrameworkElement)stFilter.Children[i];
+                stFilter.UnregisterName(children.Name);
+            }
+            stFilter.Children.Clear();
             for (int i = 0; i < Table.Columns.Count; i++)
             {
                 TextBox tbFilter = new TextBox();
