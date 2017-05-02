@@ -199,11 +199,25 @@ namespace Employee_Resources_Manage
                     for (int i = 3; i <= rows; i++)
                     {
                         DataRow dtRow = dtTableTemp.NewRow();
+                        bool rowExists = true;
                         for (int j = 1; j <= cols; j++)
                         {
-                            dtRow[j - 1] = range.Cells[i, j].Value.ToString();
+                            if (string.IsNullOrEmpty(range.Cells[i, 1].Text.ToString()))
+                            { 
+                                rowExists = false;
+                                break;
+                            }
+                            else
+                            {
+                                if (range.Cells[i, j].Value != null)
+                                    dtRow[j - 1] = range.Cells[i, j].Value.ToString();
+                                else
+                                    dtRow[j - 1] = "";
+
+                            }
                         }
-                        dtTableTemp.Rows.Add(dtRow);
+                        if(rowExists==true)
+                            dtTableTemp.Rows.Add(dtRow);
                     }
                     TableFilter = dtTableTemp;
                     Table = TableFilter;
