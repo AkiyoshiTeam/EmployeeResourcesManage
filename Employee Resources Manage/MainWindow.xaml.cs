@@ -20,6 +20,7 @@ using MaterialDesignThemes.Wpf.Transitions;
 using MahApps.Metro;
 using MaterialDesignThemes.Wpf;
 using Dragablz;
+using System.Data;
 
 namespace Employee_Resources_Manage
 {
@@ -28,12 +29,27 @@ namespace Employee_Resources_Manage
     /// </summary>
     public partial class MainWindow : MetroWindow
     {
+        public static DataTable selectedTableStatic;
+        public static DataTable selectedTableDesStatic;
+        public DataTable selectedTable;
+        public DataTable selectedTableDes;
+        public int lastTab = 1;
         public MainWindow()
         {
             InitializeComponent();
             ListsAndGridsViewModel manageItems = new ListsAndGridsViewModel();
             manageItemsControl.DataContext = manageItems;
             manageItemsControl2.DataContext = manageItems;
+            selectedTable = new DataTable();
+            selectedTableDes = new DataTable();
+            Task.Factory.StartNew(() =>
+            {
+                Thread.Sleep(2500);
+            }).ContinueWith(t =>
+            {
+                MainSnackbar.MessageQueue.Enqueue("Phần mềm quản lý nhân sự Công Ty Akiyoshi");
+            }, TaskScheduler.FromCurrentSynchronizationContext());
+
         }
 
         private void MenuItemExit_Click(object sender, RoutedEventArgs e)
@@ -87,29 +103,33 @@ namespace Employee_Resources_Manage
             var dependencyObject = Mouse.Captured as DependencyObject;
             while (dependencyObject != null)
             {
-                if (dependencyObject is ScrollBar) return;
+
+                if (dependencyObject is ListView)
+                {
+                    if (tabHomeExist == true)
+                    {
+                        int i = 0;
+
+                        foreach (TabItem ti in tabMain.Items)
+                        {
+                            if (ti.Name == "tabHome")
+                                break;
+                            i++;
+                        }
+                        tabMain.Items.RemoveAt(i);
+                        tabHomeExist = false;
+                        tabMain.FixedHeaderCount = 0;
+                    }
+                    TabItem tab = new TabItem();
+                    tab.Header = ((SelectableViewModel)manageItemsControl2.SelectedItem).Name;
+                    SearchEmployee searchControl = new SearchEmployee();
+                    tab.Content = searchControl;
+                    tab.IsSelected = true;
+                    tabMain.Items.Add(tab);
+                    return;
+                }
                 dependencyObject = VisualTreeHelper.GetParent(dependencyObject);
             }
-            if (tabHomeExist == true)
-            {
-                int i = 0;
-
-                foreach (TabItem ti in tabMain.Items)
-                {
-                    if (ti.Name == "tabHome")
-                        break;
-                    i++;
-                }
-                tabMain.Items.RemoveAt(i);
-                tabHomeExist = false;
-                tabMain.FixedHeaderCount = 0;
-            }
-            TabItem tab = new TabItem();
-            tab.Header = ((SelectableViewModel)manageItemsControl2.SelectedItem).Name;
-            SearchEmployee searchControl = new SearchEmployee();
-            tab.Content = searchControl;
-            tab.IsSelected = true;
-            tabMain.Items.Add(tab);
         }
         bool tabHomeExist = true;
         bool tabHeaderFocus = false;
@@ -209,7 +229,7 @@ namespace Employee_Resources_Manage
 
         private void btnHome_Click(object sender, RoutedEventArgs e)
         {
-            if(tabHomeExist==false)
+            if (tabHomeExist == false)
             {
                 TabItem tabItem = new TabItem();
                 tabItem.Content = new SearchEmployee();
@@ -219,14 +239,29 @@ namespace Employee_Resources_Manage
                 tabMain.Items.Add(tabItem);
                 tabHomeExist = true;
             }
-            else {
+            else
+            {
                 foreach (TabItem ti in tabMain.Items)
                 {
                     if (ti.Name == "tabHome")
                     { ti.IsSelected = true; break; }
-                        
+
                 }
             }
+        }
+        private void btnSelector_Click(object sender, RoutedEventArgs e)
+        {
+            TabItem tab = new TabItem();
+            tab.Header = "Selected";
+            SelectorEmployee selectorControl = new SelectorEmployee();
+            tab.Content = selectorControl;
+            tab.IsSelected = true;
+            tabMain.Items.Add(tab);
+        }
+
+        private void btnTranslate_Click(object sender, RoutedEventArgs e)
+        {
+            DataTable tb = selectedTable;
         }
     }
 }

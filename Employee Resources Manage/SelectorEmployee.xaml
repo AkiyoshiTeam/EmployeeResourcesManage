@@ -4,9 +4,19 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Employee_Resources_Manage"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             xmlns:domain="clr-namespace:Employee_Resources_Manage.Domain"
              mc:Ignorable="d" 
-             d:DesignHeight="300" d:DesignWidth="300">
+             d:DesignHeight="379.5" d:DesignWidth="765" Loaded="UserControl_Loaded">
     <Grid>
-            
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="100"/>
+        </Grid.RowDefinitions>
+        <DataGrid Name="dataGridCustom"  Style="{StaticResource MaterialDesignDataGrid}" ItemsSource="{Binding}" Grid.Row="0"
+                      CanUserSortColumns="True" CanUserAddRows="False" AutoGenerateColumns="False" MaxHeight="500"
+                       materialDesign:DataGridAssist.CellPadding="4 2 2 2" materialDesign:DataGridAssist.ColumnHeaderPadding="4 2 2 2" VerticalScrollBarVisibility="Visible"  HeadersVisibility="Column" HorizontalScrollBarVisibility="Auto" DockPanel.Dock="Top" GridLinesVisibility="Horizontal" CanUserReorderColumns="False">
+        </DataGrid>
+        <Button Name="btnSelect" Grid.Row="1" Style="{StaticResource MaterialDesignFlatButton}" Width="120" Click="btnSelect_Click" HorizontalAlignment="Center" VerticalAlignment="Center">Select</Button>
     </Grid>
 </UserControl>

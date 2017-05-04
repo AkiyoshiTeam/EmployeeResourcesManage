@@ -10,87 +10,13 @@ using System.Windows.Input;
 
 namespace Employee_Resources_Manage.Domain
 {
-    public class ItemSorter : IComparer
-    {
-        private string PropertyName { get; set; }
-
-        public ItemSorter(string propertyName)
-        {
-            PropertyName = propertyName;
-        }
-        public int Compare(object x, object y)
-        {
-            SelectableViewModel ix = (SelectableViewModel)x;
-            SelectableViewModel iy = (SelectableViewModel)y;
-
-            switch (PropertyName)
-            {
-                case "Name":
-                    return 0;
-                case "Age":
-                    //if (ix.Age > iy.Age) return 1;
-                    //if (iy.Age > ix.Age) return -1;
-                    return 0;
-                default:
-                    throw new InvalidOperationException("Cannot sort by " +
-                                                         PropertyName);
-            }
-        }
-    }
-    public class ListsAndGridsViewCommand : ICommand
-    {
-        private ListsAndGridsViewModel _ListsAndGridsViewModel;
-
-        public ListsAndGridsViewCommand(ListsAndGridsViewModel avm)
-        {
-            _ListsAndGridsViewModel = avm;
-        }
-
-        public void Execute(object parameter)
-        {
-            _ListsAndGridsViewModel.ExecuteCommand(parameter.ToString());
-        }
-
-        public bool CanExecute(object parameter)
-        {
-            return true;
-        }
-
-        public event EventHandler CanExecuteChanged;
-    }
     public class ListsAndGridsViewModel : INotifyPropertyChanged
     {
         private readonly ObservableCollection<SelectableViewModel> _items1;
         private readonly ObservableCollection<SelectableViewModel> _items2;
         private readonly ObservableCollection<SelectableViewModel> _items3;
         private bool _isAllItems1Selected;
-        public ICollectionView ItemsView { get; set; }
-        public ListsAndGridsViewCommand ListsAndGridsViewCommand
-        {
-            get { return new ListsAndGridsViewCommand(this); }
-        }
         
-        public void ExecuteCommand(string command)
-        {
-            ListCollectionView list = (ListCollectionView)ItemsView;
-            switch (command)
-            {
-                case "SortByName":
-                    list.CustomSort = new ItemSorter("Name");
-                    return;
-                case "SortByAge":
-                    list.CustomSort = new ItemSorter("Age");
-                    return;
-                case "ApplyFilter":
-                    list.Filter = new Predicate<object>(x =>((SelectableViewModel)x).Name == "");
-                    return;
-                case "RemoveFilter":
-                    list.Filter = null;
-                    return;
-                default:
-                    return;
-            }
-        }
         public ListsAndGridsViewModel()
         {
             _items1 = CreateData1();

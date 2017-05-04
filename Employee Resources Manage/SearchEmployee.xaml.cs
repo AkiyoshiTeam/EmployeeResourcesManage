@@ -24,6 +24,9 @@ using BUS;
 using Excel = Microsoft.Office.Interop.Excel;
 using Microsoft.Win32;
 using System.Reflection;
+using MaterialDesignThemes.Wpf;
+using Dragablz;
+using Dragablz.Dockablz;
 
 namespace Employee_Resources_Manage
 {
@@ -48,25 +51,22 @@ namespace Employee_Resources_Manage
     }
     public partial class SearchEmployee : UserControl
     {
-        public TreesViewModel ViewModel = new TreesViewModel();
+        public TreesSearchModel TreeSearchViewModel;
         public ListsAndGridsViewModel GridModel = new ListsAndGridsViewModel();
         public DataTable Table;
         public DataTable TableFilter;
-
+        public DataTable TableDes;
+        public DataTable TableObjectSearch;
+        bool searchOrImp;
         public SearchEmployee()
         {
             InitializeComponent();
-            treeView.DataContext = ViewModel;
+            TableObjectSearch = BUS.NhanVienBUS.GetDescription(TreeSearchViewModel);
+            TreeSearchViewModel = new TreesSearchModel(TableObjectSearch);
+            treeView.DataContext = TreeSearchViewModel;
             //checkboxSlAll.DataContext = GridModel;
         }
 
-        private void TreeView_SelectedItemChanged(object sender, RoutedPropertyChangedEventArgs<object> e)
-        {
-            if (ViewModel == null) return;
-
-            ViewModel.SelectedItem = e.NewValue;
-
-        }
 
         private void txtFilter_KeyDown(object sender, KeyEventArgs e)
         {
@@ -76,22 +76,166 @@ namespace Employee_Resources_Manage
             }
         }
 
-        private void txtFilterNum_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        private void txtFilterInt_PreviewTextInput(object sender, TextCompositionEventArgs e)
         {
             e.Handled = !IsNumeric(e.Text);
         }
-
-
 
         private void FilterDataGrid()
         {
             try
             {
                 DataView dtView = new DataView(Table);
-                TextBox tbFilter = (TextBox)stFilter.FindName("txtFilterMaNV");
-                dtView.RowFilter = "MaNV LIKE '%" + tbFilter.Text + "%'";
+                string strFilter = "";
+                bool exists = false;
+                for (int i = 0; i < Table.Columns.Count; i++)
+                {
+                    TextBox tbFilter = (TextBox)stFilter.FindName("txtFilter" + Table.Columns[i].ColumnName);
+
+                    if (tbFilter.Text != "" && tbFilter.Text != null)
+                    {
+                        if (exists != false)
+                        {
+                            if (Table.Columns[i].DataType.Name.ToString() == "DateTime")
+                            {
+                                string str = tbFilter.Text;
+                                Regex regex = new Regex(@"([\>\<\=]+)(((((0[13578])|([13578])|(1[02]))[\/](([1-9])|([0-2][0-9])|(3[01])))|(((0[469])|([469])|(11))[\/](([1-9])|([0-2][0-9])|(30)))|((2|02)[\/](([1-9])|([0-2][0-9]))))[\/]\d{4}$|^\d{4})");
+                                Match result = regex.Match(str);
+                                string operatorStr = result.Groups[1].Value;
+                                string dateStr = result.Groups[2].Value;
+                                regex = new Regex(@"((((0[13578])|([13578])|(1[02]))[\/](([1-9])|([0-2][0-9])|(3[01])))|(((0[469])|([469])|(11))[\/](([1-9])|([0-2][0-9])|(30)))|((2|02)[\/](([1-9])|([0-2][0-9]))))[\/]\d{4}$|^\d{4}");
+                                result = regex.Match(str);
+                                string dateStrOnly = result.Groups[0].Value;
+                                regex = new Regex(@"(.+)(\&+)(.+)");
+                                result = regex.Match(str);
+                                regex = new Regex(@"([\>\<\=\&]+)(((((0[13578])|([13578])|(1[02]))[\/](([1-9])|([0-2][0-9])|(3[01])))|(((0[469])|([469])|(11))[\/](([1-9])|([0-2][0-9])|(30)))|((2|02)[\/](([1-9])|([0-2][0-9]))))[\/]\d{4}$|^\d{4})");
+                                Match resultFrom = regex.Match(result.Groups[1].Value);
+                                Match resultTo = regex.Match(result.Groups[3].Value);
+                                string operatorFrom = resultFrom.Groups[1].Value;
+                                string dateFrom = resultFrom.Groups[2].Value;
+                                string operatorTo = resultTo.Groups[1].Value;
+                                string dateTo = resultTo.Groups[2].Value;
+
+                                if (operatorFrom != "" && operatorTo != "" && dateFrom != "" && dateTo != "")
+                                {
+                                    strFilter += " and " + Table.Columns[i].ColumnName + operatorFrom + " #" + dateFrom + "# and " + Table.Columns[i].ColumnName + operatorTo + " #" + dateTo + "# ";
+                                }
+                                else if (operatorStr != "" && operatorStr != null && dateStr != "" && dateStr != null)
+                                    strFilter += " and " + Table.Columns[i].ColumnName + operatorStr + " #" + dateStr + "#";
+                                else strFilter += " and " + Table.Columns[i].ColumnName + " = #" + dateStrOnly + "#";
+                                
+                            }
+                            else if (Table.Columns[i].DataType.Name.ToString() == "Int16" || Table.Columns[i].DataType.Name.ToString() == "Int32" || Table.Columns[i].DataType.Name.ToString() == "Int64"
+                          || Table.Columns[i].DataType.Name.ToString() == "UInt16" || Table.Columns[i].DataType.Name.ToString() == "UInt32" || Table.Columns[i].DataType.Name.ToString() == "UInt64")
+                            {
+                                string str = tbFilter.Text;
+                                Regex regex = new Regex(@"([\>\<\=]+)(\d+)");
+                                Match result = regex.Match(str);
+                                string operatorStr = result.Groups[1].Value;
+                                string numStr = result.Groups[2].Value;
+                                regex = new Regex(@"\d+");
+                                result = regex.Match(str);
+                                string numStrOnly = result.Groups[0].Value;
+                                regex = new Regex(@"(.+)(\&+)(.+)");
+                                result = regex.Match(str);
+                                regex = new Regex(@"([\>\<\=]+)(\d+)");
+                                Match resultFrom = regex.Match(result.Groups[1].Value);
+                                Match resultTo = regex.Match(result.Groups[3].Value);
+                                string operatorFrom = resultFrom.Groups[1].Value;
+                                string numFrom = resultFrom.Groups[2].Value;
+                                string operatorTo = resultTo.Groups[1].Value;
+                                string numTo = resultTo.Groups[2].Value;
+                                if (operatorFrom != "" && operatorTo != "" && numFrom != "" && numTo != "")
+                                {
+                                    strFilter += " and " + Table.Columns[i].ColumnName + operatorFrom + numFrom + " and " + Table.Columns[i].ColumnName + operatorTo + numTo + " ";
+                                }
+                                else if (operatorStr != "" && operatorStr != null && numStr != "" && numStr != null)
+                                    strFilter += " and " +  Table.Columns[i].ColumnName + operatorStr + numStr;
+                                else strFilter += " and " +  Table.Columns[i].ColumnName + " = " + numStrOnly + " ";
+                            }
+                            else
+                            {
+                                strFilter += " and " + Table.Columns[i].ColumnName + " LIKE '%" + tbFilter.Text + "%'";
+                            }
+                        }
+                        else
+                        {
+                            if (Table.Columns[i].DataType.Name.ToString() == "DateTime")
+                            {
+                                string str = tbFilter.Text;
+                                Regex regex = new Regex(@"([\>\<\=\&]+)(((((0[13578])|([13578])|(1[02]))[\/](([1-9])|([0-2][0-9])|(3[01])))|(((0[469])|([469])|(11))[\/](([1-9])|([0-2][0-9])|(30)))|((2|02)[\/](([1-9])|([0-2][0-9]))))[\/]\d{4}$|^\d{4})");
+                                Match result = regex.Match(str);
+                                string operatorStr = result.Groups[1].Value;
+                                string dateStr = result.Groups[2].Value;
+                                regex = new Regex(@"((((0[13578])|([13578])|(1[02]))[\/](([1-9])|([0-2][0-9])|(3[01])))|(((0[469])|([469])|(11))[\/](([1-9])|([0-2][0-9])|(30)))|((2|02)[\/](([1-9])|([0-2][0-9]))))[\/]\d{4}$|^\d{4}");
+                                result = regex.Match(str);
+                                string dateStrOnly = result.Groups[0].Value;
+                                regex = new Regex(@"(.+)(\&+)(.+)");
+                                result = regex.Match(str);
+                                regex = new Regex(@"([\>\<\=\&]+)(((((0[13578])|([13578])|(1[02]))[\/](([1-9])|([0-2][0-9])|(3[01])))|(((0[469])|([469])|(11))[\/](([1-9])|([0-2][0-9])|(30)))|((2|02)[\/](([1-9])|([0-2][0-9]))))[\/]\d{4}$|^\d{4})");
+                                Match resultFrom = regex.Match(result.Groups[1].Value);
+                                Match resultTo = regex.Match(result.Groups[3].Value);
+                                string operatorFrom = resultFrom.Groups[1].Value;
+                                string dateFrom = resultFrom.Groups[2].Value;
+                                string operatorTo = resultTo.Groups[1].Value;
+                                string dateTo = resultTo.Groups[2].Value;
+                                if (operatorFrom != "" && operatorTo != "" && dateFrom != "" && dateTo != "")
+                                {
+                                    strFilter += Table.Columns[i].ColumnName + operatorFrom + " #" + dateFrom + "# and " + Table.Columns[i].ColumnName + operatorTo + " #" + dateTo + "# ";
+                                }
+                                else if (operatorStr != "" && operatorStr != null && dateStr != "" && dateStr != null)
+                                    strFilter += Table.Columns[i].ColumnName + operatorStr + " #" + dateStr + "#";
+                                else strFilter += Table.Columns[i].ColumnName + " = #" + dateStrOnly + "#";
+                                exists = true;
+
+                            }
+                            else if (Table.Columns[i].DataType.Name.ToString() == "Int16" || Table.Columns[i].DataType.Name.ToString() == "Int32" || Table.Columns[i].DataType.Name.ToString() == "Int64"
+                           || Table.Columns[i].DataType.Name.ToString() == "UInt16" || Table.Columns[i].DataType.Name.ToString() == "UInt32" || Table.Columns[i].DataType.Name.ToString() == "UInt64")
+                            {
+                                string str = tbFilter.Text;
+                                Regex regex = new Regex(@"([\>\<\=]+)(\d+)");
+                                Match result = regex.Match(str);
+                                string operatorStr = result.Groups[1].Value;
+                                string numStr = result.Groups[2].Value;
+                                regex = new Regex(@"\d+");
+                                result = regex.Match(str);
+                                string numStrOnly = result.Groups[0].Value;
+                                regex = new Regex(@"(.+)(\&+)(.+)");
+                                result = regex.Match(str);
+                                regex = new Regex(@"([\>\<\=]+)(\d+)");
+                                Match resultFrom = regex.Match(result.Groups[1].Value);
+                                Match resultTo = regex.Match(result.Groups[3].Value);
+                                string operatorFrom = resultFrom.Groups[1].Value;
+                                string numFrom = resultFrom.Groups[2].Value;
+                                string operatorTo = resultTo.Groups[1].Value;
+                                string numTo = resultTo.Groups[2].Value;
+                                if (operatorFrom != "" && operatorTo != "" && numFrom != "" && numTo != "")
+                                {
+                                    strFilter += Table.Columns[i].ColumnName + operatorFrom + numFrom + " and " + Table.Columns[i].ColumnName + operatorTo + numTo + " ";
+                                }
+                                else if (operatorStr != "" && operatorStr != null && numStr != "" && numStr != null)
+                                    strFilter += Table.Columns[i].ColumnName + operatorStr + numStr;
+                                else strFilter += Table.Columns[i].ColumnName + " = " + numStrOnly + " ";
+                                exists = true;
+
+                            }
+                            else
+                            {
+                                strFilter += Table.Columns[i].ColumnName + " LIKE '%" + tbFilter.Text + "%'";
+                            }
+                            exists = true;
+                        }
+                    }
+                }
+                //"MaNV LIKE '%" + tbFilter.Text + "%'"
+                dtView.RowFilter = strFilter;
                 TableFilter = dtView.ToTable();
-                dataGridCustom.DataContext = TableFilter.DefaultView;
+                MainWindow.selectedTableDesStatic = TableDes;
+                MainWindow.selectedTableStatic = dtView.ToTable();
+                dataGridCustom.DataContext = MainWindow.selectedTableStatic;
+                //MainWindow.selectedTableStatic.Rows.Clear();
+                //foreach (DataRow row in dtView.ToTable().Rows)
+                //{ MainWindow.selectedTableStatic.ImportRow(row); }
             }
             catch (Exception ex)
             {
@@ -114,7 +258,7 @@ namespace Employee_Resources_Manage
 
         private static bool IsNumeric(string text)
         {
-            Regex regex = new Regex(@"[\d\<\>\=]");
+            Regex regex = new Regex(@"[\d\<\>\=\&]");
             return regex.IsMatch(text);
         }
 
@@ -203,25 +347,29 @@ namespace Employee_Resources_Manage
                         for (int j = 1; j <= cols; j++)
                         {
                             if (string.IsNullOrEmpty(range.Cells[i, 1].Text.ToString()))
-                            { 
+                            {
                                 rowExists = false;
                                 break;
                             }
                             else
                             {
-                                if (range.Cells[i, j].Value != null)
-                                    dtRow[j - 1] = range.Cells[i, j].Value.ToString();
-                                else
-                                    dtRow[j - 1] = "";
+                                //if (range.Cells[i, j].Value != null)
+                                dtRow[j - 1] = range.Cells[i, j].Value;
+                                //else
+                                //    dtRow[j - 1] = "";
 
                             }
                         }
-                        if(rowExists==true)
+                        if (rowExists == true)
                             dtTableTemp.Rows.Add(dtRow);
                     }
                     TableFilter = dtTableTemp;
                     Table = TableFilter;
+                    dataGridCustom.Columns.Clear();
+                    dataGridCustom.AutoGenerateColumns = true;
                     dataGridCustom.DataContext = TableFilter.DefaultView;
+                    searchOrImp = false;
+                    CreateTextBoxFilter();
                 }
                 catch (Exception ex)
                 {
@@ -235,33 +383,108 @@ namespace Employee_Resources_Manage
             }
         }
 
-        private void btnSearch_Click(object sender, RoutedEventArgs e)
+        private async void btnSearch_Click(object sender, RoutedEventArgs e)
         {
-            Table = NhanVienBUS.GetNhanVien();
+
+            TableDes = NhanVienBUS.GetDescription(TreeSearchViewModel);
+            Table = NhanVienBUS.GetNhanVien(TreeSearchViewModel);
             TableFilter = Table;
-            dataGridCustom.DataContext = TableFilter.DefaultView;
-            for(int i=0; i<stFilter.Children.Count;i++)
+            if (Table != null)
+            {
+                dataGridCustom.AutoGenerateColumns = false;
+                searchOrImp = true;
+                MainWindow.selectedTableStatic = Table;
+                MainWindow.selectedTableDesStatic = TableDes;
+                dataGridCustom.DataContext = MainWindow.selectedTableStatic;
+                CreateTextBoxFilter();
+                CreateColumnDG();
+            }
+            else
+            {
+                DialogHost da = (DialogHost)((DockPanel)((ColorZone)((Grid)((Layout)((TabablzControl)((TabItem)this.Parent).Parent).Parent).Parent).Parent).Parent).Parent;
+                da.DataContext = "Chưa chọn trường dữ liệu cần tìm!";
+                da.IsOpen = true;
+            }
+
+        }
+
+
+        private void CreateTextBoxFilter()
+        {
+            for (int i = 0; i < stFilter.Children.Count; i++)
             {
                 FrameworkElement children = (FrameworkElement)stFilter.Children[i];
                 stFilter.UnregisterName(children.Name);
             }
             stFilter.Children.Clear();
+
             for (int i = 0; i < Table.Columns.Count; i++)
             {
                 TextBox tbFilter = new TextBox();
                 tbFilter.Name = "txtFilter" + Table.Columns[i].ColumnName;
                 tbFilter.Style = (Style)FindResource("MaterialDesignFloatingHintTextBox");
                 tbFilter.SetResourceReference(ForegroundProperty, "MaterialDesignBody");
-                tbFilter.BorderThickness = new Thickness(0,0,1,0);
-                MaterialDesignThemes.Wpf.HintAssist.SetHint(tbFilter, Table.Columns[i].ColumnName);
+                if (i < Table.Columns.Count - 1)
+                    tbFilter.BorderThickness = new Thickness(1, 0, 0, 1);
+                else tbFilter.BorderThickness = new Thickness(1, 0, 1, 1);
+                if (searchOrImp == true)
+                    HintAssist.SetHint(tbFilter, TableDes.Rows[i][2].ToString());
+                else HintAssist.SetHint(tbFilter, Table.Columns[i].ColumnName); ;
                 Binding bnd = new Binding("Columns[" + i.ToString() + "].ActualWidth") { ElementName = "dataGridCustom" };
                 BindingOperations.SetBinding(tbFilter, TextBox.WidthProperty, bnd);
                 tbFilter.Padding = new Thickness(3, 0, 0, 0);
+                TextBlock tooltipText = new TextBlock();
                 tbFilter.KeyDown += txtFilter_KeyDown;
+
+                if (Table.Columns[i].DataType.Name.ToString() == "Int16" || Table.Columns[i].DataType.Name.ToString() == "Int32" || Table.Columns[i].DataType.Name.ToString() == "Int64"
+                    || Table.Columns[i].DataType.Name.ToString() == "UInt16" || Table.Columns[i].DataType.Name.ToString() == "UInt32" || Table.Columns[i].DataType.Name.ToString() == "UInt64")
+                {
+                    tooltipText.Text = String.Format("So sánh hỗ trợ: = (mặc định), <, >, <=, >=, <>(khác), &.\nVí dụ: >5, <>7(khác 7), >5&<9 (lớn hơn 5 nhỏ hơn 9)...");
+                    tbFilter.ToolTip = tooltipText;
+                    tbFilter.PreviewTextInput += txtFilterInt_PreviewTextInput;
+                }
+                else if (Table.Columns[i].DataType.Name.ToString() == "DateTime")
+                {
+                    tooltipText.Text = String.Format("Định dạng: tháng/ngày/năm\nSo sánh hỗ trợ: = (mặc định), <, >, <=, >=, <>(khác), &.\nVí dụ: >4/23/2016, <>5/17/2016(khác 5/17/2016), \n>=4/23/2016&<=5/17/2016 (từ 4/23/2016 đến 5/17/2016)...");
+                    tbFilter.ToolTip = tooltipText;
+                    foreach (DataRow row in Table.Columns[i].Table.Rows)
+                    {
+                        row[Table.Columns[i]] = DateTime.Parse(row[Table.Columns[i]].ToString()).ToString("dd/MM/yyyy");
+                    }
+                    TableFilter = Table;
+                    dataGridCustom.DataContext = TableFilter;
+                }
+                else
+                {
+                    tooltipText.Text = String.Format("Ví dụ: NV001, NV, 002");
+                    tbFilter.ToolTip = tooltipText;
+                }
                 stFilter.Children.Add(tbFilter);
                 stFilter.RegisterName(tbFilter.Name, tbFilter);
             }
         }
+
+        private void CreateColumnDG()
+        {
+            dataGridCustom.Columns.Clear();
+            for (int i = 0; i < Table.Columns.Count; i++)
+            {
+                MaterialDataGridTextColumn col = new MaterialDataGridTextColumn();
+                col.Header = TableDes.Rows[i][2].ToString();
+                col.EditingElementStyle = (Style)FindResource("MaterialDesignDataGridTextColumnPopupEditingStyle");
+                col.Binding = new Binding(Table.Columns[i].ColumnName);
+                dataGridCustom.Columns.Add(col);
+            }
+        }
+
+        private void btnSelect_Click(object sender, RoutedEventArgs e)
+        {
+            //((MainWindow)((DockPanel)((ColorZone)((Grid)((Layout)((TabablzControl)((TabItem)this.Parent).Parent).Parent).Parent).Parent).Parent).Parent).selectedTable = TableFilter;
+            //((MainWindow)((DockPanel)((ColorZone)((Grid)((Layout)((TabablzControl)((TabItem)this.Parent).Parent).Parent).Parent).Parent).Parent).Parent).selectedTableDes = TableDes;
+            MainWindow.selectedTableDesStatic = TableDes;
+            dataGridCustom.DataContext = MainWindow.selectedTableStatic;
+        }
+
     }
 
 }

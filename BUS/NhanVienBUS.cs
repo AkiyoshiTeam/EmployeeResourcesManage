@@ -11,10 +11,14 @@ namespace BUS
 {
     public class NhanVienBUS
     {
-
-        public static DataTable GetNhanVien()
+        public static DataTable GetNhanVien(TreesSearchModel TreeSearchViewModel)
         {
-            return DAO.NhanVienDAO.GetNhanVien();
+            return DAO.NhanVienDAO.GetNhanVien(TreeSearchViewModel);
+        }
+
+        public static DataTable GetDescription(TreesSearchModel TreeSearchViewModel)
+        {
+            return DAO.NhanVienDAO.GetDescription(TreeSearchViewModel);
         }
     }
 }

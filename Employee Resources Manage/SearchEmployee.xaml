@@ -8,8 +8,9 @@
              xmlns:wpf="clr-namespace:MaterialDesignThemes.Wpf;assembly=MaterialDesignThemes.Wpf"
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              xmlns:domain="clr-namespace:Employee_Resources_Manage.Domain"
+             xmlns:DTO="clr-namespace:DTO;assembly=DTO"
              mc:Ignorable="d" 
-             d:DesignHeight="439.183" d:DesignWidth="281.46">
+             d:DesignHeight="450" d:DesignWidth="800">
     <UserControl.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
@@ -27,31 +28,30 @@
         </Grid.RowDefinitions>
         <GroupBox Grid.Column="0" Header="Chọn trường hiển thị" Style="{DynamicResource MaterialDesignGroupBox}" Margin="2,5,2,0" materialDesign:ShadowAssist.ShadowDepth="Depth2" BorderThickness="0" materialDesign:ColorZoneAssist.Mode="Accent" Padding="5" >
             <TreeView Name="treeView" Style="{StaticResource MaterialDesignTreeView}" 
-                      ItemsSource="{Binding MovieCategories}" 
-                      SelectedItemChanged="TreeView_SelectedItemChanged" MaxWidth="200" ScrollViewer.HorizontalScrollBarVisibility="Auto">
+                      ItemsSource="{Binding SearchObjects}" MaxWidth="200" ScrollViewer.HorizontalScrollBarVisibility="Auto">
                 <!--<TreeView.ItemContainerStyle>
                     <Style TargetType="{x:Type TreeViewItem}" BasedOn="{StaticResource MaterialDesignTreeViewItem}">
                         <Setter Property="IsExpanded" Value="True"/>
                     </Style>
                 </TreeView.ItemContainerStyle>-->
                 <TreeView.Resources>
-                    <HierarchicalDataTemplate DataType="{x:Type domain:MovieCategory}"
-                                              ItemsSource="{Binding Movies}">
+                    <HierarchicalDataTemplate DataType="{x:Type DTO:SearchObject}"
+                                              ItemsSource="{Binding SearchElements}">
                         <StackPanel Orientation="Horizontal">
-                            <CheckBox Style="{StaticResource MaterialDesignAccentCheckBox}" VerticalAlignment="Bottom"/>
+                            <CheckBox Style="{StaticResource MaterialDesignAccentCheckBox}" IsChecked="{Binding IsChecked}" VerticalAlignment="Bottom"/>
                             <TextBlock Text="{Binding Name}" Margin="3 2"/>
                         </StackPanel>
                     </HierarchicalDataTemplate>
-                    <HierarchicalDataTemplate DataType="{x:Type domain:Movie}"
-                                              ItemsSource="{Binding Infos}">
+                    <HierarchicalDataTemplate DataType="{x:Type DTO:SearchElement}"
+                                              ItemsSource="{Binding SearchElementDetails}">
                         <StackPanel Orientation="Horizontal">
-                            <CheckBox Style="{StaticResource MaterialDesignAccentCheckBox}" VerticalAlignment="Bottom"/>
+                            <CheckBox Style="{StaticResource MaterialDesignAccentCheckBox}" IsChecked="{Binding IsCheckedElement}" VerticalAlignment="Bottom"/>
                             <TextBlock Text="{Binding Name}" Margin="3 2"/>
                         </StackPanel>
                     </HierarchicalDataTemplate>
-                    <DataTemplate DataType="{x:Type domain:Information}">
+                    <DataTemplate DataType="{x:Type DTO:SearchElementDetail}">
                         <StackPanel Orientation="Horizontal">
-                            <CheckBox Style="{StaticResource MaterialDesignAccentCheckBox}" VerticalAlignment="Bottom"/>
+                            <CheckBox Style="{StaticResource MaterialDesignAccentCheckBox}" IsChecked="{Binding IsCheckedDetail}" VerticalAlignment="Bottom"/>
                             <TextBlock Text="{Binding Content}"/>
                         </StackPanel>
                     </DataTemplate>
@@ -70,8 +70,8 @@
                         <StackPanel Name="stFilter" Orientation="Horizontal" MinHeight="37" DockPanel.Dock="Top">
                         </StackPanel>
                         <DataGrid Name="dataGridCustom"  Style="{StaticResource MaterialDesignDataGrid}" ItemsSource="{Binding}"
-                      CanUserSortColumns="True" CanUserAddRows="False" AutoGenerateColumns="True" MaxHeight="500"
-                       materialDesign:DataGridAssist.CellPadding="4 2 2 2" materialDesign:DataGridAssist.ColumnHeaderPadding="4 2 2 2" VerticalScrollBarVisibility="Visible"  HeadersVisibility="Column" HorizontalScrollBarVisibility="Auto" DockPanel.Dock="Top" GridLinesVisibility="Horizontal">
+                      CanUserSortColumns="True" CanUserAddRows="False" AutoGenerateColumns="False" MaxHeight="500"
+                       materialDesign:DataGridAssist.CellPadding="4 2 2 2" materialDesign:DataGridAssist.ColumnHeaderPadding="4 2 2 2" VerticalScrollBarVisibility="Visible"  HeadersVisibility="Column" HorizontalScrollBarVisibility="Auto" DockPanel.Dock="Top" GridLinesVisibility="Horizontal" CanUserReorderColumns="False">
                             
                             <!--<DataGrid.Columns>
                                 --><!--<DataGridCheckBoxColumn x:Name="colCheck"  Binding="{Binding IsSelected}" HeaderStyle="{StaticResource MaterialDesignDataGridColumnHeader}"
@@ -95,9 +95,12 @@
                         </DataGrid>
                     </DockPanel>
                 </ScrollViewer>
-                <Button Name="btnSearch" Grid.Row="1" Style="{StaticResource MaterialDesignFlatButton}" Width="120" Click="btnSearch_Click" HorizontalAlignment="Left" VerticalAlignment="Center">Search</Button>
-                <Button Name="btnExportExcel" Grid.Row="1" Style="{StaticResource MaterialDesignFlatButton}" Width="120" Click="btnExportExcel_Click" HorizontalAlignment="Right" VerticalAlignment="Center">Export Excel</Button>
-                <Button Name="btnImportExcel" Grid.Row="1" Style="{StaticResource MaterialDesignFlatButton}" Width="120" Click="btnImportExcel_Click" HorizontalAlignment="Center" VerticalAlignment="Center">Import Excel</Button>
+                <WrapPanel Grid.Row="1">
+                    <Button Name="btnSearch" Style="{StaticResource MaterialDesignFlatButton}" Width="120" Click="btnSearch_Click" >Search</Button>
+                    <Button Name="btnExportExcel" Style="{StaticResource MaterialDesignFlatButton}" Width="120" Click="btnExportExcel_Click" >Export Excel</Button>
+                    <Button Name="btnImportExcel" Style="{StaticResource MaterialDesignFlatButton}" Width="120" Click="btnImportExcel_Click">Import Excel</Button>
+                    <Button Name="btnSelect" Style="{StaticResource MaterialDesignFlatButton}" Width="120" Click="btnSelect_Click" >Select</Button>
+                </WrapPanel>
             </Grid>
         </GroupBox>
     </Grid>
