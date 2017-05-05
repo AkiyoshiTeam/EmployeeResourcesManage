@@ -17,47 +17,35 @@ namespace DAO
     {
         public static DataTable GetNhanVien(TreesSearchModel TreeSearchViewModel)
         {
-            string connString = "Data Source=AKIYOSHI;Initial Catalog=QLNhanVien;Integrated Security=True";
-            SqlConnection conn = null;
             DataTable tb = new DataTable();
-            string query = "Select ";
-            bool exists = false;
-            for (int i = 0; i < TreeSearchViewModel.SearchObjects.Count; i++)
+            string query = "Select nv.MaNV, nv.HoTen";
+            bool exists = true;
+            int i = 0;
+            for (int j = 0; j < TreeSearchViewModel.SearchObjects[i].SearchElements.Count; j++)
             {
-                for (int j = 0; j < TreeSearchViewModel.SearchObjects[i].SearchElements.Count; j++)
+                for (int n = 0; n < TreeSearchViewModel.SearchObjects[i].SearchElements[j].SearchElementDetails.Count; n++)
                 {
-                    for (int n = 0; n < TreeSearchViewModel.SearchObjects[i].SearchElements[j].SearchElementDetails.Count; n++)
+                    if (TreeSearchViewModel.SearchObjects[i].SearchElements[j].SearchElementDetails[n].IsCheckedDetail == true)
                     {
-                        if (TreeSearchViewModel.SearchObjects[i].SearchElements[j].SearchElementDetails[n].IsCheckedDetail == true)
-                        {
-                            if (exists == false)
-                            {
-                                query += TreeSearchViewModel.SearchObjects[i].SearchElements[j].SearchElementDetails[n].StrSearch;
-                                exists = true;
-                            }
-                            else query += ", " + TreeSearchViewModel.SearchObjects[i].SearchElements[j].SearchElementDetails[n].StrSearch;
-                        }
+                        if (TreeSearchViewModel.SearchObjects[i].SearchElements[j].SearchElementDetails[n].StrSearch.Trim() != "nv.HoTen" && TreeSearchViewModel.SearchObjects[i].SearchElements[j].SearchElementDetails[n].StrSearch.Trim() != "nv.MaNV" && TreeSearchViewModel.SearchObjects[i].SearchElements[j].SearchElementDetails[n].StrSearch.Trim() != "tt.MaNV")
+                            query += ", " + TreeSearchViewModel.SearchObjects[i].SearchElements[j].SearchElementDetails[n].StrSearch;
                     }
                 }
             }
-            query += " From NhanVien";
-
+            query += @" From NhanVien nv join ThongTinChiTietNhanVien tt on nv.MaNV = tt.MaNV 
+                        join QuocGia qg on tt.QuocGia = qg.MaQG join TinhTP ttp on tt.TinhTP = ttp.MaTinh
+                        join DanToc dt on tt.MaDT = dt.MaDT join TonGiao tg on tt.MaTG=tg.MaTG
+                        join QuanHuyen qh on tt.QuanHuyen = qh.MaQuan join GioiTinh gt on tt.MaGT=gt.MaGT
+                        join ChucVu cv on nv.MaCV = cv.MaCV join PhongBan pb on nv.MaPB = pb.MaPB
+                        join TinhTrangNhanVien ttnv on nv.MaTT=ttnv.MaTT join LoaiLuong ll on nv.MaLoaiLuong = ll.MaLoaiLuong";
             if (exists == true)
             {
+                DataProvider dataProvider = new DataProvider();
                 try
                 {
-                    using (conn = new SqlConnection(connString))
-                    {
-                        conn.Open();
-                        using (SqlDataAdapter da = new SqlDataAdapter(query, conn))
-                        {
-                            da.Fill(tb);
-                        }
-
-                    }
-                    conn.Close();
+                    dataProvider.connect();
+                    tb = dataProvider.ExecuteQuery_DataTble(query);
                     return tb;
-
                 }
                 catch (Exception ex)
                 {
@@ -65,44 +53,89 @@ namespace DAO
                 }
                 finally
                 {
-                    conn.Close();
+                    dataProvider.disconnect();
                 }
             }
             return null;
         }
 
-        public static DataTable GetDescription(TreesSearchModel TreeSearchViewModel)
+
+        public static DataTable GetDescriptionSelected(TreesSearchModel TreeSearchViewModel)
         {
-            string connString = "Data Source=AKIYOSHI;Initial Catalog=QLNhanVien;Integrated Security=True";
-            SqlConnection conn = null;
             DataTable tb = new DataTable();
+            bool exists = false;
             string query = @"select st.name[Table], sc.name[Column], sep.value[Description]
                             from sys.tables st inner join sys.columns sc on st.object_id = sc.object_id 
                             left join sys.extended_properties sep on st.object_id = sep.major_id and sc.column_id = sep.minor_id and sep.name = 'MS_Description'
-                            where st.name = 'NhanVien'";
-            //  and (sc.name = 'MaNV' or sc.name = 'NgayVaoLam')
-            try
+                            where ";
+            for (int i = 0; i < 1; i++)
             {
-                using (conn = new SqlConnection(connString))
+                for (int j = 0; j < TreeSearchViewModel.SearchObjects[i].SearchElements.Count; j++)
                 {
-                    conn.Open();
-                    using (SqlDataAdapter da = new SqlDataAdapter(query, conn))
+                    bool resetElement = false;
+                    for (int n = 0; n < TreeSearchViewModel.SearchObjects[i].SearchElements[j].SearchElementDetails.Count; n++)
                     {
-                        da.Fill(tb);
+                        if (TreeSearchViewModel.SearchObjects[i].SearchElements[j].SearchElementDetails[n].IsCheckedDetail == true)
+                        {
+                            if (resetElement == false)
+                            {
+                                if (exists == false)
+                                    query += " st.name = '" + TreeSearchViewModel.SearchObjects[i].SearchElements[j].Content + "' and (sc.name = '" + TreeSearchViewModel.SearchObjects[i].SearchElements[j].SearchElementDetails[n].StrSearch + "' ";
+                                else query += ") or st.name = '" + TreeSearchViewModel.SearchObjects[i].SearchElements[j].Content + "' and (sc.name = '" + TreeSearchViewModel.SearchObjects[i].SearchElements[j].SearchElementDetails[n].StrSearch + "' ";
+                                resetElement = true;
+                                exists = true;
+                            }
+                            else query += " or sc.name = '" + TreeSearchViewModel.SearchObjects[i].SearchElements[j].SearchElementDetails[n].StrSearch + "' ";
+                        }
                     }
-
                 }
-                conn.Close();
-                return tb;
+            }
+            if (exists == true)
+            {
+                query += " ) ";
+                DataProvider dataProvider = new DataProvider();
+                try
+                {
+                    dataProvider.connect();
+                    tb = dataProvider.ExecuteQuery_DataTble(query);
+                    dataProvider.disconnect();
+                    return tb;
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.StackTrace);
+                }
+                finally
+                {
+                    dataProvider.disconnect();
+                }
+            }
+            return null;
+        }
 
-            }
-            catch (Exception ex)
+        public static DataTable GetNhanVienForChoose()
+        {
+            DataTable tb = new DataTable();
+            string query = "Select nv.MaNV, nv.HoTen";
+            bool exists = true;
+            query += @" From NhanVien nv ";
+            if (exists == true)
             {
-                MessageBox.Show(ex.StackTrace);
-            }
-            finally
-            {
-                conn.Close();
+                DataProvider dataProvider = new DataProvider();
+                try
+                {
+                    dataProvider.connect();
+                    tb = dataProvider.ExecuteQuery_DataTble(query);
+                    return tb;
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.StackTrace);
+                }
+                finally
+                {
+                    dataProvider.disconnect();
+                }
             }
             return null;
         }

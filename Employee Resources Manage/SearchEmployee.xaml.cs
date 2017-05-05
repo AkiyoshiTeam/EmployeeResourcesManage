@@ -49,21 +49,36 @@ namespace Employee_Resources_Manage
             }
         }
     }
+    
+    public class ComboData
+    {
+        public string Name { get; set; }
+        public int Value { get; set; }
+    }
+
     public partial class SearchEmployee : UserControl
     {
         public TreesSearchModel TreeSearchViewModel;
         public ListsAndGridsViewModel GridModel = new ListsAndGridsViewModel();
         public DataTable Table;
         public DataTable TableFilter;
-        public DataTable TableDes;
-        public DataTable TableObjectSearch;
+        //public DataTable TableDes;
+        public DataSet TableObjectSearch;
         bool searchOrImp;
         public SearchEmployee()
         {
             InitializeComponent();
-            TableObjectSearch = BUS.NhanVienBUS.GetDescription(TreeSearchViewModel);
+            TableObjectSearch = BUS.DescriptionForTreeBUS.GetDescriptionForTree();
             TreeSearchViewModel = new TreesSearchModel(TableObjectSearch);
             treeView.DataContext = TreeSearchViewModel;
+            //List<ComboData> cbData = new List<ComboData>();
+            //cbData.Add(new ComboData { Name = "Nhân viên", Value = 0 });
+            //cbData.Add(new ComboData { Name = "Bộ phận, phòng ban", Value = 1 });
+            //cbSearch.ItemsSource = cbData;
+            //cbSearch.DisplayMemberPath = "Name";
+            //cbSearch.SelectedValuePath = "Value";
+            //cbSearch.SelectedValue = "0";
+            //cbSearch.DataContext = new ComboboxCustomItem();
             //checkboxSlAll.DataContext = GridModel;
         }
 
@@ -123,7 +138,7 @@ namespace Employee_Resources_Manage
                                 else if (operatorStr != "" && operatorStr != null && dateStr != "" && dateStr != null)
                                     strFilter += " and " + Table.Columns[i].ColumnName + operatorStr + " #" + dateStr + "#";
                                 else strFilter += " and " + Table.Columns[i].ColumnName + " = #" + dateStrOnly + "#";
-                                
+
                             }
                             else if (Table.Columns[i].DataType.Name.ToString() == "Int16" || Table.Columns[i].DataType.Name.ToString() == "Int32" || Table.Columns[i].DataType.Name.ToString() == "Int64"
                           || Table.Columns[i].DataType.Name.ToString() == "UInt16" || Table.Columns[i].DataType.Name.ToString() == "UInt32" || Table.Columns[i].DataType.Name.ToString() == "UInt64")
@@ -150,8 +165,8 @@ namespace Employee_Resources_Manage
                                     strFilter += " and " + Table.Columns[i].ColumnName + operatorFrom + numFrom + " and " + Table.Columns[i].ColumnName + operatorTo + numTo + " ";
                                 }
                                 else if (operatorStr != "" && operatorStr != null && numStr != "" && numStr != null)
-                                    strFilter += " and " +  Table.Columns[i].ColumnName + operatorStr + numStr;
-                                else strFilter += " and " +  Table.Columns[i].ColumnName + " = " + numStrOnly + " ";
+                                    strFilter += " and " + Table.Columns[i].ColumnName + operatorStr + numStr;
+                                else strFilter += " and " + Table.Columns[i].ColumnName + " = " + numStrOnly + " ";
                             }
                             else
                             {
@@ -227,12 +242,12 @@ namespace Employee_Resources_Manage
                         }
                     }
                 }
-                //"MaNV LIKE '%" + tbFilter.Text + "%'"
                 dtView.RowFilter = strFilter;
                 TableFilter = dtView.ToTable();
-                MainWindow.selectedTableDesStatic = TableDes;
-                MainWindow.selectedTableStatic = dtView.ToTable();
+                MainWindow.selectedTableStatic = TableFilter;
                 dataGridCustom.DataContext = MainWindow.selectedTableStatic;
+                //MainWindow.selectedTableDesStatic = TableDes;
+                
                 //MainWindow.selectedTableStatic.Rows.Clear();
                 //foreach (DataRow row in dtView.ToTable().Rows)
                 //{ MainWindow.selectedTableStatic.ImportRow(row); }
@@ -243,18 +258,6 @@ namespace Employee_Resources_Manage
                 MessageBox.Show(ex.Message);
             }
         }
-
-        //private bool ComplexFilter(object obj)
-        //{
-        //    String str = txtFilterNum.Text;
-        //    Regex regex = new Regex(@"([\>\<\=]+)(\d+)");
-        //    Match result = regex.Match(str);
-        //    String operatorStr = result.Groups[1].Value;
-        //    String numericStr = result.Groups[2].Value;
-        //    if (((SelectableViewModel)obj).Name.ToUpper().Contains(txtFilterName.Text.ToUpper()) && operatorStr.Operator((int)((SelectableViewModel)obj).Numeric, (int)Int32.Parse(numericStr)))
-        //        return true;
-        //    return ((DAO.NhanVien)obj).MaNV.ToUpper().Contains(txtFilterID.Text.ToUpper());
-        //}
 
         private static bool IsNumeric(string text)
         {
@@ -267,7 +270,7 @@ namespace Employee_Resources_Manage
             SaveFileDialog fsave = new SaveFileDialog();
             fsave.Filter = "Tất cả các tệp|*.*|Excel|*.xlsx";
             fsave.ShowDialog();
-            if (fsave.FileName != "")
+            if (fsave.FileName != "" && Table != null)
             {
                 Excel.Application app = new Excel.Application();
                 Excel.Workbook wb = app.Workbooks.Add(Type.Missing);
@@ -383,10 +386,9 @@ namespace Employee_Resources_Manage
             }
         }
 
-        private async void btnSearch_Click(object sender, RoutedEventArgs e)
+        private void btnSearch_Click(object sender, RoutedEventArgs e)
         {
-
-            TableDes = NhanVienBUS.GetDescription(TreeSearchViewModel);
+            //TableDes = NhanVienBUS.GetDescriptionSelected(TreeSearchViewModel);
             Table = NhanVienBUS.GetNhanVien(TreeSearchViewModel);
             TableFilter = Table;
             if (Table != null)
@@ -394,10 +396,11 @@ namespace Employee_Resources_Manage
                 dataGridCustom.AutoGenerateColumns = false;
                 searchOrImp = true;
                 MainWindow.selectedTableStatic = Table;
-                MainWindow.selectedTableDesStatic = TableDes;
                 dataGridCustom.DataContext = MainWindow.selectedTableStatic;
                 CreateTextBoxFilter();
                 CreateColumnDG();
+                //MainWindow.selectedTableStatic = Table;
+                //MainWindow.selectedTableDesStatic = TableDes;
             }
             else
             {
@@ -408,7 +411,6 @@ namespace Employee_Resources_Manage
 
         }
 
-
         private void CreateTextBoxFilter()
         {
             for (int i = 0; i < stFilter.Children.Count; i++)
@@ -417,74 +419,205 @@ namespace Employee_Resources_Manage
                 stFilter.UnregisterName(children.Name);
             }
             stFilter.Children.Clear();
+            int x = 0;
 
-            for (int i = 0; i < Table.Columns.Count; i++)
+            if (searchOrImp == false)
             {
-                TextBox tbFilter = new TextBox();
-                tbFilter.Name = "txtFilter" + Table.Columns[i].ColumnName;
-                tbFilter.Style = (Style)FindResource("MaterialDesignFloatingHintTextBox");
-                tbFilter.SetResourceReference(ForegroundProperty, "MaterialDesignBody");
-                if (i < Table.Columns.Count - 1)
-                    tbFilter.BorderThickness = new Thickness(1, 0, 0, 1);
-                else tbFilter.BorderThickness = new Thickness(1, 0, 1, 1);
-                if (searchOrImp == true)
-                    HintAssist.SetHint(tbFilter, TableDes.Rows[i][2].ToString());
-                else HintAssist.SetHint(tbFilter, Table.Columns[i].ColumnName); ;
-                Binding bnd = new Binding("Columns[" + i.ToString() + "].ActualWidth") { ElementName = "dataGridCustom" };
-                BindingOperations.SetBinding(tbFilter, TextBox.WidthProperty, bnd);
-                tbFilter.Padding = new Thickness(3, 0, 0, 0);
-                TextBlock tooltipText = new TextBlock();
-                tbFilter.KeyDown += txtFilter_KeyDown;
+                for (int i = 0; i < Table.Columns.Count; i++)
+                {
+                    TextBox tbFilter = new TextBox();
+                    tbFilter.Name = "txtFilter" + Table.Columns[i].ColumnName;
+                    tbFilter.Style = (Style)FindResource("MaterialDesignFloatingHintTextBox");
+                    tbFilter.SetResourceReference(ForegroundProperty, "MaterialDesignBody");
+                    if (i < Table.Columns.Count - 1)
+                        tbFilter.BorderThickness = new Thickness(1, 0, 0, 1);
+                    else tbFilter.BorderThickness = new Thickness(1, 0, 1, 1);
+                    HintAssist.SetHint(tbFilter, Table.Columns[i].ColumnName);
+                    Binding bnd = new Binding("Columns[" + i.ToString() + "].ActualWidth") { ElementName = "dataGridCustom" };
+                    BindingOperations.SetBinding(tbFilter, TextBox.WidthProperty, bnd);
+                    tbFilter.Padding = new Thickness(3, 0, 0, 0);
+                    TextBlock tooltipText = new TextBlock();
+                    tbFilter.KeyDown += txtFilter_KeyDown;
 
-                if (Table.Columns[i].DataType.Name.ToString() == "Int16" || Table.Columns[i].DataType.Name.ToString() == "Int32" || Table.Columns[i].DataType.Name.ToString() == "Int64"
-                    || Table.Columns[i].DataType.Name.ToString() == "UInt16" || Table.Columns[i].DataType.Name.ToString() == "UInt32" || Table.Columns[i].DataType.Name.ToString() == "UInt64")
-                {
-                    tooltipText.Text = String.Format("So sánh hỗ trợ: = (mặc định), <, >, <=, >=, <>(khác), &.\nVí dụ: >5, <>7(khác 7), >5&<9 (lớn hơn 5 nhỏ hơn 9)...");
-                    tbFilter.ToolTip = tooltipText;
-                    tbFilter.PreviewTextInput += txtFilterInt_PreviewTextInput;
-                }
-                else if (Table.Columns[i].DataType.Name.ToString() == "DateTime")
-                {
-                    tooltipText.Text = String.Format("Định dạng: tháng/ngày/năm\nSo sánh hỗ trợ: = (mặc định), <, >, <=, >=, <>(khác), &.\nVí dụ: >4/23/2016, <>5/17/2016(khác 5/17/2016), \n>=4/23/2016&<=5/17/2016 (từ 4/23/2016 đến 5/17/2016)...");
-                    tbFilter.ToolTip = tooltipText;
-                    foreach (DataRow row in Table.Columns[i].Table.Rows)
+                    if (Table.Columns[i].DataType.Name.ToString() == "Int16" || Table.Columns[i].DataType.Name.ToString() == "Int32" || Table.Columns[i].DataType.Name.ToString() == "Int64"
+                        || Table.Columns[i].DataType.Name.ToString() == "UInt16" || Table.Columns[i].DataType.Name.ToString() == "UInt32" || Table.Columns[i].DataType.Name.ToString() == "UInt64")
                     {
-                        row[Table.Columns[i]] = DateTime.Parse(row[Table.Columns[i]].ToString()).ToString("dd/MM/yyyy");
+                        tooltipText.Text = String.Format("So sánh hỗ trợ: = (mặc định), <, >, <=, >=, <>(khác), &.\nVí dụ: >5, <>7(khác 7), >5&<9 (lớn hơn 5 nhỏ hơn 9)...");
+                        tbFilter.ToolTip = tooltipText;
+                        tbFilter.PreviewTextInput += txtFilterInt_PreviewTextInput;
                     }
-                    TableFilter = Table;
-                    dataGridCustom.DataContext = TableFilter;
+                    else if (Table.Columns[i].DataType.Name.ToString() == "DateTime")
+                    {
+                        tooltipText.Text = String.Format("Định dạng: tháng/ngày/năm\nSo sánh hỗ trợ: = (mặc định), <, >, <=, >=, <>(khác), &.\nVí dụ: >4/23/2016, <>5/17/2016(khác 5/17/2016), \n>=4/23/2016&<=5/17/2016 (từ 4/23/2016 đến 5/17/2016)...");
+                        tbFilter.ToolTip = tooltipText;
+                        foreach (DataRow row in Table.Columns[i].Table.Rows)
+                        {
+                            row[Table.Columns[i]] = DateTime.Parse(row[Table.Columns[i]].ToString()).ToString("dd/MM/yyyy");
+                        }
+                        TableFilter = Table;
+                        dataGridCustom.DataContext = TableFilter;
+                    }
+                    else
+                    {
+                        tooltipText.Text = String.Format("Ví dụ: NV001, NV, 002");
+                        tbFilter.ToolTip = tooltipText;
+                    }
+                    stFilter.Children.Add(tbFilter);
+                    stFilter.RegisterName(tbFilter.Name, tbFilter);
                 }
-                else
-                {
-                    tooltipText.Text = String.Format("Ví dụ: NV001, NV, 002");
-                    tbFilter.ToolTip = tooltipText;
-                }
-                stFilter.Children.Add(tbFilter);
-                stFilter.RegisterName(tbFilter.Name, tbFilter);
             }
+            else
+            {
+                //int i = Int32.Parse(cbSearch.SelectedValue.ToString());
+                int i = 0;
+                for (int j = 0; j < TreeSearchViewModel.SearchObjects[i].SearchElements.Count; j++)
+                {
+                    for (int n = 0; n < TreeSearchViewModel.SearchObjects[i].SearchElements[j].SearchElementDetails.Count; n++)
+                    {
+                        if (TreeSearchViewModel.SearchObjects[i].SearchElements[j].SearchElementDetails[n].IsCheckedDetail == true || (j==0 && n==0) || (j==0 && n==1))
+                        {
+                            if (TreeSearchViewModel.SearchObjects[i].SearchElements[j].SearchElementDetails[n].StrSearch.Trim() != "tt.MaNV")
+                            {
+                                TextBox tbFilter = new TextBox();
+                                tbFilter.Name = "txtFilter" + Table.Columns[x].ColumnName;
+                                tbFilter.Style = (Style)FindResource("MaterialDesignFloatingHintTextBox");
+                                tbFilter.SetResourceReference(ForegroundProperty, "MaterialDesignBody");
+                                if (x < Table.Columns.Count - 1)
+                                    tbFilter.BorderThickness = new Thickness(1, 0, 0, 1);
+                                else tbFilter.BorderThickness = new Thickness(1, 0, 1, 1);
+                                if (searchOrImp == true)
+                                    HintAssist.SetHint(tbFilter, TreeSearchViewModel.SearchObjects[i].SearchElements[j].SearchElementDetails[n].Content);
+                                Binding bnd = new Binding("Columns[" + x.ToString() + "].ActualWidth") { ElementName = "dataGridCustom" };
+                                BindingOperations.SetBinding(tbFilter, TextBox.WidthProperty, bnd);
+                                tbFilter.Padding = new Thickness(3, 0, 0, 0);
+                                TextBlock tooltipText = new TextBlock();
+                                tbFilter.KeyDown += txtFilter_KeyDown;
+
+                                if (Table.Columns[x].DataType.Name.ToString() == "Int16" || Table.Columns[x].DataType.Name.ToString() == "Int32" || Table.Columns[x].DataType.Name.ToString() == "Int64"
+                                    || Table.Columns[x].DataType.Name.ToString() == "UInt16" || Table.Columns[x].DataType.Name.ToString() == "UInt32" || Table.Columns[x].DataType.Name.ToString() == "UInt64")
+                                {
+                                    tooltipText.Text = String.Format("So sánh hỗ trợ: = (mặc định), <, >, <=, >=, <>(khác), &.\nVí dụ: >5, <>7(khác 7), >5&<9 (lớn hơn 5 nhỏ hơn 9)...");
+                                    tbFilter.ToolTip = tooltipText;
+                                    tbFilter.PreviewTextInput += txtFilterInt_PreviewTextInput;
+                                }
+                                else if (Table.Columns[x].DataType.Name.ToString() == "DateTime")
+                                {
+                                    tooltipText.Text = String.Format("Định dạng: tháng/ngày/năm\nSo sánh hỗ trợ: = (mặc định), <, >, <=, >=, <>(khác), &.\nVí dụ: >4/23/2016, <>5/17/2016(khác 5/17/2016), \n>=4/23/2016&<=5/17/2016 (từ 4/23/2016 đến 5/17/2016)...");
+                                    tbFilter.ToolTip = tooltipText;
+                                    foreach (DataRow row in Table.Columns[x].Table.Rows)
+                                    {
+                                        row[Table.Columns[x]] = DateTime.Parse(row[Table.Columns[x]].ToString()).ToString("dd/MM/yyyy");
+                                    }
+                                    TableFilter = Table;
+                                    dataGridCustom.DataContext = TableFilter;
+                                }
+                                else
+                                {
+                                    tooltipText.Text = String.Format("Ví dụ: NV001, NV, 002");
+                                    tbFilter.ToolTip = tooltipText;
+                                }
+                                stFilter.Children.Add(tbFilter);
+                                stFilter.RegisterName(tbFilter.Name, tbFilter);
+                            }
+                            else x--;
+                            x++;
+
+                        }
+                    }
+                }
+            }
+            //for (int i = 0; i < Table.Columns.Count; i++)
+            //{
+            //    TextBox tbFilter = new TextBox();
+            //    tbFilter.Name = "txtFilter" + Table.Columns[i].ColumnName;
+            //    tbFilter.Style = (Style)FindResource("MaterialDesignFloatingHintTextBox");
+            //    tbFilter.SetResourceReference(ForegroundProperty, "MaterialDesignBody");
+            //    if (i < Table.Columns.Count - 1)
+            //        tbFilter.BorderThickness = new Thickness(1, 0, 0, 1);
+            //    else tbFilter.BorderThickness = new Thickness(1, 0, 1, 1);
+            //    if (searchOrImp == true)
+            //    {
+
+            //        TreeSearchViewModel.SearchObjects[0]
+            //        HintAssist.SetHint(tbFilter, TableDes.Rows[i][2].ToString());
+            //    }
+            //    else HintAssist.SetHint(tbFilter, Table.Columns[i].ColumnName); ;
+            //    Binding bnd = new Binding("Columns[" + i.ToString() + "].ActualWidth") { ElementName = "dataGridCustom" };
+            //    BindingOperations.SetBinding(tbFilter, TextBox.WidthProperty, bnd);
+            //    tbFilter.Padding = new Thickness(3, 0, 0, 0);
+            //    TextBlock tooltipText = new TextBlock();
+            //    tbFilter.KeyDown += txtFilter_KeyDown;
+
+            //    if (Table.Columns[i].DataType.Name.ToString() == "Int16" || Table.Columns[i].DataType.Name.ToString() == "Int32" || Table.Columns[i].DataType.Name.ToString() == "Int64"
+            //        || Table.Columns[i].DataType.Name.ToString() == "UInt16" || Table.Columns[i].DataType.Name.ToString() == "UInt32" || Table.Columns[i].DataType.Name.ToString() == "UInt64")
+            //    {
+            //        tooltipText.Text = String.Format("So sánh hỗ trợ: = (mặc định), <, >, <=, >=, <>(khác), &.\nVí dụ: >5, <>7(khác 7), >5&<9 (lớn hơn 5 nhỏ hơn 9)...");
+            //        tbFilter.ToolTip = tooltipText;
+            //        tbFilter.PreviewTextInput += txtFilterInt_PreviewTextInput;
+            //    }
+            //    else if (Table.Columns[i].DataType.Name.ToString() == "DateTime")
+            //    {
+            //        tooltipText.Text = String.Format("Định dạng: tháng/ngày/năm\nSo sánh hỗ trợ: = (mặc định), <, >, <=, >=, <>(khác), &.\nVí dụ: >4/23/2016, <>5/17/2016(khác 5/17/2016), \n>=4/23/2016&<=5/17/2016 (từ 4/23/2016 đến 5/17/2016)...");
+            //        tbFilter.ToolTip = tooltipText;
+            //        foreach (DataRow row in Table.Columns[i].Table.Rows)
+            //        {
+            //            row[Table.Columns[i]] = DateTime.Parse(row[Table.Columns[i]].ToString()).ToString("dd/MM/yyyy");
+            //        }
+            //        TableFilter = Table;
+            //        dataGridCustom.DataContext = TableFilter;
+            //    }
+            //    else
+            //    {
+            //        tooltipText.Text = String.Format("Ví dụ: NV001, NV, 002");
+            //        tbFilter.ToolTip = tooltipText;
+            //    }
+            //    stFilter.Children.Add(tbFilter);
+            //    stFilter.RegisterName(tbFilter.Name, tbFilter);
+            //}
         }
 
         private void CreateColumnDG()
         {
             dataGridCustom.Columns.Clear();
-            for (int i = 0; i < Table.Columns.Count; i++)
+            int x = 0;
+            for (int i = 0; i < 1; i++)
             {
-                MaterialDataGridTextColumn col = new MaterialDataGridTextColumn();
-                col.Header = TableDes.Rows[i][2].ToString();
-                col.EditingElementStyle = (Style)FindResource("MaterialDesignDataGridTextColumnPopupEditingStyle");
-                col.Binding = new Binding(Table.Columns[i].ColumnName);
-                dataGridCustom.Columns.Add(col);
+                for (int j = 0; j < TreeSearchViewModel.SearchObjects[i].SearchElements.Count; j++)
+                {
+                    for (int n = 0; n < TreeSearchViewModel.SearchObjects[i].SearchElements[j].SearchElementDetails.Count; n++)
+                    {
+                        if (TreeSearchViewModel.SearchObjects[i].SearchElements[j].SearchElementDetails[n].IsCheckedDetail == true || (j==0 && n==0) || (j==0 && n==1))
+                        {
+                            if (TreeSearchViewModel.SearchObjects[i].SearchElements[j].SearchElementDetails[n].StrSearch.Trim() != "tt.MaNV")
+                            {
+                                MaterialDataGridTextColumn col = new MaterialDataGridTextColumn();
+                                col.Header = TreeSearchViewModel.SearchObjects[i].SearchElements[j].SearchElementDetails[n].Content;
+                                col.EditingElementStyle = (Style)FindResource("MaterialDesignDataGridTextColumnPopupEditingStyle");
+                                col.Binding = new Binding(Table.Columns[x].ColumnName);
+                                dataGridCustom.Columns.Add(col);
+                            }
+                            else x--;
+                            x++;
+                        }
+                    }
+                }
             }
+
+            //for (int i = 0; i < Table.Columns.Count; i++)
+            //{
+            //    MaterialDataGridTextColumn col = new MaterialDataGridTextColumn();
+            //    col.Header = TableDes.Rows[i][2].ToString();
+            //    col.EditingElementStyle = (Style)FindResource("MaterialDesignDataGridTextColumnPopupEditingStyle");
+            //    col.Binding = new Binding(Table.Columns[i].ColumnName);
+            //    dataGridCustom.Columns.Add(col);
+            //}
+
         }
 
         private void btnSelect_Click(object sender, RoutedEventArgs e)
         {
-            //((MainWindow)((DockPanel)((ColorZone)((Grid)((Layout)((TabablzControl)((TabItem)this.Parent).Parent).Parent).Parent).Parent).Parent).Parent).selectedTable = TableFilter;
-            //((MainWindow)((DockPanel)((ColorZone)((Grid)((Layout)((TabablzControl)((TabItem)this.Parent).Parent).Parent).Parent).Parent).Parent).Parent).selectedTableDes = TableDes;
-            MainWindow.selectedTableDesStatic = TableDes;
-            dataGridCustom.DataContext = MainWindow.selectedTableStatic;
-        }
 
+        }
     }
 
 }

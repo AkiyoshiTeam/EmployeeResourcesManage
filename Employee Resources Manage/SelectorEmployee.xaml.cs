@@ -16,6 +16,10 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using DAO;
+using BUS;
+using System.ComponentModel;
+using System.Windows.Controls.Primitives;
 
 namespace Employee_Resources_Manage
 {
@@ -25,23 +29,36 @@ namespace Employee_Resources_Manage
     public partial class SelectorEmployee : UserControl
     {
         DataTable Table;
-        DataTable TableDes;
         public SelectorEmployee()
         {
             InitializeComponent();
-
+            DataTable tbTemp = BUS.NhanVienBUS.GetNhanVienForChoose();
+            dataGridChoose.DataContext = tbTemp;
+            for (int i = 0; i < 2; i++)
+            {
+                MaterialDataGridTextColumn col = new MaterialDataGridTextColumn();
+                col.Header = tbTemp.Columns[i].ColumnName;
+                col.EditingElementStyle = (Style)FindResource("MaterialDesignDataGridTextColumnPopupEditingStyle");
+                col.Binding = new Binding(tbTemp.Columns[i].ColumnName);
+                dataGridChoose.Columns.Add(col);
+            }
         }
 
         private void CreateColumnDG()
         {
-            dataGridCustom.Columns.Clear();
-            for (int i = 0; i < Table.Columns.Count; i++)
+            dataGridSelected.Columns.Clear();
+            for (int i = 0; i < 2; i++)
             {
                 MaterialDataGridTextColumn col = new MaterialDataGridTextColumn();
-                col.Header = TableDes.Rows[i][2].ToString();
+                Style stl = new Style();
+                stl.BasedOn = (Style)FindResource("MaterialDesignDataGridColumnHeader");
+                stl.TargetType = typeof(DataGridColumnHeader);
+                stl.Setters.Add(new Setter(ToolTipService.ToolTipProperty, "Click để sắp xếp!"));
+                col.HeaderStyle = stl;
+                col.Header = Table.Columns[i].ColumnName;
                 col.EditingElementStyle = (Style)FindResource("MaterialDesignDataGridTextColumnPopupEditingStyle");
                 col.Binding = new Binding(Table.Columns[i].ColumnName);
-                dataGridCustom.Columns.Add(col);
+                dataGridSelected.Columns.Add(col);
             }
         }
 
@@ -50,20 +67,40 @@ namespace Employee_Resources_Manage
             if (MainWindow.selectedTableStatic != null)
             {
                 Table = MainWindow.selectedTableStatic;
-                dataGridCustom.DataContext = MainWindow.selectedTableStatic;
-                TableDes = MainWindow.selectedTableDesStatic;
+                dataGridSelected.DataContext = MainWindow.selectedTableStatic;
                 CreateColumnDG();
             }
         }
 
         private void btnSelect_Click(object sender, RoutedEventArgs e)
         {
-            if (MainWindow.selectedTableStatic != null)
+            DataRowView rowSelected = (DataRowView)dataGridChoose.SelectedItems[0];
+            bool contains = MainWindow.selectedTableStatic.AsEnumerable().Any(row => rowSelected[0].ToString() == row.Field<String>("MaNV"));
+            if(contains==true)
             {
-                Table = MainWindow.selectedTableStatic;
-                dataGridCustom.DataContext = MainWindow.selectedTableStatic;
-                TableDes = MainWindow.selectedTableDesStatic;
-                CreateColumnDG();
+                MessageBox.Show("Đã chứa");
+            }
+            else
+            {
+                MainWindow.selectedTableStatic.ImportRow(rowSelected.Row);
+                if (dataGridSelected.Items.Count > 0)
+                {
+                    var border = VisualTreeHelper.GetChild(dataGridSelected, 0) as Decorator;
+                    if (border != null)
+                    {
+                        var scroll = border.Child as ScrollViewer;
+                        if (scroll != null) scroll.ScrollToEnd();
+                    }
+                }
+            }
+
+        }
+
+        private void btnDelete_Click(object sender, RoutedEventArgs e)
+        {
+            while(dataGridSelected.SelectedItem != null)
+            {
+                MainWindow.selectedTableStatic.Rows.Remove((dataGridSelected.SelectedItem as DataRowView).Row);
             }
         }
     }

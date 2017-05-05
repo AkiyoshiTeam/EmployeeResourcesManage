@@ -26,7 +26,7 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-        <GroupBox Grid.Column="0" Header="Chọn trường hiển thị" Style="{DynamicResource MaterialDesignGroupBox}" Margin="2,5,2,0" materialDesign:ShadowAssist.ShadowDepth="Depth2" BorderThickness="0" materialDesign:ColorZoneAssist.Mode="Accent" Padding="5" >
+        <GroupBox Grid.Column="0" Header="Chọn trường tìm kiếm" Style="{DynamicResource MaterialDesignGroupBox}" Margin="2,5,2,0" materialDesign:ShadowAssist.ShadowDepth="Depth2" BorderThickness="0" materialDesign:ColorZoneAssist.Mode="Accent" Padding="5" >
             <TreeView Name="treeView" Style="{StaticResource MaterialDesignTreeView}" 
                       ItemsSource="{Binding SearchObjects}" MaxWidth="200" ScrollViewer.HorizontalScrollBarVisibility="Auto">
                 <!--<TreeView.ItemContainerStyle>
@@ -63,14 +63,14 @@
             <Grid>
                 <Grid.RowDefinitions>
                     <RowDefinition x:Name="rowDataGridView" Height="*" />
-                    <RowDefinition Height="100"/>
+                    <RowDefinition Height="40"/>
                 </Grid.RowDefinitions>
                 <ScrollViewer Grid.Row="0" ScrollViewer.HorizontalScrollBarVisibility="Auto" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" VerticalScrollBarVisibility="Disabled">
                     <DockPanel>
                         <StackPanel Name="stFilter" Orientation="Horizontal" MinHeight="37" DockPanel.Dock="Top">
                         </StackPanel>
                         <DataGrid Name="dataGridCustom"  Style="{StaticResource MaterialDesignDataGrid}" ItemsSource="{Binding}"
-                      CanUserSortColumns="True" CanUserAddRows="False" AutoGenerateColumns="False" MaxHeight="500"
+                      CanUserSortColumns="True" CanUserAddRows="False" AutoGenerateColumns="False" MaxHeight="500" IsReadOnly="True"
                        materialDesign:DataGridAssist.CellPadding="4 2 2 2" materialDesign:DataGridAssist.ColumnHeaderPadding="4 2 2 2" VerticalScrollBarVisibility="Visible"  HeadersVisibility="Column" HorizontalScrollBarVisibility="Auto" DockPanel.Dock="Top" GridLinesVisibility="Horizontal" CanUserReorderColumns="False">
                             
                             <!--<DataGrid.Columns>
@@ -95,12 +95,15 @@
                         </DataGrid>
                     </DockPanel>
                 </ScrollViewer>
-                <WrapPanel Grid.Row="1">
-                    <Button Name="btnSearch" Style="{StaticResource MaterialDesignFlatButton}" Width="120" Click="btnSearch_Click" >Search</Button>
-                    <Button Name="btnExportExcel" Style="{StaticResource MaterialDesignFlatButton}" Width="120" Click="btnExportExcel_Click" >Export Excel</Button>
-                    <Button Name="btnImportExcel" Style="{StaticResource MaterialDesignFlatButton}" Width="120" Click="btnImportExcel_Click">Import Excel</Button>
-                    <Button Name="btnSelect" Style="{StaticResource MaterialDesignFlatButton}" Width="120" Click="btnSelect_Click" >Select</Button>
-                </WrapPanel>
+                <DockPanel Grid.Row="1">
+                    <DockPanel DockPanel.Dock="Bottom" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="0,0,20,0">
+                        <Button Name="btnSearch" Style="{StaticResource MaterialDesignFlatButton}" Width="120" Click="btnSearch_Click" >Search</Button>
+                        <Button Name="btnExportExcel" Style="{StaticResource MaterialDesignFlatButton}" Width="120" Click="btnExportExcel_Click" >Export Excel</Button>
+                        <Button Name="btnImportExcel" Style="{StaticResource MaterialDesignFlatButton}" Width="120" Click="btnImportExcel_Click">Import Excel</Button>
+                        <Button Name="btnSelect" Style="{StaticResource MaterialDesignFlatButton}" Width="120" Click="btnSelect_Click" >Select</Button>
+                        <!--<ComboBox Name="cbSearch" Style="{StaticResource MaterialDesignFloatingHintComboBox}" materialDesign:HintAssist.Hint="Tìm kiếm theo" materialDesign:HintAssist.HintOpacity=".26" IsReadOnly="True"/>-->
+                    </DockPanel>
+                </DockPanel>
             </Grid>
         </GroupBox>
     </Grid>

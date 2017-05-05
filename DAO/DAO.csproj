@@ -59,6 +59,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DataProvider.cs" />
+    <Compile Include="DescriptionForTree.cs" />
     <Compile Include="IEnumerableToDataTable.cs" />
     <Compile Include="NhanVienDAO.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

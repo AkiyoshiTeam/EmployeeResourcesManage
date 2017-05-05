@@ -46,10 +46,12 @@ namespace DTO
         public ObservableCollection<SearchElementDetail> SearchElementDetails { get; }
         public bool _isCheckedElement;
         public string Name { get; }
-        public SearchElement(bool ischecked, string name, ObservableCollection<SearchElementDetail> searchElementDetails)
+        public string Content { get; }
+        public SearchElement(bool ischecked, string name, string content, ObservableCollection<SearchElementDetail> searchElementDetails)
         {
             IsCheckedElement = ischecked;
             Name = name;
+            Content = content;
             SearchElementDetails = searchElementDetails;
         }
 
@@ -129,23 +131,102 @@ namespace DTO
 
         public ObservableCollection<SearchElementDetail> SearchElementDetails { get; }
 
-        public AnotherCommandImplementation AddCommand { get; }
+        //public AnotherCommandImplementation AddCommand { get; }
 
-        public AnotherCommandImplementation RemoveSelectedItemCommand { get; }
-        
-        public TreesSearchModel(DataTable TableObjectSearch)
+        //public AnotherCommandImplementation RemoveSelectedItemCommand { get; }
+
+        public TreesSearchModel(DataSet TableObjectSearch)
         {
             SearchElementDetails = new ObservableCollection<SearchElementDetail>();
-            for (int i=0; i< TableObjectSearch.Rows.Count; i++)
+            SearchObject SearchObjectTemp = new SearchObject(false, "Nhân Viên");
+            for (int i = 0; i < TableObjectSearch.Tables[0].Rows.Count; i++)
             {
-                SearchElementDetail sed = new SearchElementDetail(false, TableObjectSearch.Rows[i][2].ToString(), TableObjectSearch.Rows[i][1].ToString());
+                SearchElementDetail sed;
+                switch (TableObjectSearch.Tables[0].Rows[i][1].ToString())
+                {
+                    case "MaCV":
+                        {
+                            sed = new SearchElementDetail(false, "Chức vụ", "cv.TenCV");
+                            break;
+                        }
+                    case "MaPB":
+                        {
+                            sed = new SearchElementDetail(false, "Phòng ban", "pb.TenPB");
+                            break;
+                        }
+                    case "MaTT":
+                        {
+                            sed = new SearchElementDetail(false, "Tình trạng", "ttnv.TenTT");
+                            break;
+                        }
+                    case "MaLoaiLuong":
+                        {
+                            sed = new SearchElementDetail(false, "Loại lương", "ll.TenLoaiLuong");
+                            break;
+                        }
+                    default:
+                        {
+                            sed = new SearchElementDetail(false, TableObjectSearch.Tables[0].Rows[i][2].ToString(), " nv."+TableObjectSearch.Tables[0].Rows[i][1].ToString());
+                            break;
+                        }
+                }
                 SearchElementDetails.Add(sed);
             }
-            SearchObjects = new ObservableCollection<SearchObject>
+            SearchObjectTemp.SearchElements.Add(new SearchElement(false, "Thông tin chung", "NhanVien", SearchElementDetails));
+            SearchElementDetails = new ObservableCollection<SearchElementDetail>();
+            for (int i = 0; i < TableObjectSearch.Tables[1].Rows.Count; i++)
             {
-                new SearchObject(false,"Nhân Viên",
-                    new SearchElement (false, "Thông tin chung", SearchElementDetails))
-            };
+                SearchElementDetail sed;
+                switch (TableObjectSearch.Tables[1].Rows[i][1].ToString())
+                {
+                    case "MaGT":
+                        {
+                            sed = new SearchElementDetail(false, "Giới tính", "gt.TenGT");
+                            break;
+                        }
+                    case "MaTG":
+                        {
+                            sed = new SearchElementDetail(false, "Tôn giáo", "tg.TenTG");
+                            break;
+                        }
+                    case "QuocGia":
+                        {
+                            sed = new SearchElementDetail(false, "Quốc gia", "qg.TenQG");
+                            break;
+                        }
+                    case "TinhTP":
+                        {
+                            sed = new SearchElementDetail(false, "Tỉnh, thành phố", "ttp.TenTinh");
+                            break;
+                        }
+                    case "QuanHuyen":
+                        {
+                            sed = new SearchElementDetail(false, "Quận, huyện", "qh.TenQuan");
+                            break;
+                        }
+                    case "MaDT":
+                        {
+                            sed = new SearchElementDetail(false, "Dân tộc", "dt.MaDT");
+                            break;
+                        }
+                    default:
+                        {
+                            sed = new SearchElementDetail(false, TableObjectSearch.Tables[1].Rows[i][2].ToString(), " tt." + TableObjectSearch.Tables[1].Rows[i][1].ToString());
+                            break;
+                        }
+                }
+                //SearchElementDetail sed = new SearchElementDetail(false, TableObjectSearch.Tables[1].Rows[i][2].ToString(), TableObjectSearch.Tables[1].Rows[i][1].ToString());
+                SearchElementDetails.Add(sed);
+            }
+            SearchObjectTemp.SearchElements.Add(new SearchElement(false, "Thông tin chi tiết", "ThongTinChiTietNhanVien", SearchElementDetails));
+            SearchObjects = new ObservableCollection<SearchObject>();
+            SearchObjects.Add(SearchObjectTemp);
+            //SearchObjects = new ObservableCollection<SearchObject>
+            //{
+            //    new SearchObject(false,"Nhân Viên",
+            //        new SearchElement (false, "Thông tin chung", SearchElementDetails))
+            //};
+
         }
         public event PropertyChangedEventHandler PropertyChanged;
 

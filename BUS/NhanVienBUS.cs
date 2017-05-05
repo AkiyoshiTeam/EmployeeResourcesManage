@@ -16,9 +16,14 @@ namespace BUS
             return DAO.NhanVienDAO.GetNhanVien(TreeSearchViewModel);
         }
 
-        public static DataTable GetDescription(TreesSearchModel TreeSearchViewModel)
+        public static DataTable GetDescriptionSelected(TreesSearchModel TreeSearchViewModel)
         {
-            return DAO.NhanVienDAO.GetDescription(TreeSearchViewModel);
+            return DAO.NhanVienDAO.GetDescriptionSelected(TreeSearchViewModel);
+        }
+
+        public static DataTable GetNhanVienForChoose()
+        {
+            return DAO.NhanVienDAO.GetNhanVienForChoose();
         }
     }
 }
