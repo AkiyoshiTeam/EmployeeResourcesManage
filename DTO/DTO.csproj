@@ -52,9 +52,22 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AnotherCommandImplementation.cs" />
-    <Compile Include="NhanVien.cs" />
+    <Compile Include="KiLuatDTO.cs" />
+    <Compile Include="LoaiCongThucDTO.cs" />
+    <Compile Include="LoaiHopDongDTO.cs" />
+    <Compile Include="LoaiLuongDTO.cs" />
+    <Compile Include="NguoiDungDTO.cs" />
+    <Compile Include="NhanVienDTO.cs" />
     <Compile Include="NotifyPropertyChangedExtension.cs" />
+    <Compile Include="PhanQuyenDTO.cs" />
+    <Compile Include="PhongBanDTO.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Quan_HuyenDTO.cs" />
+    <Compile Include="QuocGiaDTO.cs" />
+    <Compile Include="ThongTinChiTietNhanVienDTO.cs" />
+    <Compile Include="TinhTrangNhanVienDTO.cs" />
+    <Compile Include="Tinh_TPDTO.cs" />
+    <Compile Include="TonGiaoDTO.cs" />
     <Compile Include="TreeSearch.cs" />
   </ItemGroup>
   <ItemGroup>

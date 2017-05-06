@@ -13,3 +13,18 @@ C:\Users\mjnht\Desktop\Project Employee Manager\EmployeeResourcesManage\BUS\obj\
 C:\Users\mjnht\Desktop\Project Employee Manager\EmployeeResourcesManage\BUS\bin\Debug\BUS.dll.config
 C:\Users\mjnht\Desktop\Project Employee Manager\EmployeeResourcesManage\BUS\bin\Debug\EntityFramework.SqlServer.dll
 C:\Users\mjnht\Desktop\Project Employee Manager\EmployeeResourcesManage\BUS\bin\Debug\EntityFramework.SqlServer.xml
+D:\EmployeeResourcesManage\BUS\bin\Debug\BUS.dll.config
+D:\EmployeeResourcesManage\BUS\bin\Debug\BUS.dll
+D:\EmployeeResourcesManage\BUS\bin\Debug\BUS.pdb
+D:\EmployeeResourcesManage\BUS\bin\Debug\DAO.dll
+D:\EmployeeResourcesManage\BUS\bin\Debug\DTO.dll
+D:\EmployeeResourcesManage\BUS\bin\Debug\EntityFramework.dll
+D:\EmployeeResourcesManage\BUS\bin\Debug\EntityFramework.SqlServer.dll
+D:\EmployeeResourcesManage\BUS\bin\Debug\DAO.pdb
+D:\EmployeeResourcesManage\BUS\bin\Debug\DAO.dll.config
+D:\EmployeeResourcesManage\BUS\bin\Debug\DTO.pdb
+D:\EmployeeResourcesManage\BUS\bin\Debug\EntityFramework.xml
+D:\EmployeeResourcesManage\BUS\bin\Debug\EntityFramework.SqlServer.xml
+D:\EmployeeResourcesManage\BUS\obj\Debug\BUS.csprojResolveAssemblyReference.cache
+D:\EmployeeResourcesManage\BUS\obj\Debug\BUS.dll
+D:\EmployeeResourcesManage\BUS\obj\Debug\BUS.pdb

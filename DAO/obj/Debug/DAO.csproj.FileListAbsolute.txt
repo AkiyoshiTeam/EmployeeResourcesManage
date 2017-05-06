@@ -17,3 +17,22 @@ C:\Users\mjnht\Desktop\Project Employee Manager\EmployeeResourcesManage\DAO\bin\
 C:\Users\mjnht\Desktop\Project Employee Manager\EmployeeResourcesManage\DAO\bin\Debug\zxing.xml
 C:\Users\mjnht\Desktop\Project Employee Manager\EmployeeResourcesManage\DAO\bin\Debug\zxing.presentation.pdb
 C:\Users\mjnht\Desktop\Project Employee Manager\EmployeeResourcesManage\DAO\bin\Debug\zxing.presentation.xml
+D:\EmployeeResourcesManage\DAO\bin\Debug\DAO.dll.config
+D:\EmployeeResourcesManage\DAO\bin\Debug\DAO.dll
+D:\EmployeeResourcesManage\DAO\bin\Debug\DAO.pdb
+D:\EmployeeResourcesManage\DAO\bin\Debug\DTO.dll
+D:\EmployeeResourcesManage\DAO\bin\Debug\EntityFramework.dll
+D:\EmployeeResourcesManage\DAO\bin\Debug\EntityFramework.SqlServer.dll
+D:\EmployeeResourcesManage\DAO\bin\Debug\System.Linq.Dynamic.dll
+D:\EmployeeResourcesManage\DAO\bin\Debug\zxing.dll
+D:\EmployeeResourcesManage\DAO\bin\Debug\zxing.presentation.dll
+D:\EmployeeResourcesManage\DAO\bin\Debug\DTO.pdb
+D:\EmployeeResourcesManage\DAO\bin\Debug\EntityFramework.xml
+D:\EmployeeResourcesManage\DAO\bin\Debug\EntityFramework.SqlServer.xml
+D:\EmployeeResourcesManage\DAO\bin\Debug\zxing.pdb
+D:\EmployeeResourcesManage\DAO\bin\Debug\zxing.xml
+D:\EmployeeResourcesManage\DAO\bin\Debug\zxing.presentation.pdb
+D:\EmployeeResourcesManage\DAO\bin\Debug\zxing.presentation.xml
+D:\EmployeeResourcesManage\DAO\obj\Debug\DAO.csprojResolveAssemblyReference.cache
+D:\EmployeeResourcesManage\DAO\obj\Debug\DAO.dll
+D:\EmployeeResourcesManage\DAO\obj\Debug\DAO.pdb

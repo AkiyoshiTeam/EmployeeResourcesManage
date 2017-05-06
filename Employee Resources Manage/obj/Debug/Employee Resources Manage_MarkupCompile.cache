@@ -4,16 +4,16 @@
 winexe
 C#
 .cs
-C:\Users\mjnht\Desktop\Project Employee Manager\EmployeeResourcesManage\Employee Resources Manage\obj\Debug\
+D:\EmployeeResourcesManage\Employee Resources Manage\obj\Debug\
 Employee_Resources_Manage
 none
 false
 DEBUG;TRACE
-C:\Users\mjnht\Desktop\Project Employee Manager\EmployeeResourcesManage\Employee Resources Manage\App.xaml
+D:\EmployeeResourcesManage\Employee Resources Manage\App.xaml
 10-797369470
 
 241109912017
-34-404301567
+34-846004520
 ChangePassword.xaml;Domain\SampleMessageDialog.xaml;Domain\SampleProgressDialog.xaml;Login.xaml;MainWindow.xaml;Palette.xaml;PaletteSelector.xaml;QRCode.xaml;SearchEmployee.xaml;SelectorEmployee.xaml;
 
 False
