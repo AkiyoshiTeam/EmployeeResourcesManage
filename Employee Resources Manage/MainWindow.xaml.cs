@@ -245,7 +245,7 @@ namespace Employee_Resources_Manage
         private void btnSelector_Click(object sender, RoutedEventArgs e)
         {
             TabItem tab = new TabItem();
-            tab.Header = "Selected";
+            tab.Header = "Selector";
             SelectorEmployee selectorControl = new SelectorEmployee();
             tab.Content = selectorControl;
             tab.IsSelected = true;
