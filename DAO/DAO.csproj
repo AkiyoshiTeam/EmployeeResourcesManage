@@ -59,11 +59,16 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BoPhanDAO.cs" />
     <Compile Include="DataProvider.cs" />
     <Compile Include="DescriptionForTree.cs" />
     <Compile Include="IEnumerableToDataTable.cs" />
+    <Compile Include="LoaiHopDongDAO.cs" />
+    <Compile Include="LoaiLuongDAO.cs" />
     <Compile Include="NhanVienDAO.cs" />
+    <Compile Include="PhongBanDAO.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TinhTrangDAO.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.Config" />

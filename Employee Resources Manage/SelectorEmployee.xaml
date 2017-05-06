@@ -3,32 +3,115 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:system="clr-namespace:System;assembly=mscorlib"
              xmlns:local="clr-namespace:Employee_Resources_Manage"
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              xmlns:domain="clr-namespace:Employee_Resources_Manage.Domain"
              mc:Ignorable="d" 
              d:DesignHeight="379.5" d:DesignWidth="765" Loaded="UserControl_Loaded">
-    <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="*"/>
-        </Grid.RowDefinitions>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="300"/>
-            <ColumnDefinition/>
-        </Grid.ColumnDefinitions>
-        <DataGrid Name="dataGridChoose"  Style="{StaticResource MaterialDesignDataGrid}" ItemsSource="{Binding}" Grid.Row="0"
+    <materialDesign:DialogHost Name="dialogHostRefresh" Identifier="dialogHostRefresh" DialogClosing="dialogHost_DialogClosing" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="3" Grid.RowSpan="2" Margin="0" >
+        <materialDesign:DialogHost.DialogContent>
+            <StackPanel Margin="16">
+                <TextBlock Margin="0 8 0 0" HorizontalAlignment="Stretch" Text="Bạn có chắc muốn làm mới bảng đã chọn?" FontWeight="Bold" FontSize="14"/>
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Right"  >
+                    <Button Style="{StaticResource MaterialDesignFlatButton}"
+                                        IsDefault="True"
+                                        Margin="0 8 8 0"
+                                        Command="materialDesign:DialogHost.CloseDialogCommand">
+                        <Button.CommandParameter>
+                            <system:Boolean>True</system:Boolean>
+                        </Button.CommandParameter>
+                        ACCEPT
+                    </Button>
+                    <Button Style="{StaticResource MaterialDesignFlatButton}"
+                                        IsCancel="True"
+                                        Margin="0 8 8 0"
+                                        Command="materialDesign:DialogHost.CloseDialogCommand">
+                        <Button.CommandParameter>
+                            <system:Boolean>False</system:Boolean>
+                        </Button.CommandParameter>
+                        CANCEL
+                    </Button>
+                </StackPanel>
+            </StackPanel>
+        </materialDesign:DialogHost.DialogContent>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="70"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="100"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <GroupBox Grid.Column="0" Grid.Row="1" Header="Bảng chọn" Style="{DynamicResource MaterialDesignGroupBox}" Margin="8,10,5,5" BorderThickness="1" materialDesign:ColorZoneAssist.Mode="Accent" Padding="5" FontWeight="Bold" >
+                <DataGrid Name="dataGridChoose"  Style="{StaticResource MaterialDesignDataGrid}" ItemsSource="{Binding}" Grid.Row="0" ColumnWidth="*"
                       CanUserSortColumns="True" CanUserAddRows="False" AutoGenerateColumns="False" MaxHeight="500"
                        materialDesign:DataGridAssist.CellPadding="4 2 2 2" materialDesign:DataGridAssist.ColumnHeaderPadding="4 2 2 2" VerticalScrollBarVisibility="Visible"  HeadersVisibility="Column" HorizontalScrollBarVisibility="Auto" DockPanel.Dock="Top" GridLinesVisibility="Horizontal" CanUserReorderColumns="False">
-        </DataGrid>
-        <Border Grid.Column="0" Grid.Row="0" VerticalAlignment="Bottom" Height="1" Background="{DynamicResource MaterialDesignBody}"></Border>
-        <DataGrid Name="dataGridSelected"  Style="{StaticResource MaterialDesignDataGrid}" ItemsSource="{Binding}" Grid.Row="1"
+                </DataGrid>
+            </GroupBox>
+            <!--<Border Grid.Column="0" Grid.Row="0" VerticalAlignment="Bottom" Height="1" Background="{DynamicResource MaterialDesignBody}"></Border>-->
+            <GroupBox  Grid.Row="1" Grid.Column="2" Header="Bảng đã chọn" Style="{DynamicResource MaterialDesignGroupBox}" Margin="5,10,8,5"  BorderThickness="1" materialDesign:ColorZoneAssist.Mode="Accent" Padding="5" FontWeight="Bold" >
+                <DataGrid Name="dataGridSelected"  Style="{StaticResource MaterialDesignDataGrid}" ItemsSource="{Binding}" ColumnWidth="*"
                       CanUserSortColumns="True" CanUserAddRows="False" AutoGenerateColumns="False" MaxHeight="500"
                        materialDesign:DataGridAssist.CellPadding="4 2 2 2" materialDesign:DataGridAssist.ColumnHeaderPadding="4 2 2 2" VerticalScrollBarVisibility="Visible"  HeadersVisibility="Column" HorizontalScrollBarVisibility="Auto" DockPanel.Dock="Top" GridLinesVisibility="Horizontal" CanUserReorderColumns="False">
-        </DataGrid>
-        <StackPanel Grid.Row="1" Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Bottom">
-            <Button Name="btnSelect" Style="{StaticResource MaterialDesignFlatButton}" Width="120" Click="btnSelect_Click" >Select</Button>
-            <Button Name="btnDelete" Style="{StaticResource MaterialDesignFlatButton}" Width="120" Click="btnDelete_Click" >Delete</Button>
-        </StackPanel>
-    </Grid>
+                </DataGrid>
+            </GroupBox>
+
+            <StackPanel Grid.Row="1" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,10,0,0">
+                <materialDesign:PackIcon Foreground="{DynamicResource MaterialDesignBody}" Kind="CommentQuestionOutline" Height="20" Width="20" HorizontalAlignment="Right" Margin="0,0,0,2" Background="#00000000" >
+                    <materialDesign:PackIcon.ToolTip>
+                        <TextBlock>
+                            Select: Thêm dòng chọn 'Bảng chọn' -> 'Bảng đã chọn'
+                            <LineBreak />
+                            Select All: Chọn tất cả dòng ở 'Bảng chọn'
+                            <LineBreak />
+                            Delete: Xóa dòng chọn của 'Bảng đã chọn'
+                            <LineBreak />
+                            Refresh: Xóa tất cả, làm mới 'Bảng đã chọn'
+                            <LineBreak />
+                            <LineBreak />
+                            ※ Hướng dẫn chọn nhiều dòng: 
+                            <LineBreak />
+                             - Nhấn giữ CTRL + Click chuột để chọn hoặc bỏ chọn
+                            <LineBreak />
+                             - Click chuột để chọn điểm đầu, nhấn giữ SHIFT + Click chuột để chọn điểm cuối
+                            <LineBreak />
+                            <LineBreak />
+                            ※ Hướng dẫn sắp xếp: Click vào MANV, HOTEN để sắp xếp.
+                        </TextBlock>
+                    </materialDesign:PackIcon.ToolTip>
+                </materialDesign:PackIcon>
+                <Button Name="btnSelect" Style="{StaticResource MaterialDesignRaisedAccentButton}" Width="90" Margin="0 0 0 5" Click="btnSelect_Click" >Select</Button>
+                <Button Name="btnSelectAll" Style="{StaticResource MaterialDesignRaisedAccentButton}" Width="90" Margin="0 0 0 5" Click="btnSelectAll_Click" >Select All</Button>
+                <Button Name="btnDelete" Style="{StaticResource MaterialDesignRaisedAccentButton}" Width="90"  Margin="0 0 0 5" Click="btnDelete_Click" >Delete</Button>
+                <Button Name="btnDeleteAll" Style="{StaticResource MaterialDesignRaisedAccentButton}" Width="90"  Margin="0 0 0 5" Click="btnDeleteAll_Click" >Refresh</Button>
+            </StackPanel>
+            <ScrollViewer  Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="3" VerticalAlignment="Top" Margin="5" HorizontalAlignment="Center" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Disabled">
+                <StackPanel Orientation="Horizontal" Margin="0,0,0,3">
+                    <StackPanel Orientation="Horizontal">
+                        <ComboBox Name="cbBoPhan" Style="{StaticResource MaterialDesignFloatingHintComboBox}" materialDesign:HintAssist.Hint="Bộ phận" SelectionChanged="cbBoPhan_SelectionChanged" Foreground="{DynamicResource MaterialDesignBody}"/>
+                        <ToggleButton Name="tgBoPhan"  Margin="10,0,20,3" Foreground="{DynamicResource MaterialDesignBody}" Checked="ToggleElementChecked_Checked" Unchecked="ToggleElementUnChecked_Checked" VerticalAlignment="Bottom" Panel.ZIndex="0"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <ComboBox Name="cbPhongBan" Style="{StaticResource MaterialDesignFloatingHintComboBox}" materialDesign:HintAssist.Hint="Phòng ban" Foreground="{DynamicResource MaterialDesignBody}" SelectionChanged="ComboBoxElement_SelectionChange"/>
+                        <ToggleButton Name="tgPhongBan"  Margin="10,0,20,3" IsChecked="False" Foreground="{DynamicResource MaterialDesignBody}" Checked="ToggleElementChecked_Checked" Unchecked="ToggleElementUnChecked_Checked" VerticalAlignment="Bottom"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <ComboBox Name="cbLoaiHopDong" Style="{StaticResource MaterialDesignFloatingHintComboBox}" materialDesign:HintAssist.Hint="Hợp đồng" Foreground="{DynamicResource MaterialDesignBody}" SelectionChanged="ComboBoxElement_SelectionChange"/>
+                        <ToggleButton Name="tgLoaiHopDong"  Margin="10,0,20,3" IsChecked="False" Foreground="{DynamicResource MaterialDesignBody}" Checked="ToggleElementChecked_Checked" Unchecked="ToggleElementUnChecked_Checked" VerticalAlignment="Bottom"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <ComboBox Name="cbLoaiLuong" Style="{StaticResource MaterialDesignFloatingHintComboBox}" materialDesign:HintAssist.Hint="Loại lương" Foreground="{DynamicResource MaterialDesignBody}" SelectionChanged="ComboBoxElement_SelectionChange"/>
+                        <ToggleButton Name="tgLoaiLuong"  Margin="10,0,20,3" IsChecked="False" Foreground="{DynamicResource MaterialDesignBody}" Checked="ToggleElementChecked_Checked" Unchecked="ToggleElementUnChecked_Checked" VerticalAlignment="Bottom"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" >
+                        <ComboBox Name="cbTinhTrang" Style="{StaticResource MaterialDesignFloatingHintComboBox}" materialDesign:HintAssist.Hint="Tình trạng" Foreground="{DynamicResource MaterialDesignBody}" SelectionChanged="ComboBoxElement_SelectionChange"/>
+                        <ToggleButton Name="tgTinhTrang" Margin="10,0,20,3" IsChecked="False" Foreground="{DynamicResource MaterialDesignBody}" Checked="ToggleElementChecked_Checked" Unchecked="ToggleElementUnChecked_Checked" VerticalAlignment="Bottom"/>
+                    </StackPanel>
+                </StackPanel>
+            </ScrollViewer>
+        </Grid>
+    </materialDesign:DialogHost>
 </UserControl>

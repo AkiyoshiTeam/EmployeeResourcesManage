@@ -25,5 +25,10 @@ namespace BUS
         {
             return DAO.NhanVienDAO.GetNhanVienForChoose();
         }
+
+        public static DataTable GetNhanVienByElementForChoose(string mabp, string mapb, string malhd, string mall, string matt)
+        {
+            return DAO.NhanVienDAO.GetNhanVienByElementForChoose(mabp, mapb, malhd, mall, matt);
+        }
     }
 }

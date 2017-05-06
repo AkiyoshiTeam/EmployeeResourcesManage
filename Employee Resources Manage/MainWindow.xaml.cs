@@ -33,7 +33,10 @@ namespace Employee_Resources_Manage
         public static DataTable selectedTableDesStatic;
         public DataTable selectedTable;
         public DataTable selectedTableDes;
-        public int lastTab = 1;
+        bool tabHomeExist = true;
+        bool IsChangedTheme = false;
+        object palContent;
+        bool isOkay = false;
         public MainWindow()
         {
             InitializeComponent();
@@ -66,8 +69,6 @@ namespace Employee_Resources_Manage
             }
         }
 
-        private readonly Lazy<IEnumerable<PackIconKind>> _packIconKinds;
-
         private void UIElement_OnPreviewMouseLeftButtonUp(object sender, MouseButtonEventArgs e)
         {
             //until we had a StaysOpen glag to Drawer, this will help with scroll bars
@@ -99,6 +100,36 @@ namespace Employee_Resources_Manage
 
         private void UIElementChild_OnPreviewMouseLeftButtonUp(object sender, MouseButtonEventArgs e)
         {
+            if (isOkay == false)
+            {
+                var view = CollectionViewSource.GetDefaultView(tabMain.Items);
+                view.CollectionChanged += (o, ev) =>
+                {
+                    if (tabMain.Items.Count == 0)
+                    {
+                        TabItem tabItem = new TabItem();
+                        tabItem.Header = "Home";
+                        tabItem.Name = "tabHome";
+                        tabHomeExist = true;
+                        tabItem.IsSelected = true;
+                        tabMain.Items.Add(tabItem);
+
+                    }
+                    else if (tabMain.Items.Count == 1)
+                    {
+                        if (tabHomeExist)
+                            tabMain.FixedHeaderCount = 1;
+                        else
+                            tabMain.FixedHeaderCount = 0;
+                        tabMain.InterTabController = null;
+                    }
+                    else
+                    {
+                        tabMain.InterTabController = new InterTabController();
+                    }
+                };
+                isOkay = true;
+            }
             //until we had a StaysOpen glag to Drawer, this will help with scroll bars
             var dependencyObject = Mouse.Captured as DependencyObject;
             while (dependencyObject != null)
@@ -106,73 +137,36 @@ namespace Employee_Resources_Manage
 
                 if (dependencyObject is ListView)
                 {
-                    if (tabHomeExist == true)
-                    {
-                        int i = 0;
-
-                        foreach (TabItem ti in tabMain.Items)
-                        {
-                            if (ti.Name == "tabHome")
-                                break;
-                            i++;
-                        }
-                        tabMain.Items.RemoveAt(i);
-                        tabHomeExist = false;
-                        tabMain.FixedHeaderCount = 0;
-                    }
                     TabItem tab = new TabItem();
                     tab.Header = ((SelectableViewModel)manageItemsControl2.SelectedItem).Name;
                     SearchEmployee searchControl = new SearchEmployee();
                     tab.Content = searchControl;
                     tab.IsSelected = true;
                     tabMain.Items.Add(tab);
-                    return;
-                }
-                dependencyObject = VisualTreeHelper.GetParent(dependencyObject);
-            }
-        }
-        bool tabHomeExist = true;
-        bool tabHeaderFocus = false;
-
-        private void UIElementCloseTab_OnPreviewMouseLeftButtonUp(object sender, MouseButtonEventArgs e)
-        {
-            var dependencyObject = Mouse.Captured as DependencyObject;
-            while (dependencyObject != null)
-            {
-                if (dependencyObject is DragablzItemsControl)
-                {
-                    tabHeaderFocus = true;
-                    break;
-                }
-                dependencyObject = VisualTreeHelper.GetParent(dependencyObject);
-            }
-
-            dependencyObject = Mouse.Captured as DependencyObject;
-            while (dependencyObject != null)
-            {
-                if (dependencyObject is Button && tabHeaderFocus == true)
-                {
-                    if (tabMain.Items.Count == 1)
+                    if (tabHomeExist == true)
                     {
-                        TabItem tabItem = new TabItem();
-                        tabItem.Content = new SearchEmployee();
-                        tabItem.Header = "Home";
-                        tabItem.Name = "tabHome";
-                        tabMain.Items.Add(tabItem);
-                        tabMain.FixedHeaderCount = 1;
-                        tabHomeExist = true;
-                        //tabMain.Items.RemoveAt(0);
+                        int i = 0;
+                        bool tabHome = false;
+                        foreach (TabItem ti in tabMain.Items)
+                        {
+                            if (ti.Name == "tabHome")
+                            {
+                                tabHome = true;
+                                break;
+                            }
+                            i++;
+                        }
+                        if(tabHome==true)
+                            tabMain.Items.RemoveAt(i);
+                        tabHomeExist = false;
+                        tabMain.FixedHeaderCount = 0;
                     }
-                    tabHeaderFocus = false;
                     return;
                 }
                 dependencyObject = VisualTreeHelper.GetParent(dependencyObject);
             }
-            tabHeaderFocus = false;
         }
 
-        bool IsChangedTheme = false;
-        object palContent;
 
         private void MenuItemTheme_Click(object sender, RoutedEventArgs e)
         {
@@ -198,7 +192,7 @@ namespace Employee_Resources_Manage
         private void MenuItemChangePassword_Click(object sender, RoutedEventArgs e)
         {
             ChangePassword changePw = new ChangePassword();
-            DialogHost.Show(changePw);
+            DialogHost.Show(changePw, "RootDialog");
         }
 
 
@@ -232,7 +226,6 @@ namespace Employee_Resources_Manage
             if (tabHomeExist == false)
             {
                 TabItem tabItem = new TabItem();
-                tabItem.Content = new SearchEmployee();
                 tabItem.Header = "Home";
                 tabItem.Name = "tabHome";
                 tabItem.IsSelected = true;
@@ -257,11 +250,68 @@ namespace Employee_Resources_Manage
             tab.Content = selectorControl;
             tab.IsSelected = true;
             tabMain.Items.Add(tab);
+            if (isOkay == false)
+            {
+                var view = CollectionViewSource.GetDefaultView(tabMain.Items);
+                view.CollectionChanged += (o, ev) =>
+                {
+                    if (tabMain.Items.Count == 0 )
+                    {
+                        TabItem tabItem = new TabItem();
+                        tabItem.Header = "Home";
+                        tabItem.Name = "tabHome";
+                        tabItem.IsSelected = true;
+                        tabMain.Items.Add(tabItem);
+                        tabHomeExist = true;
+                    }
+                    else if (tabMain.Items.Count == 1)
+                    {
+                        if (tabHomeExist)
+                            tabMain.FixedHeaderCount = 1;
+                        else
+                            tabMain.FixedHeaderCount = 0;
+                        tabMain.InterTabController = null;
+                    }
+                    else
+                    {
+                        tabMain.InterTabController = new InterTabController();
+                    }
+                };
+                isOkay = true;
+            }
+            if (tabHomeExist == true)
+            {
+                int i = 0;
+                bool tabHome = false;
+                foreach (TabItem ti in tabMain.Items)
+                {
+                    if (ti.Name == "tabHome")
+                    {
+                        tabHome = true;
+                        break;
+                    }
+                    i++;
+                }
+                if (tabHome == true)
+                    tabMain.Items.RemoveAt(i);
+                tabHomeExist = false;
+                tabMain.FixedHeaderCount = 0;
+            }
         }
 
         private void btnTranslate_Click(object sender, RoutedEventArgs e)
         {
             DataTable tb = selectedTable;
+        }
+
+        private void MetroWindow_Loaded(object sender, RoutedEventArgs e)
+        {
+            if (tabMain != null)
+            {
+                if(tabMain.Items.Count>0)
+                    if ((tabMain.Items[0] as TabItem).Header.ToString() == "Home")
+                        tabMain.FixedHeaderCount = 1;
+            }
         }
     }
 }

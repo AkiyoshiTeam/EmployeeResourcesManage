@@ -2,7 +2,8 @@
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:system="clr-namespace:System;assembly=mscorlib"
              xmlns:local="clr-namespace:Employee_Resources_Manage"
              xmlns:materialDesignColors="clr-namespace:MaterialDesignColors;assembly=MaterialDesignColors"
              xmlns:wpf="clr-namespace:MaterialDesignThemes.Wpf;assembly=MaterialDesignThemes.Wpf"
@@ -17,7 +18,6 @@
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </UserControl.Resources>
-
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="auto" />
@@ -26,14 +26,41 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
+        <materialDesign:DialogHost Name="dialogHost" DialogClosing="dialogHost_DialogClosing" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2" HorizontalAlignment="Center" VerticalAlignment="Center">
+            <materialDesign:DialogHost.DialogContent>
+                <StackPanel Margin="16">
+                    <TextBlock Margin="0 8 0 0" HorizontalAlignment="Stretch" Text="{Binding}" FontWeight="Bold" FontSize="14"/>
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Right"  >
+                        <Button Style="{StaticResource MaterialDesignFlatButton}"
+                                        IsDefault="True"
+                                        Margin="0 8 8 0"
+                                        Command="materialDesign:DialogHost.CloseDialogCommand">
+                            <Button.CommandParameter>
+                                <system:Boolean>True</system:Boolean>
+                            </Button.CommandParameter>
+                            ACCEPT
+                        </Button>
+                        <Button Style="{StaticResource MaterialDesignFlatButton}"
+                                        IsCancel="True"
+                                        Margin="0 8 8 0"
+                                        Command="materialDesign:DialogHost.CloseDialogCommand">
+                            <Button.CommandParameter>
+                                <system:Boolean>False</system:Boolean>
+                            </Button.CommandParameter>
+                            CANCEL
+                        </Button>
+                    </StackPanel>
+                </StackPanel>
+            </materialDesign:DialogHost.DialogContent>
+        </materialDesign:DialogHost>
         <GroupBox Grid.Column="0" Header="Chọn trường tìm kiếm" Style="{DynamicResource MaterialDesignGroupBox}" Margin="2,5,2,0" materialDesign:ShadowAssist.ShadowDepth="Depth2" BorderThickness="0" materialDesign:ColorZoneAssist.Mode="Accent" Padding="5" >
             <TreeView Name="treeView" Style="{StaticResource MaterialDesignTreeView}" 
                       ItemsSource="{Binding SearchObjects}" MaxWidth="200" ScrollViewer.HorizontalScrollBarVisibility="Auto">
-                <!--<TreeView.ItemContainerStyle>
+                <TreeView.ItemContainerStyle>
                     <Style TargetType="{x:Type TreeViewItem}" BasedOn="{StaticResource MaterialDesignTreeViewItem}">
                         <Setter Property="IsExpanded" Value="True"/>
                     </Style>
-                </TreeView.ItemContainerStyle>-->
+                </TreeView.ItemContainerStyle>
                 <TreeView.Resources>
                     <HierarchicalDataTemplate DataType="{x:Type DTO:SearchObject}"
                                               ItemsSource="{Binding SearchElements}">
@@ -95,15 +122,16 @@
                         </DataGrid>
                     </DockPanel>
                 </ScrollViewer>
-                <DockPanel Grid.Row="1">
+                <ScrollViewer Grid.Row="1" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Disabled">
                     <DockPanel DockPanel.Dock="Bottom" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="0,0,20,0">
                         <Button Name="btnSearch" Style="{StaticResource MaterialDesignFlatButton}" Width="120" Click="btnSearch_Click" >Search</Button>
                         <Button Name="btnExportExcel" Style="{StaticResource MaterialDesignFlatButton}" Width="120" Click="btnExportExcel_Click" >Export Excel</Button>
                         <Button Name="btnImportExcel" Style="{StaticResource MaterialDesignFlatButton}" Width="120" Click="btnImportExcel_Click">Import Excel</Button>
-                        <Button Name="btnSelect" Style="{StaticResource MaterialDesignFlatButton}" Width="120" Click="btnSelect_Click" >Select</Button>
+                        <Button Name="btnSelectNew" Style="{StaticResource MaterialDesignFlatButton}" Width="120" Click="btnSelect_Click">Select New</Button>
+                        <Button Name="btnSelectImport" Style="{StaticResource MaterialDesignFlatButton}" Width="120" Click="btnSelect_Click">Select Import</Button>
                         <!--<ComboBox Name="cbSearch" Style="{StaticResource MaterialDesignFloatingHintComboBox}" materialDesign:HintAssist.Hint="Tìm kiếm theo" materialDesign:HintAssist.HintOpacity=".26" IsReadOnly="True"/>-->
                     </DockPanel>
-                </DockPanel>
+                </ScrollViewer>
             </Grid>
         </GroupBox>
     </Grid>

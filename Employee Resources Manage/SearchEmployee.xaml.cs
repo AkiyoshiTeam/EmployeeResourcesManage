@@ -49,7 +49,7 @@ namespace Employee_Resources_Manage
             }
         }
     }
-    
+
     public class ComboData
     {
         public string Name { get; set; }
@@ -244,10 +244,10 @@ namespace Employee_Resources_Manage
                 }
                 dtView.RowFilter = strFilter;
                 TableFilter = dtView.ToTable();
-                MainWindow.selectedTableStatic = TableFilter;
-                dataGridCustom.DataContext = MainWindow.selectedTableStatic;
+                //MainWindow.selectedTableStatic = TableFilter;
+                dataGridCustom.DataContext = TableFilter;
                 //MainWindow.selectedTableDesStatic = TableDes;
-                
+
                 //MainWindow.selectedTableStatic.Rows.Clear();
                 //foreach (DataRow row in dtView.ToTable().Rows)
                 //{ MainWindow.selectedTableStatic.ImportRow(row); }
@@ -395,8 +395,8 @@ namespace Employee_Resources_Manage
             {
                 dataGridCustom.AutoGenerateColumns = false;
                 searchOrImp = true;
-                MainWindow.selectedTableStatic = Table;
-                dataGridCustom.DataContext = MainWindow.selectedTableStatic;
+                //MainWindow.selectedTableStatic = Table;
+                dataGridCustom.DataContext = TableFilter;
                 CreateTextBoxFilter();
                 CreateColumnDG();
                 //MainWindow.selectedTableStatic = Table;
@@ -474,7 +474,7 @@ namespace Employee_Resources_Manage
                 {
                     for (int n = 0; n < TreeSearchViewModel.SearchObjects[i].SearchElements[j].SearchElementDetails.Count; n++)
                     {
-                        if (TreeSearchViewModel.SearchObjects[i].SearchElements[j].SearchElementDetails[n].IsCheckedDetail == true || (j==0 && n==0) || (j==0 && n==1))
+                        if (TreeSearchViewModel.SearchObjects[i].SearchElements[j].SearchElementDetails[n].IsCheckedDetail == true || (j == 0 && n == 0) || (j == 0 && n == 1))
                         {
                             if (TreeSearchViewModel.SearchObjects[i].SearchElements[j].SearchElementDetails[n].StrSearch.Trim() != "tt.MaNV")
                             {
@@ -586,7 +586,7 @@ namespace Employee_Resources_Manage
                 {
                     for (int n = 0; n < TreeSearchViewModel.SearchObjects[i].SearchElements[j].SearchElementDetails.Count; n++)
                     {
-                        if (TreeSearchViewModel.SearchObjects[i].SearchElements[j].SearchElementDetails[n].IsCheckedDetail == true || (j==0 && n==0) || (j==0 && n==1))
+                        if (TreeSearchViewModel.SearchObjects[i].SearchElements[j].SearchElementDetails[n].IsCheckedDetail == true || (j == 0 && n == 0) || (j == 0 && n == 1))
                         {
                             if (TreeSearchViewModel.SearchObjects[i].SearchElements[j].SearchElementDetails[n].StrSearch.Trim() != "tt.MaNV")
                             {
@@ -616,7 +616,59 @@ namespace Employee_Resources_Manage
 
         private void btnSelect_Click(object sender, RoutedEventArgs e)
         {
+            if (TableFilter != null)
+            {
+                if (MainWindow.selectedTableStatic == null)
+                {
+                    MainWindow.selectedTableStatic = new DataTable();
+                    MainWindow.selectedTableStatic.Columns.Add("MaNV");
+                    MainWindow.selectedTableStatic.Columns.Add("HoTen");
+                }
+                if ((sender as Button).Content.ToString() == "Select New")
+                {
+                    if (MainWindow.selectedTableStatic.Rows.Count==0)
+                    {
+                        foreach (DataRow row in TableFilter.Rows)
+                        {
+                            DataRow destRow = MainWindow.selectedTableStatic.NewRow();
+                            destRow["MaNV"] = row["MaNV"];
+                            destRow["HoTen"] = row["HoTen"];
+                            MainWindow.selectedTableStatic.Rows.Add(destRow);
+                        }
+                    }
+                    else
+                    {
+                        dialogHost.DataContext = "Bạn có chắc muốn tạo mới bảng chọn nhân viên?";
+                        dialogHost.IsOpen = true;
+                    }
+                }
+                if ((sender as Button).Content.ToString() == "Select Import")
+                {
+                    foreach (DataRow row in TableFilter.Rows)
+                    {
+                        bool contains = MainWindow.selectedTableStatic.AsEnumerable().Any(rowcon => row["MaNV"].ToString() == rowcon.Field<String>("MaNV"));
+                        if (contains == false)
+                        {
+                            MainWindow.selectedTableStatic.ImportRow(row);
+                        }
+                    }
+                }
+            }
+        }
 
+        private void dialogHost_DialogClosing(object sender, DialogClosingEventArgs eventArgs)
+        {
+            if ((bool)eventArgs.Parameter == true)
+            {
+                MainWindow.selectedTableStatic.Rows.Clear();
+                foreach (DataRow row in TableFilter.Rows)
+                {
+                    DataRow destRow = MainWindow.selectedTableStatic.NewRow();
+                    destRow["MaNV"] = row["MaNV"];
+                    destRow["HoTen"] = row["HoTen"];
+                    MainWindow.selectedTableStatic.Rows.Add(destRow);
+                }
+            }
         }
     }
 

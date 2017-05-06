@@ -116,29 +116,49 @@ namespace DAO
         public static DataTable GetNhanVienForChoose()
         {
             DataTable tb = new DataTable();
-            string query = "Select nv.MaNV, nv.HoTen";
-            bool exists = true;
-            query += @" From NhanVien nv ";
-            if (exists == true)
+            string query = "Select nv.MaNV, nv.HoTen From NhanVien nv";
+
+            DataProvider dataProvider = new DataProvider();
+            try
             {
-                DataProvider dataProvider = new DataProvider();
-                try
-                {
-                    dataProvider.connect();
-                    tb = dataProvider.ExecuteQuery_DataTble(query);
-                    return tb;
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show(ex.StackTrace);
-                }
-                finally
-                {
-                    dataProvider.disconnect();
-                }
+                dataProvider.connect();
+                tb = dataProvider.ExecuteQuery_DataTble(query);
+                return tb;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.StackTrace);
+            }
+            finally
+            {
+                dataProvider.disconnect();
+
+            }
+            return null;
+        }
+
+        public static DataTable GetNhanVienByElementForChoose(string mabp, string mapb, string malhd, string mall, string matt)
+        {
+            DataTable tb = new DataTable();
+            string query = @"Select nv.MaNV, nv.HoTen From NhanVien nv join HopDong hd on nv.MaHD = hd.MaHD join LoaiHopDong lhd on hd.MaLoaiHD = lhd.MaLoaiHD join PhongBan pb on nv.MaPB = pb.MaPB join BoPhan bp on pb.MaBP = bp.MaBP";
+            query += " where bp.MaBP LIKE '%" + mabp + "%' and nv.MaPB LIKE '%"+ mapb + "%' and lhd.MaLoaiHD LIKE '%"+malhd+ "%' and nv.MaLoaiLuong LIKE '%" + mall + "%' and nv.MaTT LIKE '%" + matt+"%' ";
+            DataProvider dataProvider = new DataProvider();
+            try
+            {
+                dataProvider.connect();
+                tb = dataProvider.ExecuteQuery_DataTble(query);
+                return tb;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.StackTrace);
+            }
+            finally
+            {
+                dataProvider.disconnect();
+
             }
             return null;
         }
     }
 }
-

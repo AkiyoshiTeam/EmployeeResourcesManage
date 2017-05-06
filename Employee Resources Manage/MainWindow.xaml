@@ -23,7 +23,7 @@
                       Background="{DynamicResource MaterialDesignPaper}"
                       BorderBrush="{DynamicResource PrimaryHueMidBrush}"
                       GlowBrush="{DynamicResource AccentColorBrush}"
-                      KeyDown="MetroWindow_KeyDown">
+                      KeyDown="MetroWindow_KeyDown" Loaded="MetroWindow_Loaded">
     <Window.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
@@ -36,6 +36,7 @@
             <StackPanel Margin="16">
                 <TextBlock Margin="0 8 0 0" HorizontalAlignment="Stretch" Text="{Binding}" FontWeight="Bold" FontSize="14"/>
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" >
+                    
                     <Button Style="{StaticResource MaterialDesignFlatButton}"
                                         IsCancel="True"
                                         Margin="0 8 8 0"
@@ -280,9 +281,9 @@
                     </materialDesign:TransitioningContent.OpeningEffects>
                 </materialDesign:TransitioningContent>-->
                     <dockablz:Layout Grid.Column="2" Panel.ZIndex="5">
-                        <dragablz:TabablzControl Name="tabMain" BorderThickness="1" Margin="0,-1,0,1" PreviewMouseLeftButtonUp="UIElementCloseTab_OnPreviewMouseLeftButtonUp" ShowDefaultCloseButton="True" FixedHeaderCount="1">
+                        <dragablz:TabablzControl Name="tabMain" BorderThickness="1" Margin="0,-1,0,1" ShowDefaultCloseButton="True" FixedHeaderCount="0" >
                             <dragablz:TabablzControl.InterTabController>
-                                <dragablz:InterTabController  />
+                                <dragablz:InterTabController/>
                             </dragablz:TabablzControl.InterTabController>
                             <TabItem Name="tabHome"  Header="Home" IsSelected="True" >
                             </TabItem>
