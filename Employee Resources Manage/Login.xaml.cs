@@ -113,5 +113,11 @@ namespace Employee_Resources_Manage
             if (e.Key == Key.Escape)
                 this.Close();
         }
+        
+        private void Window_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            if (e.ChangedButton == MouseButton.Left)
+                this.DragMove();
+        }
     }
 }

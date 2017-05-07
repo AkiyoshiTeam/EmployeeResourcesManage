@@ -18,121 +18,121 @@
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </UserControl.Resources>
-    <Grid>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="auto" />
-            <ColumnDefinition />
-        </Grid.ColumnDefinitions>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="*"/>
-        </Grid.RowDefinitions>
-        <materialDesign:DialogHost Name="dialogHost" DialogClosing="dialogHost_DialogClosing" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2" HorizontalAlignment="Center" VerticalAlignment="Center">
-            <materialDesign:DialogHost.DialogContent>
-                <StackPanel Margin="16">
-                    <TextBlock Margin="0 8 0 0" HorizontalAlignment="Stretch" Text="{Binding}" FontWeight="Bold" FontSize="14"/>
-                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Right"  >
-                        <Button Style="{StaticResource MaterialDesignFlatButton}"
+    <materialDesign:DialogHost Name="dialogHost" DialogClosing="dialogHost_DialogClosing" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2">
+        <materialDesign:DialogHost.DialogContent>
+            <StackPanel Margin="16">
+                <TextBlock Margin="0 8 0 0" HorizontalAlignment="Stretch" Text="{Binding}" FontWeight="Bold" FontSize="14"/>
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Right"  >
+                    <Button Style="{StaticResource MaterialDesignFlatButton}"
                                         IsDefault="True"
                                         Margin="0 8 8 0"
                                         Command="materialDesign:DialogHost.CloseDialogCommand">
-                            <Button.CommandParameter>
-                                <system:Boolean>True</system:Boolean>
-                            </Button.CommandParameter>
-                            ACCEPT
-                        </Button>
-                        <Button Style="{StaticResource MaterialDesignFlatButton}"
+                        <Button.CommandParameter>
+                            <system:Boolean>True</system:Boolean>
+                        </Button.CommandParameter>
+                        ACCEPT
+                    </Button>
+                    <Button Style="{StaticResource MaterialDesignFlatButton}"
                                         IsCancel="True"
                                         Margin="0 8 8 0"
                                         Command="materialDesign:DialogHost.CloseDialogCommand">
-                            <Button.CommandParameter>
-                                <system:Boolean>False</system:Boolean>
-                            </Button.CommandParameter>
-                            CANCEL
-                        </Button>
-                    </StackPanel>
+                        <Button.CommandParameter>
+                            <system:Boolean>False</system:Boolean>
+                        </Button.CommandParameter>
+                        CANCEL
+                    </Button>
                 </StackPanel>
-            </materialDesign:DialogHost.DialogContent>
-        </materialDesign:DialogHost>
-        <GroupBox Grid.Column="0" Header="Chọn trường tìm kiếm" Style="{DynamicResource MaterialDesignGroupBox}" Margin="2,5,2,0" materialDesign:ShadowAssist.ShadowDepth="Depth2" BorderThickness="0" materialDesign:ColorZoneAssist.Mode="Accent" Padding="5" >
-            <TreeView Name="treeView" Style="{StaticResource MaterialDesignTreeView}" 
-                      ItemsSource="{Binding SearchObjects}" MaxWidth="200" ScrollViewer.HorizontalScrollBarVisibility="Auto">
-                <TreeView.ItemContainerStyle>
-                    <Style TargetType="{x:Type TreeViewItem}" BasedOn="{StaticResource MaterialDesignTreeViewItem}">
-                        <Setter Property="IsExpanded" Value="True"/>
-                    </Style>
-                </TreeView.ItemContainerStyle>
-                <TreeView.Resources>
-                    <HierarchicalDataTemplate DataType="{x:Type DTO:SearchObject}"
-                                              ItemsSource="{Binding SearchElements}">
-                        <StackPanel Orientation="Horizontal">
-                            <CheckBox Style="{StaticResource MaterialDesignAccentCheckBox}" IsChecked="{Binding IsChecked}" VerticalAlignment="Bottom"/>
-                            <TextBlock Text="{Binding Name}" Margin="3 2"/>
-                        </StackPanel>
-                    </HierarchicalDataTemplate>
-                    <HierarchicalDataTemplate DataType="{x:Type DTO:SearchElement}"
-                                              ItemsSource="{Binding SearchElementDetails}">
-                        <StackPanel Orientation="Horizontal">
-                            <CheckBox Style="{StaticResource MaterialDesignAccentCheckBox}" IsChecked="{Binding IsCheckedElement}" VerticalAlignment="Bottom"/>
-                            <TextBlock Text="{Binding Name}" Margin="3 2"/>
-                        </StackPanel>
-                    </HierarchicalDataTemplate>
-                    <DataTemplate DataType="{x:Type DTO:SearchElementDetail}">
-                        <StackPanel Orientation="Horizontal">
-                            <CheckBox Style="{StaticResource MaterialDesignAccentCheckBox}" IsChecked="{Binding IsCheckedDetail}" VerticalAlignment="Bottom"/>
-                            <TextBlock Text="{Binding Content}"/>
-                        </StackPanel>
-                    </DataTemplate>
-                </TreeView.Resources>
-            </TreeView>
-        </GroupBox>
-        <GridSplitter Grid.Column="1" Width="3"/>
-        <GroupBox Grid.Column="1" Header="Kết quả tìm kiếm" Style="{DynamicResource MaterialDesignGroupBox}" Margin="2,5,2,0" materialDesign:ShadowAssist.ShadowDepth="Depth2" BorderThickness="0" materialDesign:ColorZoneAssist.Mode="Accent" Padding="5">
-            <Grid>
-                <Grid.RowDefinitions>
-                    <RowDefinition x:Name="rowDataGridView" Height="*" />
-                    <RowDefinition Height="40"/>
-                </Grid.RowDefinitions>
-                <ScrollViewer Grid.Row="0" ScrollViewer.HorizontalScrollBarVisibility="Auto" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" VerticalScrollBarVisibility="Disabled">
-                    <DockPanel>
-                        <StackPanel Name="stFilter" Orientation="Horizontal" MinHeight="37" DockPanel.Dock="Top">
-                        </StackPanel>
-                        <DataGrid Name="dataGridCustom"  Style="{StaticResource MaterialDesignDataGrid}" ItemsSource="{Binding}"
-                      CanUserSortColumns="True" CanUserAddRows="False" AutoGenerateColumns="False" MaxHeight="500" IsReadOnly="True"
-                       materialDesign:DataGridAssist.CellPadding="4 2 2 2" materialDesign:DataGridAssist.ColumnHeaderPadding="4 2 2 2" VerticalScrollBarVisibility="Visible"  HeadersVisibility="Column" HorizontalScrollBarVisibility="Auto" DockPanel.Dock="Top" GridLinesVisibility="Horizontal" CanUserReorderColumns="False">
+            </StackPanel>
+        </materialDesign:DialogHost.DialogContent>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="auto" />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <GroupBox Grid.Column="0" Header="Chọn trường tìm kiếm" Style="{DynamicResource MaterialDesignGroupBox}" Margin="2,5,2,0" materialDesign:ShadowAssist.ShadowDepth="Depth2" BorderThickness="0" materialDesign:ColorZoneAssist.Mode="Accent" Padding="5" >
+                <TreeView Name="treeView" Style="{StaticResource MaterialDesignTreeView}" 
+                          ItemsSource="{Binding SearchObjects}" MaxWidth="200" ScrollViewer.HorizontalScrollBarVisibility="Auto">
+                    <TreeView.ItemContainerStyle>
+                        <Style TargetType="{x:Type TreeViewItem}" BasedOn="{StaticResource MaterialDesignTreeViewItem}">
+                            <Setter Property="IsExpanded" Value="True"/>
+                        </Style>
+                    </TreeView.ItemContainerStyle>
+                    <TreeView.Resources>
+                        <HierarchicalDataTemplate DataType="{x:Type DTO:SearchObject}"
+                                                  ItemsSource="{Binding SearchElements}">
+                            <StackPanel Orientation="Horizontal">
+                                <CheckBox Style="{StaticResource MaterialDesignAccentCheckBox}" IsChecked="{Binding IsChecked}" VerticalAlignment="Bottom"/>
+                                <TextBlock Text="{Binding Name}" Margin="3 2"/>
+                            </StackPanel>
+                        </HierarchicalDataTemplate>
+                        <HierarchicalDataTemplate DataType="{x:Type DTO:SearchElement}"
+                                                  ItemsSource="{Binding SearchElementDetails}">
+                            <StackPanel Orientation="Horizontal">
+                                <CheckBox Style="{StaticResource MaterialDesignAccentCheckBox}" IsChecked="{Binding IsCheckedElement}" VerticalAlignment="Bottom"/>
+                                <TextBlock Text="{Binding Name}" Margin="3 2"/>
+                            </StackPanel>
+                        </HierarchicalDataTemplate>
+                        <DataTemplate DataType="{x:Type DTO:SearchElementDetail}">
+                            <StackPanel Orientation="Horizontal">
+                                <CheckBox Style="{StaticResource MaterialDesignAccentCheckBox}" IsChecked="{Binding IsCheckedDetail}" VerticalAlignment="Bottom"/>
+                                <TextBlock Text="{Binding Content}"/>
+                            </StackPanel>
+                        </DataTemplate>
+                    </TreeView.Resources>
+                </TreeView>
+            </GroupBox>
+            <GridSplitter Grid.Column="1" Width="3"/>
+            <GroupBox Grid.Column="1" Header="Kết quả tìm kiếm" Style="{DynamicResource MaterialDesignGroupBox}" Margin="2,5,2,0" materialDesign:ShadowAssist.ShadowDepth="Depth2" BorderThickness="0" materialDesign:ColorZoneAssist.Mode="Accent" Padding="5">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition x:Name="rowDataGridView" Height="*" />
+                        <RowDefinition Height="40"/>
+                    </Grid.RowDefinitions>
+                    <ScrollViewer Grid.Row="0" ScrollViewer.HorizontalScrollBarVisibility="Auto" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" VerticalScrollBarVisibility="Disabled">
+                        <DockPanel>
+                            <StackPanel Name="stFilter" Orientation="Horizontal" MinHeight="37" DockPanel.Dock="Top">
+                            </StackPanel>
+                            <DataGrid Name="dataGridCustom"  Style="{StaticResource MaterialDesignDataGrid}" ItemsSource="{Binding}"
+                          CanUserSortColumns="True" CanUserAddRows="False" AutoGenerateColumns="False" MaxHeight="500" IsReadOnly="True"
+                           materialDesign:DataGridAssist.CellPadding="4 2 2 2" materialDesign:DataGridAssist.ColumnHeaderPadding="4 2 2 2" VerticalScrollBarVisibility="Visible"  HeadersVisibility="Column" HorizontalScrollBarVisibility="Auto" DockPanel.Dock="Top" GridLinesVisibility="Horizontal" CanUserReorderColumns="False">
                             
-                            <!--<DataGrid.Columns>
-                                --><!--<DataGridCheckBoxColumn x:Name="colCheck"  Binding="{Binding IsSelected}" HeaderStyle="{StaticResource MaterialDesignDataGridColumnHeader}"
-                                            ElementStyle="{StaticResource MaterialDesignAccentCheckBox}"
-                                            EditingElementStyle="{StaticResource MaterialDesignDataGridCheckBoxColumnEditingStyle}" >
-                            <DataGridCheckBoxColumn.Header>
-                                -->
-                                <!--padding to allow hit test to pass thru for sorting-->
-                                <!-- 
-                                <Border HorizontalAlignment="Center">
-                                    <CheckBox Name="checkboxSlAll" Style="{StaticResource MaterialDesignAccentCheckBox}" IsChecked="{Binding Path=IsAllSelected}"/>
-                                </Border>
-                            </DataGridCheckBoxColumn.Header>
-                        </DataGridCheckBoxColumn>--><!--
-                                <DataGridTextColumn x:Name="colCode" Binding="{Binding MaNV}" EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnEditingStyle}" />
-                                <materialDesign:MaterialDataGridTextColumn x:Name="colName" Binding="{Binding HoTen}" EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnPopupEditingStyle}"  />
-                                <materialDesign:MaterialDataGridTextColumn x:Name="colDes" Binding="{Binding NgayVaoLam}" MaxLength="255" EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnPopupEditingStyle}" />
-                                <materialDesign:MaterialDataGridTextColumn x:Name="colNum" Binding="{Binding MaCV}"  EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnPopupEditingStyle}"/>
-                                <materialDesign:MaterialDataGridTextColumn x:Name="colFood" Binding="{Binding MaBP}" EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnPopupEditingStyle}"/>
-                            </DataGrid.Columns>-->
-                        </DataGrid>
-                    </DockPanel>
-                </ScrollViewer>
-                <ScrollViewer Grid.Row="1" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Disabled">
-                    <DockPanel DockPanel.Dock="Bottom" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="0,0,20,0">
-                        <Button Name="btnSearch" Style="{StaticResource MaterialDesignFlatButton}" Width="120" Click="btnSearch_Click" >Search</Button>
-                        <Button Name="btnExportExcel" Style="{StaticResource MaterialDesignFlatButton}" Width="120" Click="btnExportExcel_Click" >Export Excel</Button>
-                        <Button Name="btnImportExcel" Style="{StaticResource MaterialDesignFlatButton}" Width="120" Click="btnImportExcel_Click">Import Excel</Button>
-                        <Button Name="btnSelectNew" Style="{StaticResource MaterialDesignFlatButton}" Width="120" Click="btnSelect_Click">Select New</Button>
-                        <Button Name="btnSelectImport" Style="{StaticResource MaterialDesignFlatButton}" Width="120" Click="btnSelect_Click">Select Import</Button>
-                        <!--<ComboBox Name="cbSearch" Style="{StaticResource MaterialDesignFloatingHintComboBox}" materialDesign:HintAssist.Hint="Tìm kiếm theo" materialDesign:HintAssist.HintOpacity=".26" IsReadOnly="True"/>-->
-                    </DockPanel>
-                </ScrollViewer>
-            </Grid>
-        </GroupBox>
-    </Grid>
+                                <!--<DataGrid.Columns>
+                                    --><!--<DataGridCheckBoxColumn x:Name="colCheck"  Binding="{Binding IsSelected}" HeaderStyle="{StaticResource MaterialDesignDataGridColumnHeader}"
+                                                ElementStyle="{StaticResource MaterialDesignAccentCheckBox}"
+                                                EditingElementStyle="{StaticResource MaterialDesignDataGridCheckBoxColumnEditingStyle}" >
+                                <DataGridCheckBoxColumn.Header>
+                                    -->
+                                    <!--padding to allow hit test to pass thru for sorting-->
+                                    <!-- 
+                                    <Border HorizontalAlignment="Center">
+                                        <CheckBox Name="checkboxSlAll" Style="{StaticResource MaterialDesignAccentCheckBox}" IsChecked="{Binding Path=IsAllSelected}"/>
+                                    </Border>
+                                </DataGridCheckBoxColumn.Header>
+                            </DataGridCheckBoxColumn>--><!--
+                                    <DataGridTextColumn x:Name="colCode" Binding="{Binding MaNV}" EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnEditingStyle}" />
+                                    <materialDesign:MaterialDataGridTextColumn x:Name="colName" Binding="{Binding HoTen}" EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnPopupEditingStyle}"  />
+                                    <materialDesign:MaterialDataGridTextColumn x:Name="colDes" Binding="{Binding NgayVaoLam}" MaxLength="255" EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnPopupEditingStyle}" />
+                                    <materialDesign:MaterialDataGridTextColumn x:Name="colNum" Binding="{Binding MaCV}"  EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnPopupEditingStyle}"/>
+                                    <materialDesign:MaterialDataGridTextColumn x:Name="colFood" Binding="{Binding MaBP}" EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnPopupEditingStyle}"/>
+                                </DataGrid.Columns>-->
+                            </DataGrid>
+                        </DockPanel>
+                    </ScrollViewer>
+                    <ScrollViewer Grid.Row="1" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Disabled">
+                        <DockPanel DockPanel.Dock="Bottom" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="0,0,20,0">
+                            <Button Name="btnSearch" Style="{StaticResource MaterialDesignFlatButton}" Width="120" Click="btnSearch_Click" >Search</Button>
+                            <Button Name="btnExportExcel" Style="{StaticResource MaterialDesignFlatButton}" Width="120" Click="btnExportExcel_Click" >Export Excel</Button>
+                            <Button Name="btnImportExcel" Style="{StaticResource MaterialDesignFlatButton}" Width="120" Click="btnImportExcel_Click">Import Excel</Button>
+                            <Button Name="btnSelectNew" Style="{StaticResource MaterialDesignFlatButton}" Width="120" Click="btnSelect_Click">Select New</Button>
+                            <Button Name="btnSelectImport" Style="{StaticResource MaterialDesignFlatButton}" Width="120" Click="btnSelect_Click">Select Import</Button>
+                            <!--<ComboBox Name="cbSearch" Style="{StaticResource MaterialDesignFloatingHintComboBox}" materialDesign:HintAssist.Hint="Tìm kiếm theo" materialDesign:HintAssist.HintOpacity=".26" IsReadOnly="True"/>-->
+                        </DockPanel>
+                    </ScrollViewer>
+                </Grid>
+            </GroupBox>
+        </Grid>
+    </materialDesign:DialogHost>
 </UserControl>

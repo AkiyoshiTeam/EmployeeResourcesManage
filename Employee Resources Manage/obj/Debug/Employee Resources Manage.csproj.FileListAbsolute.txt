@@ -170,3 +170,5 @@ D:\EmployeeResourcesManage\Employee Resources Manage\obj\Debug\Employee_Resource
 D:\EmployeeResourcesManage\Employee Resources Manage\obj\Debug\Employee Resources Manage.csproj.GenerateResource.Cache
 D:\EmployeeResourcesManage\Employee Resources Manage\obj\Debug\Employee Resources Manage.exe
 D:\EmployeeResourcesManage\Employee Resources Manage\obj\Debug\Employee Resources Manage.pdb
+C:\Users\mjnht\Desktop\Project Employee Manager\EmployeeResourcesManage\Employee Resources Manage\obj\Debug\EditEmployee.g.cs
+C:\Users\mjnht\Desktop\Project Employee Manager\EmployeeResourcesManage\Employee Resources Manage\obj\Debug\EditEmployee.baml

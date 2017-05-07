@@ -131,8 +131,8 @@
                         <Button Name="btnSelector" ToolTip="Chọn nhân viên" Style="{StaticResource ToolbarButton}" VerticalAlignment="Top" Click="btnSelector_Click">
                             <materialDesign:PackIcon Kind="HumanMaleFemale" Width="17" Height="17"/>
                         </Button>
-                        <Button Name="btnTranslate" ToolTip="Chọn ngôn ngữ" Style="{StaticResource ToolbarButton}" VerticalAlignment="Top" Click="btnTranslate_Click">
-                            <materialDesign:PackIcon Kind="Translate" Width="17" Height="17"/>
+                        <Button Name="btnEditEmployee" ToolTip="Chỉnh sửa nhân viên" Style="{StaticResource ToolbarButton}" VerticalAlignment="Top" Click="btnTranslate_Click">
+                            <materialDesign:PackIcon Kind="TableEdit" Width="17" Height="17"/>
                         </Button>
                         <Separator  Margin="6,0"/>
                         <Button Command="Cut" ToolTip="Cut" ToolBar.OverflowMode="AsNeeded" Style="{StaticResource ToolbarButton}" VerticalAlignment="Top" >

@@ -60,6 +60,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BoPhanDAO.cs" />
+    <Compile Include="ChucVuDAO.cs" />
     <Compile Include="DataProvider.cs" />
     <Compile Include="DescriptionForTree.cs" />
     <Compile Include="IEnumerableToDataTable.cs" />

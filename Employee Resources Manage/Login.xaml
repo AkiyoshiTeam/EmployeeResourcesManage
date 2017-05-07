@@ -17,7 +17,7 @@
         TextElement.FontWeight="Regular"
         TextElement.FontSize="13"
         TextOptions.TextFormattingMode="Ideal" 
-        TextOptions.TextRenderingMode="Auto" KeyDown="Window_KeyDown">
+        TextOptions.TextRenderingMode="Auto" KeyDown="Window_KeyDown" MouseDown="Window_MouseDown">
     <Window.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>

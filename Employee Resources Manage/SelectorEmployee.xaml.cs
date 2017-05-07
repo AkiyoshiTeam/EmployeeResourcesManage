@@ -53,10 +53,22 @@ namespace Employee_Resources_Manage
         public string Name { get; set; }
         public string ID { get; set; }
     }
+    public class ChucVu
+    {
+        public string Name { get; set; }
+        public string ID { get; set; }
+    }
+    public class GioiTinh
+    {
+        public string Name { get; set; }
+        public bool ID { get; set; }
+    }
 
     public partial class SelectorEmployee : UserControl
     {
-        DataTable Table;
+        DataTable TableSearchFilter;
+        DataTable TableChoose;
+        DataTable TableChooseFilter;
         List<BoPhan> listBP;
         List<PhongBan> listPB;
         List<LoaiHopDong> listLHD;
@@ -68,21 +80,22 @@ namespace Employee_Resources_Manage
         string maLL = "";
         string maTT = "";
         bool isOkay = false;
+        bool filterSelect = false;
 
         public SelectorEmployee()
         {
             InitializeComponent();
-            DataTable tbTemp = BUS.NhanVienBUS.GetNhanVienForChoose();
-            dataGridChoose.DataContext = tbTemp;
+            TableChoose = BUS.NhanVienBUS.GetNhanVienForChoose();
+            dataGridChoose.DataContext = TableChoose;
             for (int i = 0; i < 2; i++)
             {
                 MaterialDataGridTextColumn col = new MaterialDataGridTextColumn();
-                col.Header = tbTemp.Columns[i].ColumnName;
-                col.EditingElementStyle = (Style)FindResource("MaterialDesignDataGridTextColumnPopupEditingStyle");
-                col.Binding = new Binding(tbTemp.Columns[i].ColumnName);
+                col.Header = TableChoose.Columns[i].ColumnName;
+                col.Binding = new Binding(TableChoose.Columns[i].ColumnName);
                 dataGridChoose.Columns.Add(col);
             }
-            tbTemp = BUS.BoPhanBUS.GetBoPhan();
+            tbTotalBangChon.Text = "Total: " + TableChoose.Rows.Count.ToString();
+            DataTable tbTemp = BUS.BoPhanBUS.GetBoPhan();
             listBP = new List<BoPhan>();
             listBP.Add(new BoPhan { Name = "Tất cả", ID = "0" });
             foreach (DataRow row in tbTemp.Rows)
@@ -156,9 +169,8 @@ namespace Employee_Resources_Manage
                 stl.TargetType = typeof(DataGridColumnHeader);
                 stl.Setters.Add(new Setter(ToolTipService.ToolTipProperty, "Click để sắp xếp!"));
                 col.HeaderStyle = stl;
-                col.Header = Table.Columns[i].ColumnName;
-                col.EditingElementStyle = (Style)FindResource("MaterialDesignDataGridTextColumnPopupEditingStyle");
-                col.Binding = new Binding(Table.Columns[i].ColumnName);
+                col.Header = TableSearchFilter.Columns[i].ColumnName;
+                col.Binding = new Binding(TableSearchFilter.Columns[i].ColumnName);
                 dataGridSelected.Columns.Add(col);
             }
         }
@@ -171,9 +183,10 @@ namespace Employee_Resources_Manage
                 MainWindow.selectedTableStatic.Columns.Add(new DataColumn("MaNV"));
                 MainWindow.selectedTableStatic.Columns.Add(new DataColumn("HoTen"));
             }
-            Table = MainWindow.selectedTableStatic;
+            TableSearchFilter = MainWindow.selectedTableStatic;
             dataGridSelected.DataContext = MainWindow.selectedTableStatic;
             CreateColumnDG();
+            tbTotalBangDaChon.Text = "Total: " + MainWindow.selectedTableStatic.Rows.Count.ToString();
         }
 
         private void btnSelect_Click(object sender, RoutedEventArgs e)
@@ -196,13 +209,35 @@ namespace Employee_Resources_Manage
                     if (scroll != null) scroll.ScrollToEnd();
                 }
             }
+            tbTotalBangDaChon.Text = "Total: " + MainWindow.selectedTableStatic.Rows.Count.ToString();
         }
 
         private void btnDelete_Click(object sender, RoutedEventArgs e)
         {
             while (dataGridSelected.SelectedItem != null)
             {
-                MainWindow.selectedTableStatic.Rows.Remove((dataGridSelected.SelectedItem as DataRowView).Row);
+                if (filterSelect == true)
+                {
+                    for (int i = 0; i < dataGridSelected.SelectedItems.Count; i++)
+                    {
+                        DataRowView rv = (dataGridSelected.SelectedItems[i] as DataRowView);
+
+                        DataRow[] drr = MainWindow.selectedTableStatic.Select("MANV='" + rv[0].ToString() + "' ");
+                        for (int j = 0; j < drr.Length; j++)
+                            drr[j].Delete();
+                        MainWindow.selectedTableStatic.AcceptChanges();
+                    }
+                    TableSearchFilter.Rows.Remove((dataGridSelected.SelectedItem as DataRowView).Row);
+                    if (TableSearchFilter.Rows.Count == 0)
+                    {
+                        dataGridSelected.DataContext = MainWindow.selectedTableStatic;
+                        txtHoTenSearchSelect.Text = "";
+                        txtMaNVSearchSelect.Text = "";
+                    }
+                }
+                else MainWindow.selectedTableStatic.Rows.Remove((dataGridSelected.SelectedItem as DataRowView).Row);
+
+                tbTotalBangDaChon.Text = "Total: " + MainWindow.selectedTableStatic.Rows.Count.ToString();
             }
         }
 
@@ -225,7 +260,19 @@ namespace Employee_Resources_Manage
             if ((bool)eventArgs.Parameter == true)
             {
                 MainWindow.selectedTableStatic.Rows.Clear();
+                dataGridSelected.DataContext = MainWindow.selectedTableStatic;
+                tbTotalBangDaChon.Text = "Total: " + MainWindow.selectedTableStatic.Rows.Count.ToString();
             }
+        }
+
+        private void ToggleElementChecked_Checked(object sender, RoutedEventArgs e)
+        {
+            GetForChoose();
+        }
+
+        private void ToggleElementUnChecked_Checked(object sender, RoutedEventArgs e)
+        {
+            GetForChoose();
         }
 
         private void cbBoPhan_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -252,6 +299,7 @@ namespace Employee_Resources_Manage
                 GetForChoose();
             }
         }
+
         private void ComboBoxElement_SelectionChange(object sender, SelectionChangedEventArgs e)
         {
             if (isOkay == true)
@@ -262,7 +310,7 @@ namespace Employee_Resources_Manage
 
         public void GetForChoose()
         {
-            if (tgBoPhan.IsChecked == true )
+            if (tgBoPhan.IsChecked == true)
             {
                 if (cbBoPhan.SelectedValue != null)
                 {
@@ -347,17 +395,56 @@ namespace Employee_Resources_Manage
             }
             else maTT = "";
 
-            dataGridChoose.DataContext = BUS.NhanVienBUS.GetNhanVienByElementForChoose(maBP, maPB, maLHD, maLL, maTT);
+            TableChoose = BUS.NhanVienBUS.GetNhanVienByElementForChoose(maBP, maPB, maLHD, maLL, maTT);
+            dataGridChoose.DataContext = TableChoose;
+            tbTotalBangChon.Text = "Total: " + TableChoose.Rows.Count.ToString();
         }
 
-        private void ToggleElementChecked_Checked(object sender, RoutedEventArgs e)
+        private void SearchChoose_KeyDown(object sender, KeyEventArgs e)
         {
-            GetForChoose();
+            if (e.Key == Key.Enter)
+            {
+                string strFilter = "MaNV LIKE '%" + txtMaNVSearchChoose.Text + "%' and HoTen LIKE '%" + txtHoTenSearchChoose.Text + "%'";
+                DataView dtView = new DataView(TableChoose);
+                dtView.RowFilter = strFilter;
+                TableChooseFilter = dtView.ToTable();
+                dataGridChoose.DataContext = TableChooseFilter;
+            }
         }
 
-        private void ToggleElementUnChecked_Checked(object sender, RoutedEventArgs e)
+        private void SearchSelect_KeyDowm(object sender, KeyEventArgs e)
         {
-            GetForChoose();
+            if (e.Key == Key.Enter)
+            {
+                if (txtMaNVSearchSelect.Text == "" && txtHoTenSearchSelect.Text == "")
+                {
+                    dataGridSelected.DataContext = MainWindow.selectedTableStatic;
+                    filterSelect = false;
+                }
+                else
+                {
+                    string strFilter = "MaNV LIKE '%" + txtMaNVSearchSelect.Text + "%' and HoTen LIKE '%" + txtHoTenSearchSelect.Text + "%'";
+                    DataView dtView = new DataView(MainWindow.selectedTableStatic);
+                    dtView.RowFilter = strFilter;
+                    TableSearchFilter = dtView.ToTable();
+                    dataGridSelected.DataContext = TableSearchFilter;
+                    filterSelect = true;
+                }
+            }
+        }
+
+        private void btnUnFilterChoose_Click(object sender, RoutedEventArgs e)
+        {
+            dataGridChoose.DataContext = TableChoose;
+            txtMaNVSearchChoose.Text = "";
+            txtHoTenSearchChoose.Text = "";
+        }
+
+        private void btnUnFilterSelect_Click(object sender, RoutedEventArgs e)
+        {
+            dataGridSelected.DataContext = MainWindow.selectedTableStatic;
+            txtHoTenSearchSelect.Text = "";
+            txtMaNVSearchSelect.Text = "";
         }
     }
 

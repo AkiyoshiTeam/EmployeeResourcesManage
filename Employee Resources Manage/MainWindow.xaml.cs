@@ -21,6 +21,7 @@ using MahApps.Metro;
 using MaterialDesignThemes.Wpf;
 using Dragablz;
 using System.Data;
+using System.Data.SqlClient;
 
 namespace Employee_Resources_Manage
 {
@@ -31,8 +32,7 @@ namespace Employee_Resources_Manage
     {
         public static DataTable selectedTableStatic;
         public static DataTable selectedTableDesStatic;
-        public DataTable selectedTable;
-        public DataTable selectedTableDes;
+        //public static SqlCommandBuilder cbEditEmployee;
         bool tabHomeExist = true;
         bool IsChangedTheme = false;
         object palContent;
@@ -43,8 +43,6 @@ namespace Employee_Resources_Manage
             ListsAndGridsViewModel manageItems = new ListsAndGridsViewModel();
             manageItemsControl.DataContext = manageItems;
             manageItemsControl2.DataContext = manageItems;
-            selectedTable = new DataTable();
-            selectedTableDes = new DataTable();
             Task.Factory.StartNew(() =>
             {
                 Thread.Sleep(2500);
@@ -301,7 +299,59 @@ namespace Employee_Resources_Manage
 
         private void btnTranslate_Click(object sender, RoutedEventArgs e)
         {
-            DataTable tb = selectedTable;
+            TabItem tab = new TabItem();
+            tab.Header = "Edit Employee";
+            EditEmployee selectorControl = new EditEmployee();
+            tab.Content = selectorControl;
+            tab.IsSelected = true;
+            tabMain.Items.Add(tab);
+            if (isOkay == false)
+            {
+                var view = CollectionViewSource.GetDefaultView(tabMain.Items);
+                view.CollectionChanged += (o, ev) =>
+                {
+                    if (tabMain.Items.Count == 0)
+                    {
+                        TabItem tabItem = new TabItem();
+                        tabItem.Header = "Home";
+                        tabItem.Name = "tabHome";
+                        tabItem.IsSelected = true;
+                        tabMain.Items.Add(tabItem);
+                        tabHomeExist = true;
+                    }
+                    else if (tabMain.Items.Count == 1)
+                    {
+                        if (tabHomeExist)
+                            tabMain.FixedHeaderCount = 1;
+                        else
+                            tabMain.FixedHeaderCount = 0;
+                        tabMain.InterTabController = null;
+                    }
+                    else
+                    {
+                        tabMain.InterTabController = new InterTabController();
+                    }
+                };
+                isOkay = true;
+            }
+            if (tabHomeExist == true)
+            {
+                int i = 0;
+                bool tabHome = false;
+                foreach (TabItem ti in tabMain.Items)
+                {
+                    if (ti.Name == "tabHome")
+                    {
+                        tabHome = true;
+                        break;
+                    }
+                    i++;
+                }
+                if (tabHome == true)
+                    tabMain.Items.RemoveAt(i);
+                tabHomeExist = false;
+                tabMain.FixedHeaderCount = 0;
+            }
         }
 
         private void MetroWindow_Loaded(object sender, RoutedEventArgs e)
