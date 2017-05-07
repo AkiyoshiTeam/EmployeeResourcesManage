@@ -52,6 +52,14 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AnotherCommandImplementation.cs" />
+    <Compile Include="BangLuongDTO.cs" />
+    <Compile Include="BoPhanDTO.cs" />
+    <Compile Include="ChamCongDTO.cs" />
+    <Compile Include="ChiTietChamCongDTO.cs" />
+    <Compile Include="ChiTietChuyenMonDTO.cs" />
+    <Compile Include="ChiTietKhenThuongDTO.cs" />
+    <Compile Include="ChiTietKiLuatDTO.cs" />
+    <Compile Include="ChucVuDTO.cs" />
     <Compile Include="KiLuatDTO.cs" />
     <Compile Include="LoaiCongThucDTO.cs" />
     <Compile Include="LoaiHopDongDTO.cs" />
