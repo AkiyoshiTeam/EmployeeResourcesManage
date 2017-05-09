@@ -67,3 +67,72 @@ C:\Users\mjnht\Desktop\Project Employee Manager\EmployeeResourcesManage\Employee
 C:\Users\mjnht\Desktop\Project Employee Manager\EmployeeResourcesManage\Employee Resources Manage\obj\Debug\Employee Resources Manage.csproj.GenerateResource.Cache
 C:\Users\mjnht\Desktop\Project Employee Manager\EmployeeResourcesManage\Employee Resources Manage\obj\Debug\Employee Resources Manage.exe
 C:\Users\mjnht\Desktop\Project Employee Manager\EmployeeResourcesManage\Employee Resources Manage\obj\Debug\Employee Resources Manage.pdb
+C:\Users\Totoro\Desktop\Totoro\EmployeeResourcesManage\Employee Resources Manage\bin\Debug\Employee Resources Manage.exe.config
+C:\Users\Totoro\Desktop\Totoro\EmployeeResourcesManage\Employee Resources Manage\bin\Debug\Employee Resources Manage.exe
+C:\Users\Totoro\Desktop\Totoro\EmployeeResourcesManage\Employee Resources Manage\bin\Debug\Employee Resources Manage.pdb
+C:\Users\Totoro\Desktop\Totoro\EmployeeResourcesManage\Employee Resources Manage\bin\Debug\BUS.dll
+C:\Users\Totoro\Desktop\Totoro\EmployeeResourcesManage\Employee Resources Manage\bin\Debug\DAO.dll
+C:\Users\Totoro\Desktop\Totoro\EmployeeResourcesManage\Employee Resources Manage\bin\Debug\Dragablz.dll
+C:\Users\Totoro\Desktop\Totoro\EmployeeResourcesManage\Employee Resources Manage\bin\Debug\DTO.dll
+C:\Users\Totoro\Desktop\Totoro\EmployeeResourcesManage\Employee Resources Manage\bin\Debug\EntityFramework.dll
+C:\Users\Totoro\Desktop\Totoro\EmployeeResourcesManage\Employee Resources Manage\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\Totoro\Desktop\Totoro\EmployeeResourcesManage\Employee Resources Manage\bin\Debug\MahApps.Metro.dll
+C:\Users\Totoro\Desktop\Totoro\EmployeeResourcesManage\Employee Resources Manage\bin\Debug\MaterialDesignColors.dll
+C:\Users\Totoro\Desktop\Totoro\EmployeeResourcesManage\Employee Resources Manage\bin\Debug\MaterialDesignThemes.Wpf.dll
+C:\Users\Totoro\Desktop\Totoro\EmployeeResourcesManage\Employee Resources Manage\bin\Debug\MjpegProcessor.dll
+C:\Users\Totoro\Desktop\Totoro\EmployeeResourcesManage\Employee Resources Manage\bin\Debug\System.Linq.Dynamic.dll
+C:\Users\Totoro\Desktop\Totoro\EmployeeResourcesManage\Employee Resources Manage\bin\Debug\System.Windows.Interactivity.dll
+C:\Users\Totoro\Desktop\Totoro\EmployeeResourcesManage\Employee Resources Manage\bin\Debug\zxing.dll
+C:\Users\Totoro\Desktop\Totoro\EmployeeResourcesManage\Employee Resources Manage\bin\Debug\zxing.presentation.dll
+C:\Users\Totoro\Desktop\Totoro\EmployeeResourcesManage\Employee Resources Manage\bin\Debug\BUS.pdb
+C:\Users\Totoro\Desktop\Totoro\EmployeeResourcesManage\Employee Resources Manage\bin\Debug\BUS.dll.config
+C:\Users\Totoro\Desktop\Totoro\EmployeeResourcesManage\Employee Resources Manage\bin\Debug\DAO.pdb
+C:\Users\Totoro\Desktop\Totoro\EmployeeResourcesManage\Employee Resources Manage\bin\Debug\DAO.dll.config
+C:\Users\Totoro\Desktop\Totoro\EmployeeResourcesManage\Employee Resources Manage\bin\Debug\DTO.pdb
+C:\Users\Totoro\Desktop\Totoro\EmployeeResourcesManage\Employee Resources Manage\bin\Debug\Dragablz.pdb
+C:\Users\Totoro\Desktop\Totoro\EmployeeResourcesManage\Employee Resources Manage\bin\Debug\Dragablz.xml
+C:\Users\Totoro\Desktop\Totoro\EmployeeResourcesManage\Employee Resources Manage\bin\Debug\EntityFramework.xml
+C:\Users\Totoro\Desktop\Totoro\EmployeeResourcesManage\Employee Resources Manage\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\Totoro\Desktop\Totoro\EmployeeResourcesManage\Employee Resources Manage\bin\Debug\MahApps.Metro.pdb
+C:\Users\Totoro\Desktop\Totoro\EmployeeResourcesManage\Employee Resources Manage\bin\Debug\MahApps.Metro.xml
+C:\Users\Totoro\Desktop\Totoro\EmployeeResourcesManage\Employee Resources Manage\bin\Debug\MaterialDesignColors.pdb
+C:\Users\Totoro\Desktop\Totoro\EmployeeResourcesManage\Employee Resources Manage\bin\Debug\MaterialDesignThemes.Wpf.pdb
+C:\Users\Totoro\Desktop\Totoro\EmployeeResourcesManage\Employee Resources Manage\bin\Debug\MaterialDesignThemes.Wpf.xml
+C:\Users\Totoro\Desktop\Totoro\EmployeeResourcesManage\Employee Resources Manage\bin\Debug\zxing.pdb
+C:\Users\Totoro\Desktop\Totoro\EmployeeResourcesManage\Employee Resources Manage\bin\Debug\zxing.xml
+C:\Users\Totoro\Desktop\Totoro\EmployeeResourcesManage\Employee Resources Manage\bin\Debug\zxing.presentation.pdb
+C:\Users\Totoro\Desktop\Totoro\EmployeeResourcesManage\Employee Resources Manage\bin\Debug\zxing.presentation.xml
+C:\Users\Totoro\Desktop\Totoro\EmployeeResourcesManage\Employee Resources Manage\obj\Debug\Employee Resources Manage.csprojResolveAssemblyReference.cache
+C:\Users\Totoro\Desktop\Totoro\EmployeeResourcesManage\Employee Resources Manage\obj\Debug\Employee Resources Manage.csproj.ResolveComReference.cache
+C:\Users\Totoro\Desktop\Totoro\EmployeeResourcesManage\Employee Resources Manage\obj\Debug\Domain\SampleMessageDialog.baml
+C:\Users\Totoro\Desktop\Totoro\EmployeeResourcesManage\Employee Resources Manage\obj\Debug\Domain\SampleProgressDialog.baml
+C:\Users\Totoro\Desktop\Totoro\EmployeeResourcesManage\Employee Resources Manage\obj\Debug\Palette.baml
+C:\Users\Totoro\Desktop\Totoro\EmployeeResourcesManage\Employee Resources Manage\obj\Debug\ChangePassword.g.cs
+C:\Users\Totoro\Desktop\Totoro\EmployeeResourcesManage\Employee Resources Manage\obj\Debug\Domain\SampleMessageDialog.g.cs
+C:\Users\Totoro\Desktop\Totoro\EmployeeResourcesManage\Employee Resources Manage\obj\Debug\Domain\SampleProgressDialog.g.cs
+C:\Users\Totoro\Desktop\Totoro\EmployeeResourcesManage\Employee Resources Manage\obj\Debug\EditEmployee.g.cs
+C:\Users\Totoro\Desktop\Totoro\EmployeeResourcesManage\Employee Resources Manage\obj\Debug\Login.g.cs
+C:\Users\Totoro\Desktop\Totoro\EmployeeResourcesManage\Employee Resources Manage\obj\Debug\MainWindow.g.cs
+C:\Users\Totoro\Desktop\Totoro\EmployeeResourcesManage\Employee Resources Manage\obj\Debug\Palette.g.cs
+C:\Users\Totoro\Desktop\Totoro\EmployeeResourcesManage\Employee Resources Manage\obj\Debug\PaletteSelector.g.cs
+C:\Users\Totoro\Desktop\Totoro\EmployeeResourcesManage\Employee Resources Manage\obj\Debug\QRCode.g.cs
+C:\Users\Totoro\Desktop\Totoro\EmployeeResourcesManage\Employee Resources Manage\obj\Debug\SearchEmployee.g.cs
+C:\Users\Totoro\Desktop\Totoro\EmployeeResourcesManage\Employee Resources Manage\obj\Debug\SelectorEmployee.g.cs
+C:\Users\Totoro\Desktop\Totoro\EmployeeResourcesManage\Employee Resources Manage\obj\Debug\App.g.cs
+C:\Users\Totoro\Desktop\Totoro\EmployeeResourcesManage\Employee Resources Manage\obj\Debug\GeneratedInternalTypeHelper.g.cs
+C:\Users\Totoro\Desktop\Totoro\EmployeeResourcesManage\Employee Resources Manage\obj\Debug\Employee Resources Manage_MarkupCompile.cache
+C:\Users\Totoro\Desktop\Totoro\EmployeeResourcesManage\Employee Resources Manage\obj\Debug\Employee Resources Manage_MarkupCompile.lref
+C:\Users\Totoro\Desktop\Totoro\EmployeeResourcesManage\Employee Resources Manage\obj\Debug\App.baml
+C:\Users\Totoro\Desktop\Totoro\EmployeeResourcesManage\Employee Resources Manage\obj\Debug\ChangePassword.baml
+C:\Users\Totoro\Desktop\Totoro\EmployeeResourcesManage\Employee Resources Manage\obj\Debug\EditEmployee.baml
+C:\Users\Totoro\Desktop\Totoro\EmployeeResourcesManage\Employee Resources Manage\obj\Debug\Login.baml
+C:\Users\Totoro\Desktop\Totoro\EmployeeResourcesManage\Employee Resources Manage\obj\Debug\MainWindow.baml
+C:\Users\Totoro\Desktop\Totoro\EmployeeResourcesManage\Employee Resources Manage\obj\Debug\PaletteSelector.baml
+C:\Users\Totoro\Desktop\Totoro\EmployeeResourcesManage\Employee Resources Manage\obj\Debug\QRCode.baml
+C:\Users\Totoro\Desktop\Totoro\EmployeeResourcesManage\Employee Resources Manage\obj\Debug\SearchEmployee.baml
+C:\Users\Totoro\Desktop\Totoro\EmployeeResourcesManage\Employee Resources Manage\obj\Debug\SelectorEmployee.baml
+C:\Users\Totoro\Desktop\Totoro\EmployeeResourcesManage\Employee Resources Manage\obj\Debug\Employee Resources Manage.g.resources
+C:\Users\Totoro\Desktop\Totoro\EmployeeResourcesManage\Employee Resources Manage\obj\Debug\Employee_Resources_Manage.Properties.Resources.resources
+C:\Users\Totoro\Desktop\Totoro\EmployeeResourcesManage\Employee Resources Manage\obj\Debug\Employee Resources Manage.csproj.GenerateResource.Cache
+C:\Users\Totoro\Desktop\Totoro\EmployeeResourcesManage\Employee Resources Manage\obj\Debug\Employee Resources Manage.exe
+C:\Users\Totoro\Desktop\Totoro\EmployeeResourcesManage\Employee Resources Manage\obj\Debug\Employee Resources Manage.pdb

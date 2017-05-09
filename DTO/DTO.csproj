@@ -60,6 +60,13 @@
     <Compile Include="ChiTietKhenThuongDTO.cs" />
     <Compile Include="ChiTietKiLuatDTO.cs" />
     <Compile Include="ChucVuDTO.cs" />
+    <Compile Include="ChuyenCongTacDTO.cs" />
+    <Compile Include="ChuyenMonDTO.cs" />
+    <Compile Include="CongThucTinhLuongDTO.cs" />
+    <Compile Include="DanTocDTO.cs" />
+    <Compile Include="GioiTinhDTO.cs" />
+    <Compile Include="HopDongDTO.cs" />
+    <Compile Include="KhenThuongDTO.cs" />
     <Compile Include="KiLuatDTO.cs" />
     <Compile Include="LoaiCongThucDTO.cs" />
     <Compile Include="LoaiHopDongDTO.cs" />
