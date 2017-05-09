@@ -11,24 +11,24 @@
         xmlns:Controls="http://metro.mahapps.com/winfx/xaml/controls"
         xmlns:domain="clr-namespace:Employee_Resources_Manage.Domain"
         mc:Ignorable="d"
-        Title="Login" Height="296.349" Width="491.332" WindowStyle="None" Background="{x:Null}" AllowsTransparency="True" 
+        Title="Login" Height="300" Width="500" WindowStyle="None" Background="Transparent" AllowsTransparency="True" BorderThickness="0"
         WindowStartupLocation="CenterScreen"
         TextElement.Foreground="{DynamicResource MaterialDesignBody}"
         TextElement.FontWeight="Regular"
         TextElement.FontSize="13"
         TextOptions.TextFormattingMode="Ideal" 
-        TextOptions.TextRenderingMode="Auto" KeyDown="Window_KeyDown" MouseDown="Window_MouseDown">
+        TextOptions.TextRenderingMode="Auto" KeyDown="Window_KeyDown" MouseDown="Window_MouseDown" Loaded="Window_Loaded">
     <Window.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Dark.xaml" />
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
-    </Window.Resources>  
-    <materialDesign:ColorZone Mode="Dark" materialDesign:ShadowAssist.ShadowDepth="Depth2" Height="286" CornerRadius="4">
-        <Grid Name="gridSumary" >
+    </Window.Resources>
+    <Border CornerRadius="3" Background="#7F1D1C1B">
+        <Grid Name="gridSumary">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="30"/>
+                <ColumnDefinition Width="38"/>
                 <ColumnDefinition Width="150" />
                 <ColumnDefinition Width="20" />
                 <ColumnDefinition Width="250"/>
@@ -49,28 +49,28 @@
             <materialDesign:Transitioner Name="transitionerField" SelectedIndex="0" Grid.Row="0" Grid.Column="3" Margin="5,102,0,10" HorizontalAlignment="Left" VerticalAlignment="Center" Focusable="False" >
                 <StackPanel x:Name="spnTaiKhoan" Orientation="Horizontal" Focusable="False" >
                     <TextBox Name="txtTaiKhoan" Style="{StaticResource MaterialDesignFloatingHintTextBox}" Width="235" 
-                         VerticalAlignment="Center" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" KeyDown="txtDangNhap_KeyDown">
+                         VerticalAlignment="Center" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" KeyDown="txtDangNhap_KeyDown" Padding="2,0,0,0">
                         <materialDesign:HintAssist.Hint>
-                            <StackPanel Orientation="Horizontal" Margin="-2 0 0 0">
+                            <StackPanel Orientation="Horizontal" Margin="-1 0 0 0">
                                 <materialDesign:PackIcon Kind="Account" Margin="0 0 2 0"/>
                                 <TextBlock>Tài khoản</TextBlock>
                             </StackPanel>
                         </materialDesign:HintAssist.Hint>
-                        <TextBox.Text>
+                        <!--<TextBox.Text>
                             <Binding Path="Name" UpdateSourceTrigger="PropertyChanged">
                                 <Binding.ValidationRules>
                                     <domain:NotEmptyValidationRule ValidatesOnTargetUpdated="True" />
                                 </Binding.ValidationRules>
                             </Binding>
-                        </TextBox.Text>
+                        </TextBox.Text>-->
                     </TextBox>
                 </StackPanel>
                 <materialDesign:TransitionerSlide OpeningEffect="{materialDesign:TransitionEffect SlideInFromRight}" Focusable="False">
                     <StackPanel x:Name="spnMatKhau" Orientation="Horizontal" Focusable="False">
                         <PasswordBox Name="txtMatKhau" Grid.Row="0" Grid.Column="3" Style="{StaticResource MaterialDesignFloatingHintPasswordBox}"
-                             Width="235" PasswordChanged="txtMatKhau_PasswordChanged" KeyDown="txtDangNhap_KeyDown" >
+                             Width="235" PasswordChanged="txtMatKhau_PasswordChanged" KeyDown="txtDangNhap_KeyDown" Padding="2,0,0,0" >
                             <materialDesign:HintAssist.Hint>
-                                <StackPanel Orientation="Horizontal" Margin="-2 0 0 0">
+                                <StackPanel Orientation="Horizontal" Margin="3 0 0 0">
                                     <materialDesign:PackIcon Kind="Key" Margin="0 0 2 0"/>
                                     <TextBlock>Mật khẩu</TextBlock>
                                 </StackPanel>
@@ -79,12 +79,11 @@
                     </StackPanel>
                 </materialDesign:TransitionerSlide>
             </materialDesign:Transitioner>
-            
-            <StackPanel Grid.Column="2" Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.ColumnSpan="2" Margin="10,51,5,43">
-                <Button Style="{StaticResource MaterialDesignFlatButton}" Width="120" Margin="0 0 10 0" Click="DangNhap_Click">ĐĂNG NHẬP</Button>
-                <Button Style="{StaticResource MaterialDesignFlatButton}" Width="120" Margin="5 0 0 0" Click="Thoat_Click">THOÁT</Button>
-            </StackPanel>
 
+            <StackPanel Grid.Column="2" Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.ColumnSpan="3" Margin="15,62,38,56" Width="259" >
+                <Button Style="{StaticResource MaterialDesignRaisedButton}" Width="120" Margin="0 0 10 0" Click="DangNhap_Click" Background="#33000000" Foreground="#7FFFFFFF" FontSize="12" BorderBrush="{x:Null}" >ĐĂNG NHẬP</Button>
+                <Button Style="{StaticResource MaterialDesignRaisedButton}" Width="120" Margin="5 0 0 0" Click="Thoat_Click" Background="#33000000" Foreground="#7FFFFFFF" FontSize="12" BorderBrush="{x:Null}">THOÁT</Button>
+            </StackPanel>
         </Grid>
-    </materialDesign:ColorZone>
+    </Border>
 </Window>

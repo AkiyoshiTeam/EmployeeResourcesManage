@@ -62,7 +62,7 @@
                         </Button>
                     </Grid>
                     <DataGrid Name="dataGridChoose"  Style="{StaticResource MaterialDesignDataGrid}" ItemsSource="{Binding}" Grid.Row="1" ColumnWidth="*"
-                      CanUserSortColumns="True" CanUserAddRows="False" AutoGenerateColumns="False" MaxHeight="500"
+                      CanUserSortColumns="True" CanUserAddRows="False" AutoGenerateColumns="False" MaxHeight="500" IsReadOnly="True"
                        materialDesign:DataGridAssist.CellPadding="4 2 2 2" materialDesign:DataGridAssist.ColumnHeaderPadding="4 2 2 2" VerticalScrollBarVisibility="Visible"  HeadersVisibility="Column" HorizontalScrollBarVisibility="Auto" DockPanel.Dock="Top" GridLinesVisibility="Horizontal" CanUserReorderColumns="False">
                     </DataGrid>
                 </Grid>
@@ -85,7 +85,7 @@
                         </Button>
                     </Grid>
                     <DataGrid Name="dataGridSelected"  Style="{StaticResource MaterialDesignDataGrid}" ItemsSource="{Binding}" ColumnWidth="*" Grid.Row="1"
-                      CanUserSortColumns="True" CanUserAddRows="False" AutoGenerateColumns="False" MaxHeight="500"
+                      CanUserSortColumns="True" CanUserAddRows="False" AutoGenerateColumns="False" MaxHeight="500" IsReadOnly="True"
                        materialDesign:DataGridAssist.CellPadding="4 2 2 2" materialDesign:DataGridAssist.ColumnHeaderPadding="4 2 2 2" VerticalScrollBarVisibility="Visible"  HeadersVisibility="Column" HorizontalScrollBarVisibility="Auto" DockPanel.Dock="Top" GridLinesVisibility="Horizontal" CanUserReorderColumns="False">
                     </DataGrid>
                 </Grid>

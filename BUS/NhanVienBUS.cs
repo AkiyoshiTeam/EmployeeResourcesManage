@@ -35,9 +35,9 @@ namespace BUS
         {
             return DAO.NhanVienDAO.GetNhanVienByElementForEdit(tbTemp);
         }
-        public static bool UpdateNhanVienByElementForEdit(DataTable tbTemp)
+        public static bool UpdateNhanVienByElementForEdit(DataTable tbTemp1, DataTable tbTemp2)
         {
-            return DAO.NhanVienDAO.UpdateNhanVienByElementForEdit(tbTemp);
+            return DAO.NhanVienDAO.UpdateNhanVienByElementForEdit(tbTemp1, tbTemp2);
         }
     }
 }

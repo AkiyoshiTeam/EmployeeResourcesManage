@@ -25,6 +25,73 @@ using System.Data.SqlClient;
 
 namespace Employee_Resources_Manage
 {
+
+    public class BoPhan
+    {
+        public string Name { get; set; }
+        public string ID { get; set; }
+    }
+    public class PhongBan
+    {
+        public string Name { get; set; }
+        public string ID { get; set; }
+        public string MaBP { get; set; }
+    }
+    public class LoaiHopDong
+    {
+        public string Name { get; set; }
+        public string ID { get; set; }
+    }
+    public class LoaiLuong
+    {
+        public string Name { get; set; }
+        public string ID { get; set; }
+    }
+    public class TinhTrang
+    {
+        public string Name { get; set; }
+        public string ID { get; set; }
+    }
+    public class ChucVu
+    {
+        public string Name { get; set; }
+        public string ID { get; set; }
+    }
+    public class GioiTinh
+    {
+        public string Name { get; set; }
+        public bool ID { get; set; }
+    }
+    public class QuanHuyen
+    {
+        public string MaTinh { get; set; }
+        public string Name { get; set; }
+        public string ID { get; set; }
+    }
+    public class TinhTP
+    {
+        public string MaQG { get; set; }
+        public string Name { get; set; }
+        public string ID { get; set; }
+    }
+    public class QuocGia
+    {
+        public string Name { get; set; }
+        public string ID { get; set; }
+    }
+    public class TonGiao
+    {
+        public string Name { get; set; }
+        public string ID { get; set; }
+    }
+    public class DanToc
+    {
+        public string Name { get; set; }
+        public string ID { get; set; }
+    }
+
+
+
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>

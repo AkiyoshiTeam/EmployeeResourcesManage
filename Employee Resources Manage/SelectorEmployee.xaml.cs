@@ -27,42 +27,6 @@ namespace Employee_Resources_Manage
     /// Interaction logic for SelectorEmployee.xaml
     /// </summary>
 
-    public class BoPhan
-    {
-        public string Name { get; set; }
-        public string ID { get; set; }
-    }
-    public class PhongBan
-    {
-        public string Name { get; set; }
-        public string ID { get; set; }
-        public string MaBP { get; set; }
-    }
-    public class LoaiHopDong
-    {
-        public string Name { get; set; }
-        public string ID { get; set; }
-    }
-    public class LoaiLuong
-    {
-        public string Name { get; set; }
-        public string ID { get; set; }
-    }
-    public class TinhTrang
-    {
-        public string Name { get; set; }
-        public string ID { get; set; }
-    }
-    public class ChucVu
-    {
-        public string Name { get; set; }
-        public string ID { get; set; }
-    }
-    public class GioiTinh
-    {
-        public string Name { get; set; }
-        public bool ID { get; set; }
-    }
 
     public partial class SelectorEmployee : UserControl
     {

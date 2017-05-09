@@ -61,6 +61,7 @@
   <ItemGroup>
     <Compile Include="BoPhanDAO.cs" />
     <Compile Include="ChucVuDAO.cs" />
+    <Compile Include="DanTocDAO.cs" />
     <Compile Include="DataProvider.cs" />
     <Compile Include="DescriptionForTree.cs" />
     <Compile Include="IEnumerableToDataTable.cs" />
@@ -69,7 +70,11 @@
     <Compile Include="NhanVienDAO.cs" />
     <Compile Include="PhongBanDAO.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="QuanHuyenDAO.cs" />
+    <Compile Include="QuocGiaDAO.cs" />
+    <Compile Include="TinhTPDAO.cs" />
     <Compile Include="TinhTrangDAO.cs" />
+    <Compile Include="TonGiaoDAO.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.Config" />

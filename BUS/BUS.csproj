@@ -50,13 +50,18 @@
   <ItemGroup>
     <Compile Include="BoPhanBUS.cs" />
     <Compile Include="ChucVuBUS.cs" />
+    <Compile Include="DanTocBUS.cs" />
     <Compile Include="DescriptionForTreeBUS.cs" />
     <Compile Include="LoaiHopDongBUS.cs" />
     <Compile Include="LoaiLuongBUS.cs" />
     <Compile Include="NhanVienBUS.cs" />
     <Compile Include="PhongBanBUS.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="QuanHuyenBUS.cs" />
+    <Compile Include="QuocGiaBUS.cs" />
+    <Compile Include="TinhTPBUS.cs" />
     <Compile Include="TinhTrangBUS.cs" />
+    <Compile Include="TonGiaoBUS.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\DAO\DAO.csproj">
