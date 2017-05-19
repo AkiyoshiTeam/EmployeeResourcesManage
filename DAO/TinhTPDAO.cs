@@ -13,7 +13,7 @@ namespace DAO
         public static DataTable GetTinhTP()
         {
             DataTable tb = new DataTable();
-            string query = "Select MaTinh, TenTinh, MaQG TenTinh From TinhTP";
+            string query = "Select MaTinh, TenTinh, MaQG From TinhTP Order by TenTinh";
             DataProvider dataProvider = new DataProvider();
             try
             {

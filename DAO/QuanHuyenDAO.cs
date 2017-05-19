@@ -13,7 +13,7 @@ namespace DAO
         public static DataTable GetQuanHuyen()
         {
             DataTable tb = new DataTable();
-            string query = "Select MaQuan, TenQuan, MaTinh From QuanHuyen";
+            string query = "Select MaQuan, TenQuan, MaTinh From QuanHuyen Order by TenQuan";
             DataProvider dataProvider = new DataProvider();
             try
             {

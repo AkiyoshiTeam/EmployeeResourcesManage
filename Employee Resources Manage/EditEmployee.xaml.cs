@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -44,6 +45,17 @@ namespace Employee_Resources_Manage
             {
                 DataSetEdit = BUS.NhanVienBUS.GetNhanVienByElementForEdit(MainWindow.selectedTableStatic);
                 DataContext = DataSetEdit;
+                dpNVL.Language = System.Windows.Markup.XmlLanguage.GetLanguage("vi-VN");
+                dpNgaySinh.Language = System.Windows.Markup.XmlLanguage.GetLanguage("vi-VN");
+
+                DirectoryInfo d = new DirectoryInfo(Directory.GetParent(Directory.GetParent(Directory.GetCurrentDirectory()).ToString()).ToString() + @"\Resources\Images\Avatar");//Assuming Test is your Folder
+                FileInfo[] Files = d.GetFiles("*.*"); //Getting Text files
+                List<string> listAvatarName = new List<string>();
+                foreach (FileInfo file in Files)
+                {
+                    listAvatarName.Add(file.Name);
+                }
+                cbHinhAnh.ItemsSource = listAvatarName;
 
                 DataTable tbTemp = BUS.PhongBanBUS.GetPhongBan();
                 listPB = new List<PhongBan>();
@@ -51,6 +63,9 @@ namespace Employee_Resources_Manage
                 {
                     listPB.Add(new PhongBan { ID = row[0].ToString(), Name = row[1].ToString(), MaBP = row[2].ToString() });
                 }
+                cbPhongBan.ItemsSource = listPB;
+                cbPhongBan.DisplayMemberPath = "Name";
+                cbPhongBan.SelectedValuePath = "ID";
 
                 tbTemp = BUS.ChucVuBUS.GetChucVu();
                 listCV = new List<ChucVu>();
@@ -58,6 +73,10 @@ namespace Employee_Resources_Manage
                 {
                     listCV.Add(new ChucVu { ID = row[0].ToString(), Name = row[1].ToString() });
                 }
+                cbChucVu.ItemsSource = listCV;
+                cbChucVu.DisplayMemberPath = "Name";
+                cbChucVu.SelectedValuePath = "ID";
+
 
                 tbTemp = BUS.LoaiLuongBUS.GetLoaiLuong();
                 listLL = new List<LoaiLuong>();
@@ -65,6 +84,9 @@ namespace Employee_Resources_Manage
                 {
                     listLL.Add(new LoaiLuong { ID = row[0].ToString(), Name = row[1].ToString() });
                 }
+                cbLoaiLuong.ItemsSource = listLL;
+                cbLoaiLuong.DisplayMemberPath = "Name";
+                cbLoaiLuong.SelectedValuePath = "ID";
 
                 tbTemp = BUS.TinhTrangBUS.GetTinhTrang();
                 listTT = new List<TinhTrang>();
@@ -72,10 +94,16 @@ namespace Employee_Resources_Manage
                 {
                     listTT.Add(new TinhTrang { ID = row[0].ToString(), Name = row[1].ToString() });
                 }
+                cbTinhTrang.ItemsSource = listTT;
+                cbTinhTrang.DisplayMemberPath = "Name";
+                cbTinhTrang.SelectedValuePath = "ID";
 
                 listGT = new List<GioiTinh>();
                 listGT.Add(new GioiTinh { ID = false, Name = "Nữ" });
                 listGT.Add(new GioiTinh { ID = true, Name = "Nam" });
+                cbGioiTinh.ItemsSource = listGT;
+                cbGioiTinh.DisplayMemberPath = "Name";
+                cbGioiTinh.SelectedValuePath = "ID";
 
                 tbTemp = BUS.QuanHuyenBUS.GetQuanHuyen();
                 listQH = new List<QuanHuyen>();
@@ -83,6 +111,9 @@ namespace Employee_Resources_Manage
                 {
                     listQH.Add(new QuanHuyen { ID = row[0].ToString(), Name = row[1].ToString(), MaTinh = row[2].ToString() });
                 }
+                cbQuanHuyen.ItemsSource = listQH;
+                cbQuanHuyen.DisplayMemberPath = "Name";
+                cbQuanHuyen.SelectedValuePath = "ID";
 
                 tbTemp = BUS.TinhTPBUS.GetTinhTP();
                 listTTP = new List<TinhTP>();
@@ -90,6 +121,9 @@ namespace Employee_Resources_Manage
                 {
                     listTTP.Add(new TinhTP { ID = row[0].ToString(), Name = row[1].ToString(), MaQG = row[2].ToString() });
                 }
+                cbTinhTP.ItemsSource = listTTP;
+                cbTinhTP.DisplayMemberPath = "Name";
+                cbTinhTP.SelectedValuePath = "ID";
 
                 tbTemp = BUS.QuocGiaBUS.GetQuocGia();
                 listQG = new List<QuocGia>();
@@ -97,6 +131,9 @@ namespace Employee_Resources_Manage
                 {
                     listQG.Add(new QuocGia { ID = row[0].ToString(), Name = row[1].ToString() });
                 }
+                cbQuocGia.ItemsSource = listQG;
+                cbQuocGia.DisplayMemberPath = "Name";
+                cbQuocGia.SelectedValuePath = "ID";
 
                 tbTemp = BUS.TonGiaoBUS.GetTonGiao();
                 listTG = new List<TonGiao>();
@@ -104,6 +141,9 @@ namespace Employee_Resources_Manage
                 {
                     listTG.Add(new TonGiao { ID = row[0].ToString(), Name = row[1].ToString() });
                 }
+                cbTonGiao.ItemsSource = listTG;
+                cbTonGiao.DisplayMemberPath = "Name";
+                cbTonGiao.SelectedValuePath = "ID";
 
                 tbTemp = BUS.DanTocBUS.GetDanToc();
                 listDT = new List<DanToc>();
@@ -111,6 +151,9 @@ namespace Employee_Resources_Manage
                 {
                     listDT.Add(new DanToc { ID = row[0].ToString(), Name = row[1].ToString() });
                 }
+                cbDanToc.ItemsSource = listDT;
+                cbDanToc.DisplayMemberPath = "Name";
+                cbDanToc.SelectedValuePath = "ID";
 
                 Style style = new Style();
                 style.TargetType = typeof(TextBlock);
@@ -136,10 +179,13 @@ namespace Employee_Resources_Manage
                         case "NgayVaoLam":
                             var c = new DataGridTemplateColumn();
                             var template = new DataTemplate();
-                            //var textBlockFactory = new FrameworkElementFactory(typeof(TextBlock));
-                            //textBlockFactory.SetBinding(TextBlock.TextProperty, new Binding(DataSetEdit.Tables[0].Columns[i].ColumnName.Trim()));
-                            //template.VisualTree = textBlockFactory;
-                            //c.CellTemplate = template;
+                            var textBlockFactory = new FrameworkElementFactory(typeof(TextBlock));
+                            Binding bd = new Binding();
+                            bd.StringFormat = "{0:dd/MM/yyyy}";
+                            bd.Path = new PropertyPath(DataSetEdit.Tables[0].Columns[i].ColumnName.Trim());
+                            textBlockFactory.SetBinding(TextBlock.TextProperty, bd);
+                            template.VisualTree = textBlockFactory;
+                            c.CellTemplate = template;
                             template = new DataTemplate();
                             var datePicker = new FrameworkElementFactory(typeof(DatePicker));
                             datePicker.SetBinding(DatePicker.SelectedDateProperty, new Binding(DataSetEdit.Tables[0].Columns[i].ColumnName.Trim()));
@@ -148,8 +194,8 @@ namespace Employee_Resources_Manage
                             datePicker.AddHandler(DatePicker.PreviewKeyDownEvent, new KeyEventHandler(DatePicker_PreviewKeyDown));
                             template.VisualTree = datePicker;
                             c.Header = DataSetEdit.Tables[0].Columns[i].ColumnName.Trim();
-                            c.CellTemplate = template;
-                            //c.CellEditingTemplate = template;
+
+                            c.CellEditingTemplate = template;
                             dataGridSelectedNV.Columns.Add(c);
                             break;
                         case "MaPB":
@@ -223,10 +269,13 @@ namespace Employee_Resources_Manage
                         case "NgaySinh":
                             var c = new DataGridTemplateColumn();
                             var template = new DataTemplate();
-                            //var textBlockFactory = new FrameworkElementFactory(typeof(TextBlock));
-                            //textBlockFactory.SetBinding(TextBlock.TextProperty, new Binding(DataSetEdit.Tables[1].Columns[i].ColumnName.Trim()));
-                            //template.VisualTree = textBlockFactory;
-                            //c.CellTemplate = template;
+                            var textBlockFactory = new FrameworkElementFactory(typeof(TextBlock));
+                            Binding bd = new Binding();
+                            bd.StringFormat = "{0:dd/MM/yyyy}";
+                            bd.Path = new PropertyPath(DataSetEdit.Tables[1].Columns[i].ColumnName.Trim());
+                            textBlockFactory.SetBinding(TextBlock.TextProperty, bd);
+                            template.VisualTree = textBlockFactory;
+                            c.CellTemplate = template;
                             template = new DataTemplate();
                             var datePicker = new FrameworkElementFactory(typeof(DatePicker));
                             datePicker.SetBinding(DatePicker.SelectedDateProperty, new Binding(DataSetEdit.Tables[1].Columns[i].ColumnName.Trim()));
@@ -234,8 +283,8 @@ namespace Employee_Resources_Manage
                             datePicker.SetValue(DatePicker.LanguageProperty, lang);
                             datePicker.AddHandler(DatePicker.PreviewKeyDownEvent, new KeyEventHandler(DatePicker_PreviewKeyDown));
                             template.VisualTree = datePicker;
-                            c.CellTemplate = template;
-                            //c.CellEditingTemplate = template;
+                            //c.CellTemplate = template;
+                            c.CellEditingTemplate = template;
                             c.Header = DataSetEdit.Tables[1].Columns[i].ColumnName.Trim();
                             dataGridSelectedTTCT.Columns.Add(c);
                             break;
@@ -335,19 +384,123 @@ namespace Employee_Resources_Manage
                     transitioningContent.OpeningEffect = effect;
                     object avatarContent;
                     Image img = new Image();
-                    img.Stretch = Stretch.None;
+                    //img.Stretch = Stretch.None;
                     img.VerticalAlignment = VerticalAlignment.Center;
                     img.HorizontalAlignment = HorizontalAlignment.Center;
+                    try
+                    {
+                        BitmapImage bitm = new BitmapImage();
+                        bitm.BeginInit();
+                        bitm.UriSource = new Uri(Directory.GetParent(Directory.GetParent(Directory.GetCurrentDirectory()).ToString()).ToString() + @"\Resources\Images\Avatar\" + (dataGridSelectedNV.SelectedItem as DataRowView).Row["HinhAnh"].ToString(), UriKind.RelativeOrAbsolute);
+                        bitm.EndInit();
+                        img.Source = bitm;
+                        img.Stretch = Stretch.UniformToFill;
+                    }
+                    catch (Exception ex)
+                    {
+                        BitmapImage bitm = new BitmapImage();
+                        bitm.BeginInit();
+                        bitm.UriSource = new Uri(@"../../Resources/Images/account-card-details-black.png", UriKind.RelativeOrAbsolute);
+                        bitm.EndInit();
+                        img.Source = bitm;
+                        img.Opacity = 0.4;
+                        img.Stretch = Stretch.None;
+                    }
+                    finally
+                    {
+
+                        avatarContent = img;
+                        transitioningContent.Content = avatarContent;
+                        avatarContentControl.Content = transitioningContent;
+                        manvSelection = (dataGridSelectedNV.SelectedItem as DataRowView).Row[0].ToString();
+                    }
+                }
+            }
+        }
+
+        void CopyImage()
+        {
+
+            System.Windows.Forms.OpenFileDialog od = new System.Windows.Forms.OpenFileDialog();
+            od.Filter = "Image files (*.jpg, *.jpeg, *.jpe, *.jfif, *.png) | *.jpg; *.jpeg; *.jpe; *.jfif; *.png";
+            od.Multiselect = true;
+
+            if (od.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            {
+                try
+                {
+                    string tempFolder = Directory.GetParent(Directory.GetParent(Directory.GetCurrentDirectory()).ToString()).ToString();
+
+                    foreach (string fileName in od.FileNames)
+                    {
+                        File.Copy(fileName, tempFolder + @"\Resources\Images\Avatar\" + System.IO.Path.GetFileName(fileName));
+                    }
+                    DirectoryInfo d = new DirectoryInfo(Directory.GetParent(Directory.GetParent(Directory.GetCurrentDirectory()).ToString()).ToString() + @"\Resources\Images\Avatar");//Assuming Test is your Folder
+                    FileInfo[] Files = d.GetFiles("*.*"); //Getting Text files
+                    List<string> listAvatarName = new List<string>();
+                    foreach (FileInfo file in Files)
+                    {
+                        listAvatarName.Add(file.Name);
+                    }
+                    cbHinhAnh.ItemsSource = listAvatarName;
+                }
+                catch (Exception ex)
+                { }
+            }
+        }
+
+        private void getImages_Click(object sender, RoutedEventArgs e)
+        {
+            CopyImage();
+        }
+
+        private void cbHinhAnh_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (dataGridSelectedNV.SelectedItem != null)
+            {
+                TransitioningContent transitioningContent = new TransitioningContent();
+                TransitionEffect effect = new TransitionEffect();
+                effect.Kind = TransitionEffectKind.ExpandIn;
+                transitioningContent.OpeningEffect = effect;
+                object avatarContent;
+                Image img = new Image();
+                //img.Stretch = Stretch.None;
+                img.VerticalAlignment = VerticalAlignment.Center;
+                img.HorizontalAlignment = HorizontalAlignment.Center;
+                try
+                {
                     BitmapImage bitm = new BitmapImage();
                     bitm.BeginInit();
-                    bitm.UriSource = new Uri(@"..\..\Resources\Images\56535968_p0.jpg", UriKind.RelativeOrAbsolute);
+                    bitm.UriSource = new Uri(Directory.GetParent(Directory.GetParent(Directory.GetCurrentDirectory()).ToString()).ToString() + @"\Resources\Images\Avatar\" + (dataGridSelectedNV.SelectedItem as DataRowView).Row["HinhAnh"].ToString(), UriKind.RelativeOrAbsolute);
                     bitm.EndInit();
                     img.Source = bitm;
+                    img.Stretch = Stretch.UniformToFill;
+                    tbImageError.Text = "";
+                }
+                catch (Exception ex)
+                {
+                    if((dataGridSelectedNV.SelectedItem as DataRowView).Row["HinhAnh"].ToString()!="")
+                    {
+                        tbImageError.Text = "Không tìm thấy\n    file ảnh!!!";
+                    }
+                    else { tbImageError.Text = "Chưa có ảnh!"; }
+                    BitmapImage bitm = new BitmapImage();
+                    bitm.BeginInit();
+                    bitm.UriSource = new Uri(@"../../Resources/Images/account-card-details-black.png", UriKind.RelativeOrAbsolute);
+                    bitm.EndInit();
+                    img.Source = bitm;
+                    img.Opacity = 0.4;
+                    img.Stretch = Stretch.None;
+                }
+                finally
+                {
+
                     avatarContent = img;
                     transitioningContent.Content = avatarContent;
                     avatarContentControl.Content = transitioningContent;
                     manvSelection = (dataGridSelectedNV.SelectedItem as DataRowView).Row[0].ToString();
                 }
+
             }
         }
     }

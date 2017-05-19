@@ -16,19 +16,20 @@
         </Style>
         <Style TargetType="DatePickerTextBox" BasedOn="{StaticResource MaterialDesignDatePickerTextBox}">
             <Setter Property="IsReadOnly" Value="True"/>
+            <Setter Property="Focusable" Value="False"/>
         </Style>
     </UserControl.Resources>
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="200"/>
+            <RowDefinition Height="250" MinHeight="200" MaxHeight="450"/>
+            <RowDefinition Height="3"/>
+            <RowDefinition />
         </Grid.RowDefinitions>
         <ScrollViewer Name="scrView" Grid.Row="0" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
             <StackPanel  Orientation="Horizontal" >
                 <DataGrid Name="dataGridSelectedNV"  Style="{StaticResource MaterialDesignDataGrid}" ItemsSource="{Binding NhanVien}" Grid.Row="0" 
                       CanUserSortColumns="False" CanUserAddRows="False" AutoGenerateColumns="False" 
                        materialDesign:DataGridAssist.CellPadding="4 2 2 2" materialDesign:DataGridAssist.ColumnHeaderPadding="4 2 2 2" VerticalScrollBarVisibility="Disabled"  HeadersVisibility="Column" HorizontalScrollBarVisibility="Disabled" GridLinesVisibility="None" CanUserReorderColumns="False" ScrollViewer.CanContentScroll="False" SelectionChanged="dataGridSelectedNV_SelectionChanged">
-                
                 </DataGrid>
                 <DataGrid Name="dataGridSelectedTTCT"  Style="{StaticResource MaterialDesignDataGrid}" ItemsSource="{Binding ThongTinChiTietNhanVien}" SelectedIndex="{Binding ElementName=dataGridSelectedNV, Path=SelectedIndex}" 
                       CanUserSortColumns="False" CanUserAddRows="False" AutoGenerateColumns="False"
@@ -36,17 +37,69 @@
                 </DataGrid>
             </StackPanel>
         </ScrollViewer>
-        <StackPanel Grid.Column="0" Grid.Row="1" Orientation="Horizontal" Margin="8">
-            <Border CornerRadius="2" BorderThickness="2" BorderBrush="{DynamicResource MaterialDesignBodyLight}" VerticalAlignment="Center" Background="{DynamicResource IdealForegroundColorBrush}">
-                <ContentControl Name="avatarContentControl" Height="170" Width="130" Focusable="False" >
-                    <Image Source="Resources/Images/account-card-details-black.png" Stretch="None" Opacity="0.4" />
+        <GridSplitter Grid.Row="1" HorizontalAlignment="Stretch" Height="3"/>
+        <Grid Grid.Column="0" Grid.Row="2" Margin="8">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="136"/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Border CornerRadius="2" BorderThickness="2" BorderBrush="{DynamicResource MaterialDesignBodyLight}" VerticalAlignment="Top" Background="{DynamicResource IdealForegroundColorBrush}" HorizontalAlignment="Center" Margin="0,5,0,0" Width="134" Height="174" Panel.ZIndex="2">
+                <ContentControl Name="avatarContentControl" Focusable="False" >
+                    <Image Source="Resources/Images/account-card-details-black.png" Stretch="None" Opacity="0.4" HorizontalAlignment="Center" VerticalAlignment="Center" />
                 </ContentControl>
             </Border>
-            <Button Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}"
-                        Margin="-15,14,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Width="30" Height="30">
-                <materialDesign:PackIcon Kind="FileImage" Height="17" Width="17" />
+            <TextBlock Name="tbImageError" VerticalAlignment="Top" Margin="0,180,0,0" Foreground="#CCFF0000" TextDecorations="{x:Null}" FontSize="14" Focusable="False" HorizontalAlignment="Center" Height="40"/>
+            <Button Name="getImages" Grid.Column="0" Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}" ToolTip="Thêm(nhiều) ảnh vào thư mục Avatar."
+                        Margin="0,14,-13,0" HorizontalAlignment="Right" VerticalAlignment="Top" Width="30" Height="30" Panel.ZIndex="3" Click="getImages_Click">
+                <materialDesign:PackIcon Kind="ImageMultiple" Height="17" Width="17" Margin="1,0,0,0" />
             </Button>
-        </StackPanel>
-        <Button Grid.Row="1" HorizontalAlignment="Right" VerticalAlignment="Bottom" Click="Button_Click">Update</Button>
+            <ScrollViewer Grid.Column="1" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
+                <Grid Grid.Column="1">
+                    <Grid.RowDefinitions>
+                        <RowDefinition MaxHeight="250"/>
+                    </Grid.RowDefinitions>
+                    <Grid Margin="20 0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                        </Grid.RowDefinitions>
+                        <TextBox Grid.Column="0" Grid.Row="0" Style="{StaticResource MaterialDesignFloatingHintTextBox}" IsReadOnly="True" materialDesign:HintAssist.Hint="Mã Nhân Viên"  Text="{Binding ElementName=dataGridSelectedNV, Path=SelectedItem.MaNV}" Margin="2 0"  Foreground="{DynamicResource MaterialDesignBody}"/>
+                        <TextBox Grid.Column="1" Grid.Row="0" Style="{StaticResource MaterialDesignFloatingHintTextBox}" materialDesign:HintAssist.Hint="Họ Tên"  Text="{Binding ElementName=dataGridSelectedNV, Path=SelectedItem.HoTen}" Margin="2 0"  Foreground="{DynamicResource MaterialDesignBody}"/>
+                        <DatePicker Grid.Column="2" Grid.Row="0" Name="dpNVL" Style="{StaticResource MaterialDesignFloatingHintDatePicker}" materialDesign:HintAssist.Hint="Ngày vào làm"  SelectedDate="{Binding ElementName=dataGridSelectedNV, Path=SelectedItem.NgayVaoLam}" VerticalContentAlignment="Bottom" Margin="2 0"  Foreground="{DynamicResource MaterialDesignBody}" PreviewKeyDown="DatePicker_PreviewKeyDown"/>
+                        <ComboBox Grid.Column="3" Grid.Row="0" Style="{StaticResource MaterialDesignFloatingHintComboBox}" Name="cbChucVu" VerticalAlignment="Bottom" Margin="2 0" materialDesign:HintAssist.Hint="Chức Vụ"  SelectedValue="{Binding ElementName=dataGridSelectedNV, Path=SelectedItem.MaCV}"  Foreground="{DynamicResource MaterialDesignBody}"/>
+                        <ComboBox Grid.Column="0" Grid.Row="1" Style="{StaticResource MaterialDesignFloatingHintComboBox}" Name="cbPhongBan" VerticalAlignment="Bottom" Margin="2 0" materialDesign:HintAssist.Hint="Phòng Ban"  SelectedValue="{Binding ElementName=dataGridSelectedNV, Path=SelectedItem.MaPB}"  Foreground="{DynamicResource MaterialDesignBody}"/>
+                        <ComboBox Grid.Column="1" Grid.Row="1" Style="{StaticResource MaterialDesignFloatingHintComboBox}" Name="cbLoaiLuong" VerticalAlignment="Bottom" Margin="2 0" materialDesign:HintAssist.Hint="Loại Lương"  SelectedValue="{Binding ElementName=dataGridSelectedNV, Path=SelectedItem.MaLoaiLuong}"  Foreground="{DynamicResource MaterialDesignBody}"/>
+                        <ComboBox Grid.Column="2" Grid.Row="1" Name="cbHinhAnh" Style="{StaticResource MaterialDesignFloatingHintComboBox}" materialDesign:HintAssist.Hint="Hình Ảnh" IsEditable="True" VerticalAlignment="Bottom" Margin="2 0"  Foreground="{DynamicResource MaterialDesignBody}" SelectedValue="{Binding ElementName=dataGridSelectedNV, Path=SelectedItem.HinhAnh}" HorizontalContentAlignment="Left" SelectionChanged="cbHinhAnh_SelectionChanged"/>
+                        <ComboBox Grid.Column="3" Grid.Row="1" Style="{StaticResource MaterialDesignFloatingHintComboBox}" Name="cbTinhTrang" VerticalAlignment="Bottom" Margin="2 0" materialDesign:HintAssist.Hint="Tình Trạng"  SelectedValue="{Binding ElementName=dataGridSelectedNV, Path=SelectedItem.MaTT}" Foreground="{DynamicResource MaterialDesignBody}"/>
+                        <ComboBox Grid.Column="0" Grid.Row="2" Style="{StaticResource MaterialDesignFloatingHintComboBox}" Name="cbGioiTinh" VerticalAlignment="Bottom" Margin="2 0" materialDesign:HintAssist.Hint="Giới Tính"  SelectedValue="{Binding ElementName=dataGridSelectedTTCT, Path=SelectedItem.MaGT}" Foreground="{DynamicResource MaterialDesignBody}"/>
+                        <TextBox Grid.Column="1" Grid.Row="2" Style="{StaticResource MaterialDesignFloatingHintTextBox}" materialDesign:HintAssist.Hint="CMND"  Text="{Binding ElementName=dataGridSelectedTTCT, Path=SelectedItem.CMND}" Margin="2 0" Foreground="{DynamicResource MaterialDesignBody}"/>
+                        <DatePicker Grid.Column="2" Grid.Row="2" Name="dpNgaySinh" Style="{StaticResource MaterialDesignFloatingHintDatePicker}" materialDesign:HintAssist.Hint="Ngày vào làm"  SelectedDate="{Binding ElementName=dataGridSelectedTTCT, Path=SelectedItem.NgaySinh}" VerticalContentAlignment="Bottom" Margin="2 0"  Foreground="{DynamicResource MaterialDesignBody}" PreviewKeyDown="DatePicker_PreviewKeyDown"/>
+                        <TextBox Grid.Column="3" Grid.Row="2" Style="{StaticResource MaterialDesignFloatingHintTextBox}" materialDesign:HintAssist.Hint="Nơi Sinh"  Text="{Binding ElementName=dataGridSelectedTTCT, Path=SelectedItem.NoiSinh}" Margin="2 0" Foreground="{DynamicResource MaterialDesignBody}"/>
+                        <TextBox Grid.Column="0" Grid.Row="3" Style="{StaticResource MaterialDesignFloatingHintTextBox}" materialDesign:HintAssist.Hint="Điện Thoại"  Text="{Binding ElementName=dataGridSelectedTTCT, Path=SelectedItem.DienThoai}" Margin="2 0"  Foreground="{DynamicResource MaterialDesignBody}"/>
+                        <TextBox Grid.Column="1" Grid.Row="3" Style="{StaticResource MaterialDesignFloatingHintTextBox}" materialDesign:HintAssist.Hint="Số Nhà"  Text="{Binding ElementName=dataGridSelectedTTCT, Path=SelectedItem.SoNha}" Margin="2 0"  Foreground="{DynamicResource MaterialDesignBody}"/>
+                        <TextBox Grid.Column="2" Grid.Row="3" Style="{StaticResource MaterialDesignFloatingHintTextBox}" materialDesign:HintAssist.Hint="Đường"  Text="{Binding ElementName=dataGridSelectedTTCT, Path=SelectedItem.Duong}" Margin="2 0"  Foreground="{DynamicResource MaterialDesignBody}"/>
+                        <TextBox Grid.Column="3" Grid.Row="3" Style="{StaticResource MaterialDesignFloatingHintTextBox}" materialDesign:HintAssist.Hint="Phường Xả"  Text="{Binding ElementName=dataGridSelectedTTCT, Path=SelectedItem.PhuongXa}" Margin="2 0"  Foreground="{DynamicResource MaterialDesignBody}"/>
+                        <ComboBox Grid.Column="0" Grid.Row="4" Style="{StaticResource MaterialDesignFloatingHintComboBox}" Name="cbQuanHuyen" VerticalAlignment="Bottom" Margin="2 0" materialDesign:HintAssist.Hint="Quận Huyện"  SelectedValue="{Binding ElementName=dataGridSelectedTTCT, Path=SelectedItem.QuanHuyen}" Foreground="{DynamicResource MaterialDesignBody}"/>
+                        <ComboBox Grid.Column="1" Grid.Row="4" Style="{StaticResource MaterialDesignFloatingHintComboBox}" Name="cbTinhTP" VerticalAlignment="Bottom" Margin="2 0" materialDesign:HintAssist.Hint="Tỉnh TP"  SelectedValue="{Binding ElementName=dataGridSelectedTTCT, Path=SelectedItem.TinhTP}" Foreground="{DynamicResource MaterialDesignBody}"/>
+                        <ComboBox Grid.Column="2" Grid.Row="4" Style="{StaticResource MaterialDesignFloatingHintComboBox}" Name="cbQuocGia" VerticalAlignment="Bottom" Margin="2 0" materialDesign:HintAssist.Hint="Quốc Gia"  SelectedValue="{Binding ElementName=dataGridSelectedTTCT, Path=SelectedItem.QuocGia}" Foreground="{DynamicResource MaterialDesignBody}"/>
+                        <ComboBox Grid.Column="3" Grid.Row="4" Style="{StaticResource MaterialDesignFloatingHintComboBox}" Name="cbDanToc" VerticalAlignment="Bottom" Margin="2 0" materialDesign:HintAssist.Hint="Dân Tộc"  SelectedValue="{Binding ElementName=dataGridSelectedTTCT, Path=SelectedItem.MaDT}" Foreground="{DynamicResource MaterialDesignBody}"/>
+                        <ComboBox Grid.Column="0" Grid.Row="5" Style="{StaticResource MaterialDesignFloatingHintComboBox}" Name="cbTonGiao" VerticalAlignment="Bottom" Margin="2 0" materialDesign:HintAssist.Hint="Tôn Giáo"  SelectedValue="{Binding ElementName=dataGridSelectedTTCT, Path=SelectedItem.MaTG}" Foreground="{DynamicResource MaterialDesignBody}"/>
+                        <TextBox Grid.Column="1" Grid.Row="5" Style="{StaticResource MaterialDesignFloatingHintTextBox}" materialDesign:HintAssist.Hint="Số thẻ ATM"  Text="{Binding ElementName=dataGridSelectedTTCT, Path=SelectedItem.SoTheATM}" Margin="2 0"  Foreground="{DynamicResource MaterialDesignBody}"/>
+                    </Grid>
+                </Grid>
+            </ScrollViewer>
+            <Button Grid.Column="1" Grid.Row="1" HorizontalAlignment="Right" VerticalAlignment="Bottom" Click="Button_Click" Panel.ZIndex="5">Update</Button>
+        </Grid>
+
     </Grid>
 </UserControl>

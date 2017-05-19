@@ -25,7 +25,7 @@
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Window.Resources>
-    <Border CornerRadius="3" Background="#7F1D1C1B">
+    <Border CornerRadius="3" Background="#99080707">
         <Grid Name="gridSumary">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="38"/>

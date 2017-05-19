@@ -241,7 +241,7 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Resources\Images\56535968_p0.jpg" />
+    <Resource Include="Resources\Images\Avatar\56535968_p0.jpg" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\Images\account-circle.png" />
@@ -293,6 +293,9 @@
   <ItemGroup>
     <Resource Include="Resources\Images\account-card-details-black.png" />
     <Resource Include="Resources\Images\account-card-details.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Images\Avatar\54364780_p0.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -23,8 +23,8 @@ namespace Employee_Resources_Manage
     /// </summary>
     internal enum AccentState
     {
-        ACCENT_DISABLED = 1,
-        ACCENT_ENABLE_GRADIENT = 0,
+        ACCENT_DISABLED = 0,
+        ACCENT_ENABLE_GRADIENT = 1,
         ACCENT_ENABLE_TRANSPARENTGRADIENT = 2,
         ACCENT_ENABLE_BLURBEHIND = 3,
         ACCENT_INVALID_STATE = 4
@@ -129,7 +129,7 @@ namespace Employee_Resources_Manage
                 //BindingOperations.SetBinding(ell, Ellipse.StrokeProperty, bnd);
                 ell.Stroke = Brushes.Transparent;
                 ell.StrokeThickness = 1;
-                ell.Fill = new ImageBrush(new BitmapImage(new Uri(@"..\..\Resources\Images\56535968_p0.jpg", UriKind.RelativeOrAbsolute)));
+                ell.Fill = new ImageBrush(new BitmapImage(new Uri(@"..\..\Resources\Images\Avatar\56535968_p0.jpg", UriKind.RelativeOrAbsolute)));
                 avatarContent = ell;
                 transitioningContent.Content = avatarContent;
                 avatarContentControl.Content = transitioningContent;
