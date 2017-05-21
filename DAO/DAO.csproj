@@ -64,6 +64,7 @@
     <Compile Include="DanTocDAO.cs" />
     <Compile Include="DataProvider.cs" />
     <Compile Include="DescriptionForTree.cs" />
+    <Compile Include="HopDongDAO.cs" />
     <Compile Include="IEnumerableToDataTable.cs" />
     <Compile Include="LoaiHopDongDAO.cs" />
     <Compile Include="LoaiLuongDAO.cs" />
@@ -74,6 +75,7 @@
     <Compile Include="QuocGiaDAO.cs" />
     <Compile Include="TinhTPDAO.cs" />
     <Compile Include="TinhTrangDAO.cs" />
+    <Compile Include="TinhTrangHopDongDAO.cs" />
     <Compile Include="TonGiaoDAO.cs" />
   </ItemGroup>
   <ItemGroup>

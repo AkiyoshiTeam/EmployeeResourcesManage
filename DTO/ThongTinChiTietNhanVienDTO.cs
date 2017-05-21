@@ -8,7 +8,7 @@ namespace DTO
 {
     public class ThongTinChiTietNhanVienDTO
     {
-        string _maNV,_cMND,_noiSinh,_dienThoai,_soNha,_duong,_phuongXa,_quanHuyen,_tinhTP,_quocGia,_maDT,_maTG,_soTheATM;
+        string _maNV, _cMND, _noiSinh, _dienThoai, _soNha, _duong, _phuongXa, _quanHuyen, _tinhTP, _quocGia, _maDT, _maTG, _soTheATM, _email;
         bool _maGT;
         DateTime _ngaySinh;
 
@@ -27,5 +27,6 @@ namespace DTO
         public string SoTheATM { get => _soTheATM; set => _soTheATM = value; }
         public bool MaGT { get => _maGT; set => _maGT = value; }
         public DateTime NgaySinh { get => _ngaySinh; set => _ngaySinh = value; }
+        public string Email { get => _email; set => _email = value; }
     }
 }

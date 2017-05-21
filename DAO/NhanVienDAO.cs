@@ -36,7 +36,7 @@ namespace DAO
                     }
                 }
             }
-            query += @" From NhanVien nv join ThongTinChiTietNhanVien tt on nv.MaNV = tt.MaNV 
+            query += @" From NhanVien nv join ThongTinChiTietNhanVien tt on nv.MaNV = tt.MaNV
                         join QuocGia qg on tt.QuocGia = qg.MaQG join TinhTP ttp on tt.TinhTP = ttp.MaTinh
                         join DanToc dt on tt.MaDT = dt.MaDT join TonGiao tg on tt.MaTG=tg.MaTG
                         join QuanHuyen qh on tt.QuanHuyen = qh.MaQuan join GioiTinh gt on tt.MaGT=gt.MaGT
@@ -141,10 +141,51 @@ namespace DAO
             return null;
         }
 
+        public static DataTable GetLastNhanVien()
+        {
+            DataTable tb = new DataTable();
+            string query = "Select TOP 1 nv.MaNV From NhanVien nv Order by nv.MaNV DESC";
+
+            DataProvider dataProvider = new DataProvider();
+            try
+            {
+                dataProvider.connect();
+                tb = dataProvider.ExecuteQuery_DataTble(query);
+                return tb;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.StackTrace);
+            }
+            finally
+            {
+                dataProvider.disconnect();
+            }
+            return null;
+        }
+
+        public static void AddNhanVien(NhanVienDTO nv, ThongTinChiTietNhanVienDTO ttct)
+        {
+            string query = @"INSERT INTO NhanVien (MaNV, HoTen, NgayVaoLam, MaCV, MaPB, MaLoaiLuong, HinhAnh, MaTT) VALUES( '" + nv.MaNV + "', N'" + nv.HoTen + "', '" + nv.NgayVaoLam.ToString("yyyy-MM-dd") + "', '" + nv.MaCV + "', '" + nv.MaPB + "', '" + nv.MaLoaiLuong + "', N'" + nv.HinhAnh + "', " + nv.MaTT.ToString() + "); ";
+            string query2 = @"INSERT INTO ThongTinChiTietNhanVien (MaNV, MaGT, CMND, NgaySinh, NoiSinh, DienThoai, SoNha, Duong, PhuongXa, QuanHuyen, TinhTP, QuocGia, MaDT, MaTG, SoTheATM, Email) VALUES( '" + nv.MaNV + "', '" + ttct.MaGT.ToString() + "', '" + ttct.CMND + "', '" + ttct.NgaySinh.ToString("yyyy-MM-dd") + "', N'" + ttct.NoiSinh + "', '" + ttct.DienThoai + "', '" + ttct.SoNha + "', N'" + ttct.Duong + "', N'" + ttct.PhuongXa + "', '" + ttct.QuanHuyen.Trim() + "', '" + ttct.TinhTP.Trim() + "', '" + ttct.QuocGia.Trim() + "', '" + ttct.MaDT.Trim() + "', '" + ttct.MaTG.Trim() + "', '" + ttct.SoTheATM + "', N'" + ttct.Email + "' ); ";
+            DataProvider dataProvider = new DataProvider();
+            try
+            {
+                dataProvider.ExecuteUpdateQuery(query);
+                dataProvider.ExecuteUpdateQuery(query2);
+                MessageBox.Show("Thêm nhân viên thành công!");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.StackTrace);
+                MessageBox.Show(ex.Message);
+            }
+        }
+
         public static DataTable GetNhanVienByElementForChoose(string mabp, string mapb, string malhd, string mall, string matt)
         {
             DataTable tb = new DataTable();
-            string query = @"Select nv.MaNV, nv.HoTen From NhanVien nv join HopDong hd on nv.MaHD = hd.MaHD join LoaiHopDong lhd on hd.MaLoaiHD = lhd.MaLoaiHD join PhongBan pb on nv.MaPB = pb.MaPB join BoPhan bp on pb.MaBP = bp.MaBP";
+            string query = @"Select nv.MaNV, nv.HoTen From NhanVien nv join HopDong hd on nv.MaNV = hd.MaNV join LoaiHopDong lhd on hd.MaLoaiHD = lhd.MaLoaiHD join PhongBan pb on nv.MaPB = pb.MaPB join BoPhan bp on pb.MaBP = bp.MaBP";
             query += " where bp.MaBP LIKE '%" + mabp + "%' and nv.MaPB LIKE '%" + mapb + "%' and lhd.MaLoaiHD LIKE '%" + malhd + "%' and nv.MaLoaiLuong LIKE '%" + mall + "%' and nv.MaTT LIKE '%" + matt + "%' ";
             DataProvider dataProvider = new DataProvider();
             try

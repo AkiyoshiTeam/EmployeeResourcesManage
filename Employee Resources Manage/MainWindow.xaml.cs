@@ -42,6 +42,11 @@ namespace Employee_Resources_Manage
         public string Name { get; set; }
         public string ID { get; set; }
     }
+    public class TinhTrangHopDong
+    {
+        public string Name { get; set; }
+        public string ID { get; set; }
+    }
     public class LoaiLuong
     {
         public string Name { get; set; }
@@ -89,14 +94,13 @@ namespace Employee_Resources_Manage
         public string Name { get; set; }
         public string ID { get; set; }
     }
-
-
-
+    
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
     public partial class MainWindow : MetroWindow
     {
+        ListsAndGridsViewModel manageItems = new ListsAndGridsViewModel();
         public static DataTable selectedTableStatic;
         public static DataTable selectedTableDesStatic;
         //public static SqlCommandBuilder cbEditEmployee;
@@ -107,12 +111,12 @@ namespace Employee_Resources_Manage
         public MainWindow()
         {
             InitializeComponent();
-            ListsAndGridsViewModel manageItems = new ListsAndGridsViewModel();
+            
             manageItemsControl.DataContext = manageItems;
             manageItemsControl2.DataContext = manageItems;
             Task.Factory.StartNew(() =>
             {
-                Thread.Sleep(2500);
+                Thread.Sleep(1500);
             }).ContinueWith(t =>
             {
                 MainSnackbar.MessageQueue.Enqueue("Phần mềm quản lý nhân sự Công Ty Akiyoshi");
@@ -159,7 +163,15 @@ namespace Employee_Resources_Manage
                 tbManage1.Text = ((SelectableViewModel)manageItemsControl.SelectedItem).Name;
                 Transitioner.SelectedIndex = 0;
             }
-
+            switch(((SelectableViewModel)manageItemsControl.SelectedItem).Name)
+            {
+                case "Employees Resources":
+                    manageItemsControl2.ItemsSource = manageItems.Items2;
+                    break;
+                case "Company":
+                    manageItemsControl2.ItemsSource = manageItems.Items3;
+                    break;
+            }
             MenuToggleButton.IsChecked = false;
         }
 
@@ -195,17 +207,38 @@ namespace Employee_Resources_Manage
                 };
                 isOkay = true;
             }
-            //until we had a StaysOpen glag to Drawer, this will help with scroll bars
+
+
             var dependencyObject = Mouse.Captured as DependencyObject;
             while (dependencyObject != null)
             {
-
                 if (dependencyObject is ListView)
                 {
                     TabItem tab = new TabItem();
                     tab.Header = ((SelectableViewModel)manageItemsControl2.SelectedItem).Name;
-                    SearchEmployee searchControl = new SearchEmployee();
-                    tab.Content = searchControl;
+                    switch (((SelectableViewModel)manageItemsControl2.SelectedItem).Name)
+                    {
+                        case "Employees Search":
+                            var searchControl = new SearchEmployee();
+                            tab.Content = searchControl;
+                            break;
+                        case "Employees Selector":
+                            var selectorControl = new SelectorEmployee();
+                            tab.Content = selectorControl;
+                            break;
+                        case "Add Employee":
+                            var addEmployeeControl = new AddEmployee();
+                            tab.Content = addEmployeeControl;
+                            break;
+                        case "Add Multiple Employees":
+                            var addMultipleEmployeeControl = new AddMultipleEmployees();
+                            tab.Content = addMultipleEmployeeControl;
+                            break;
+                        case "Edit Employees":
+                            var editEmployeeControl = new EditEmployee();
+                            tab.Content = editEmployeeControl;
+                            break;
+                    }
                     tab.IsSelected = true;
                     tabMain.Items.Add(tab);
                     if (tabHomeExist == true)
@@ -364,7 +397,7 @@ namespace Employee_Resources_Manage
             }
         }
 
-        private void btnTranslate_Click(object sender, RoutedEventArgs e)
+        private void btnEditEmployee_Click(object sender, RoutedEventArgs e)
         {
             TabItem tab = new TabItem();
             tab.Header = "Edit Employee";

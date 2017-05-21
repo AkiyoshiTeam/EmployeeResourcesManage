@@ -136,3 +136,7 @@ C:\Users\Totoro\Desktop\Totoro\EmployeeResourcesManage\Employee Resources Manage
 C:\Users\Totoro\Desktop\Totoro\EmployeeResourcesManage\Employee Resources Manage\obj\Debug\Employee Resources Manage.csproj.GenerateResource.Cache
 C:\Users\Totoro\Desktop\Totoro\EmployeeResourcesManage\Employee Resources Manage\obj\Debug\Employee Resources Manage.exe
 C:\Users\Totoro\Desktop\Totoro\EmployeeResourcesManage\Employee Resources Manage\obj\Debug\Employee Resources Manage.pdb
+C:\Users\mjnht\Desktop\Project Employee Manager\EmployeeResourcesManage\Employee Resources Manage\obj\Debug\AddEmployee.g.cs
+C:\Users\mjnht\Desktop\Project Employee Manager\EmployeeResourcesManage\Employee Resources Manage\obj\Debug\AddEmployee.baml
+C:\Users\mjnht\Desktop\Project Employee Manager\EmployeeResourcesManage\Employee Resources Manage\obj\Debug\AddMultipleEmployees.g.cs
+C:\Users\mjnht\Desktop\Project Employee Manager\EmployeeResourcesManage\Employee Resources Manage\obj\Debug\AddMultipleEmployees.baml

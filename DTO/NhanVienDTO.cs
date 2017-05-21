@@ -8,7 +8,7 @@ namespace DTO
 {
     public class NhanVienDTO
     {
-        string _maNV,_hoTen,_maCV,_maPB,_maHD,_maLoaiLuong,_hinhAnh;
+        string _maNV, _hoTen, _maCV, _maPB, _maHD, _maLoaiLuong, _hinhAnh;
         DateTime _ngayVaoLam;
         int _maTT;
 
@@ -21,5 +21,6 @@ namespace DTO
         public string HinhAnh { get => _hinhAnh; set => _hinhAnh = value; }
         public DateTime NgayVaoLam { get => _ngayVaoLam; set => _ngayVaoLam = value; }
         public int MaTT { get => _maTT; set => _maTT = value; }
+        
     }
 }

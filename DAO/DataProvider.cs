@@ -25,8 +25,7 @@ namespace DAO
         { cnn.Close(); }
         public void ExecuteNonQuery(string sql)
         {
-            cm = new SqlCommand(sql);
-            cm.CommandType = CommandType.Text;
+            cm = new SqlCommand(sql, cnn);
             cm.ExecuteNonQuery();
         }
         public void ExecuteUpdateQuery(string sql) //Them, xoa, sua

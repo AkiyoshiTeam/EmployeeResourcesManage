@@ -1,0 +1,160 @@
+﻿<UserControl x:Class="Employee_Resources_Manage.AddMultipleEmployees"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Employee_Resources_Manage"
+             xmlns:system="clr-namespace:System;assembly=mscorlib"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             xmlns:domain="clr-namespace:Employee_Resources_Manage.Domain"
+             mc:Ignorable="d" 
+             d:DesignHeight="600" d:DesignWidth="800">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition Height="100"/>
+        </Grid.RowDefinitions>
+        <GroupBox Grid.Column="0" Header="Thông tin chung" Style="{DynamicResource MaterialDesignGroupBox}" Margin="8,10,5,5" BorderThickness="1" materialDesign:ColorZoneAssist.Mode="Accent" Padding="5" FontWeight="Bold" >
+            <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto" Foreground="{DynamicResource MaterialDesignBody}">
+                <StackPanel>
+                    <DockPanel Margin="5 10">
+                        <TextBlock >01. Mã nhân viên</TextBlock>
+                        <TextBlock DockPanel.Dock="Right" HorizontalAlignment="Right">(MaNV)(*)</TextBlock>
+                    </DockPanel>
+                    <DockPanel Margin="5 10">
+                        <TextBlock >02. Họ tên</TextBlock>
+                        <TextBlock DockPanel.Dock="Right" HorizontalAlignment="Right">(HoTen)(*)</TextBlock>
+                    </DockPanel>
+                    <DockPanel Margin="5 10">
+                        <TextBlock >03. Ngày vào làm</TextBlock>
+                        <TextBlock DockPanel.Dock="Right" HorizontalAlignment="Right">(NgayVaoLam)(*)</TextBlock>
+                    </DockPanel>
+                    <DockPanel Margin="5 10">
+                        <TextBlock >04. Mã chức vụ</TextBlock>
+                        <TextBlock DockPanel.Dock="Right" HorizontalAlignment="Right">(MaCV)</TextBlock>
+                    </DockPanel>
+                    <DockPanel Margin="5 10">
+                        <TextBlock >05. Mã phòng ban</TextBlock>
+                        <TextBlock DockPanel.Dock="Right" HorizontalAlignment="Right">(MaPB)</TextBlock>
+                    </DockPanel>
+                    <DockPanel Margin="5 10">
+                        <TextBlock >06. Mã loại lương</TextBlock>
+                        <TextBlock DockPanel.Dock="Right" HorizontalAlignment="Right">(MaLoaiLuong)</TextBlock>
+                    </DockPanel>
+                    <DockPanel Margin="5 10">
+                        <TextBlock >07. Hình ảnh</TextBlock>
+                        <TextBlock DockPanel.Dock="Right" HorizontalAlignment="Right">(HinhAnh)</TextBlock>
+                    </DockPanel>
+                    <DockPanel Margin="5 10">
+                        <TextBlock >08. Mã tình trạng</TextBlock>
+                        <TextBlock DockPanel.Dock="Right" HorizontalAlignment="Right">(MaTT)</TextBlock>
+                    </DockPanel>
+                </StackPanel>
+            </ScrollViewer>
+        </GroupBox>
+        <GroupBox Grid.Column="1" Header="Thông tin chi tiết" Style="{DynamicResource MaterialDesignGroupBox}" Margin="8,10,5,5" BorderThickness="1" materialDesign:ColorZoneAssist.Mode="Accent" Padding="5" FontWeight="Bold" >
+            <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto" Foreground="{DynamicResource MaterialDesignBody}">
+                <StackPanel>
+                    <DockPanel Margin="5 10">
+                        <TextBlock >09. Mã giới tính</TextBlock>
+                        <TextBlock DockPanel.Dock="Right" HorizontalAlignment="Right">(MaGT)</TextBlock>
+                    </DockPanel>
+                    <DockPanel Margin="5 10">
+                        <TextBlock >10. Chứng minh nhân dân</TextBlock>
+                        <TextBlock DockPanel.Dock="Right" HorizontalAlignment="Right">(CMND)(*)</TextBlock>
+                    </DockPanel>
+                    <DockPanel Margin="5 10">
+                        <TextBlock >11. Ngày sinh</TextBlock>
+                        <TextBlock DockPanel.Dock="Right" HorizontalAlignment="Right">(NgaySinh)(*)</TextBlock>
+                    </DockPanel>
+                    <DockPanel Margin="5 10">
+                        <TextBlock >12. Nơi sinh</TextBlock>
+                        <TextBlock DockPanel.Dock="Right" HorizontalAlignment="Right">(NoiSinh)</TextBlock>
+                    </DockPanel>
+                    <DockPanel Margin="5 10">
+                        <TextBlock >13. Điện thoại</TextBlock>
+                        <TextBlock DockPanel.Dock="Right" HorizontalAlignment="Right">(DienThoai)</TextBlock>
+                    </DockPanel>
+                    <DockPanel Margin="5 10">
+                        <TextBlock >14. Số nhà</TextBlock>
+                        <TextBlock DockPanel.Dock="Right" HorizontalAlignment="Right">(SoNha)</TextBlock>
+                    </DockPanel>
+                    <DockPanel Margin="5 10">
+                        <TextBlock >15. Đường</TextBlock>
+                        <TextBlock DockPanel.Dock="Right" HorizontalAlignment="Right">(Duong)</TextBlock>
+                    </DockPanel>
+                    <DockPanel Margin="5 10">
+                        <TextBlock >16. Phường/xã</TextBlock>
+                        <TextBlock DockPanel.Dock="Right" HorizontalAlignment="Right">(PhuongXa)</TextBlock>
+                    </DockPanel>
+                    <DockPanel Margin="5 10">
+                        <TextBlock >17. Quận/huyện</TextBlock>
+                        <TextBlock DockPanel.Dock="Right" HorizontalAlignment="Right">(QuanHuyen)</TextBlock>
+                    </DockPanel>
+                    <DockPanel Margin="5 10">
+                        <TextBlock >18.Tỉnh/thành phố</TextBlock>
+                        <TextBlock DockPanel.Dock="Right" HorizontalAlignment="Right">(TinhTP)</TextBlock>
+                    </DockPanel>
+                    <DockPanel Margin="5 10">
+                        <TextBlock >19. Quốc gia</TextBlock>
+                        <TextBlock DockPanel.Dock="Right" HorizontalAlignment="Right">(QuocGia)</TextBlock>
+                    </DockPanel>
+                    <DockPanel Margin="5 10">
+                        <TextBlock >20. Mã dân tộc</TextBlock>
+                        <TextBlock DockPanel.Dock="Right" HorizontalAlignment="Right">(MaDT)</TextBlock>
+                    </DockPanel>
+                    <DockPanel Margin="5 10">
+                        <TextBlock >21. Mã tôn giáo</TextBlock>
+                        <TextBlock DockPanel.Dock="Right" HorizontalAlignment="Right">(MaTG)</TextBlock>
+                    </DockPanel>
+                    <DockPanel Margin="5 10">
+                        <TextBlock >22. Số thẻ ATM</TextBlock>
+                        <TextBlock DockPanel.Dock="Right" HorizontalAlignment="Right">(SoTheATM)</TextBlock>
+                    </DockPanel>
+                    <DockPanel Margin="5 10">
+                        <TextBlock >23. Địa chỉ Email</TextBlock>
+                        <TextBlock DockPanel.Dock="Right" HorizontalAlignment="Right">(Email)</TextBlock>
+                    </DockPanel>
+                </StackPanel>
+            </ScrollViewer>
+        </GroupBox>
+        <GroupBox Grid.Column="2" Header="Thông tin hợp đồng" Style="{DynamicResource MaterialDesignGroupBox}" Margin="8,10,5,5" BorderThickness="1" materialDesign:ColorZoneAssist.Mode="Accent" Padding="5" FontWeight="Bold" >
+            <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto" Foreground="{DynamicResource MaterialDesignBody}">
+                <StackPanel>
+                    <DockPanel Margin="5 10">
+                        <TextBlock >24. Mã hợp đồng </TextBlock>
+                        <TextBlock DockPanel.Dock="Right" HorizontalAlignment="Right">(MaHD)(*)</TextBlock>
+                    </DockPanel>
+                    <DockPanel Margin="5 10">
+                        <TextBlock >25. Mã loại hợp đồng</TextBlock>
+                        <TextBlock DockPanel.Dock="Right" HorizontalAlignment="Right">(MaLoaiHD)(*)</TextBlock>
+                    </DockPanel>
+                    <DockPanel Margin="5 10">
+                        <TextBlock >26. Ngày ký hợp đồng</TextBlock>
+                        <TextBlock DockPanel.Dock="Right" HorizontalAlignment="Right">(NgayKyHD)(*)</TextBlock>
+                    </DockPanel>
+                    <DockPanel Margin="5 10">
+                        <TextBlock >27. Ngày hết hạn</TextBlock>
+                        <TextBlock DockPanel.Dock="Right" HorizontalAlignment="Right">(NgayHetHan)</TextBlock>
+                    </DockPanel>
+                    <DockPanel Margin="5 10">
+                        <TextBlock >28. Mã tình trạng hợp đồng</TextBlock>
+                        <TextBlock DockPanel.Dock="Right" HorizontalAlignment="Right">(MaTTHD)(*)</TextBlock>
+                    </DockPanel>
+                </StackPanel>
+            </ScrollViewer>
+        </GroupBox>
+        <StackPanel Margin="50,0" Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2" VerticalAlignment="Center" Orientation="Horizontal">
+            <TextBox  VerticalAlignment="Center" HorizontalAlignment="Left" Width="250" materialDesign:HintAssist.Hint="File import" Foreground="{DynamicResource MaterialDesignBody}"></TextBox>
+            <Button Style="{StaticResource MaterialDesignFloatingActionMiniButton}" Margin="5 0">
+                <materialDesign:PackIcon Kind="Link" ToolTip="Load file Excel"/>
+            </Button>
+        </StackPanel>
+        <Button Grid.Column="2" Grid.Row="1" Name="btnAdd" Style="{StaticResource MaterialDesignFlatButton}" Width="120" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="0">Template</Button>
+    </Grid>
+</UserControl>

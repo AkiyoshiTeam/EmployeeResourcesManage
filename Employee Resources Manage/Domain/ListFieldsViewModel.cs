@@ -20,8 +20,8 @@ namespace Employee_Resources_Manage.Domain
         public ListsAndGridsViewModel()
         {
             _items1 = CreateData1();
-            _items2 = CreateData();
-            _items3 = CreateData();
+            _items2 = CreateData2();
+            _items3 = CreateData3();
         }
 
         public bool IsAllSelected
@@ -47,7 +47,7 @@ namespace Employee_Resources_Manage.Domain
             }
         }
 
-        private static ObservableCollection<SelectableViewModel> CreateData()
+        private static ObservableCollection<SelectableViewModel> CreateData1()
         {
             return new ObservableCollection<SelectableViewModel>
             {
@@ -57,9 +57,17 @@ namespace Employee_Resources_Manage.Domain
                     Icon = "AccountSettingsVariant",
                     IconNum = 24,
                     Code = 'E',
-                    Name = "Employee Resources",
-                    Numeric=1,
+                    Name = "Employees Resources",
                     Description = "Manage Employee Resources"
+                },
+                new SelectableViewModel
+                {
+                    IsSelected=true,
+                    Icon = "HomeModern",
+                    IconNum = 825,
+                    Code = 'C',
+                    Name = "Company",
+                    Description = "Company Resources"
                 },
                 new SelectableViewModel
                 {
@@ -68,8 +76,7 @@ namespace Employee_Resources_Manage.Domain
                     IconNum = 417,
                     Code = 'P',
                     Name = "Payroll",
-                    Description = "Payroll for Employee",
-                    Numeric=2,
+                    Description = "Payroll for Employees"
                 },
                 new SelectableViewModel
                 {
@@ -78,261 +85,114 @@ namespace Employee_Resources_Manage.Domain
                     IconNum = 1477,
                     Code = 'T',
                     Name = "Time Attendance",
-                    Description = "Download and Manage Time",
-                    Numeric=3
+                    Description = "Download and Manage Time"
                 }
             };
         }
 
-        private static ObservableCollection<SelectableViewModel> CreateData1()
+        private static ObservableCollection<SelectableViewModel> CreateData2()
         {
             return new ObservableCollection<SelectableViewModel>
             {
                 new SelectableViewModel
                 {
-                    IsSelected=true,
-                    Icon = "AccountSettingsVariant",
-                    IconNum = 24,
+                    IsSelected=false,
+                    Icon = "AccountSearch",
+                    Code = 'S',
+                    Name = "Employees Search",
+                    Description = "Search(watch) by Information Employee(s)"
+                },
+                new SelectableViewModel
+                {
+                    IsSelected=false,
+                    Icon = "AccountCheck",
+                    Code = 'S',
+                    Name = "Employees Selector",
+                    Description = "Selector Employee(s)"
+                },
+                new SelectableViewModel
+                {
+                    IsSelected=false,
+                    Icon = "AccountPlus",
+                    Code = 'A',
+                    Name = "Add Employee",
+                    Description = "Add Employee Resources"
+                },
+                new SelectableViewModel
+                {
+                    IsSelected=false,
+                    Icon = "AccountMultiplePlus",
+                    Code = 'A',
+                    Name = "Add Multiple Employees",
+                    Description = "Add Multiple Employee Resources"
+                },
+                new SelectableViewModel
+                {
+                    IsSelected=false,
+                    Icon = "AccountSettings",
                     Code = 'E',
-                    Name = "Employee Resources",
-                    Numeric=1,
-                    Description = "Manage Employee Resources"
+                    Name = "Edit Employees",
+                    Description = "Edit Employee Resources"
                 },
                 new SelectableViewModel
                 {
                     IsSelected=false,
-                    Icon = "Coin",
-                    IconNum = 417,
-                    Code = 'P',
-                    Name = "Payroll",
-                    Description = "Payroll for Employee",
-                    Numeric=2,
+                    Icon = "AccountMinus",
+                    Code = 'L',
+                    Name = "Layoff Employee",
+                    Description = "Layoff Employee Setting"
                 },
                 new SelectableViewModel
                 {
                     IsSelected=false,
-                    Icon = "Coin",
-                    IconNum = 417,
-                    Code = 'P',
-                    Name = "Payroll",
-                    Description = "Payroll for Employee",
-                    Numeric=2,
-                },
-                new SelectableViewModel
-                {
-                    IsSelected=false,
-                    Icon = "Coin",
-                    IconNum = 417,
-                    Code = 'P',
-                    Name = "Payroll",
-                    Description = "Payroll for Employee",
-                    Numeric=2,
-                },
-                new SelectableViewModel
-                {
-                    IsSelected=false,
-                    Icon = "Coin",
-                    IconNum = 417,
-                    Code = 'P',
-                    Name = "Payroll",
-                    Description = "Payroll for Employee",
-                    Numeric=2,
-                },
-                new SelectableViewModel
-                {
-                    IsSelected=false,
-                    Icon = "Coin",
-                    IconNum = 417,
-                    Code = 'P',
-                    Name = "Payroll",
-                    Description = "Payroll for Employee",
-                    Numeric=2,
-                },
-                new SelectableViewModel
-                {
-                    IsSelected=false,
-                    Icon = "Coin",
-                    IconNum = 417,
-                    Code = 'P',
-                    Name = "Payroll",
-                    Description = "Payroll for Employee",
-                    Numeric=2,
-                },
-                new SelectableViewModel
-                {
-                    IsSelected=false,
-                    Icon = "Coin",
-                    IconNum = 417,
-                    Code = 'P',
-                    Name = "Payroll",
-                    Description = "Payroll for Employee",
-                    Numeric=2,
-                },
-                new SelectableViewModel
-                {
-                    IsSelected=false,
-                    Icon = "Coin",
-                    IconNum = 417,
-                    Code = 'P',
-                    Name = "Payroll",
-                    Description = "Payroll for Employee",
-                    Numeric=2,
-                },
-                new SelectableViewModel
-                {
-                    IsSelected=false,
-                    Icon = "Coin",
-                    IconNum = 417,
-                    Code = 'P',
-                    Name = "Payroll",
-                    Description = "Payroll for Employee",
-                    Numeric=2,
-                },
-                new SelectableViewModel
-                {
-                    IsSelected=false,
-                    Icon = "Coin",
-                    IconNum = 417,
-                    Code = 'P',
-                    Name = "Payroll",
-                    Description = "Payroll for Employee",
-                    Numeric=2,
-                },
-                new SelectableViewModel
-                {
-                    IsSelected=false,
-                    Icon = "Coin",
-                    IconNum = 417,
-                    Code = 'P',
-                    Name = "Payroll",
-                    Description = "Payroll for Employee",
-                    Numeric=2,
-                },
-                new SelectableViewModel
-                {
-                    IsSelected=false,
-                    Icon = "Coin",
-                    IconNum = 417,
-                    Code = 'P',
-                    Name = "Payroll",
-                    Description = "Payroll for Employee",
-                    Numeric=2,
-                },
-                new SelectableViewModel
-                {
-                    IsSelected=false,
-                    Icon = "Coin",
-                    IconNum = 417,
-                    Code = 'P',
-                    Name = "Payroll",
-                    Description = "Payroll for Employee",
-                    Numeric=2,
-                },
-                new SelectableViewModel
-                {
-                    IsSelected=false,
-                    Icon = "Coin",
-                    IconNum = 417,
-                    Code = 'P',
-                    Name = "Payroll",
-                    Description = "Payroll for Employee",
-                    Numeric=2,
-
-                },
-                new SelectableViewModel
-                {
-                    IsSelected=false,
-                    Icon = "Coin",
-                    IconNum = 417,
-                    Code = 'P',
-                    Name = "Payroll",
-                    Description = "Payroll for Employee",
-                    Numeric=2,
-                },
-                new SelectableViewModel
-                {
-                    IsSelected=false,
-                    Icon = "Coin",
-                    IconNum = 417,
-                    Code = 'P',
-                    Name = "Payroll",
-                    Description = "Payroll for Employee",
-                    Numeric=2,
-                },
-                new SelectableViewModel
-                {
-                    IsSelected=false,
-                    Icon = "Coin",
-                    IconNum = 417,
-                    Code = 'P',
-                    Name = "Payroll",
-                    Description = "Payroll for Employee",
-                    Numeric=2,
-                },
-                new SelectableViewModel
-                {
-                    IsSelected=false,
-                    Icon = "Coin",
-                    IconNum = 417,
-                    Code = 'P',
-                    Name = "Payroll",
-                    Description = "Payroll for Employee",
-                    Numeric=2,
-                },
-                new SelectableViewModel
-                {
-                    IsSelected=false,
-                    Icon = "Coin",
-                    IconNum = 417,
-                    Code = 'P',
-                    Name = "Payroll",
-                    Description = "Payroll for Employee",
-                    Numeric=2,
-                },
-                new SelectableViewModel
-                {
-                    IsSelected=false,
-                    Icon = "Coin",
-                    IconNum = 417,
-                    Code = 'P',
-                    Name = "Payroll",
-                    Description = "Payroll for Employee",
-                    Numeric=2,
-                },
-                new SelectableViewModel
-                {
-                    IsSelected=false,
-                    Icon = "Coin",
-                    IconNum = 417,
-                    Code = 'P',
-                    Name = "Payroll",
-                    Description = "Payroll for Employee",
-                    Numeric=2,
-                },
-                new SelectableViewModel
-                {
-                    IsSelected=false,
-                    Icon = "Coin",
-                    IconNum = 417,
-                    Code = 'P',
-                    Name = "Payroll",
-                    Description = "Payroll for Employee",
-                    Numeric=2,
-                },
-
-                new SelectableViewModel
-                {
-                    IsSelected=false,
-                    Icon = "Timetable",
-                    IconNum = 1477,
-                    Code = 'T',
-                    Name = "Time Attendance",
-                    Description = "Download and Manage Time",
-                    Numeric=3
+                    Icon = "AccountMultipleMinus",
+                    Code = 'L',
+                    Name = "Layoff Multiple Employees",
+                    Description = "Layoff Multiple Employees Setting"
                 }
+
             };
         }
 
+        private static ObservableCollection<SelectableViewModel> CreateData3()
+        {
+            return new ObservableCollection<SelectableViewModel>
+            {
+                new SelectableViewModel
+                {
+                    IsSelected=false,
+                    Icon = "TableLarge",
+                    Code = 'P',
+                    Name = "Parts of Company",
+                    Description = "Watch Parts for Company"
+                },
+                new SelectableViewModel
+                {
+                    IsSelected=false,
+                    Icon = "TableRowPlusAfter",
+                    Code = 'A',
+                    Name = "Add Part(s)",
+                    Description = "Add Part(s) for Company"
+                },
+                new SelectableViewModel
+                {
+                    IsSelected=false,
+                    Icon = "TableEdit",
+                    Code = 'E',
+                    Name = "Edit Part(s)",
+                    Description = "Edit Part(s) of Company"
+                },
+                new SelectableViewModel
+                {
+                    IsSelected=false,
+                    Icon = "TableRowRemove",
+                    Code = 'R',
+                    Name = "Remove Part(s)",
+                    Description = "Remove Part(s) of Company"
+                }
+
+            };
+        }
         public ObservableCollection<SelectableViewModel> Items1
         {
             get { return _items1; }

@@ -39,5 +39,13 @@ namespace BUS
         {
             return DAO.NhanVienDAO.UpdateNhanVienByElementForEdit(tbTemp1, tbTemp2);
         }
+        public static DataTable GetLastNhanVien()
+        {
+            return DAO.NhanVienDAO.GetLastNhanVien();
+        }
+        public static void AddNhanVien(NhanVienDTO nv, ThongTinChiTietNhanVienDTO ttct)
+        {
+            DAO.NhanVienDAO.AddNhanVien(nv, ttct);
+        }
     }
 }

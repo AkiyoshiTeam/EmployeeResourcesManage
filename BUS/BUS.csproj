@@ -52,6 +52,7 @@
     <Compile Include="ChucVuBUS.cs" />
     <Compile Include="DanTocBUS.cs" />
     <Compile Include="DescriptionForTreeBUS.cs" />
+    <Compile Include="HopDongBUS.cs" />
     <Compile Include="LoaiHopDongBUS.cs" />
     <Compile Include="LoaiLuongBUS.cs" />
     <Compile Include="NhanVienBUS.cs" />
@@ -61,6 +62,7 @@
     <Compile Include="QuocGiaBUS.cs" />
     <Compile Include="TinhTPBUS.cs" />
     <Compile Include="TinhTrangBUS.cs" />
+    <Compile Include="TinhTrangHopDongBUS.cs" />
     <Compile Include="TonGiaoBUS.cs" />
   </ItemGroup>
   <ItemGroup>

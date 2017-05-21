@@ -7,6 +7,7 @@ using System.Data.SqlClient;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -500,8 +501,19 @@ namespace Employee_Resources_Manage
                     avatarContentControl.Content = transitioningContent;
                     manvSelection = (dataGridSelectedNV.SelectedItem as DataRowView).Row[0].ToString();
                 }
-
             }
+        }
+
+        private void Numeric_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            e.Handled = !IsNumeric(e.Text);
+        }
+
+
+        private static bool IsNumeric(string text)
+        {
+            Regex regex = new Regex(@"[\d]");
+            return regex.IsMatch(text);
         }
     }
 }

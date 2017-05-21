@@ -57,8 +57,6 @@ namespace Employee_Resources_Manage
     public class TextFieldsViewModel : INotifyPropertyChanged
     {
         
-        private string _name;
-
         public TextFieldsViewModel()
         {
         }

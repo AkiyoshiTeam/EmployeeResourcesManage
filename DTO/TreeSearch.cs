@@ -206,7 +206,7 @@ namespace DTO
                         }
                     case "MaDT":
                         {
-                            sed = new SearchElementDetail(false, "Dân tộc", "dt.MaDT");
+                            sed = new SearchElementDetail(false, "Dân tộc", "dt.TenDT");
                             break;
                         }
                     default:
