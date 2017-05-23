@@ -117,6 +117,9 @@
     <Compile Include="EditEmployee.xaml.cs">
       <DependentUpon>EditEmployee.xaml</DependentUpon>
     </Compile>
+    <Compile Include="LayoffEmployees.xaml.cs">
+      <DependentUpon>LayoffEmployees.xaml</DependentUpon>
+    </Compile>
     <Compile Include="QRCode.xaml.cs">
       <DependentUpon>QRCode.xaml</DependentUpon>
     </Compile>
@@ -147,6 +150,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="EditEmployee.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="LayoffEmployees.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -310,6 +317,12 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\Images\Avatar\54364780_p0.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Images\Avatar\07 - 9UD25kL.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Images\account-card-details-black-2.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

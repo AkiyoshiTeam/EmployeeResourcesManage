@@ -145,7 +145,7 @@
                         <Button Command="Paste" ToolTip="Paste" ToolBar.OverflowMode="AsNeeded" Style="{StaticResource ToolbarButton}" VerticalAlignment="Top">
                             <materialDesign:PackIcon Kind="ContentPaste" Width="17" Height="17"/>
                         </Button>
-                        <Separator Margin="6,0"/>
+                        <!--<Separator Margin="6,0"/>
                         <ListBox SelectedIndex="0" Margin="8 0" Height="20" VerticalAlignment="Top">
                             <ListBoxItem Style="{StaticResource ToolbarListBoxItem}">
                                 <materialDesign:PackIcon Kind="FormatAlignLeft" Width="17" Height="17"/>
@@ -186,7 +186,7 @@
                         <Button ToolTip="Take a nap" ToolBar.OverflowMode="Always" Style="{StaticResource ToolbarButton}" VerticalAlignment="Top">
                             <materialDesign:PackIcon Kind="Hotel" Width="18" Height="18"/>
                         </Button>
-                        <ToggleButton VerticalAlignment="Bottom" Height="17"/>
+                        <ToggleButton VerticalAlignment="Bottom" Height="17"/>-->
                     </ToolBar>
                 </ToolBarTray>
             </materialDesign:ColorZone>
@@ -196,7 +196,7 @@
             <materialDesign:ColorZone materialDesign:ShadowAssist.ShadowDepth="Depth0" DockPanel.Dock="Top" VerticalAlignment="Stretch">
                 <Grid DockPanel.Dock="Top" Background="{DynamicResource MaterialDesignPaper}">
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Name="colChucNang" MinWidth="200" MaxWidth="400" Width="200"/>
+                        <ColumnDefinition Name="colChucNang" MinWidth="40" MaxWidth="40" Width="200"/>
                         <ColumnDefinition Width="3"/>
                         <ColumnDefinition />
                     </Grid.ColumnDefinitions>
@@ -206,8 +206,8 @@
                     <Grid Grid.Column="0">
                         <materialDesign:DialogHost IsOpen="false" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="3"/>
                         <DockPanel Panel.ZIndex="6">
-                            <materialDesign:ColorZone DockPanel.Dock="Top" materialDesign:ShadowAssist.ShadowDepth="Depth2">
-                                <DockPanel  Background="{DynamicResource PrimaryHueMidBrush}" >
+                            <materialDesign:ColorZone DockPanel.Dock="Top" materialDesign:ShadowAssist.ShadowDepth="Depth2" Foreground="{DynamicResource PrimaryHueMidForegroundBrush}">
+                                <DockPanel  Background="{DynamicResource PrimaryHueMidBrush}">
                                     <ToggleButton Style="{StaticResource MaterialDesignHamburgerToggleButton}" IsChecked="False"
                                             x:Name="MenuToggleButton" HorizontalAlignment="Right" VerticalAlignment="Top" Width="20" Height="20" Margin="10" DockPanel.Dock="Right" />
                                     <materialDesign:Transitioner Name="Transitioner" SelectedIndex="0" DefaultTransitionOrigin="1,1" DockPanel.Dock="Right" PreviewMouseLeftButtonUp="UIManageControl_OnPreviewMouseLeftButtonUp">
@@ -234,7 +234,9 @@
                             <materialDesign:DrawerHost IsTopDrawerOpen="{Binding ElementName=MenuToggleButton, Path=IsChecked}" Panel.ZIndex="5" DockPanel.Dock="Top">
                                 <materialDesign:DrawerHost.TopDrawerContent>
                                     <DockPanel  Background="{DynamicResource PrimaryHueMidBrush}">
-                                        <ListView Name="manageItemsControl" ItemsSource="{Binding Items1}" PreviewMouseLeftButtonUp="UIElement_OnPreviewMouseLeftButtonUp" VerticalAlignment="Top" ScrollViewer.HorizontalScrollBarVisibility="Disabled" ScrollViewer.VerticalScrollBarVisibility="Hidden" >
+                                        <ListView Name="manageItemsControl" ItemsSource="{Binding Items1}" PreviewMouseLeftButtonUp="UIElement_OnPreviewMouseLeftButtonUp" 
+                                                  VerticalAlignment="Top" ScrollViewer.HorizontalScrollBarVisibility="Disabled" 
+                                                  ScrollViewer.VerticalScrollBarVisibility="Hidden"  Foreground="{DynamicResource PrimaryHueMidForegroundBrush}" >
                                             <ListView.ItemTemplate>
                                                 <DataTemplate>
                                                     <StackPanel Orientation="Horizontal" >
@@ -271,7 +273,7 @@
                         Background="{DynamicResource MaterialDesignPaper}" CornerRadius="20">
                         <Button Name="btnCollapse" Style="{StaticResource MaterialDesignFloatingActionMiniButton}" Background="{DynamicResource MaterialDesignDivider}" Width="36" Height="36"
                         Foreground="{DynamicResource MaterialDesignBody}" materialDesign:ShadowAssist.ShadowDepth="Depth0" BorderBrush="#00000000" Click="btnCollapse_Click">
-                            <materialDesign:PackIcon Name="packIconCollapse"  Kind="ChevronLeft" Height="18" Width="18" Margin="0" />
+                            <materialDesign:PackIcon Name="packIconCollapse"  Kind="ChevronRight" Height="18" Width="18" Margin="0" />
                         </Button>
                     </Border>
                     <GridSplitter Grid.Column="1" HorizontalAlignment="Stretch" Width="3" Panel.ZIndex="5" />

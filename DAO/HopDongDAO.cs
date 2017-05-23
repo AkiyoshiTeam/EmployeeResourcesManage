@@ -49,5 +49,66 @@ namespace DAO
                 MessageBox.Show(ex.Message);
             }
         }
+
+        public static void LayoffNhanVien(DataTable dt)
+        {
+            string query = @"UPDATE HopDong SET MaTTHD=3 ";
+            bool IsExists = false;
+            foreach (DataRow row in dt.Rows)
+            {
+                if (IsExists == false)
+                {
+                    query += " WHERE MaNV IN ('" + row[0].ToString() + "' ";
+                    IsExists = true;
+                }
+                else
+                {
+                    query += " , '" + row[0].ToString() + "' ";
+                }
+            }
+            query += ") ";
+            DataProvider dataProvider = new DataProvider();
+            try
+            {
+                dataProvider.ExecuteUpdateQuery(query);
+                MessageBox.Show("Sa thải nhân viên thành công!");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.StackTrace);
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+
+        public static void UnLayoffNhanVien(DataTable dt)
+        {
+            string query = @"UPDATE HopDong SET MaTTHD=1 ";
+            bool IsExists = false;
+            foreach (DataRow row in dt.Rows)
+            {
+                if (IsExists == false)
+                {
+                    query += " WHERE MaNV IN ('" + row[0].ToString() + "' ";
+                    IsExists = true;
+                }
+                else
+                {
+                    query += " , '" + row[0].ToString() + "' ";
+                }
+            }
+            query += ") AND NgayKyHD >=ALL( Select hd.NgayKyHD From HopDong hd Where hd.MaNV = MaNV)";
+            DataProvider dataProvider = new DataProvider();
+            try
+            {
+                dataProvider.ExecuteUpdateQuery(query);
+                MessageBox.Show("Hồi phục nhân viên thành công!");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.StackTrace);
+                MessageBox.Show(ex.Message);
+            }
+        }
     }
 }

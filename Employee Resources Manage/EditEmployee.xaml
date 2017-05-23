@@ -43,7 +43,7 @@
                 <ColumnDefinition Width="136"/>
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
-            <Border CornerRadius="2" BorderThickness="2" BorderBrush="{DynamicResource MaterialDesignBodyLight}" VerticalAlignment="Top" Background="{DynamicResource IdealForegroundColorBrush}" HorizontalAlignment="Center" Margin="0,5,0,0" Width="134" Height="174" Panel.ZIndex="2">
+            <Border CornerRadius="2" BorderThickness="2" BorderBrush="{DynamicResource SecondaryAccentBrush}" VerticalAlignment="Top" Background="{DynamicResource IdealForegroundColorBrush}" HorizontalAlignment="Center" Margin="0,5,0,0" Width="134" Height="174" Panel.ZIndex="2">
                 <ContentControl Name="avatarContentControl" Focusable="False" >
                     <Image Source="Resources/Images/account-card-details-black.png" Stretch="None" Opacity="0.4" HorizontalAlignment="Center" VerticalAlignment="Center" />
                 </ContentControl>
@@ -99,7 +99,8 @@
                     </Grid>
                 </Grid>
             </ScrollViewer>
-            <Button Grid.Column="1" Grid.Row="1" HorizontalAlignment="Right" VerticalAlignment="Bottom" Click="Button_Click" Panel.ZIndex="5">Update</Button>
+            <Button Grid.Column="1" Grid.Row="1" HorizontalAlignment="Right" VerticalAlignment="Bottom" Click="Button_Click" Margin="100, 0" Panel.ZIndex="5">Update</Button>
+            <Button Grid.Column="1" Grid.Row="1" Name="btnRefresh" HorizontalAlignment="Right" VerticalAlignment="Bottom" Click="btnRefresh_Click"  Panel.ZIndex="5">Refresh</Button>
         </Grid>
 
     </Grid>

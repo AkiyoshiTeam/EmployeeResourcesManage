@@ -44,7 +44,7 @@
                 <RowDefinition/>
                 <RowDefinition Height="70"/>
             </Grid.RowDefinitions>
-            <Border CornerRadius="2" BorderThickness="2" BorderBrush="{DynamicResource MaterialDesignBodyLight}" VerticalAlignment="Top" Background="{DynamicResource IdealForegroundColorBrush}" HorizontalAlignment="Center" Margin="0,25,0,0" Width="134" Height="174" Panel.ZIndex="2">
+            <Border CornerRadius="2" BorderThickness="2" BorderBrush="{DynamicResource SecondaryAccentBrush}" VerticalAlignment="Top" Background="{DynamicResource IdealForegroundColorBrush}" HorizontalAlignment="Center" Margin="0,25,0,0" Width="134" Height="174" Panel.ZIndex="2">
                 <ContentControl Name="avatarContentControl" Focusable="False" >
                     <Image Source="Resources/Images/account-card-details-black.png" Stretch="None" Opacity="0.4" HorizontalAlignment="Center" VerticalAlignment="Center" />
                 </ContentControl>

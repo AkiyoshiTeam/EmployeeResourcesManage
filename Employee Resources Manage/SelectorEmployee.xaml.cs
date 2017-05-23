@@ -212,10 +212,13 @@ namespace Employee_Resources_Manage
 
         private void btnDeleteAll_Click(object sender, RoutedEventArgs e)
         {
-            if (MainWindow.selectedTableStatic.Rows.Count != 0)
+            if (MainWindow.selectedTableStatic != null)
             {
-                dialogHostRefresh.DataContext = "Bạn có chắc muốn làm mới bảng đã chọn?";
-                dialogHostRefresh.IsOpen = true;
+                if (MainWindow.selectedTableStatic.Rows.Count != 0)
+                {
+                    dialogHostRefresh.DataContext = "Bạn có chắc muốn làm mới bảng đã chọn?";
+                    dialogHostRefresh.IsOpen = true;
+                }
             }
         }
 

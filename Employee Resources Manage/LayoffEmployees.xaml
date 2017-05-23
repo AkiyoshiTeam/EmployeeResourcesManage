@@ -1,0 +1,167 @@
+﻿<UserControl x:Class="Employee_Resources_Manage.LayoffEmployees"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Employee_Resources_Manage"
+             xmlns:c="clr-namespace:Employee_Resources_Manage"
+             xmlns:system="clr-namespace:System;assembly=mscorlib"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             xmlns:domain="clr-namespace:Employee_Resources_Manage.Domain"
+             mc:Ignorable="d" 
+             d:DesignHeight="600" d:DesignWidth="800" >
+    <UserControl.Resources>
+        <c:ImageConverter x:Key="MyImageConverter"/>
+        <c:MaCVConverter x:Key="MaCVConverter"/>
+        <c:MaPBConverter x:Key="MaPBConverter"/>
+        <c:MaLLConverter x:Key="MaLLConverter"/>
+        <c:MaTTConverter x:Key="MaTTConverter"/>
+        <c:MaGTConverter x:Key="MaGTConverter"/>
+        <c:MaQHConverter x:Key="MaQHConverter"/>
+        <c:MaTTPConverter x:Key="MaTTPConverter"/>
+        <c:MaQGConverter x:Key="MaQGConverter"/>
+        <c:MaDTConverter x:Key="MaDTConverter"/>
+        <c:MaTGConverter x:Key="MaTGConverter"/>
+        <c:MaLHDConverter x:Key="MaLHDConverter"/>
+        <c:MaTTHDConverter x:Key="MaTTHDConverter"/>
+    </UserControl.Resources>
+    <materialDesign:DialogHost Name="dialogHostWarning" Identifier="dialogHostWarning" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="3" Grid.RowSpan="2" Margin="0" DialogClosing="dialogHost_DialogClosing">
+        <materialDesign:DialogHost.DialogContent>
+            <StackPanel Margin="16">
+                <TextBlock Margin="0 8 0 0" HorizontalAlignment="Stretch" Text="{Binding Content}" FontWeight="Bold" FontSize="14"/>
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                    <Button Style="{StaticResource MaterialDesignFlatButton}"
+                                        IsDefault="True" Visibility="{Binding Acc}"
+                                        Margin="0 8 8 0"
+                                        Command="materialDesign:DialogHost.CloseDialogCommand">
+                        <Button.CommandParameter>
+                            <system:Boolean>True</system:Boolean>
+                        </Button.CommandParameter>
+                        ACCEPT
+                    </Button>
+                    <Button Style="{StaticResource MaterialDesignFlatButton}"
+                                        IsCancel="True"
+                                        Margin="0 8 8 0"
+                                        Command="materialDesign:DialogHost.CloseDialogCommand">
+                        <Button.CommandParameter>
+                            <system:Boolean>False</system:Boolean>
+                        </Button.CommandParameter>
+                        CANCEL
+                    </Button>
+                </StackPanel>
+            </StackPanel>
+        </materialDesign:DialogHost.DialogContent>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition Height="100"/>
+            </Grid.RowDefinitions>
+            <DataGrid Name="dataGridSelectedNV"  Style="{StaticResource MaterialDesignDataGrid}" ItemsSource="{Binding}" Grid.Row="0" 
+                      CanUserAddRows="False" AutoGenerateColumns="False" IsReadOnly="True"
+                       materialDesign:DataGridAssist.CellPadding="4 2 2 2" materialDesign:DataGridAssist.ColumnHeaderPadding="4 2 2 2" Foreground="{DynamicResource MaterialDesignBody}">
+                <DataGrid.RowDetailsTemplate>
+                    <DataTemplate>
+                        <DockPanel>
+                            <Border CornerRadius="2" BorderThickness="2" BorderBrush="{DynamicResource SecondaryAccentBrush}" VerticalAlignment="Top" Background="{DynamicResource IdealForegroundColorBrush}" HorizontalAlignment="Center" Margin="5" Width="134" Height="174" >
+                                <Image Source="{Binding HinhAnh, Converter={StaticResource MyImageConverter}}" Stretch="UniformToFill" HorizontalAlignment="Center" VerticalAlignment="Center" >
+                                </Image>
+                            </Border>
+                            <Grid Margin="20">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition />
+                                    <RowDefinition />
+                                    <RowDefinition />
+                                    <RowDefinition />
+                                    <RowDefinition />
+                                    <RowDefinition />
+                                </Grid.RowDefinitions>
+                                
+                                <TextBlock Margin="8 0 0 0" Text="Mã Nhân Viên: " FontWeight="Bold" />
+                                <TextBlock Margin="0 0 8 0" Text="{Binding MaNV}" Grid.Column="1" />
+                                <TextBlock Margin="8 0 0 0" Text="Họ Tên: " FontWeight="Bold" Grid.Row="1" />
+                                <TextBlock Margin="0 0 8 0" Text="{Binding HoTen}" Grid.Column="1" Grid.Row="1" />
+                                <TextBlock Margin="8 0 0 0" Text="Ngày Vào Làm: " FontWeight="Bold" Grid.Row="2" />
+                                <TextBlock Margin="0 0 8 0" Text="{Binding NgayVaoLam, StringFormat='dd/MM/yyyy'}" Grid.Column="1" Grid.Row="2" />
+                                <TextBlock Margin="8 0 0 0" Text="Chức Vụ: " FontWeight="Bold" Grid.Row="3" />
+                                <TextBlock Margin="0 0 8 0" Text="{Binding MaCV, Converter={StaticResource MaCVConverter}}" Grid.Column="1" Grid.Row="3" />
+                                <TextBlock Margin="8 0 0 0" Text="Phòng Ban: " FontWeight="Bold" Grid.Row="4" />
+                                <TextBlock Margin="0 0 8 0" Text="{Binding MaPB, Converter={StaticResource MaPBConverter}}" Grid.Column="1" Grid.Row="4" />
+                                <TextBlock Margin="8 0 0 0" Text="Loại Lương: " FontWeight="Bold" Grid.Row="5" />
+                                <TextBlock Margin="0 0 8 0" Text="{Binding MaLoaiLuong, Converter={StaticResource MaLLConverter}}" Grid.Column="1" Grid.Row="5" />
+
+                                <GridSplitter Grid.Column="1" Grid.RowSpan="6" Width="2"/>
+                                
+                                <TextBlock Margin="8 0 0 0" Text="Tình Trạng: " FontWeight="Bold" Grid.Column="2"/>
+                                <TextBlock Margin="0 0 8 0" Text="{Binding MaTT, Converter={StaticResource MaTTConverter}}" Grid.Column="3" />
+                                <TextBlock Margin="8 0 0 0" Text="Giới Tính: " FontWeight="Bold" Grid.Column="2" Grid.Row="1" />
+                                <TextBlock Margin="0 0 8 0" Text="{Binding MaGT, Converter={StaticResource MaGTConverter}}" Grid.Column="3" Grid.Row="1" />
+                                <TextBlock Margin="8 0 0 0" Text="CMND: " FontWeight="Bold" Grid.Column="2" Grid.Row="2" />
+                                <TextBlock Margin="0 0 8 0" Text="{Binding CMND}" Grid.Column="3" Grid.Row="2" />
+                                <TextBlock Margin="8 0 0 0" Text="Ngày Sinh: " FontWeight="Bold" Grid.Column="2" Grid.Row="3" />
+                                <TextBlock Margin="0 0 8 0" Text="{Binding NgaySinh,  StringFormat='dd/MM/yyyy'}" Grid.Column="3" Grid.Row="3" />
+                                <TextBlock Margin="8 0 0 0" Text="Phòng Ban: " FontWeight="Bold" Grid.Column="2" Grid.Row="4" />
+                                <TextBlock Margin="0 0 8 0" Text="{Binding NoiSinh}" Grid.Column="3" Grid.Row="4" />
+                                <TextBlock Margin="8 0 0 0" Text="Điện Thoại: " FontWeight="Bold" Grid.Column="2" Grid.Row="5" />
+                                <TextBlock Margin="0 0 8 0" Text="{Binding DienThoai}" Grid.Column="3" Grid.Row="5" />
+
+                                <GridSplitter Grid.Column="3" Grid.RowSpan="6" Width="2"/>
+
+                                <TextBlock Margin="8 0 0 0" Text="Số Nhà: " FontWeight="Bold" Grid.Column="4"/>
+                                <TextBlock Margin="0 0 8 0" Text="{Binding SoNha}" Grid.Column="5" />
+                                <TextBlock Margin="8 0 0 0" Text="Đường: " FontWeight="Bold" Grid.Column="4" Grid.Row="1" />
+                                <TextBlock Margin="0 0 8 0" Text="{Binding Duong}" Grid.Column="5" Grid.Row="1" />
+                                <TextBlock Margin="8 0 0 0" Text="Phường, Xã: " FontWeight="Bold" Grid.Column="4" Grid.Row="2" />
+                                <TextBlock Margin="0 0 8 0" Text="{Binding PhuongXa}" Grid.Column="5" Grid.Row="2" />
+                                <TextBlock Margin="8 0 0 0" Text="Quận, Huyện: " FontWeight="Bold" Grid.Column="4" Grid.Row="3" />
+                                <TextBlock Margin="0 0 8 0" Text="{Binding QuanHuyen, Converter={StaticResource MaQHConverter}}" Grid.Column="5" Grid.Row="3" />
+                                <TextBlock Margin="8 0 0 0" Text="Tỉnh, Thành Phố: " FontWeight="Bold" Grid.Column="4" Grid.Row="4" />
+                                <TextBlock Margin="0 0 8 0" Text="{Binding TinhTP, Converter={StaticResource MaTTPConverter}}" Grid.Column="5" Grid.Row="4" />
+                                <TextBlock Margin="8 0 0 0" Text="Quốc Gia: " FontWeight="Bold" Grid.Column="4" Grid.Row="5" />
+                                <TextBlock Margin="0 0 8 0" Text="{Binding QuocGia, Converter={StaticResource MaQGConverter}}" Grid.Column="5" Grid.Row="5" />
+
+                                <GridSplitter Grid.Column="5" Grid.RowSpan="6" Width="2"/>
+
+                                <TextBlock Margin="8 0 0 0" Text="Dân Tộc: " FontWeight="Bold" Grid.Column="6"/>
+                                <TextBlock Margin="0 0 8 0" Text="{Binding MaDT, Converter={StaticResource MaDTConverter}}" Grid.Column="7" />
+                                <TextBlock Margin="8 0 0 0" Text="Tôn Giáo: " FontWeight="Bold" Grid.Column="6" Grid.Row="1" />
+                                <TextBlock Margin="0 0 8 0" Text="{Binding MaTG, Converter={StaticResource MaTGConverter}}" Grid.Column="7" Grid.Row="1" />
+                                <TextBlock Margin="8 0 0 0" Text="Số ATM: " FontWeight="Bold" Grid.Column="6" Grid.Row="2" />
+                                <TextBlock Margin="0 0 8 0" Text="{Binding SoTheATM}" Grid.Column="7" Grid.Row="2" />
+                                <TextBlock Margin="8 0 0 0" Text="Địa Chỉ Email: " FontWeight="Bold" Grid.Column="6" Grid.Row="3" />
+                                <TextBlock Margin="0 0 8 0" Text="{Binding Email}" Grid.Column="7" Grid.Row="3" />
+
+                                <GridSplitter Grid.Column="7" Grid.RowSpan="6" Width="2"/>
+
+                                <TextBlock Margin="8 0 0 0" Text="Mã Hợp Đồng: " FontWeight="Bold" Grid.Column="8"/>
+                                <TextBlock Margin="0 0 8 0" Text="{Binding MaHD}" Grid.Column="9" />
+                                <TextBlock Margin="8 0 0 0" Text="Loại Hợp Đồng: " FontWeight="Bold" Grid.Column="8" Grid.Row="1" />
+                                <TextBlock Margin="0 0 8 0" Text="{Binding MaLoaiHD, Converter={StaticResource MaLHDConverter}}" Grid.Column="9" Grid.Row="1" />
+                                <TextBlock Margin="8 0 0 0" Text="Ngày Bắt Đầu HĐ: " FontWeight="Bold" Grid.Column="8" Grid.Row="2" />
+                                <TextBlock Margin="0 0 8 0" Text="{Binding NgayKyHD, StringFormat='dd/MM/yyyy'}" Grid.Column="9" Grid.Row="2" />
+                                <TextBlock Margin="8 0 0 0" Text="Ngày Kết Thúc HĐ: " FontWeight="Bold" Grid.Column="8" Grid.Row="3" />
+                                <TextBlock Margin="0 0 8 0" Text="{Binding NgayHetHan, StringFormat='dd/MM/yyyy'}" Grid.Column="9" Grid.Row="3" />
+                                <TextBlock Margin="8 0 0 0" Text="Tình Trạng HĐ: " FontWeight="Bold" Grid.Column="8" Grid.Row="4" />
+                                <TextBlock Margin="0 0 8 0" Text="{Binding MaTTHD, Converter={StaticResource MaTTHDConverter}}" Grid.Column="9" Grid.Row="4" />
+                            </Grid>
+                        </DockPanel>
+                    </DataTemplate>
+                </DataGrid.RowDetailsTemplate>
+            </DataGrid>
+            <Button Grid.Row="1" Name="btnUnLayoff" Style="{StaticResource MaterialDesignFlatButton}" Width="120" Click="btnUnLayoff_Click" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="50,0,0,0">UnLayoff ALL</Button>
+            <Button Grid.Row="1" Name="btnLayoff" Style="{StaticResource MaterialDesignFlatButton}" Width="120" Click="btnLayoff_Click" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,0,200,0">Layoff ALL</Button>
+            <Button Grid.Row="1" Name="btnRefreshData" Style="{StaticResource MaterialDesignFlatButton}" Width="120" Click="btnRefreshData_Click" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,0,50,0">Refresh</Button>
+        </Grid>
+    </materialDesign:DialogHost>
+</UserControl>

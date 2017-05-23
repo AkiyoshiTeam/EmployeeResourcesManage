@@ -17,8 +17,10 @@ namespace DAO
     {
         public static SqlCommandBuilder cbEdit;
         public static SqlCommandBuilder cbEditCT;
+        public static SqlCommandBuilder cbLayoff;
         public static SqlDataAdapter daEdit;
         public static SqlDataAdapter daEditCT;
+        public static SqlDataAdapter daLayoff;
         public static DataTable GetNhanVien(TreesSearchModel TreeSearchViewModel)
         {
             DataTable tb = new DataTable();
@@ -182,6 +184,65 @@ namespace DAO
             }
         }
 
+        public static void LayoffNhanVien(DataTable dt)
+        {
+            string query = @"UPDATE NhanVien SET MaTT=5 ";
+            bool IsExists = false;
+            foreach(DataRow row in dt.Rows)
+            {
+                if (IsExists == false)
+                {
+                    query += " WHERE MaNV IN ('" + row[0].ToString() + "' ";
+                    IsExists = true;
+                }
+                else {
+                    query += " , '" + row[0].ToString() + "' ";
+                }
+            }
+            query += ") ";
+            DataProvider dataProvider = new DataProvider();
+            try
+            {
+                dataProvider.ExecuteUpdateQuery(query);
+                DAO.HopDongDAO.LayoffNhanVien(dt);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.StackTrace);
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        public static void UnLayoffNhanVien(DataTable dt)
+        {
+            string query = @"UPDATE NhanVien SET MaTT=1 ";
+            bool IsExists = false;
+            foreach (DataRow row in dt.Rows)
+            {
+                if (IsExists == false)
+                {
+                    query += " WHERE MaNV IN ('" + row[0].ToString() + "' ";
+                    IsExists = true;
+                }
+                else
+                {
+                    query += " , '" + row[0].ToString() + "' ";
+                }
+            }
+            query += ") ";
+            DataProvider dataProvider = new DataProvider();
+            try
+            {
+                dataProvider.ExecuteUpdateQuery(query);
+                DAO.HopDongDAO.UnLayoffNhanVien(dt);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.StackTrace);
+                MessageBox.Show(ex.Message);
+            }
+        }
+
         public static DataTable GetNhanVienByElementForChoose(string mabp, string mapb, string malhd, string mall, string matt)
         {
             DataTable tb = new DataTable();
@@ -278,6 +339,42 @@ namespace DAO
             catch(Exception ex)
             { MessageBox.Show(ex.Message); }
             return false;
+        }
+
+        public static DataTable GetNhanVienByElementForLayoff(DataTable tbTemp)
+        {
+            DataTable tb = new DataTable();
+            bool isnull = true;
+            string query = @"Select * From NhanVien nv join ThongTinChiTietNhanVien tt on nv.MaNV = tt.MaNV join HopDong hd on nv.MaNV = hd.MaNV  ";
+            query += " where nv.MaNV IN (";
+            for (int i = 0; i < tbTemp.Rows.Count; i++)
+            {
+                if (isnull == true)
+                {
+                    query += "'" + tbTemp.Rows[i][0].ToString().Trim() + "'";
+                    isnull = false;
+                }
+                else query += ", '" + tbTemp.Rows[i][0].ToString().Trim() + "'";
+            }
+            query += ") and hd.NgayKyHD >= ALL(Select hd2.NgayKyHD From HopDong hd2 Where hd2.MaNV=nv.MaNV)";
+            DataProvider dataProvider = new DataProvider();
+            try
+            {
+                dataProvider.connect();
+                tb = dataProvider.ExecuteQuery_DataTble(query);
+                return tb;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.StackTrace);
+                MessageBox.Show(ex.Message);
+            }
+            finally
+            {
+                dataProvider.disconnect();
+
+            }
+            return null;
         }
 
     }

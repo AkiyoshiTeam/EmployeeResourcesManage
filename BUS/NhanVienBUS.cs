@@ -47,5 +47,17 @@ namespace BUS
         {
             DAO.NhanVienDAO.AddNhanVien(nv, ttct);
         }
+        public static DataTable GetNhanVienByElementForLayoff(DataTable tbTemp)
+        {
+            return DAO.NhanVienDAO.GetNhanVienByElementForLayoff(tbTemp);
+        }
+        public static void LayoffNhanVien(DataTable dt)
+        {
+            DAO.NhanVienDAO.LayoffNhanVien(dt);
+        }
+        public static void UnLayoffNhanVien(DataTable dt)
+        {
+            DAO.NhanVienDAO.UnLayoffNhanVien(dt);
+        }
     }
 }

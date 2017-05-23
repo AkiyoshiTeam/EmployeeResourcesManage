@@ -235,8 +235,30 @@ namespace Employee_Resources_Manage
                             tab.Content = addMultipleEmployeeControl;
                             break;
                         case "Edit Employees":
-                            var editEmployeeControl = new EditEmployee();
-                            tab.Content = editEmployeeControl;
+                            if (selectedTableStatic != null)
+                            {
+                                var editEmployeeControl = new EditEmployee();
+                                tab.Content = editEmployeeControl;
+                            }
+                            else
+                            {
+                                tab.Header = "Employees Selector";
+                                var selectorControlTemp1 = new SelectorEmployee();
+                                tab.Content = selectorControlTemp1;
+                            }
+                            break;
+                        case "Layoff Employees":
+                            if (selectedTableStatic != null)
+                            {
+                                var layoffEmployeeControl = new LayoffEmployees();
+                                tab.Content = layoffEmployeeControl;
+                            }
+                            else
+                            {
+                                tab.Header = "Employees Selector";
+                                var selectorControlTemp2 = new SelectorEmployee();
+                                tab.Content = selectorControlTemp2;
+                            }
                             break;
                     }
                     tab.IsSelected = true;
@@ -299,7 +321,7 @@ namespace Employee_Resources_Manage
             MenuToggleButton.IsChecked = (MenuToggleButton.IsChecked == false) ? true : false;
         }
 
-        bool collapseIsCheck = false;
+        bool collapseIsCheck = true;
 
         private void btnCollapse_Click(object sender, RoutedEventArgs e)
         {
