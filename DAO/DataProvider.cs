@@ -62,36 +62,6 @@ namespace DAO
             }
             return ar;
         }
-
-        protected string GetIDCode(string strID, string field, string table, int length)
-        {
-            try
-            {
-                this.connect();
-
-                string IDCode = strID + "0000000000";
-                string query = "select max(" + field.Trim() + ") from " + table.Trim() + " where left(" + field.Trim() + "," + strID.Length + ")='" + strID.Trim() + "'";
-
-                this.cm = new SqlCommand(query, this.cnn);
-                this.cm.CommandType = CommandType.Text;
-                SqlDataReader reader = this.cm.ExecuteReader();
-
-                while (reader.Read())
-                    if (!reader.IsDBNull(0))
-                        IDCode = Convert.ToString(reader.GetValue(0));
-
-                IDCode = IDCode.Substring(strID.Length);
-                IDCode = "0000000000000000" + Convert.ToString(Convert.ToInt64(IDCode) + 1);
-                IDCode = strID + IDCode.Substring(IDCode.Length - length + strID.Length);
-
-                this.disconnect();
-                return IDCode;
-            }
-            catch (Exception ex)
-            {
-                this.disconnect();
-                throw ex;
-            }
-        }
+        
     }
 }

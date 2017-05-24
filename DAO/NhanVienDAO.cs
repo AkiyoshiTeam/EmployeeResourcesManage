@@ -374,7 +374,7 @@ namespace DAO
                 }
                 else query += ", '" + tbTemp.Rows[i][0].ToString().Trim() + "'";
             }
-            query += ") and hd.NgayKyHD >= ALL(Select hd2.NgayKyHD From HopDong hd2 Where hd2.MaNV=nv.MaNV)";
+            query += ") and hd.NgayKyHD >= ALL(Select hd2.NgayKyHD From HopDong hd2 Where hd2.MaNV=nv.MaNV) Order by nv.MaNV";
             DataProvider dataProvider = new DataProvider();
             try
             {
@@ -394,6 +394,91 @@ namespace DAO
             }
             return null;
         }
-
+        
+        /// <summary>
+        /// Lấy thông tin nhân viên theo một điều kiện XXX
+        /// </summary>
+        /// <param name="strWhere"></param>
+        /// <returns></returns>
+        public static DataTable GetNhanVienByWhere(string strWhere)
+        {
+            DataTable tb = new DataTable();
+            string query = @"Select nv.MaNV,nv.HoTen,ctnv.NgaySinh,gt.TenGT,bp.TenBP,pb.TenPB,ctnv.DienThoai,ctnv.Email
+                            From NhanVien nv join ThongTinChiTietNhanVien ctnv on nv.MaNV = ctnv.MaNV
+                            join GioiTinh gt on gt.MaGT = ctnv.MaGT join PhongBan pb on pb.MaPB = nv.MaPB
+                            join BoPhan bp on bp.MaBP = pb.MaBP " + strWhere;
+            DataProvider dataProvider = new DataProvider();
+            try
+            {
+                dataProvider.connect();
+                tb = dataProvider.ExecuteQuery_DataTble(query);
+                return tb;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.StackTrace);
+            }
+            finally
+            {
+                dataProvider.disconnect();
+            }
+            return null;
+        }
+        /// <summary>
+        /// Lấy thông tin nhân viên được khen thưởng
+        /// </summary>
+        /// <returns></returns>
+        public static DataTable GetNhanVienDuocKhenThuong()
+        {
+            DataTable tb = new DataTable();
+            string query = @"SELECT nv.MaNV,nv.HoTen,ctnv.NgaySinh,gt.TenGT,bp.TenBP,pb.TenPB,ctnv.DienThoai,ctnv.Email,ctkt.NoiDung,ctkt.HinhThuc,ctkt.NgayQD
+                            FROM NhanVien nv join ThongTinChiTietNhanVien ctnv ON nv.MaNV = ctnv.MaNV
+                            join GioiTinh gt ON gt.MaGT = ctnv.MaGT join PhongBan pb ON pb.MaPB = nv.MaPB
+                            join BoPhan bp ON bp.MaBP = pb.MaBP join ChiTietKhenThuong ctkt ON ctkt.MaNV = nv.MaNV";
+            DataProvider dataProvider = new DataProvider();
+            try
+            {
+                dataProvider.connect();
+                tb = dataProvider.ExecuteQuery_DataTble(query);
+                return tb;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.StackTrace);
+            }
+            finally
+            {
+                dataProvider.disconnect();
+            }
+            return null;
+        }
+        /// <summary>
+        /// lấy thông tin nhân viên bị kỷ luật
+        /// </summary>
+        /// <returns></returns>
+        public static DataTable GetNhanVienBiKyLuat()
+        {
+            DataTable tb = new DataTable();
+            string query = @"SELECT nv.MaNV,nv.HoTen,ctnv.NgaySinh,gt.TenGT,bp.TenBP,pb.TenPB,ctnv.DienThoai,ctnv.Email,ctkl.NguyenNhan,ctkl.HinhThuc,ctkl.NgayKL
+                            FROM NhanVien nv join ThongTinChiTietNhanVien ctnv ON nv.MaNV = ctnv.MaNV
+                            join GioiTinh gt ON gt.MaGT = ctnv.MaGT join PhongBan pb ON pb.MaPB = nv.MaPB
+                            join BoPhan bp ON bp.MaBP = pb.MaBP join ChiTietKiLuat ctkl ON ctkl.MaNV = nv.MaNV";
+            DataProvider dataProvider = new DataProvider();
+            try
+            {
+                dataProvider.connect();
+                tb = dataProvider.ExecuteQuery_DataTble(query);
+                return tb;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.StackTrace);
+            }
+            finally
+            {
+                dataProvider.disconnect();
+            }
+            return null;
+        }
     }
 }

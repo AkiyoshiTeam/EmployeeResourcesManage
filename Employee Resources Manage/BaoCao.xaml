@@ -1,0 +1,120 @@
+﻿<UserControl x:Class="Employee_Resources_Manage.BaoCao"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Employee_Resources_Manage"
+             mc:Ignorable="d" 
+             d:DesignHeight="800" d:DesignWidth="800">
+    <Grid >
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Expander Padding="15 0 15 15" Foreground="{DynamicResource MaterialDesignBody}" IsExpanded="True" Margin="5" BorderThickness="1" BorderBrush="{DynamicResource SecondaryAccentBrush}" VerticalAlignment="Top">
+            <Expander.Header>
+                <TextBlock FontWeight="Bold" FontSize="16" >Báo cáo nhân viên</TextBlock>
+            </Expander.Header>
+            <ScrollViewer VerticalScrollBarVisibility="Hidden" >
+                <StackPanel>
+                    <Expander Header="Danh sách nhân viên công ty"  HorizontalAlignment="Stretch" BorderThickness="1 1 2 1" BorderBrush="{DynamicResource SecondaryAccentBrush}" Foreground="{DynamicResource MaterialDesignBody}">
+                        <StackPanel Name="stkNV" Margin="10">
+                            <Button Name ="btnNVCTY" Content="Xuất báo cáo" HorizontalAlignment="Center" VerticalAlignment="Top" Height="24" Style="{StaticResource MaterialDesignRaisedAccentButton}" Width="200"  Padding="16,2" Click="btnNVCTY_Click"/>
+                        </StackPanel>
+                    </Expander>
+                    <Expander Header="Danh sách nhân viên theo bộ phận" HorizontalAlignment="Stretch" BorderThickness="1 1 2 1" BorderBrush="{DynamicResource SecondaryAccentBrush}" Foreground="{DynamicResource MaterialDesignBody}">
+                        <StackPanel Margin="10">
+                            <StackPanel Name="stkNVByBP"/>
+                            <Button Style="{StaticResource MaterialDesignRaisedAccentButton}" Width="200" Content="Xuất báo cáo" HorizontalAlignment="Center" VerticalAlignment="Top"  Name ="btnNVByBP" Height="24" Padding="16,2" Click="btnNVByBP_Click"/>
+                        </StackPanel>
+                    </Expander>
+                    <Expander Header="Danh sách nhân viên theo phòng ban" HorizontalAlignment="Stretch" BorderThickness="1 1 2 1" BorderBrush="{DynamicResource SecondaryAccentBrush}" Foreground="{DynamicResource MaterialDesignBody}">
+                        <StackPanel Margin="10">
+                            <StackPanel Name="stkNVbyPB" />
+                            <Button Name="btnDSNVPB" Style="{StaticResource MaterialDesignRaisedAccentButton}" Width="200" Content="Xuất báo cáo" BorderThickness="1 1 2 1" BorderBrush="{DynamicResource SecondaryAccentBrush}" HorizontalAlignment="Center" VerticalAlignment="Top"  Height="24" Padding="16,2" Click="btnDSNVPB_Click"/>
+                        </StackPanel>
+                    </Expander>
+                    <Expander Header="Danh sách nhân viên theo giới tính" HorizontalAlignment="Stretch"  BorderThickness="1 1 2 1" BorderBrush="{DynamicResource SecondaryAccentBrush}" Foreground="{DynamicResource MaterialDesignBody}">
+                        <StackPanel Margin="10">
+                            <StackPanel Name="stkNVByGT" />
+                            <Button Name="btnGioiTinh" Style="{StaticResource MaterialDesignRaisedAccentButton}" Width="200" Content="Xuất báo cáo"  HorizontalAlignment="Center" VerticalAlignment="Top"  Height="24"  Padding="16,2" Click="btnGioiTinh_Click"/>
+                        </StackPanel>
+                    </Expander>
+                    <Expander Header="Danh sách nhân viên được khen thưởng" HorizontalAlignment="Stretch" BorderThickness="1 1 2 1" BorderBrush="{DynamicResource SecondaryAccentBrush}" Foreground="{DynamicResource MaterialDesignBody}">
+                        <StackPanel Margin="10">
+                            <StackPanel Name="stkNVKhenThuong"/>
+                            <Button Name="btnKhenThuong" Style="{StaticResource MaterialDesignRaisedAccentButton}" Width="200" Content="Xuất báo cáo" HorizontalAlignment="Center" VerticalAlignment="Top"  Height="24" Click="btnKhenThuong_Click"  Padding="16,2"/>
+                        </StackPanel>
+                    </Expander>
+                    <Expander Header="Danh sách nhân viên bị kỷ luật" HorizontalAlignment="Stretch" BorderThickness="1 1 2 1" BorderBrush="{DynamicResource SecondaryAccentBrush}" Foreground="{DynamicResource MaterialDesignBody}">
+                        <StackPanel Margin="10">
+                            <StackPanel Name="stkNVKiLuat" />
+                            <Button Name="btnKyLuat" Style="{StaticResource MaterialDesignRaisedAccentButton}" Width="200" Content="Xuất báo cáo" HorizontalAlignment="Center" VerticalAlignment="Top"  Height="24" Click="btnKyLuat_Click"  Padding="16,2"/>
+                        </StackPanel>
+                    </Expander>
+                    <Expander Header="Danh sách mừng sinh nhật nhân viên" HorizontalAlignment="Stretch" BorderThickness="1 1 2 1" BorderBrush="{DynamicResource SecondaryAccentBrush}" Foreground="{DynamicResource MaterialDesignBody}">
+                        <StackPanel Margin="10">
+                            <StackPanel Name="stkSNNV" />
+                            <Button Name="btnSinhNhat"  Style="{StaticResource MaterialDesignRaisedAccentButton}" Width="200" Content="Xuất báo cáo" HorizontalAlignment="Center" VerticalAlignment="Top"  Height="24" Click="btnSinhNhat_Click"  Padding="16,2"/>
+                        </StackPanel>
+                    </Expander>
+                    <Expander Header="Danh sách nhân viên nghỉ việc" HorizontalAlignment="Stretch" BorderThickness="1 1 2 1" BorderBrush="{DynamicResource SecondaryAccentBrush}" Foreground="{DynamicResource MaterialDesignBody}">
+                        <StackPanel Name="stkNVNghiViec" Margin="10">
+                            <Button Name="btnNVNghiViec"  Style="{StaticResource MaterialDesignRaisedAccentButton}" Width="200" Content="Xuất báo cáo" HorizontalAlignment="Center" VerticalAlignment="Top"  Height="24" Padding="16,2"/>
+                        </StackPanel>
+                    </Expander>
+                    <Expander Header="Danh sách nhân viên thăng chức" HorizontalAlignment="Stretch" BorderThickness="1 1 2 1" BorderBrush="{DynamicResource SecondaryAccentBrush}" Foreground="{DynamicResource MaterialDesignBody}">
+                        <StackPanel Name="stkNVThangChuc" Margin="10"/>
+                    </Expander>
+                    <Expander Header="Danh sách nhân viên thay đổi lương" HorizontalAlignment="Stretch" BorderThickness="1 1 2 1" BorderBrush="{DynamicResource SecondaryAccentBrush}" Foreground="{DynamicResource MaterialDesignBody}">
+                        <StackPanel Name="stkNVThayDoiLuong" Margin="10"/>
+                    </Expander>
+                </StackPanel>
+            </ScrollViewer>
+        </Expander>
+        <Expander Name="exKhac" Grid.Column="1" Padding="15 0 15 15" Foreground="{DynamicResource MaterialDesignBody}" IsExpanded="True" Margin="5" BorderThickness="1" BorderBrush="{DynamicResource SecondaryAccentBrush}" VerticalAlignment="Top">
+            <Expander.Header>
+                <TextBlock FontWeight="Bold" FontSize="16" >Báo cáo khác</TextBlock>
+            </Expander.Header>
+            <ScrollViewer VerticalScrollBarVisibility="Hidden" >
+                <StackPanel>
+                    <Expander Header="Bảng lương"  HorizontalAlignment="Stretch" BorderThickness="1 1 2 1" BorderBrush="{DynamicResource SecondaryAccentBrush}" Foreground="{DynamicResource MaterialDesignBody}">
+                        <StackPanel Name="std" Margin="10">
+                            <Button Name ="btnBangLuong" Content="Xuất báo cáo" HorizontalAlignment="Center" VerticalAlignment="Top" Height="24" Style="{StaticResource MaterialDesignRaisedAccentButton}" Width="200"  Padding="16,2" Click="btnNVCTY_Click"/>
+                        </StackPanel>
+                    </Expander>
+                    <Expander Header="Bảng lương theo bộ phận" HorizontalAlignment="Stretch" BorderThickness="1 1 2 1" BorderBrush="{DynamicResource SecondaryAccentBrush}" Foreground="{DynamicResource MaterialDesignBody}">
+                        <StackPanel Margin="10">
+                            <StackPanel Name="stkLuongBP"/>
+                            <Button Name="btnLuongBP" Style="{StaticResource MaterialDesignRaisedAccentButton}" Width="200" Content="Xuất báo cáo" HorizontalAlignment="Center" VerticalAlignment="Top" Height="24" Padding="16,2"/>
+                        </StackPanel>
+                    </Expander>
+                    <Expander Header="Bảng Lương theo Phòng ban" HorizontalAlignment="Stretch" BorderThickness="1 1 2 1" BorderBrush="{DynamicResource SecondaryAccentBrush}" Foreground="{DynamicResource MaterialDesignBody}">
+                        <StackPanel Margin="10">
+                            <StackPanel Name="stkLuongPB" />
+                            <Button Name="btnLuongPB" Style="{StaticResource MaterialDesignRaisedAccentButton}" Width="200" Content="Xuất báo cáo" BorderThickness="1 1 2 1" BorderBrush="{DynamicResource SecondaryAccentBrush}" HorizontalAlignment="Center" VerticalAlignment="Top"  Height="24" Padding="16,2" Click="btnDSNVPB_Click"/>
+                        </StackPanel>
+                    </Expander>
+                    <Expander Header="Hợp đồng lao động" HorizontalAlignment="Stretch" BorderThickness="1 1 2 1" BorderBrush="{DynamicResource SecondaryAccentBrush}" Foreground="{DynamicResource MaterialDesignBody}">
+                        <StackPanel Name="stkHopDong" Margin="10" >
+                            <Button Name="btnHopDong"  Style="{StaticResource MaterialDesignRaisedAccentButton}" Width="200" Content="Xuất báo cáo" HorizontalAlignment="Center" VerticalAlignment="Top"  Height="24" Padding="16,2" Click="btnHopDong_Click"/>
+                        </StackPanel>
+
+                    </Expander>
+                    <Expander Header="Thư tuyển dụng" HorizontalAlignment="Stretch" BorderThickness="1 1 2 1" BorderBrush="{DynamicResource SecondaryAccentBrush}" Foreground="{DynamicResource MaterialDesignBody}">
+                        <StackPanel Name="stkThuTuyenDung" Margin="10">
+                            <Button Name="btnThuTuyenDung"  Style="{StaticResource MaterialDesignRaisedAccentButton}" Width="200" Content="Xuất báo cáo" HorizontalAlignment="Center" VerticalAlignment="Top"  Height="24" Padding="16,2"/>
+                        </StackPanel>
+                    </Expander>
+                    <Expander Header="Sơ yếu lý lịch nhân viên" HorizontalAlignment="Stretch" BorderThickness="1 1 2 1" BorderBrush="{DynamicResource SecondaryAccentBrush}" Foreground="{DynamicResource MaterialDesignBody}">
+                        <StackPanel>
+                            <StackPanel Name="stkSoYeuLL" Margin="10"/>
+                            <Button Name="btnSoYeuLyLich" Style="{StaticResource MaterialDesignRaisedAccentButton}" Width="200"  Content="Xuất báo cáo" HorizontalAlignment="Center" VerticalAlignment="Top"  Height="24" Click="btnSoYeuLyLich_Click" Padding="16,2"/>
+                        </StackPanel>
+                    </Expander>
+
+                </StackPanel>
+            </ScrollViewer>
+        </Expander>
+    </Grid>
+</UserControl>

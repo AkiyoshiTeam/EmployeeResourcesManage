@@ -15,6 +15,8 @@ namespace Employee_Resources_Manage.Domain
         private readonly ObservableCollection<SelectableViewModel> _items1;
         private readonly ObservableCollection<SelectableViewModel> _items2;
         private readonly ObservableCollection<SelectableViewModel> _items3;
+        private readonly ObservableCollection<SelectableViewModel> _items5;
+        private readonly ObservableCollection<SelectableViewModel> _items6;
         private bool _isAllItems1Selected;
         
         public ListsAndGridsViewModel()
@@ -22,6 +24,8 @@ namespace Employee_Resources_Manage.Domain
             _items1 = CreateData1();
             _items2 = CreateData2();
             _items3 = CreateData3();
+            _items5 = CreateData5();
+            _items6 = CreateData6();
         }
 
         public bool IsAllSelected
@@ -149,6 +153,14 @@ namespace Employee_Resources_Manage.Domain
                     Code = 'C',
                     Name = "Contract",
                     Description = "Contract Setting"
+                },
+                new SelectableViewModel
+                {
+                    IsSelected=false,
+                    Icon = "ChartBar",
+                    Code = 'R',
+                    Name = "Report",
+                    Description = "Report File Export"
                 }
             };
         }
@@ -192,6 +204,62 @@ namespace Employee_Resources_Manage.Domain
 
             };
         }
+
+        private static ObservableCollection<SelectableViewModel> CreateData5()
+        {
+            return new ObservableCollection<SelectableViewModel>
+            {
+                new SelectableViewModel
+                {
+                    IsSelected=false,
+                    Icon = "CurrencyUsd",
+                    Code = 'S',
+                    Name = "Salary Calculation",
+                    Description = "Salary Calculation"
+                },
+                new SelectableViewModel
+                {
+                    IsSelected=false,
+                    Icon = "Sigma",
+                    Code = 'D',
+                    Name = "Salary Formula",
+                    Description = "Salary Formula Settings"
+                }
+            };
+        }
+
+        private static ObservableCollection<SelectableViewModel> CreateData6()
+        {
+            return new ObservableCollection<SelectableViewModel>
+            {
+                new SelectableViewModel
+                {
+                    IsSelected=false,
+                    Icon = "CalendarCheck",
+                    Code = 'D',
+                    Name = "Default",
+                    Description = "Time Attendance Default"
+                },
+                new SelectableViewModel
+                {
+                    IsSelected=false,
+                    Icon = "CalendarPlus",
+                    Code = 'D',
+                    Name = "Download",
+                    Description = "Time Attendance Download"
+                },
+                new SelectableViewModel
+                {
+                    IsSelected=false,
+                    Icon = "CalendarClock",
+                    Code = 'A',
+                    Name = "Assign Shift",
+                    Description = "Assign Shift for Employee"
+                }
+
+            };
+        }
+
         public ObservableCollection<SelectableViewModel> Items1
         {
             get { return _items1; }
@@ -207,23 +275,22 @@ namespace Employee_Resources_Manage.Domain
             get { return _items3; }
         }
 
+        public ObservableCollection<SelectableViewModel> Items5
+        {
+            get { return _items5; }
+        }
+
+        public ObservableCollection<SelectableViewModel> Items6
+        {
+            get { return _items6; }
+        }
+
         public event PropertyChangedEventHandler PropertyChanged;
 
         protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
             if (PropertyChanged != null)
                 PropertyChanged.Invoke(this, new PropertyChangedEventArgs(propertyName));
-        }
-
-        public IEnumerable<string> Foods
-        {
-            get
-            {
-                yield return "Burger";
-                yield return "Fries";
-                yield return "Shake";
-                yield return "Lettuce";
-            }
         }
     }
 }

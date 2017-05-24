@@ -171,6 +171,12 @@ namespace Employee_Resources_Manage
                 case "Company":
                     manageItemsControl2.ItemsSource = manageItems.Items3;
                     break;
+                case "Payroll":
+                    manageItemsControl2.ItemsSource = manageItems.Items5;
+                    break;
+                case "Time Attendance":
+                    manageItemsControl2.ItemsSource = manageItems.Items6;
+                    break;
             }
             MenuToggleButton.IsChecked = false;
         }
@@ -264,6 +270,22 @@ namespace Employee_Resources_Manage
                             var contractControl = new Contract();
                             tab.Content = contractControl;
                             break;
+                        case "Report":
+                            var reportControl = new BaoCao();
+                            tab.Content = reportControl;
+                            break;
+                        case "Default":
+                            var defaultControl = new DefaultTime();
+                            tab.Content = defaultControl;
+                            break;
+                        case "Download":
+                            DialogHost.Show(new DownloadSheet(), "RootDialog");
+                            return;
+                            //case "Assign Shift":
+                            //    var assignControl = new SearchEmployee();
+                            //    tab.Content = assignControl;
+                            //    break;
+
                     }
                     tab.IsSelected = true;
                     tabMain.Items.Add(tab);

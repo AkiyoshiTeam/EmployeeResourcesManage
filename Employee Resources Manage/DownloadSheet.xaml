@@ -1,0 +1,21 @@
+﻿<UserControl x:Class="Employee_Resources_Manage.DownloadSheet"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Employee_Resources_Manage"
+             xmlns:materialDesignColors="clr-namespace:MaterialDesignColors;assembly=MaterialDesignColors"
+             xmlns:wpf="clr-namespace:MaterialDesignThemes.Wpf;assembly=MaterialDesignThemes.Wpf"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             mc:Ignorable="d" 
+             Width="435" Height="150" >
+    <Grid>
+        <StackPanel VerticalAlignment="Center">
+            <TextBlock Name="tbAlert" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="{DynamicResource MaterialDesignBody}" FontSize="20" Margin="0,0,0,20" >Tải về dữ liệu từ máy chấm công?</TextBlock>
+            <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center" >
+                <Button Name="btnOK"  Style="{StaticResource MaterialDesignFlatButton}" Width="120" Margin="0 0 20 0" Click="btnOK_Click" >OK</Button>
+                <Button Style="{StaticResource MaterialDesignFlatButton}" Width="120" Margin="20 0 0 0" Command="{x:Static materialDesign:DialogHost.CloseDialogCommand}">Cancel</Button>
+            </StackPanel>
+        </StackPanel>
+    </Grid>
+</UserControl>

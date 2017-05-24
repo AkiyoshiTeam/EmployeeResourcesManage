@@ -63,5 +63,17 @@ namespace BUS
         {
             DAO.NhanVienDAO.UnLayoffNhanVien(dt);
         }
+        public static DataTable GetNhanVienByWhere(string strWhere)
+        {
+            return DAO.NhanVienDAO.GetNhanVienByWhere(strWhere);
+        }
+        public static DataTable GetNhanVienDuocKhenThuong()
+        {
+            return DAO.NhanVienDAO.GetNhanVienDuocKhenThuong();
+        }
+        public static DataTable GetNhanVienBiKyLuat()
+        {
+            return DAO.NhanVienDAO.GetNhanVienBiKyLuat();
+        }
     }
 }

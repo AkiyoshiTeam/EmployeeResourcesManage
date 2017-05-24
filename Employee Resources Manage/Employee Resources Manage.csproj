@@ -50,6 +50,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="DocX">
+      <HintPath>.\DocX.dll</HintPath>
+    </Reference>
     <Reference Include="Dragablz, Version=0.0.3.186, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Dragablz.0.0.3.186\lib\net45\Dragablz.dll</HintPath>
     </Reference>
@@ -114,8 +117,17 @@
     <Compile Include="AddMultipleEmployees.xaml.cs">
       <DependentUpon>AddMultipleEmployees.xaml</DependentUpon>
     </Compile>
+    <Compile Include="BaoCao.xaml.cs">
+      <DependentUpon>BaoCao.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Contract.xaml.cs">
       <DependentUpon>Contract.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="DefaultTime.xaml.cs">
+      <DependentUpon>DefaultTime.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="DownloadSheet.xaml.cs">
+      <DependentUpon>DownloadSheet.xaml</DependentUpon>
     </Compile>
     <Compile Include="EditEmployee.xaml.cs">
       <DependentUpon>EditEmployee.xaml</DependentUpon>
@@ -143,11 +155,19 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="BaoCao.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="ChangePassword.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Contract.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="DefaultTime.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -158,6 +178,10 @@
     <Page Include="Domain\SampleProgressDialog.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="DownloadSheet.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="EditEmployee.xaml">
       <SubType>Designer</SubType>
