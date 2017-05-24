@@ -14,7 +14,7 @@
         <c:ImageConverter x:Key="MyImageConverter"/>
         <c:MaCVConverter x:Key="MaCVConverter"/>
         <c:MaPBConverter x:Key="MaPBConverter"/>
-        <c:MaLLConverter x:Key="MaLLConverter"/>
+        <!--<c:MaLLConverter x:Key="MaLLConverter"/>-->
         <c:MaTTConverter x:Key="MaTTConverter"/>
         <c:MaGTConverter x:Key="MaGTConverter"/>
         <c:MaQHConverter x:Key="MaQHConverter"/>
@@ -98,8 +98,8 @@
                                 <TextBlock Margin="0 0 8 0" Text="{Binding MaCV, Converter={StaticResource MaCVConverter}}" Grid.Column="1" Grid.Row="3" />
                                 <TextBlock Margin="8 0 0 0" Text="Phòng Ban: " FontWeight="Bold" Grid.Row="4" />
                                 <TextBlock Margin="0 0 8 0" Text="{Binding MaPB, Converter={StaticResource MaPBConverter}}" Grid.Column="1" Grid.Row="4" />
-                                <TextBlock Margin="8 0 0 0" Text="Loại Lương: " FontWeight="Bold" Grid.Row="5" />
-                                <TextBlock Margin="0 0 8 0" Text="{Binding MaLoaiLuong, Converter={StaticResource MaLLConverter}}" Grid.Column="1" Grid.Row="5" />
+                                <TextBlock Margin="8 0 0 0" Text="Lương căn bản: " FontWeight="Bold" Grid.Row="5" />
+                                <TextBlock Margin="0 0 8 0" Text="{Binding LuongCB}" Grid.Column="1" Grid.Row="5" />
 
                                 <GridSplitter Grid.Column="1" Grid.RowSpan="6" Width="2"/>
                                 

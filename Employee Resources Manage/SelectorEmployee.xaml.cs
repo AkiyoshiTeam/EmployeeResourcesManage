@@ -95,16 +95,16 @@ namespace Employee_Resources_Manage
             cbLoaiHopDong.SelectedValuePath = "ID";
             //cbLoaiHopDong.SelectedValue = "0";
 
-            tbTemp = BUS.LoaiLuongBUS.GetLoaiLuong();
-            listLL = new List<LoaiLuong>();
-            listLL.Add(new LoaiLuong { ID = "0", Name = "Tất cả" });
-            foreach (DataRow row in tbTemp.Rows)
-            {
-                listLL.Add(new LoaiLuong { ID = row[0].ToString(), Name = row[1].ToString() });
-            }
-            cbLoaiLuong.ItemsSource = listLL;
-            cbLoaiLuong.DisplayMemberPath = "Name";
-            cbLoaiLuong.SelectedValuePath = "ID";
+            //tbTemp = BUS.LoaiLuongBUS.GetLoaiLuong();
+            //listLL = new List<LoaiLuong>();
+            //listLL.Add(new LoaiLuong { ID = "0", Name = "Tất cả" });
+            //foreach (DataRow row in tbTemp.Rows)
+            //{
+            //    listLL.Add(new LoaiLuong { ID = row[0].ToString(), Name = row[1].ToString() });
+            //}
+            //cbLoaiLuong.ItemsSource = listLL;
+            //cbLoaiLuong.DisplayMemberPath = "Name";
+            //cbLoaiLuong.SelectedValuePath = "ID";
             //cbLoaiLuong.SelectedValue = "0";
 
             tbTemp = BUS.TinhTrangBUS.GetTinhTrang();
@@ -328,22 +328,22 @@ namespace Employee_Resources_Manage
             }
             else maLHD = "";
 
-            if (tgLoaiLuong.IsChecked == true)
-            {
-                if (cbLoaiLuong.SelectedValue != null)
-                {
-                    if (cbLoaiLuong.SelectedValue.ToString() == "0")
-                    {
-                        maLL = "";
-                    }
-                    else
-                    {
-                        maLL = cbLoaiLuong.SelectedValue.ToString().Trim();
-                    }
-                }
-                else maLL = "";
-            }
-            else maLL = "";
+            //if (tgLoaiLuong.IsChecked == true)
+            //{
+            //    if (cbLoaiLuong.SelectedValue != null)
+            //    {
+            //        if (cbLoaiLuong.SelectedValue.ToString() == "0")
+            //        {
+            //            maLL = "";
+            //        }
+            //        else
+            //        {
+            //            maLL = cbLoaiLuong.SelectedValue.ToString().Trim();
+            //        }
+            //    }
+            //    else maLL = "";
+            //}
+            //else maLL = "";
 
             if (tgTinhTrang.IsChecked == true)
             {
@@ -362,7 +362,7 @@ namespace Employee_Resources_Manage
             }
             else maTT = "";
 
-            TableChoose = BUS.NhanVienBUS.GetNhanVienByElementForChoose(maBP, maPB, maLHD, maLL, maTT);
+            TableChoose = BUS.NhanVienBUS.GetNhanVienByElementForChoose(maBP, maPB, maLHD, maTT);
             dataGridChoose.DataContext = TableChoose;
             tbTotalBangChon.Text = "Total: " + TableChoose.Rows.Count.ToString();
         }

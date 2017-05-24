@@ -134,14 +134,6 @@ namespace Employee_Resources_Manage.Domain
                     Name = "Edit Employees",
                     Description = "Edit Employee Resources"
                 },
-                //new SelectableViewModel
-                //{
-                //    IsSelected=false,
-                //    Icon = "AccountMinus",
-                //    Code = 'L',
-                //    Name = "Layoff Employee",
-                //    Description = "Layoff Employee Setting"
-                //},
                 new SelectableViewModel
                 {
                     IsSelected=false,
@@ -149,8 +141,15 @@ namespace Employee_Resources_Manage.Domain
                     Code = 'L',
                     Name = "Layoff Employees",
                     Description = "Layoff Multiple Employees Setting"
+                },
+                new SelectableViewModel
+                {
+                    IsSelected=false,
+                    Icon = "FileDocumentBox",
+                    Code = 'C',
+                    Name = "Contract",
+                    Description = "Contract Setting"
                 }
-
             };
         }
 

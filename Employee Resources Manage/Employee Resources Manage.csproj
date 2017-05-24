@@ -114,11 +114,17 @@
     <Compile Include="AddMultipleEmployees.xaml.cs">
       <DependentUpon>AddMultipleEmployees.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Contract.xaml.cs">
+      <DependentUpon>Contract.xaml</DependentUpon>
+    </Compile>
     <Compile Include="EditEmployee.xaml.cs">
       <DependentUpon>EditEmployee.xaml</DependentUpon>
     </Compile>
     <Compile Include="LayoffEmployees.xaml.cs">
       <DependentUpon>LayoffEmployees.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="OrganizationTree.xaml.cs">
+      <DependentUpon>OrganizationTree.xaml</DependentUpon>
     </Compile>
     <Compile Include="QRCode.xaml.cs">
       <DependentUpon>QRCode.xaml</DependentUpon>
@@ -138,6 +144,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="ChangePassword.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Contract.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -194,6 +204,10 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="OrganizationTree.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Palette.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>

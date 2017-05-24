@@ -43,8 +43,8 @@
                         <TextBlock DockPanel.Dock="Right" HorizontalAlignment="Right">(MaPB)</TextBlock>
                     </DockPanel>
                     <DockPanel Margin="5 10">
-                        <TextBlock >06. Mã loại lương</TextBlock>
-                        <TextBlock DockPanel.Dock="Right" HorizontalAlignment="Right">(MaLoaiLuong)</TextBlock>
+                        <TextBlock >06. Lương căn bản</TextBlock>
+                        <TextBlock DockPanel.Dock="Right" HorizontalAlignment="Right">(LuongCB)</TextBlock>
                     </DockPanel>
                     <DockPanel Margin="5 10">
                         <TextBlock >07. Hình ảnh</TextBlock>
@@ -150,11 +150,12 @@
             </ScrollViewer>
         </GroupBox>
         <StackPanel Margin="50,0" Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2" VerticalAlignment="Center" Orientation="Horizontal">
-            <TextBox  VerticalAlignment="Center" HorizontalAlignment="Left" Width="250" materialDesign:HintAssist.Hint="File import" Foreground="{DynamicResource MaterialDesignBody}"></TextBox>
-            <Button Style="{StaticResource MaterialDesignFloatingActionMiniButton}" Margin="5 0">
-                <materialDesign:PackIcon Kind="Link" ToolTip="Load file Excel"/>
+            <TextBox Name="tbFile" VerticalAlignment="Center" HorizontalAlignment="Left" Width="250" materialDesign:HintAssist.Hint="File import" Foreground="{DynamicResource MaterialDesignBody}"></TextBox>
+            <Button Name="btnFile" Style="{StaticResource MaterialDesignFloatingActionMiniButton}" Margin="5 0" Click="btnFile_Click">
+                <materialDesign:PackIcon Kind="FileExcel" ToolTip="Load file Excel"/>
             </Button>
+            <Button Grid.Column="2" Grid.Row="1" Name="btnAdd" Style="{StaticResource MaterialDesignFlatButton}" Width="120" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="10" Click="btnAdd_Click">Add</Button>
         </StackPanel>
-        <Button Grid.Column="2" Grid.Row="1" Name="btnAdd" Style="{StaticResource MaterialDesignFlatButton}" Width="120" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="0">Template</Button>
+        <Button Grid.Column="2" Grid.Row="1" Name="btnTemplate" Style="{StaticResource MaterialDesignFlatButton}" Width="120" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="0">Template</Button>
     </Grid>
 </UserControl>

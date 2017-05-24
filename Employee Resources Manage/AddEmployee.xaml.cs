@@ -28,7 +28,7 @@ namespace Employee_Resources_Manage
     {
         List<PhongBan> listPB;
         List<ChucVu> listCV;
-        List<LoaiLuong> listLL;
+        //List<LoaiLuong> listLL;
         List<TinhTrang> listTT;
         List<GioiTinh> listGT;
         List<QuanHuyen> listQH;
@@ -52,6 +52,7 @@ namespace Employee_Resources_Manage
             TextFieldsViewModel tfvm = new TextFieldsViewModel();
             tbHoTen.DataContext = tfvm;
             tbCMND.DataContext = tfvm;
+            tbLCB.DataContext = tfvm;
             dpNVL.SelectedDate = DateTime.Today;
             dpNgayKyHD.SelectedDate = DateTime.Today;
 
@@ -86,16 +87,16 @@ namespace Employee_Resources_Manage
             cbChucVu.SelectedValuePath = "ID";
             cbChucVu.SelectedValue = "CV004";
 
-            tbTemp = BUS.LoaiLuongBUS.GetLoaiLuong();
-            listLL = new List<LoaiLuong>();
-            foreach (DataRow row in tbTemp.Rows)
-            {
-                listLL.Add(new LoaiLuong { ID = row[0].ToString().Trim(), Name = row[1].ToString() });
-            }
-            cbLoaiLuong.ItemsSource = listLL;
-            cbLoaiLuong.DisplayMemberPath = "Name";
-            cbLoaiLuong.SelectedValuePath = "ID";
-            cbLoaiLuong.SelectedValue = "1";
+            //tbTemp = BUS.LoaiLuongBUS.GetLoaiLuong();
+            //listLL = new List<LoaiLuong>();
+            //foreach (DataRow row in tbTemp.Rows)
+            //{
+            //    listLL.Add(new LoaiLuong { ID = row[0].ToString().Trim(), Name = row[1].ToString() });
+            //}
+            //cbLoaiLuong.ItemsSource = listLL;
+            //cbLoaiLuong.DisplayMemberPath = "Name";
+            //cbLoaiLuong.SelectedValuePath = "ID";
+            //cbLoaiLuong.SelectedValue = "1";
 
             tbTemp = BUS.TinhTrangBUS.GetTinhTrang();
             listTT = new List<TinhTrang>();
@@ -287,7 +288,7 @@ namespace Employee_Resources_Manage
             img.HorizontalAlignment = HorizontalAlignment.Center;
             try
             {
-                if (IsRefresh==false)
+                if (IsRefresh == false)
                 {
                     BitmapImage bitm = new BitmapImage();
                     bitm.BeginInit();
@@ -334,57 +335,121 @@ namespace Employee_Resources_Manage
                 {
                     if (tbATM.Text.Length > 0)
                     {
-                        if (IsMail(tbEmail.Text) == true)
+                        if (tbLCB.Text != "")
                         {
-                            if (dpNgaySinh.SelectedDate != null)
+                            if (tbEmail.Text != "")
                             {
-                                DTO.NhanVienDTO nv = new DTO.NhanVienDTO();
-                                manvLast = BUS.NhanVienBUS.GetLastNhanVien().Rows[0][0].ToString();
-                                nv.MaNV = NextID(manvLast, "NV");
-                                nv.HoTen = tbHoTen.Text;
-                                nv.NgayVaoLam = Convert.ToDateTime(dpNVL.Text);
-                                nv.MaCV = cbChucVu.SelectedValue.ToString();
-                                nv.MaPB = cbPhongBan.SelectedValue.ToString();
-                                nv.MaLoaiLuong = cbLoaiLuong.SelectedValue.ToString();
-                                if (cbHinhAnh.SelectedValue != null)
-                                    nv.HinhAnh = cbHinhAnh.SelectedValue.ToString();
-                                else nv.HinhAnh = "";
-                                nv.MaTT = Int16.Parse(cbTinhTrang.SelectedValue.ToString());
-                                DTO.ThongTinChiTietNhanVienDTO ttct = new DTO.ThongTinChiTietNhanVienDTO();
-                                ttct.MaNV = nv.MaNV;
-                                ttct.MaGT = Convert.ToBoolean(cbGioiTinh.SelectedIndex);
-                                ttct.CMND = tbCMND.Text;
-                                ttct.NgaySinh = Convert.ToDateTime(dpNgaySinh.Text);
-                                ttct.NoiSinh = tbNoiSinh.Text;
-                                ttct.DienThoai = tbDienThoai.Text;
-                                ttct.SoNha = tbSoNha.Text;
-                                ttct.Duong = tbDuong.Text;
-                                ttct.PhuongXa = tbPhuongXa.Text;
-                                ttct.QuanHuyen = cbQuanHuyen.SelectedValue.ToString();
-                                ttct.TinhTP = cbTinhTP.SelectedValue.ToString();
-                                ttct.QuocGia = cbQuocGia.SelectedValue.ToString();
-                                ttct.MaDT = cbDanToc.SelectedValue.ToString();
-                                ttct.MaTG = cbTonGiao.SelectedValue.ToString();
-                                ttct.SoTheATM = tbATM.Text;
-                                ttct.Email = tbEmail.Text;
-                                BUS.NhanVienBUS.AddNhanVien(nv, ttct);
-                                DTO.HopDongDTO hd = new DTO.HopDongDTO();
-                                mahdLast = BUS.HopDongBUS.GetLastHopDong().Rows[0][0].ToString();
-                                hd.MaHD = NextID(mahdLast, "HD");
-                                hd.MaNV = nv.MaNV;
-                                hd.MaLoaiHD = Int16.Parse(cbMaLoaiHD.SelectedValue.ToString());
-                                hd.NgayKyHD = Convert.ToDateTime(dpNgayKyHD.Text);
-                                if (dpNgayHetHan.SelectedDate != null && dpNgayHetHan.Text !="")
-                                    hd.NgayHetHan = Convert.ToDateTime(dpNgayHetHan.Text);
-                                else hd.NgayHetHan = Convert.ToDateTime("1/1/2500");
-                                hd.MaTTHD = Int16.Parse(cbMaTTHD.SelectedValue.ToString());
-                                BUS.HopDongBUS.AddHopDong(hd);
-                                RefreshField();
+                                if (IsMail(tbEmail.Text) == true)
+                                {
+                                    if (dpNgaySinh.SelectedDate != null)
+                                    {
+                                        DTO.NhanVienDTO nv = new DTO.NhanVienDTO();
+                                        manvLast = BUS.NhanVienBUS.GetLastNhanVien().Rows[0][0].ToString();
+                                        nv.MaNV = NextID(manvLast, "NV");
+                                        nv.HoTen = tbHoTen.Text;
+                                        nv.NgayVaoLam = Convert.ToDateTime(dpNVL.Text);
+                                        nv.MaCV = cbChucVu.SelectedValue.ToString();
+                                        nv.MaPB = cbPhongBan.SelectedValue.ToString();
+                                        nv.LuongCanBan = tbLCB.Text;
+                                        if (cbHinhAnh.SelectedValue != null)
+                                            nv.HinhAnh = cbHinhAnh.SelectedValue.ToString();
+                                        else nv.HinhAnh = "";
+                                        nv.MaTT = Int16.Parse(cbTinhTrang.SelectedValue.ToString());
+                                        DTO.ThongTinChiTietNhanVienDTO ttct = new DTO.ThongTinChiTietNhanVienDTO();
+                                        ttct.MaNV = nv.MaNV;
+                                        ttct.MaGT = Convert.ToBoolean(cbGioiTinh.SelectedIndex);
+                                        ttct.CMND = tbCMND.Text;
+                                        ttct.NgaySinh = Convert.ToDateTime(dpNgaySinh.Text);
+                                        ttct.NoiSinh = tbNoiSinh.Text;
+                                        ttct.DienThoai = tbDienThoai.Text;
+                                        ttct.SoNha = tbSoNha.Text;
+                                        ttct.Duong = tbDuong.Text;
+                                        ttct.PhuongXa = tbPhuongXa.Text;
+                                        ttct.QuanHuyen = cbQuanHuyen.SelectedValue.ToString();
+                                        ttct.TinhTP = cbTinhTP.SelectedValue.ToString();
+                                        ttct.QuocGia = cbQuocGia.SelectedValue.ToString();
+                                        ttct.MaDT = cbDanToc.SelectedValue.ToString();
+                                        ttct.MaTG = cbTonGiao.SelectedValue.ToString();
+                                        ttct.SoTheATM = tbATM.Text;
+                                        ttct.Email = tbEmail.Text;
+                                        BUS.NhanVienBUS.AddNhanVien(nv, ttct);
+                                        DTO.HopDongDTO hd = new DTO.HopDongDTO();
+                                        mahdLast = BUS.HopDongBUS.GetLastHopDong().Rows[0][0].ToString();
+                                        hd.MaHD = NextID(mahdLast, "HD");
+                                        hd.MaNV = nv.MaNV;
+                                        hd.MaLoaiHD = Int16.Parse(cbMaLoaiHD.SelectedValue.ToString());
+                                        hd.NgayKyHD = Convert.ToDateTime(dpNgayKyHD.Text);
+                                        if (dpNgayHetHan.SelectedDate != null && dpNgayHetHan.Text != "")
+                                            hd.NgayHetHan = Convert.ToDateTime(dpNgayHetHan.Text);
+                                        else hd.NgayHetHan = Convert.ToDateTime("1/1/2500");
+                                        hd.MaTTHD = Int16.Parse(cbMaTTHD.SelectedValue.ToString());
+                                        BUS.HopDongBUS.AddHopDong(hd);
+                                        RefreshField();
+                                    }
+                                }
+                                else
+                                {
+                                    dialogHostWarning.DataContext = "Chuỗi không đúng định dạng Email!";
+                                    dialogHostWarning.IsOpen = true;
+                                }
+                            }
+                            else
+                            {
+                                if (dpNgaySinh.SelectedDate != null)
+                                {
+                                    DTO.NhanVienDTO nv = new DTO.NhanVienDTO();
+                                    manvLast = BUS.NhanVienBUS.GetLastNhanVien().Rows[0][0].ToString();
+                                    nv.MaNV = NextID(manvLast, "NV");
+                                    nv.HoTen = tbHoTen.Text;
+                                    nv.NgayVaoLam = Convert.ToDateTime(dpNVL.Text);
+                                    nv.MaCV = cbChucVu.SelectedValue.ToString();
+                                    nv.MaPB = cbPhongBan.SelectedValue.ToString();
+                                    nv.LuongCanBan = tbLCB.Text;
+                                    if (cbHinhAnh.SelectedValue != null)
+                                        nv.HinhAnh = cbHinhAnh.SelectedValue.ToString();
+                                    else nv.HinhAnh = "";
+                                    nv.MaTT = Int16.Parse(cbTinhTrang.SelectedValue.ToString());
+                                    DTO.ThongTinChiTietNhanVienDTO ttct = new DTO.ThongTinChiTietNhanVienDTO();
+                                    ttct.MaNV = nv.MaNV;
+                                    ttct.MaGT = Convert.ToBoolean(cbGioiTinh.SelectedIndex);
+                                    ttct.CMND = tbCMND.Text;
+                                    ttct.NgaySinh = Convert.ToDateTime(dpNgaySinh.Text);
+                                    ttct.NoiSinh = tbNoiSinh.Text;
+                                    ttct.DienThoai = tbDienThoai.Text;
+                                    ttct.SoNha = tbSoNha.Text;
+                                    ttct.Duong = tbDuong.Text;
+                                    ttct.PhuongXa = tbPhuongXa.Text;
+                                    ttct.QuanHuyen = cbQuanHuyen.SelectedValue.ToString();
+                                    ttct.TinhTP = cbTinhTP.SelectedValue.ToString();
+                                    ttct.QuocGia = cbQuocGia.SelectedValue.ToString();
+                                    ttct.MaDT = cbDanToc.SelectedValue.ToString();
+                                    ttct.MaTG = cbTonGiao.SelectedValue.ToString();
+                                    ttct.SoTheATM = tbATM.Text;
+                                    ttct.Email = tbEmail.Text;
+                                    BUS.NhanVienBUS.AddNhanVien(nv, ttct);
+                                    DTO.HopDongDTO hd = new DTO.HopDongDTO();
+                                    mahdLast = BUS.HopDongBUS.GetLastHopDong().Rows[0][0].ToString();
+                                    hd.MaHD = NextID(mahdLast, "HD");
+                                    hd.MaNV = nv.MaNV;
+                                    hd.MaLoaiHD = Int16.Parse(cbMaLoaiHD.SelectedValue.ToString());
+                                    hd.NgayKyHD = Convert.ToDateTime(dpNgayKyHD.Text);
+                                    if (dpNgayHetHan.SelectedDate != null && dpNgayHetHan.Text != "")
+                                        hd.NgayHetHan = Convert.ToDateTime(dpNgayHetHan.Text);
+                                    else hd.NgayHetHan = Convert.ToDateTime("1/1/2500");
+                                    hd.MaTTHD = Int16.Parse(cbMaTTHD.SelectedValue.ToString());
+                                    BUS.HopDongBUS.AddHopDong(hd);
+                                    RefreshField();
+                                }
+                                else
+                                {
+                                    dialogHostWarning.DataContext = "Hãy chọn Ngày Sinh!";
+                                    dialogHostWarning.IsOpen = true;
+                                }
                             }
                         }
                         else
                         {
-                            dialogHostWarning.DataContext = "Chuỗi không đúng định dạng Email!";
+                            dialogHostWarning.DataContext = "Lương không được bỏ trống";
                             dialogHostWarning.IsOpen = true;
                         }
                     }
@@ -395,7 +460,8 @@ namespace Employee_Resources_Manage
                     dialogHostWarning.IsOpen = true;
                 }
             }
-            else {
+            else
+            {
                 dialogHostWarning.DataContext = "Họ tên không được bỏ trống!";
                 dialogHostWarning.IsOpen = true;
             }
@@ -482,6 +548,6 @@ namespace Employee_Resources_Manage
             dpNgayKyHD.SelectedDateChanged += DpNgayKyHD_SelectedDateChanged;
         }
 
-        
+
     }
 }

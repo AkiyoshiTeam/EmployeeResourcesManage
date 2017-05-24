@@ -260,6 +260,10 @@ namespace Employee_Resources_Manage
                                 tab.Content = selectorControlTemp2;
                             }
                             break;
+                        case "Contract":
+                            var contractControl = new Contract();
+                            tab.Content = contractControl;
+                            break;
                     }
                     tab.IsSelected = true;
                     tabMain.Items.Add(tab);

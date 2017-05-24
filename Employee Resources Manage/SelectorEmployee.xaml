@@ -134,10 +134,6 @@
                         <ComboBox Name="cbLoaiHopDong" Style="{StaticResource MaterialDesignFloatingHintComboBox}" materialDesign:HintAssist.Hint="Hợp đồng" Foreground="{DynamicResource MaterialDesignBody}" SelectionChanged="ComboBoxElement_SelectionChange"/>
                         <ToggleButton Name="tgLoaiHopDong"  Margin="10,0,20,3" IsChecked="False" Foreground="{DynamicResource MaterialDesignBody}" Checked="ToggleElementChecked_Checked" Unchecked="ToggleElementUnChecked_Checked" VerticalAlignment="Bottom"/>
                     </StackPanel>
-                    <StackPanel Orientation="Horizontal">
-                        <ComboBox Name="cbLoaiLuong" Style="{StaticResource MaterialDesignFloatingHintComboBox}" materialDesign:HintAssist.Hint="Loại lương" Foreground="{DynamicResource MaterialDesignBody}" SelectionChanged="ComboBoxElement_SelectionChange"/>
-                        <ToggleButton Name="tgLoaiLuong"  Margin="10,0,20,3" IsChecked="False" Foreground="{DynamicResource MaterialDesignBody}" Checked="ToggleElementChecked_Checked" Unchecked="ToggleElementUnChecked_Checked" VerticalAlignment="Bottom"/>
-                    </StackPanel>
                     <StackPanel Orientation="Horizontal" >
                         <ComboBox Name="cbTinhTrang" Style="{StaticResource MaterialDesignFloatingHintComboBox}" materialDesign:HintAssist.Hint="Tình trạng" Foreground="{DynamicResource MaterialDesignBody}" SelectionChanged="ComboBoxElement_SelectionChange"/>
                         <ToggleButton Name="tgTinhTrang" Margin="10,0,20,3" IsChecked="False" Foreground="{DynamicResource MaterialDesignBody}" Checked="ToggleElementChecked_Checked" Unchecked="ToggleElementUnChecked_Checked" VerticalAlignment="Bottom"/>

@@ -84,25 +84,25 @@ namespace Employee_Resources_Manage
         }
     }
 
-    public class MaLLConverter : IValueConverter
-    {
-        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
-        {
-            try
-            {
-                return LayoffEmployees.listLL.Find(x => x.ID.Contains((string)value)).Name;
-            }
-            catch
-            {
-                return "";
-            }
-        }
+    //public class MaLLConverter : IValueConverter
+    //{
+    //    public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+    //    {
+    //        try
+    //        {
+    //            return LayoffEmployees.listLL.Find(x => x.ID.Contains((string)value)).Name;
+    //        }
+    //        catch
+    //        {
+    //            return "";
+    //        }
+    //    }
 
-        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
-        {
-            throw new NotImplementedException();
-        }
-    }
+    //    public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+    //    {
+    //        throw new NotImplementedException();
+    //    }
+    //}
 
     public class MaTTConverter : IValueConverter
     {
@@ -291,7 +291,7 @@ namespace Employee_Resources_Manage
         DataTable dt;
         public static List<ChucVu> listCV = new List<ChucVu>();
         public static List<PhongBan> listPB = new List<PhongBan>();
-        public static List<LoaiLuong> listLL = new List<LoaiLuong>();
+        //public static List<LoaiLuong> listLL = new List<LoaiLuong>();
         public static List<TinhTrang> listTT = new List<TinhTrang>();
         public static List<GioiTinh> listGT = new List<GioiTinh>();
         public static List<QuanHuyen> listQH = new List<QuanHuyen>();
@@ -330,11 +330,11 @@ namespace Employee_Resources_Manage
                         listPB.Add(new PhongBan { ID = row[0].ToString(), Name = row[1].ToString() });
                     }
 
-                    tbTemp = BUS.LoaiLuongBUS.GetLoaiLuong();
-                    foreach (DataRow row in tbTemp.Rows)
-                    {
-                        listLL.Add(new LoaiLuong { ID = row[0].ToString(), Name = row[1].ToString() });
-                    }
+                    //tbTemp = BUS.LoaiLuongBUS.GetLoaiLuong();
+                    //foreach (DataRow row in tbTemp.Rows)
+                    //{
+                    //    listLL.Add(new LoaiLuong { ID = row[0].ToString(), Name = row[1].ToString() });
+                    //}
 
                     tbTemp = BUS.TinhTrangBUS.GetTinhTrang();
                     foreach (DataRow row in tbTemp.Rows)
@@ -430,15 +430,15 @@ namespace Employee_Resources_Manage
                                 };
                                 dataGridSelectedNV.Columns.Add(col);
                                 break;
-                            case "MaLoaiLuong":
-                                col = new MaterialDataGridTextColumn();
-                                col.Header = "LoaiLuong";
-                                col.Binding = new Binding(dt.Columns[i].ColumnName.Trim())
-                                {
-                                    Converter = new MaLLConverter()
-                                };
-                                dataGridSelectedNV.Columns.Add(col);
-                                break;
+                            //case "MaLoaiLuong":
+                            //    col = new MaterialDataGridTextColumn();
+                            //    col.Header = "LoaiLuong";
+                            //    col.Binding = new Binding(dt.Columns[i].ColumnName.Trim())
+                            //    {
+                            //        Converter = new MaLLConverter()
+                            //    };
+                            //    dataGridSelectedNV.Columns.Add(col);
+                            //    break;
                             case "MaTT":
                                 col = new MaterialDataGridTextColumn();
                                 col.Header = "TinhTrang";
@@ -552,7 +552,7 @@ namespace Employee_Resources_Manage
                     layOff = true;
                     DialogWarning dlgWarning = new DialogWarning();
                     dlgWarning.Acc = "Visible";
-                    dlgWarning.Content = "Bạn có chắc muốn sa thải tất cả?";
+                    dlgWarning.Content = "Bạn có chắc muốn sa thải " + dt.Rows.Count.ToString() + " nhân viên?";
                     dialogHostWarning.DataContext = dlgWarning;
                     dialogHostWarning.IsOpen = true;
                 }
@@ -577,7 +577,7 @@ namespace Employee_Resources_Manage
                     layOff = false;
                     DialogWarning dlgWarning = new DialogWarning();
                     dlgWarning.Acc = "Visible";
-                    dlgWarning.Content = "Bạn muốn hồi phục nhân viên?";
+                    dlgWarning.Content = "Bạn muốn hồi phục " + dt.Rows.Count.ToString() + " nhân viên?";
                     dialogHostWarning.DataContext = dlgWarning;
                     dialogHostWarning.IsOpen = true;
                 }

@@ -26,9 +26,9 @@ namespace BUS
             return DAO.NhanVienDAO.GetNhanVienForChoose();
         }
 
-        public static DataTable GetNhanVienByElementForChoose(string mabp, string mapb, string malhd, string mall, string matt)
+        public static DataTable GetNhanVienByElementForChoose(string mabp, string mapb, string malhd, string matt)
         {
-            return DAO.NhanVienDAO.GetNhanVienByElementForChoose(mabp, mapb, malhd, mall, matt);
+            return DAO.NhanVienDAO.GetNhanVienByElementForChoose(mabp, mapb, malhd, matt);
         }
 
         public static DataSet GetNhanVienByElementForEdit(DataTable tbTemp)
@@ -46,6 +46,10 @@ namespace BUS
         public static void AddNhanVien(NhanVienDTO nv, ThongTinChiTietNhanVienDTO ttct)
         {
             DAO.NhanVienDAO.AddNhanVien(nv, ttct);
+        }
+        public static void AddNhanVienMulti(NhanVienDTO nv, ThongTinChiTietNhanVienDTO ttct)
+        {
+            DAO.NhanVienDAO.AddNhanVienMulti(nv, ttct);
         }
         public static DataTable GetNhanVienByElementForLayoff(DataTable tbTemp)
         {

@@ -86,15 +86,15 @@ namespace Employee_Resources_Manage
                     cbChucVu.SelectedValuePath = "ID";
 
 
-                    tbTemp = BUS.LoaiLuongBUS.GetLoaiLuong();
-                    listLL = new List<LoaiLuong>();
-                    foreach (DataRow row in tbTemp.Rows)
-                    {
-                        listLL.Add(new LoaiLuong { ID = row[0].ToString(), Name = row[1].ToString() });
-                    }
-                    cbLoaiLuong.ItemsSource = listLL;
-                    cbLoaiLuong.DisplayMemberPath = "Name";
-                    cbLoaiLuong.SelectedValuePath = "ID";
+                    //tbTemp = BUS.LoaiLuongBUS.GetLoaiLuong();
+                    //listLL = new List<LoaiLuong>();
+                    //foreach (DataRow row in tbTemp.Rows)
+                    //{
+                    //    listLL.Add(new LoaiLuong { ID = row[0].ToString(), Name = row[1].ToString() });
+                    //}
+                    //cbLoaiLuong.ItemsSource = listLL;
+                    //cbLoaiLuong.DisplayMemberPath = "Name";
+                    //cbLoaiLuong.SelectedValuePath = "ID";
 
                     tbTemp = BUS.TinhTrangBUS.GetTinhTrang();
                     listTT = new List<TinhTrang>();
@@ -224,15 +224,15 @@ namespace Employee_Resources_Manage
                                 colcb.SelectedValueBinding = new Binding(DataSetEdit.Tables[0].Columns[i].ColumnName.Trim());
                                 dataGridSelectedNV.Columns.Add(colcb);
                                 break;
-                            case "MaLoaiLuong":
-                                colcb = new MaterialDataGridComboBoxColumn();
-                                colcb.Header = DataSetEdit.Tables[0].Columns[i].ColumnName.Trim();
-                                colcb.ItemsSource = listLL;
-                                colcb.DisplayMemberPath = "Name";
-                                colcb.SelectedValuePath = "ID";
-                                colcb.SelectedValueBinding = new Binding(DataSetEdit.Tables[0].Columns[i].ColumnName.Trim());
-                                dataGridSelectedNV.Columns.Add(colcb);
-                                break;
+                            //case "MaLoaiLuong":
+                            //    colcb = new MaterialDataGridComboBoxColumn();
+                            //    colcb.Header = DataSetEdit.Tables[0].Columns[i].ColumnName.Trim();
+                            //    colcb.ItemsSource = listLL;
+                            //    colcb.DisplayMemberPath = "Name";
+                            //    colcb.SelectedValuePath = "ID";
+                            //    colcb.SelectedValueBinding = new Binding(DataSetEdit.Tables[0].Columns[i].ColumnName.Trim());
+                            //    dataGridSelectedNV.Columns.Add(colcb);
+                            //    break;
                             case "MaTT":
                                 colcb = new MaterialDataGridComboBoxColumn();
                                 colcb.Header = DataSetEdit.Tables[0].Columns[i].ColumnName.Trim();
@@ -371,9 +371,45 @@ namespace Employee_Resources_Manage
         {
             if (MainWindow.selectedTableStatic.Rows.Count > 0)
             {
-                if (BUS.NhanVienBUS.UpdateNhanVienByElementForEdit(DataSetEdit.Tables[0], DataSetEdit.Tables[1]))
-                    MessageBox.Show("Update complete");
-                else MessageBox.Show("Update fail");
+                bool isAllowUpdateHoTen = true;
+                bool isAllowUpdateLuong = true;
+                bool isAllowUpdateCMND = true;
+                for (int i =0; i<DataSetEdit.Tables[0].Rows.Count; i++)
+                {
+                    object valueHT = DataSetEdit.Tables[0].Rows[i]["HoTen"];
+                    object valueL = DataSetEdit.Tables[0].Rows[i]["LuongCB"];
+                    object valueCMND = DataSetEdit.Tables[1].Rows[i]["CMND"];
+                    if (valueHT == DBNull.Value || valueHT.ToString() == "")
+                    {
+                        isAllowUpdateHoTen = false;
+                        break;
+                    }
+                    if (valueL == DBNull.Value || valueL.ToString() == "")
+                    {
+                        isAllowUpdateLuong = false;
+                        break;
+                    }
+                    if (valueCMND == DBNull.Value || valueCMND.ToString() == "")
+                    {
+                        isAllowUpdateCMND = false;
+                        break;
+                    }
+                }
+                if (isAllowUpdateHoTen)
+                {
+                    if (isAllowUpdateLuong)
+                    {
+                        if (isAllowUpdateCMND)
+                        {
+                            if (BUS.NhanVienBUS.UpdateNhanVienByElementForEdit(DataSetEdit.Tables[0], DataSetEdit.Tables[1]))
+                                MessageBox.Show("Update complete");
+                            else MessageBox.Show("Update fail");
+                        }
+                        else MessageBox.Show("Kiểm tra lại CMND, không được bỏ trống!!");
+                    }
+                    else MessageBox.Show("Kiểm tra lại lương căn bản, không được bỏ trống!!");
+                }
+                else MessageBox.Show("Kiểm tra lại họ tên, không được bỏ trống!!");
             }
         }
 
