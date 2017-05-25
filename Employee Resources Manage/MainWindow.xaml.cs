@@ -95,6 +95,13 @@ namespace Employee_Resources_Manage
         public string ID { get; set; }
     }
 
+    public class DialogWarning
+    {
+        string acc;
+        string content;
+        public string Acc { get => acc; set => acc = value; }
+        public string Content { get => content; set => content = value; }
+    }
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>

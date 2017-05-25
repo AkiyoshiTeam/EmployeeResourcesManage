@@ -33,7 +33,7 @@ namespace Employee_Resources_Manage
         private void btnOK_Click(object sender, RoutedEventArgs e)
         {
             OpenFileDialog fopen = new OpenFileDialog();
-            fopen.Filter = "Tất cả các tệp|*.*|Excel|*.xlsx";
+            fopen.Filter = "Excel|*.xlsx";
             fopen.ShowDialog();
             if (fopen.FileName != "")
             {
@@ -46,7 +46,9 @@ namespace Employee_Resources_Manage
                     sheet = wb.Sheets[1];
                     Excel.Range range = sheet.UsedRange;
                     DTO.ChamCongDTO chamCong = new DTO.ChamCongDTO();
-                    string maccLast = BUS.ChamCongBUS.GetLastChamCong().Rows[0][0].ToString();
+                    string maccLast = "";
+                    if (BUS.ChamCongBUS.GetLastChamCong().Rows.Count>0)
+                        maccLast = BUS.ChamCongBUS.GetLastChamCong().Rows[0][0].ToString();
                     chamCong.MaChamCong = NextID(maccLast, "CC");
                     chamCong.Thang = Convert.ToInt16(range.Cells[2, 3].Text.ToString());
                     chamCong.Nam = Convert.ToInt16(range.Cells[2, 4].Text.ToString());

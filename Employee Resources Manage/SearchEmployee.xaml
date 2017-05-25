@@ -21,10 +21,10 @@
     <materialDesign:DialogHost Name="dialogHost" DialogClosing="dialogHost_DialogClosing" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2">
         <materialDesign:DialogHost.DialogContent>
             <StackPanel Margin="16">
-                <TextBlock Margin="0 8 0 0" HorizontalAlignment="Stretch" Text="{Binding}" FontWeight="Bold" FontSize="14"/>
-                <StackPanel Orientation="Horizontal" HorizontalAlignment="Right"  >
+                <TextBlock Margin="0 8" HorizontalAlignment="Center" Text="{Binding}" FontWeight="Bold" FontSize="14"/>
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
                     <Button Style="{StaticResource MaterialDesignFlatButton}"
-                                        IsDefault="True"
+                                        IsDefault="True" 
                                         Margin="0 8 8 0"
                                         Command="materialDesign:DialogHost.CloseDialogCommand">
                         <Button.CommandParameter>
@@ -34,7 +34,7 @@
                     </Button>
                     <Button Style="{StaticResource MaterialDesignFlatButton}"
                                         IsCancel="True"
-                                        Margin="0 8 8 0"
+                                        Margin="8 8 0 0"
                                         Command="materialDesign:DialogHost.CloseDialogCommand">
                         <Button.CommandParameter>
                             <system:Boolean>False</system:Boolean>

@@ -141,6 +141,9 @@
     <Compile Include="QRCode.xaml.cs">
       <DependentUpon>QRCode.xaml</DependentUpon>
     </Compile>
+    <Compile Include="SalaryCalculating.xaml.cs">
+      <DependentUpon>SalaryCalculating.xaml</DependentUpon>
+    </Compile>
     <Compile Include="SearchEmployee.xaml.cs">
       <DependentUpon>SearchEmployee.xaml</DependentUpon>
     </Compile>
@@ -241,6 +244,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="QRCode.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="SalaryCalculating.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

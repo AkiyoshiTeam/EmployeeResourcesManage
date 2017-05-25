@@ -153,3 +153,5 @@ C:\Users\mjnht\Desktop\Project Employee Manager\EmployeeResourcesManage\Employee
 C:\Users\mjnht\Desktop\Project Employee Manager\EmployeeResourcesManage\Employee Resources Manage\obj\Debug\BaoCao.g.cs
 C:\Users\mjnht\Desktop\Project Employee Manager\EmployeeResourcesManage\Employee Resources Manage\bin\Debug\DocX.dll
 C:\Users\mjnht\Desktop\Project Employee Manager\EmployeeResourcesManage\Employee Resources Manage\obj\Debug\BaoCao.baml
+C:\Users\mjnht\Desktop\Project Employee Manager\EmployeeResourcesManage\Employee Resources Manage\obj\Debug\SalaryCalculating.g.cs
+C:\Users\mjnht\Desktop\Project Employee Manager\EmployeeResourcesManage\Employee Resources Manage\obj\Debug\SalaryCalculating.baml

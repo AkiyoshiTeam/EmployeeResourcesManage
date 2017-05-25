@@ -17,10 +17,10 @@ namespace DAO
     {
         public static SqlCommandBuilder cbEdit;
         public static SqlCommandBuilder cbEditCT;
-        public static SqlCommandBuilder cbLayoff;
+        //public static SqlCommandBuilder cbLayoff;
         public static SqlDataAdapter daEdit;
         public static SqlDataAdapter daEditCT;
-        public static SqlDataAdapter daLayoff;
+        //public static SqlDataAdapter daLayoff;
         public static DataTable GetNhanVien(TreesSearchModel TreeSearchViewModel)
         {
             DataTable tb = new DataTable();
@@ -178,7 +178,6 @@ namespace DAO
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message);
                 MessageBox.Show(ex.Message);
             }
         }
@@ -479,7 +478,7 @@ namespace DAO
         public static DataTable GetNhanVienBPPB(string where)
         {
             DataTable tb = new DataTable();
-            string query = @"Select nv.MaNV as 'Mã nhân viên', nv.HoTen as 'Họ tên' from NhanVien nv join PhongBan pb on nv.MaPB=pb.MaPB join BoPhan bp on pb.MaBP=bp.MaBP ";
+            string query = @"Select nv.MaNV as 'Mã nhân viên', nv.HoTen as 'Họ tên', ttnv.TenTT as 'Tình trạng nhân viên' from NhanVien nv join PhongBan pb on nv.MaPB=pb.MaPB join BoPhan bp on pb.MaBP=bp.MaBP join TinhTrangNhanVien ttnv on nv.MaTT=ttnv.MaTT ";
             query += where;
             DataProvider dataProvider = new DataProvider();
             try

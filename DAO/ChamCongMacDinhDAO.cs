@@ -13,7 +13,7 @@ namespace DAO
         public static DataTable GetDefault()
         {
             DataTable tb = new DataTable();
-            string query = "Select nv.MaNV, nv.HoTen, cv.TenCV From NhanVien nv join ChucVu cv on nv.MaCV = cv.MaCV Where nv.MaNV IN (select ccmd.MaNV from ChamCongMacDinh ccmd)";
+            string query = "Select nv.MaNV as 'Mã nhân viên', nv.HoTen as 'Họ tên' From NhanVien nv Where nv.MaNV IN (select ccmd.MaNV from ChamCongMacDinh ccmd)";
 
             DataProvider dataProvider = new DataProvider();
             try
@@ -36,7 +36,7 @@ namespace DAO
         public static DataTable GetNotDefault()
         {
             DataTable tb = new DataTable();
-            string query = "Select nv.MaNV, nv.HoTen, cv.TenCV From NhanVien nv join ChucVu cv on nv.MaCV = cv.MaCV Where nv.MaNV NOT IN (select ccmd.MaNV from ChamCongMacDinh ccmd) ";
+            string query = "Select nv.MaNV as 'Mã nhân viên', nv.HoTen as 'Họ tên' From NhanVien nv  Where nv.MaNV NOT IN (select ccmd.MaNV from ChamCongMacDinh ccmd) ";
 
             DataProvider dataProvider = new DataProvider();
             try

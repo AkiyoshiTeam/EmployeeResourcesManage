@@ -18,13 +18,13 @@
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </UserControl.Resources>
-    <materialDesign:DialogHost Name="dialogHost" DialogClosing="dialogHost_DialogClosing" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2">
+    <materialDesign:DialogHost Name="dialogHostWarning" DialogClosing="dialogHost_DialogClosing" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2" >
         <materialDesign:DialogHost.DialogContent>
             <StackPanel Margin="16">
-                <TextBlock Margin="0 8 0 0" HorizontalAlignment="Stretch" Text="{Binding}" FontWeight="Bold" FontSize="14"/>
-                <StackPanel Orientation="Horizontal" HorizontalAlignment="Right"  >
+                <TextBlock Margin="0 8" HorizontalAlignment="Center" Text="{Binding Content}" FontWeight="Bold" FontSize="14"/>
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center"  >
                     <Button Style="{StaticResource MaterialDesignFlatButton}"
-                                        IsDefault="True"
+                                        IsDefault="True" IsEnabled="{Binding Acc}"
                                         Margin="0 8 8 0"
                                         Command="materialDesign:DialogHost.CloseDialogCommand">
                         <Button.CommandParameter>
@@ -34,7 +34,7 @@
                     </Button>
                     <Button Style="{StaticResource MaterialDesignFlatButton}"
                                         IsCancel="True"
-                                        Margin="0 8 8 0"
+                                        Margin="8 8 0 0"
                                         Command="materialDesign:DialogHost.CloseDialogCommand">
                         <Button.CommandParameter>
                             <system:Boolean>False</system:Boolean>
@@ -94,28 +94,29 @@
                     </DataGrid>
                     <ScrollViewer Grid.Column="1" VerticalScrollBarVisibility="Auto">
                         <StackPanel>
-                            <Expander Name="exSua" VerticalAlignment="Top" IsExpanded="True" Header="Chỉnh sửa">
+                            <Expander Name="exSua" VerticalAlignment="Top" IsExpanded="True" Header="Chỉnh sửa" IsEnabled="false">
                                 <StackPanel Margin="40 0">
                                     <TextBox Name="tbMa" Style="{StaticResource MaterialDesignFloatingHintTextBox}" materialDesign:HintAssist.Hint="Mã" IsReadOnly="True" />
                                     <TextBox Name="tbTen" Style="{StaticResource MaterialDesignFloatingHintTextBox}" materialDesign:HintAssist.Hint="Tên" MaxLength="49"/>
                                     <TextBox Name="tbViTri" Style="{StaticResource MaterialDesignFloatingHintTextBox}" materialDesign:HintAssist.Hint="Vị trí" MaxLength="99"/>
-                                    <ComboBox Name="cbTruong" Style="{StaticResource MaterialDesignFloatingHintComboBox}" IsEditable="True" materialDesign:HintAssist.Hint="Chủ Trưởng"
+                                    <ComboBox Name="cbTruong" Style="{StaticResource MaterialDesignFloatingHintComboBox}" IsEditable="True" materialDesign:HintAssist.Hint="Chủ trưởng"
                                               DisplayMemberPath="Họ tên"  
                                               SelectedValuePath="Mã nhân viên" />
-                                    <Button Name="btnSua" Style="{StaticResource MaterialDesignFlatButton}" Width="120" Content="Update" HorizontalAlignment="Center" Margin="10"/>
+                                    <Button Name="btnSua" Style="{StaticResource MaterialDesignFlatButton}" Width="120" Content="Update" HorizontalAlignment="Center" Margin="10" Click="btnSua_Click"/>
                                 </StackPanel>
                             </Expander>
-                            <Expander Name="exThem" VerticalAlignment="Top" Header="Thêm phòng ban" >
+                            <Expander Name="exThem" VerticalAlignment="Top" Header="Thêm bộ phận" >
                                 <StackPanel Margin="40 0">
                                     <TextBox Name="tbMaNew" Style="{StaticResource MaterialDesignFloatingHintTextBox}" materialDesign:HintAssist.Hint="Mã mới" IsReadOnly="True" />
                                     <TextBox Name="tbTenNew" Style="{StaticResource MaterialDesignFloatingHintTextBox}" materialDesign:HintAssist.Hint="Tên mới" MaxLength="49"/>
                                     <TextBox Name="tbViTriNew" Style="{StaticResource MaterialDesignFloatingHintTextBox}" materialDesign:HintAssist.Hint="Vị trí" MaxLength="99"/>
-                                    <Button Name="btnThem" Style="{StaticResource MaterialDesignFlatButton}" Width="120" Content="Add New" HorizontalAlignment="Center" Margin="10"/>
+                                    <Button Name="btnThem" Style="{StaticResource MaterialDesignFlatButton}" Width="120" Content="Add New" HorizontalAlignment="Center" Margin="10" Click="btnThem_Click"/>
                                 </StackPanel>
                             </Expander>
-                            <Expander Name="exXoa" VerticalAlignment="Top" Header="Ngừng hoạt động bộ phận">
+                            <Expander Name="exXoa" VerticalAlignment="Top" Header="Hoạt động bộ phận" IsEnabled="false">
                                 <StackPanel Margin="40 0">
-                                    <Button Name="btnXoa" Style="{StaticResource MaterialDesignFlatButton}" Width="120" Content="Shutdown" HorizontalAlignment="Center"/>
+                                    <TextBlock Name="tbHoatDong" HorizontalAlignment="Center" FontSize="18" Foreground="{DynamicResource MaterialDesignBody}">Ngừng hoạt động</TextBlock>
+                                    <Button Name="btnXoa" Style="{StaticResource MaterialDesignFlatButton}" Width="120" Content="Shutdown" HorizontalAlignment="Center" Click="btnXoa_Click"/>
                                 </StackPanel>
                             </Expander>
                         </StackPanel>

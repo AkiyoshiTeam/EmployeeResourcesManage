@@ -214,8 +214,8 @@ namespace Employee_Resources_Manage.Domain
                     IsSelected=false,
                     Icon = "CurrencyUsd",
                     Code = 'S',
-                    Name = "Salary Calculation",
-                    Description = "Salary Calculation"
+                    Name = "Salary Calculating",
+                    Description = "Employees Salary Calculating"
                 },
                 new SelectableViewModel
                 {

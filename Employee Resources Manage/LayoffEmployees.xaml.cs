@@ -103,7 +103,7 @@ namespace Employee_Resources_Manage
     //        throw new NotImplementedException();
     //    }
     //}
-
+    
     public class MaTTConverter : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
@@ -533,13 +533,6 @@ namespace Employee_Resources_Manage
 
         }
 
-        public class DialogWarning
-        {
-            string acc;
-            string content;
-            public string Acc { get => acc; set => acc = value; }
-            public string Content { get => content; set => content = value; }
-        }
 
         bool layOff = true;
 
@@ -551,7 +544,7 @@ namespace Employee_Resources_Manage
                 {
                     layOff = true;
                     DialogWarning dlgWarning = new DialogWarning();
-                    dlgWarning.Acc = "Visible";
+                    dlgWarning.Acc = "true";
                     dlgWarning.Content = "Bạn có chắc muốn sa thải " + dt.Rows.Count.ToString() + " nhân viên?";
                     dialogHostWarning.DataContext = dlgWarning;
                     dialogHostWarning.IsOpen = true;
@@ -560,7 +553,7 @@ namespace Employee_Resources_Manage
             else
             {
                 DialogWarning dlgWarning = new DialogWarning();
-                dlgWarning.Acc = "Hidden";
+                dlgWarning.Acc = "false";
                 dlgWarning.Content = "Không có nhân viên nào được chọn!!!";
                 dialogHostWarning.DataContext = dlgWarning;
                 dialogHostWarning.IsOpen = true;

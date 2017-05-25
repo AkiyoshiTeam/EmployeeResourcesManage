@@ -14,12 +14,14 @@ namespace DTO
     {
         public string Name { get; }
         public string Content { get; }
-        public Part(string name, string content)
+        public string Status { get; }
+        public Part(string name, string content, string status)
         {
             Name = name;
             Content = content;
+            Status = status;
         }
-        
+
         protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
             if (PropertyChanged != null)
@@ -34,11 +36,14 @@ namespace DTO
         public ObservableCollection<Part> Parts { get; }
         public string Name { get; }
         public string Content { get; }
-
-        public Component(string name, string content, ObservableCollection<Part> parts)
+        public string About { get; }
+        public string Status { get; }
+        public Component(string name, string content, string status, string about, ObservableCollection<Part> parts)
         {
             Name = name;
             Content = content;
+            About = about;
+            Status = status;
             Parts = parts;
         }
 
@@ -63,7 +68,7 @@ namespace DTO
             Content = content;
             Components = new ObservableCollection<Component>(components);
         }
-        
+
         protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
             if (PropertyChanged != null)
@@ -92,33 +97,28 @@ namespace DTO
             }
         }
 
-        public OrganizationTree(DataTable TableOrganizationTree)
+        public OrganizationTree(DataSet dsOrganizationTree)
         {
             Company co = new Company("Công ty Akiyoshi", "");
             Companys = new ObservableCollection<Company>();
             Component c;
             string mabp = "";
             string tenbp = "";
-            foreach(DataRow row in TableOrganizationTree.Rows)
+            foreach (DataRow rowBP in dsOrganizationTree.Tables[0].Rows)
             {
-                if(mabp!=row[6].ToString())
+                mabp = rowBP[0].ToString();
+                tenbp = rowBP[1].ToString();
+                Parts = new ObservableCollection<Part>();
+                foreach (DataRow row in dsOrganizationTree.Tables[1].Rows)
                 {
-                    if(Parts!=null)
+                    if (row[6].ToString() == rowBP[0].ToString())
                     {
-                        c = new Component(tenbp, "Where bp.MaBP='" + mabp + "'", Parts);
-                        co.Components.Add(c);
+                        Part p = new Part(row[1].ToString(), "Where pb.MaPB='" + row[0].ToString() + "'", row[5].ToString());
+                        Parts.Add(p);
                     }
-                    mabp = row[6].ToString();
-                    tenbp = row[7].ToString();
-                    Parts = new ObservableCollection<Part>();
-                    Part p = new Part(row[1].ToString(), "Where pb.MaPB='" + row[0].ToString() + "'");
-                    Parts.Add(p);
                 }
-                else
-                {
-                    Part p = new Part(row[1].ToString(), "Where pb.MaPB='" + row[0].ToString() + "'");
-                    Parts.Add(p);
-                }
+                c = new Component(tenbp, "Where bp.MaBP='" + mabp + "'", rowBP[3].ToString(), mabp, Parts);
+                co.Components.Add(c);
             }
             Companys.Add(co);
         }

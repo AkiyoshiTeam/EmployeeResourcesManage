@@ -8,7 +8,7 @@ namespace DTO
 {
     public class BoPhanDTO
     {
-        string _maBP, _tenBP, _truongBP;
+        string _maBP, _tenBP, _truongBP, _maTT;
         public string MaBP
         {
             get => _maBP;
@@ -24,5 +24,6 @@ namespace DTO
             get => _truongBP;
             set => _truongBP = value;
         }
+        public string MaTT { get => _maTT; set => _maTT = value; }
     }
 }

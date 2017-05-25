@@ -21,7 +21,7 @@ namespace DAO
             string query2 = "";
             foreach (DataRow row in tb.Rows)
             {
-                query2 += " INSERT INTO ChiTietChamCong(MaChamCong, MaNV, NgayCong) VALUES('" + macc + "', '" + row["MaNV"].ToString() + "', 35) ";
+                query2 += " INSERT INTO ChiTietChamCong(MaChamCong, MaNV, NgayCong) VALUES('" + macc + "', '" + row[0].ToString() + "', 35) ";
             }
             DataProvider dataProvider = new DataProvider();
             try

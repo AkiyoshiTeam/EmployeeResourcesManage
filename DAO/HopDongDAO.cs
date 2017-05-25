@@ -25,7 +25,7 @@ namespace DAO
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.StackTrace);
+                MessageBox.Show(ex.Message);
             }
             finally
             {
@@ -48,7 +48,7 @@ namespace DAO
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.StackTrace);
+                MessageBox.Show(ex.Message);
             }
             finally
             {
@@ -68,7 +68,6 @@ namespace DAO
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.StackTrace);
                 MessageBox.Show(ex.Message);
             }
         }
@@ -84,7 +83,6 @@ namespace DAO
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.StackTrace);
                 MessageBox.Show(ex.Message);
             }
         }
@@ -102,7 +100,6 @@ namespace DAO
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.StackTrace);
                 MessageBox.Show(ex.Message);
             }
         }
@@ -132,7 +129,6 @@ namespace DAO
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.StackTrace);
                 MessageBox.Show(ex.Message);
             }
         }
@@ -163,7 +159,6 @@ namespace DAO
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.StackTrace);
                 MessageBox.Show(ex.Message);
             }
         }
