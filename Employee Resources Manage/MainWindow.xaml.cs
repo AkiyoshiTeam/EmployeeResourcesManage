@@ -243,27 +243,39 @@ namespace Employee_Resources_Manage
                         case "Edit Employees":
                             if (selectedTableStatic != null)
                             {
-                                if (selectedTableStatic.Rows.Count == 0)
+                                if (selectedTableStatic.Rows.Count > 0)
                                 {
                                     var editEmployeeControl = new EditEmployee();
                                     tab.Content = editEmployeeControl;
                                 }
-                            }
-                            else
-                            {
-                                if (selectedTableStatic.Rows.Count == 0)
+                                else
                                 {
                                     tab.Header = "Employees Selector";
                                     var selectorControlTemp1 = new SelectorEmployee();
                                     tab.Content = selectorControlTemp1;
                                 }
                             }
+                            else
+                            {
+                                tab.Header = "Employees Selector";
+                                var selectorControlTemp1 = new SelectorEmployee();
+                                tab.Content = selectorControlTemp1;
+                            }
                             break;
                         case "Layoff Employees":
                             if (selectedTableStatic != null)
                             {
-                                var layoffEmployeeControl = new LayoffEmployees();
-                                tab.Content = layoffEmployeeControl;
+                                if (selectedTableStatic.Rows.Count > 0)
+                                {
+                                    var layoffEmployeeControl = new LayoffEmployees();
+                                    tab.Content = layoffEmployeeControl;
+                                }
+                                else
+                                {
+                                    tab.Header = "Employees Selector";
+                                    var selectorControlTemp1 = new SelectorEmployee();
+                                    tab.Content = selectorControlTemp1;
+                                }
                             }
                             else
                             {

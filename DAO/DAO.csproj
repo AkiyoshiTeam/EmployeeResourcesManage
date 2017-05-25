@@ -63,7 +63,6 @@
     <Compile Include="ChamCongDAO.cs" />
     <Compile Include="ChamCongMacDinhDAO.cs" />
     <Compile Include="ChiTietChamCongDAO.cs" />
-    <Compile Include="ChucVuDAO.cs" />
     <Compile Include="DanTocDAO.cs" />
     <Compile Include="DataProvider.cs" />
     <Compile Include="DescriptionForTree.cs" />

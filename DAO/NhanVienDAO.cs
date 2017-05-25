@@ -41,8 +41,7 @@ namespace DAO
             query += @" From NhanVien nv join ThongTinChiTietNhanVien tt on nv.MaNV = tt.MaNV
                         join QuocGia qg on tt.QuocGia = qg.MaQG join TinhTP ttp on tt.TinhTP = ttp.MaTinh
                         join DanToc dt on tt.MaDT = dt.MaDT join TonGiao tg on tt.MaTG=tg.MaTG
-                        join QuanHuyen qh on tt.QuanHuyen = qh.MaQuan join GioiTinh gt on tt.MaGT=gt.MaGT
-                        join ChucVu cv on nv.MaCV = cv.MaCV join PhongBan pb on nv.MaPB = pb.MaPB
+                        join QuanHuyen qh on tt.QuanHuyen = qh.MaQuan join GioiTinh gt on tt.MaGT=gt.MaGT join PhongBan pb on nv.MaPB = pb.MaPB
                         join TinhTrangNhanVien ttnv on nv.MaTT=ttnv.MaTT";
             if (exists == true)
             {
@@ -168,7 +167,7 @@ namespace DAO
 
         public static void AddNhanVien(NhanVienDTO nv, ThongTinChiTietNhanVienDTO ttct)
         {
-            string query = @"INSERT INTO NhanVien (MaNV, HoTen, NgayVaoLam, MaCV, MaPB, LuongCB, HinhAnh, MaTT) VALUES( '" + nv.MaNV + "', N'" + nv.HoTen + "', '" + nv.NgayVaoLam.ToString("yyyy-MM-dd") + "', '" + nv.MaCV + "', '" + nv.MaPB + "', '" + nv.LuongCanBan + "', N'" + nv.HinhAnh + "', " + nv.MaTT.ToString() + "); ";
+            string query = @"INSERT INTO NhanVien (MaNV, HoTen, NgayVaoLam, MaPB, LuongCB, HinhAnh, MaTT) VALUES( '" + nv.MaNV + "', N'" + nv.HoTen + "', '" + nv.NgayVaoLam.ToString("yyyy-MM-dd") + "', '" + nv.MaPB + "', '" + nv.LuongCanBan + "', N'" + nv.HinhAnh + "', " + nv.MaTT.ToString() + "); ";
             string query2 = @"INSERT INTO ThongTinChiTietNhanVien (MaNV, MaGT, CMND, NgaySinh, NoiSinh, DienThoai, SoNha, Duong, PhuongXa, QuanHuyen, TinhTP, QuocGia, MaDT, MaTG, SoTheATM, Email) VALUES( '" + nv.MaNV + "', '" + ttct.MaGT.ToString() + "', '" + ttct.CMND + "', '" + ttct.NgaySinh.ToString("yyyy-MM-dd") + "', N'" + ttct.NoiSinh + "', '" + ttct.DienThoai + "', '" + ttct.SoNha + "', N'" + ttct.Duong + "', N'" + ttct.PhuongXa + "', '" + ttct.QuanHuyen.Trim() + "', '" + ttct.TinhTP.Trim() + "', '" + ttct.QuocGia.Trim() + "', '" + ttct.MaDT.Trim() + "', '" + ttct.MaTG.Trim() + "', '" + ttct.SoTheATM + "', N'" + ttct.Email + "' ); ";
             DataProvider dataProvider = new DataProvider();
             try
@@ -186,7 +185,7 @@ namespace DAO
 
         public static void AddNhanVienMulti(NhanVienDTO nv, ThongTinChiTietNhanVienDTO ttct)
         {
-            string query = @"INSERT INTO NhanVien (MaNV, HoTen, NgayVaoLam, MaCV, MaPB, LuongCB, HinhAnh, MaTT) VALUES( '" + nv.MaNV + "', N'" + nv.HoTen + "', '" + nv.NgayVaoLam.ToString("yyyy-MM-dd") + "', " + nv.MaCV + ", " + nv.MaPB + ", '" + nv.LuongCanBan + "', N'" + nv.HinhAnh + "', " + nv.MaTT.ToString() + "); ";
+            string query = @"INSERT INTO NhanVien (MaNV, HoTen, NgayVaoLam, MaPB, LuongCB, HinhAnh, MaTT) VALUES( '" + nv.MaNV + "', N'" + nv.HoTen + "', '" + nv.NgayVaoLam.ToString("yyyy-MM-dd") + "', " + nv.MaPB + ", '" + nv.LuongCanBan + "', N'" + nv.HinhAnh + "', " + nv.MaTT.ToString() + "); ";
             string query2 = @"INSERT INTO ThongTinChiTietNhanVien (MaNV, MaGT, CMND, NgaySinh, NoiSinh, DienThoai, SoNha, Duong, PhuongXa, QuanHuyen, TinhTP, QuocGia, MaDT, MaTG, SoTheATM, Email) VALUES( '" + nv.MaNV + "', '" + ttct.MaGT.ToString() + "', '" + ttct.CMND + "', '" + ttct.NgaySinh.ToString("yyyy-MM-dd") + "', N'" + ttct.NoiSinh + "', '" + ttct.DienThoai + "', '" + ttct.SoNha + "', N'" + ttct.Duong + "', N'" + ttct.PhuongXa + "', " + ttct.QuanHuyen.Trim() + ", " + ttct.TinhTP.Trim() + ", " + ttct.QuocGia.Trim() + ", " + ttct.MaDT.Trim() + ", " + ttct.MaTG.Trim() + ", '" + ttct.SoTheATM + "', N'" + ttct.Email + "' ); ";
             DataProvider dataProvider = new DataProvider();
             try
@@ -197,7 +196,6 @@ namespace DAO
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message);
                 MessageBox.Show(ex.Message);
             }
         }
@@ -227,7 +225,6 @@ namespace DAO
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
-                MessageBox.Show(ex.Message);
             }
         }
 
@@ -256,7 +253,6 @@ namespace DAO
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message);
                 MessageBox.Show(ex.Message);
             }
         }
@@ -338,7 +334,6 @@ namespace DAO
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
-                MessageBox.Show(ex.Message);
             }
             finally
             {
@@ -384,7 +379,6 @@ namespace DAO
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message);
                 MessageBox.Show(ex.Message);
             }
             finally

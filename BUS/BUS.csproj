@@ -52,7 +52,6 @@
     <Compile Include="ChamCongBUS.cs" />
     <Compile Include="ChamCongMacDinhBUS.cs" />
     <Compile Include="ChiTietChamCongBUS.cs" />
-    <Compile Include="ChucVuBUS.cs" />
     <Compile Include="DanTocBUS.cs" />
     <Compile Include="DescriptionForTreeBUS.cs" />
     <Compile Include="GioiTinhBUS.cs" />

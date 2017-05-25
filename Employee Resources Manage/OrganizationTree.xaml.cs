@@ -24,6 +24,7 @@ namespace Employee_Resources_Manage
     {
         DataTable dt = new DataTable();
         DTO.OrganizationTree organizationTreeViewModel = new DTO.OrganizationTree(BUS.BoPhanBUS.GetBoPhanPhongBan());
+        DataTable dtEdit = new DataTable();
         public OrganizationTree()
         {
             InitializeComponent();
@@ -51,7 +52,17 @@ namespace Employee_Resources_Manage
             {
                 where = part.Content;
                 exThem.IsEnabled = false;
+                exXoa.IsEnabled = true;
                 exXoa.Header = "Ngừng hoạt động phòng ban";
+                dt = BUS.NhanVienBUS.GetNhanVienBPPB(where);
+                dataGridNhanVien.DataContext = dt;
+                cbTruong.ItemsSource = dt.DefaultView;
+                dtEdit = BUS.PhongBanBUS.GetPhongBanByWhere(where);
+                tbMa.Text = dtEdit.Rows[0][0].ToString();
+                tbTen.Text = dtEdit.Rows[0][1].ToString();
+                tbViTri.Text = dtEdit.Rows[0][2].ToString();
+                tbViTri.IsEnabled = true;
+                cbTruong.SelectedValue = dtEdit.Rows[0][3].ToString();
             }
             else
             {
@@ -59,19 +70,32 @@ namespace Employee_Resources_Manage
                 if (component != null)
                 {
                     where = component.Content;
+                    exThem.IsEnabled = true;
+                    exXoa.IsEnabled = true;
                     exThem.Header = "Thêm phòng ban";
                     exXoa.Header = "Ngừng hoạt động bộ phận";
+                    dt = BUS.NhanVienBUS.GetNhanVienBPPB(where);
+                    dataGridNhanVien.DataContext = dt;
+                    cbTruong.ItemsSource = dt.DefaultView;
+                    dtEdit = BUS.BoPhanBUS.GetBoPhanByWhere(where);
+                    tbMa.Text = dtEdit.Rows[0][0].ToString();
+                    tbTen.Text = dtEdit.Rows[0][1].ToString();
+                    tbViTri.IsEnabled = false;
+                    cbTruong.SelectedValue = dtEdit.Rows[0][2].ToString();
                 }
                 else
                 {
                     var company = organizationTreeViewModel.SelectedItem as DTO.Company;
                     where = company.Content;
                     exThem.Header = "Thêm bộ phận";
+                    exThem.IsEnabled = true;
                     exXoa.IsEnabled = false;
+                    dt = BUS.NhanVienBUS.GetNhanVienBPPB(where);
+                    dataGridNhanVien.DataContext = dt;
+                    tbViTri.IsEnabled = false;
                 }
             }
-            dt = BUS.NhanVienBUS.GetNhanVienBPPB(where);
-            dataGridNhanVien.DataContext = dt;
+            
 
         }
     }

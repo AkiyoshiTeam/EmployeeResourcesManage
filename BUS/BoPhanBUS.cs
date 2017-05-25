@@ -18,5 +18,10 @@ namespace BUS
         {
             return DAO.BoPhanDAO.GetBoPhanPhongBan();
         }
+
+        public static DataTable GetBoPhanByWhere(string where)
+        {
+            return DAO.BoPhanDAO.GetBoPhanByWhere(where);
+        }
     }
 }

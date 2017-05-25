@@ -59,7 +59,6 @@
     <Compile Include="ChiTietChuyenMonDTO.cs" />
     <Compile Include="ChiTietKhenThuongDTO.cs" />
     <Compile Include="ChiTietKiLuatDTO.cs" />
-    <Compile Include="ChucVuDTO.cs" />
     <Compile Include="ChuyenCongTacDTO.cs" />
     <Compile Include="ChuyenMonDTO.cs" />
     <Compile Include="CongThucTinhLuongDTO.cs" />

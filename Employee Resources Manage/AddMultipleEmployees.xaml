@@ -23,35 +23,31 @@
             <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto" Foreground="{DynamicResource MaterialDesignBody}">
                 <StackPanel>
                     <DockPanel Margin="5 10">
-                        <TextBlock >01. Mã nhân viên</TextBlock>
-                        <TextBlock DockPanel.Dock="Right" HorizontalAlignment="Right">(MaNV)(*)</TextBlock>
+                        <TextBlock >**. Mã nhân viên</TextBlock>
+                        <TextBlock DockPanel.Dock="Right" HorizontalAlignment="Right">(MaNV)(Auto)</TextBlock>
                     </DockPanel>
                     <DockPanel Margin="5 10">
-                        <TextBlock >02. Họ tên</TextBlock>
+                        <TextBlock >01. Họ tên</TextBlock>
                         <TextBlock DockPanel.Dock="Right" HorizontalAlignment="Right">(HoTen)(*)</TextBlock>
                     </DockPanel>
                     <DockPanel Margin="5 10">
-                        <TextBlock >03. Ngày vào làm</TextBlock>
+                        <TextBlock >02. Ngày vào làm</TextBlock>
                         <TextBlock DockPanel.Dock="Right" HorizontalAlignment="Right">(NgayVaoLam)(*)</TextBlock>
                     </DockPanel>
                     <DockPanel Margin="5 10">
-                        <TextBlock >04. Mã chức vụ</TextBlock>
-                        <TextBlock DockPanel.Dock="Right" HorizontalAlignment="Right">(MaCV)</TextBlock>
-                    </DockPanel>
-                    <DockPanel Margin="5 10">
-                        <TextBlock >05. Mã phòng ban</TextBlock>
+                        <TextBlock >03. Mã phòng ban</TextBlock>
                         <TextBlock DockPanel.Dock="Right" HorizontalAlignment="Right">(MaPB)</TextBlock>
                     </DockPanel>
                     <DockPanel Margin="5 10">
-                        <TextBlock >06. Lương căn bản</TextBlock>
+                        <TextBlock >04. Lương căn bản</TextBlock>
                         <TextBlock DockPanel.Dock="Right" HorizontalAlignment="Right">(LuongCB)</TextBlock>
                     </DockPanel>
                     <DockPanel Margin="5 10">
-                        <TextBlock >07. Hình ảnh</TextBlock>
+                        <TextBlock >05. Hình ảnh</TextBlock>
                         <TextBlock DockPanel.Dock="Right" HorizontalAlignment="Right">(HinhAnh)</TextBlock>
                     </DockPanel>
                     <DockPanel Margin="5 10">
-                        <TextBlock >08. Mã tình trạng</TextBlock>
+                        <TextBlock >06. Mã tình trạng</TextBlock>
                         <TextBlock DockPanel.Dock="Right" HorizontalAlignment="Right">(MaTT)</TextBlock>
                     </DockPanel>
                 </StackPanel>
@@ -61,63 +57,63 @@
             <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto" Foreground="{DynamicResource MaterialDesignBody}">
                 <StackPanel>
                     <DockPanel Margin="5 10">
-                        <TextBlock >09. Mã giới tính</TextBlock>
-                        <TextBlock DockPanel.Dock="Right" HorizontalAlignment="Right">(MaGT)</TextBlock>
+                        <TextBlock >07. Mã giới tính</TextBlock>
+                        <TextBlock DockPanel.Dock="Right" HorizontalAlignment="Right">(MaGT)(*)</TextBlock>
                     </DockPanel>
                     <DockPanel Margin="5 10">
-                        <TextBlock >10. Chứng minh nhân dân</TextBlock>
+                        <TextBlock >08. Chứng minh nhân dân</TextBlock>
                         <TextBlock DockPanel.Dock="Right" HorizontalAlignment="Right">(CMND)(*)</TextBlock>
                     </DockPanel>
                     <DockPanel Margin="5 10">
-                        <TextBlock >11. Ngày sinh</TextBlock>
+                        <TextBlock >09. Ngày sinh</TextBlock>
                         <TextBlock DockPanel.Dock="Right" HorizontalAlignment="Right">(NgaySinh)(*)</TextBlock>
                     </DockPanel>
                     <DockPanel Margin="5 10">
-                        <TextBlock >12. Nơi sinh</TextBlock>
+                        <TextBlock >10. Nơi sinh</TextBlock>
                         <TextBlock DockPanel.Dock="Right" HorizontalAlignment="Right">(NoiSinh)</TextBlock>
                     </DockPanel>
                     <DockPanel Margin="5 10">
-                        <TextBlock >13. Điện thoại</TextBlock>
+                        <TextBlock >11. Điện thoại</TextBlock>
                         <TextBlock DockPanel.Dock="Right" HorizontalAlignment="Right">(DienThoai)</TextBlock>
                     </DockPanel>
                     <DockPanel Margin="5 10">
-                        <TextBlock >14. Số nhà</TextBlock>
+                        <TextBlock >12. Số nhà</TextBlock>
                         <TextBlock DockPanel.Dock="Right" HorizontalAlignment="Right">(SoNha)</TextBlock>
                     </DockPanel>
                     <DockPanel Margin="5 10">
-                        <TextBlock >15. Đường</TextBlock>
+                        <TextBlock >13. Đường</TextBlock>
                         <TextBlock DockPanel.Dock="Right" HorizontalAlignment="Right">(Duong)</TextBlock>
                     </DockPanel>
                     <DockPanel Margin="5 10">
-                        <TextBlock >16. Phường/xã</TextBlock>
+                        <TextBlock >14. Phường/xã</TextBlock>
                         <TextBlock DockPanel.Dock="Right" HorizontalAlignment="Right">(PhuongXa)</TextBlock>
                     </DockPanel>
                     <DockPanel Margin="5 10">
-                        <TextBlock >17. Quận/huyện</TextBlock>
+                        <TextBlock >15. Quận/huyện</TextBlock>
                         <TextBlock DockPanel.Dock="Right" HorizontalAlignment="Right">(QuanHuyen)</TextBlock>
                     </DockPanel>
                     <DockPanel Margin="5 10">
-                        <TextBlock >18.Tỉnh/thành phố</TextBlock>
+                        <TextBlock >16.Tỉnh/thành phố</TextBlock>
                         <TextBlock DockPanel.Dock="Right" HorizontalAlignment="Right">(TinhTP)</TextBlock>
                     </DockPanel>
                     <DockPanel Margin="5 10">
-                        <TextBlock >19. Quốc gia</TextBlock>
+                        <TextBlock >17. Quốc gia</TextBlock>
                         <TextBlock DockPanel.Dock="Right" HorizontalAlignment="Right">(QuocGia)</TextBlock>
                     </DockPanel>
                     <DockPanel Margin="5 10">
-                        <TextBlock >20. Mã dân tộc</TextBlock>
+                        <TextBlock >18. Mã dân tộc</TextBlock>
                         <TextBlock DockPanel.Dock="Right" HorizontalAlignment="Right">(MaDT)</TextBlock>
                     </DockPanel>
                     <DockPanel Margin="5 10">
-                        <TextBlock >21. Mã tôn giáo</TextBlock>
+                        <TextBlock >19. Mã tôn giáo</TextBlock>
                         <TextBlock DockPanel.Dock="Right" HorizontalAlignment="Right">(MaTG)</TextBlock>
                     </DockPanel>
                     <DockPanel Margin="5 10">
-                        <TextBlock >22. Số thẻ ATM</TextBlock>
+                        <TextBlock >20. Số thẻ ATM</TextBlock>
                         <TextBlock DockPanel.Dock="Right" HorizontalAlignment="Right">(SoTheATM)</TextBlock>
                     </DockPanel>
                     <DockPanel Margin="5 10">
-                        <TextBlock >23. Địa chỉ Email</TextBlock>
+                        <TextBlock >21. Địa chỉ Email</TextBlock>
                         <TextBlock DockPanel.Dock="Right" HorizontalAlignment="Right">(Email)</TextBlock>
                     </DockPanel>
                 </StackPanel>
@@ -127,23 +123,23 @@
             <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto" Foreground="{DynamicResource MaterialDesignBody}">
                 <StackPanel>
                     <DockPanel Margin="5 10">
-                        <TextBlock >24. Mã hợp đồng </TextBlock>
-                        <TextBlock DockPanel.Dock="Right" HorizontalAlignment="Right">(MaHD)(*)</TextBlock>
+                        <TextBlock >**. Mã hợp đồng </TextBlock>
+                        <TextBlock DockPanel.Dock="Right" HorizontalAlignment="Right">(MaHD)(Auto)</TextBlock>
                     </DockPanel>
                     <DockPanel Margin="5 10">
-                        <TextBlock >25. Mã loại hợp đồng</TextBlock>
+                        <TextBlock >22. Mã loại hợp đồng</TextBlock>
                         <TextBlock DockPanel.Dock="Right" HorizontalAlignment="Right">(MaLoaiHD)(*)</TextBlock>
                     </DockPanel>
                     <DockPanel Margin="5 10">
-                        <TextBlock >26. Ngày ký hợp đồng</TextBlock>
+                        <TextBlock >23. Ngày ký hợp đồng</TextBlock>
                         <TextBlock DockPanel.Dock="Right" HorizontalAlignment="Right">(NgayKyHD)(*)</TextBlock>
                     </DockPanel>
                     <DockPanel Margin="5 10">
-                        <TextBlock >27. Ngày hết hạn</TextBlock>
+                        <TextBlock >24. Ngày hết hạn</TextBlock>
                         <TextBlock DockPanel.Dock="Right" HorizontalAlignment="Right">(NgayHetHan)</TextBlock>
                     </DockPanel>
                     <DockPanel Margin="5 10">
-                        <TextBlock >28. Mã tình trạng hợp đồng</TextBlock>
+                        <TextBlock >25. Mã tình trạng hợp đồng</TextBlock>
                         <TextBlock DockPanel.Dock="Right" HorizontalAlignment="Right">(MaTTHD)(*)</TextBlock>
                     </DockPanel>
                 </StackPanel>

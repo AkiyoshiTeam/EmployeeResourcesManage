@@ -99,7 +99,9 @@
                                     <TextBox Name="tbMa" Style="{StaticResource MaterialDesignFloatingHintTextBox}" materialDesign:HintAssist.Hint="Mã" IsReadOnly="True" />
                                     <TextBox Name="tbTen" Style="{StaticResource MaterialDesignFloatingHintTextBox}" materialDesign:HintAssist.Hint="Tên" MaxLength="49"/>
                                     <TextBox Name="tbViTri" Style="{StaticResource MaterialDesignFloatingHintTextBox}" materialDesign:HintAssist.Hint="Vị trí" MaxLength="99"/>
-                                    <ComboBox Name="cbTruong" Style="{StaticResource MaterialDesignFloatingHintComboBox}" IsEditable="True" materialDesign:HintAssist.Hint="Chủ Trưởng"/>
+                                    <ComboBox Name="cbTruong" Style="{StaticResource MaterialDesignFloatingHintComboBox}" IsEditable="True" materialDesign:HintAssist.Hint="Chủ Trưởng"
+                                              DisplayMemberPath="Họ tên"  
+                                              SelectedValuePath="Mã nhân viên" />
                                     <Button Name="btnSua" Style="{StaticResource MaterialDesignFlatButton}" Width="120" Content="Update" HorizontalAlignment="Center" Margin="10"/>
                                 </StackPanel>
                             </Expander>

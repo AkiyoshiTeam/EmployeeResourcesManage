@@ -76,16 +76,16 @@ namespace Employee_Resources_Manage
             cbPhongBan.SelectedValuePath = "ID";
             cbPhongBan.SelectedValue = "PB002";
 
-            tbTemp = BUS.ChucVuBUS.GetChucVu();
-            listCV = new List<ChucVu>();
-            foreach (DataRow row in tbTemp.Rows)
-            {
-                listCV.Add(new ChucVu { ID = row[0].ToString().Trim(), Name = row[1].ToString() });
-            }
-            cbChucVu.ItemsSource = listCV;
-            cbChucVu.DisplayMemberPath = "Name";
-            cbChucVu.SelectedValuePath = "ID";
-            cbChucVu.SelectedValue = "CV004";
+            //tbTemp = BUS.ChucVuBUS.GetChucVu();
+            //listCV = new List<ChucVu>();
+            //foreach (DataRow row in tbTemp.Rows)
+            //{
+            //    listCV.Add(new ChucVu { ID = row[0].ToString().Trim(), Name = row[1].ToString() });
+            //}
+            //cbChucVu.ItemsSource = listCV;
+            //cbChucVu.DisplayMemberPath = "Name";
+            //cbChucVu.SelectedValuePath = "ID";
+            //cbChucVu.SelectedValue = "CV004";
 
             //tbTemp = BUS.LoaiLuongBUS.GetLoaiLuong();
             //listLL = new List<LoaiLuong>();
@@ -348,7 +348,7 @@ namespace Employee_Resources_Manage
                                         nv.MaNV = NextID(manvLast, "NV");
                                         nv.HoTen = tbHoTen.Text;
                                         nv.NgayVaoLam = Convert.ToDateTime(dpNVL.Text);
-                                        nv.MaCV = cbChucVu.SelectedValue.ToString();
+                                        //nv.MaCV = cbChucVu.SelectedValue.ToString();
                                         nv.MaPB = cbPhongBan.SelectedValue.ToString();
                                         nv.LuongCanBan = tbLCB.Text;
                                         if (cbHinhAnh.SelectedValue != null)
@@ -402,7 +402,7 @@ namespace Employee_Resources_Manage
                                     nv.MaNV = NextID(manvLast, "NV");
                                     nv.HoTen = tbHoTen.Text;
                                     nv.NgayVaoLam = Convert.ToDateTime(dpNVL.Text);
-                                    nv.MaCV = cbChucVu.SelectedValue.ToString();
+                                    //nv.MaCV = cbChucVu.SelectedValue.ToString();
                                     nv.MaPB = cbPhongBan.SelectedValue.ToString();
                                     nv.LuongCanBan = tbLCB.Text;
                                     if (cbHinhAnh.SelectedValue != null)

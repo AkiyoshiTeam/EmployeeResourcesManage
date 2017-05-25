@@ -318,11 +318,11 @@ namespace Employee_Resources_Manage
                     dataGridSelectedNV.DataContext = dt;
 
                     DataTable tbTemp;
-                    tbTemp = BUS.ChucVuBUS.GetChucVu();
-                    foreach (DataRow row in tbTemp.Rows)
-                    {
-                        listCV.Add(new ChucVu { ID = row[0].ToString(), Name = row[1].ToString() });
-                    }
+                    //tbTemp = BUS.ChucVuBUS.GetChucVu();
+                    //foreach (DataRow row in tbTemp.Rows)
+                    //{
+                    //    listCV.Add(new ChucVu { ID = row[0].ToString(), Name = row[1].ToString() });
+                    //}
 
                     tbTemp = BUS.PhongBanBUS.GetPhongBan();
                     foreach (DataRow row in tbTemp.Rows)

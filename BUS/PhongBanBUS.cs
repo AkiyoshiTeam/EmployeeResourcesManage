@@ -13,5 +13,9 @@ namespace BUS
         {
             return DAO.PhongBanDAO.GetPhongBan();
         }
+        public static DataTable GetPhongBanByWhere(string where)
+        {
+            return DAO.PhongBanDAO.GetPhongBanByWhere(where);
+        }
     }
 }

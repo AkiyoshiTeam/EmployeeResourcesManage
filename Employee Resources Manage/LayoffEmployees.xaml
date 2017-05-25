@@ -94,27 +94,25 @@
                                 <TextBlock Margin="0 0 8 0" Text="{Binding HoTen}" Grid.Column="1" Grid.Row="1" />
                                 <TextBlock Margin="8 0 0 0" Text="Ngày Vào Làm: " FontWeight="Bold" Grid.Row="2" />
                                 <TextBlock Margin="0 0 8 0" Text="{Binding NgayVaoLam, StringFormat='dd/MM/yyyy'}" Grid.Column="1" Grid.Row="2" />
-                                <TextBlock Margin="8 0 0 0" Text="Chức Vụ: " FontWeight="Bold" Grid.Row="3" />
-                                <TextBlock Margin="0 0 8 0" Text="{Binding MaCV, Converter={StaticResource MaCVConverter}}" Grid.Column="1" Grid.Row="3" />
-                                <TextBlock Margin="8 0 0 0" Text="Phòng Ban: " FontWeight="Bold" Grid.Row="4" />
-                                <TextBlock Margin="0 0 8 0" Text="{Binding MaPB, Converter={StaticResource MaPBConverter}}" Grid.Column="1" Grid.Row="4" />
-                                <TextBlock Margin="8 0 0 0" Text="Lương căn bản: " FontWeight="Bold" Grid.Row="5" />
-                                <TextBlock Margin="0 0 8 0" Text="{Binding LuongCB}" Grid.Column="1" Grid.Row="5" />
-
+                                <TextBlock Margin="8 0 0 0" Text="Phòng Ban: " FontWeight="Bold" Grid.Row="3" />
+                                <TextBlock Margin="0 0 8 0" Text="{Binding MaPB, Converter={StaticResource MaPBConverter}}" Grid.Column="1" Grid.Row="3" />
+                                <TextBlock Margin="8 0 0 0" Text="Lương căn bản: " FontWeight="Bold" Grid.Row="4" />
+                                <TextBlock Margin="0 0 8 0" Text="{Binding LuongCB}" Grid.Column="1" Grid.Row="4" />
+                                <TextBlock Margin="8 0 0 0" Text="Tình Trạng: " FontWeight="Bold" Grid.Column="0" Grid.Row="5"/>
+                                <TextBlock Margin="0 0 8 0" Text="{Binding MaTT, Converter={StaticResource MaTTConverter}}" Grid.Column="1" Grid.Row="5"/>
+                                
                                 <GridSplitter Grid.Column="1" Grid.RowSpan="6" Width="2"/>
                                 
-                                <TextBlock Margin="8 0 0 0" Text="Tình Trạng: " FontWeight="Bold" Grid.Column="2"/>
-                                <TextBlock Margin="0 0 8 0" Text="{Binding MaTT, Converter={StaticResource MaTTConverter}}" Grid.Column="3" />
-                                <TextBlock Margin="8 0 0 0" Text="Giới Tính: " FontWeight="Bold" Grid.Column="2" Grid.Row="1" />
-                                <TextBlock Margin="0 0 8 0" Text="{Binding MaGT, Converter={StaticResource MaGTConverter}}" Grid.Column="3" Grid.Row="1" />
-                                <TextBlock Margin="8 0 0 0" Text="CMND: " FontWeight="Bold" Grid.Column="2" Grid.Row="2" />
-                                <TextBlock Margin="0 0 8 0" Text="{Binding CMND}" Grid.Column="3" Grid.Row="2" />
-                                <TextBlock Margin="8 0 0 0" Text="Ngày Sinh: " FontWeight="Bold" Grid.Column="2" Grid.Row="3" />
-                                <TextBlock Margin="0 0 8 0" Text="{Binding NgaySinh,  StringFormat='dd/MM/yyyy'}" Grid.Column="3" Grid.Row="3" />
-                                <TextBlock Margin="8 0 0 0" Text="Phòng Ban: " FontWeight="Bold" Grid.Column="2" Grid.Row="4" />
-                                <TextBlock Margin="0 0 8 0" Text="{Binding NoiSinh}" Grid.Column="3" Grid.Row="4" />
-                                <TextBlock Margin="8 0 0 0" Text="Điện Thoại: " FontWeight="Bold" Grid.Column="2" Grid.Row="5" />
-                                <TextBlock Margin="0 0 8 0" Text="{Binding DienThoai}" Grid.Column="3" Grid.Row="5" />
+                                <TextBlock Margin="8 0 0 0" Text="Giới Tính: " FontWeight="Bold" Grid.Column="2" Grid.Row="0" />
+                                <TextBlock Margin="0 0 8 0" Text="{Binding MaGT, Converter={StaticResource MaGTConverter}}" Grid.Column="3" Grid.Row="0" />
+                                <TextBlock Margin="8 0 0 0" Text="CMND: " FontWeight="Bold" Grid.Column="2" Grid.Row="1" />
+                                <TextBlock Margin="0 0 8 0" Text="{Binding CMND}" Grid.Column="3" Grid.Row="1" />
+                                <TextBlock Margin="8 0 0 0" Text="Ngày Sinh: " FontWeight="Bold" Grid.Column="2" Grid.Row="2" />
+                                <TextBlock Margin="0 0 8 0" Text="{Binding NgaySinh,  StringFormat='dd/MM/yyyy'}" Grid.Column="3" Grid.Row="2" />
+                                <TextBlock Margin="8 0 0 0" Text="Phòng Ban: " FontWeight="Bold" Grid.Column="2" Grid.Row="3" />
+                                <TextBlock Margin="0 0 8 0" Text="{Binding NoiSinh}" Grid.Column="3" Grid.Row="3" />
+                                <TextBlock Margin="8 0 0 0" Text="Điện Thoại: " FontWeight="Bold" Grid.Column="2" Grid.Row="4" />
+                                <TextBlock Margin="0 0 8 0" Text="{Binding DienThoai}" Grid.Column="3" Grid.Row="4" />
 
                                 <GridSplitter Grid.Column="3" Grid.RowSpan="6" Width="2"/>
 

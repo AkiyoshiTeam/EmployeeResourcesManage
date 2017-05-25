@@ -75,15 +75,15 @@ namespace Employee_Resources_Manage
                     cbPhongBan.DisplayMemberPath = "Name";
                     cbPhongBan.SelectedValuePath = "ID";
 
-                    tbTemp = BUS.ChucVuBUS.GetChucVu();
-                    listCV = new List<ChucVu>();
-                    foreach (DataRow row in tbTemp.Rows)
-                    {
-                        listCV.Add(new ChucVu { ID = row[0].ToString(), Name = row[1].ToString() });
-                    }
-                    cbChucVu.ItemsSource = listCV;
-                    cbChucVu.DisplayMemberPath = "Name";
-                    cbChucVu.SelectedValuePath = "ID";
+                    //tbTemp = BUS.ChucVuBUS.GetChucVu();
+                    //listCV = new List<ChucVu>();
+                    //foreach (DataRow row in tbTemp.Rows)
+                    //{
+                    //    listCV.Add(new ChucVu { ID = row[0].ToString(), Name = row[1].ToString() });
+                    //}
+                    //cbChucVu.ItemsSource = listCV;
+                    //cbChucVu.DisplayMemberPath = "Name";
+                    //cbChucVu.SelectedValuePath = "ID";
 
 
                     //tbTemp = BUS.LoaiLuongBUS.GetLoaiLuong();
@@ -216,14 +216,14 @@ namespace Employee_Resources_Manage
                                 dataGridSelectedNV.Columns.Add(colcb);
                                 break;
                             case "MaCV":
-                                colcb = new MaterialDataGridComboBoxColumn();
-                                colcb.Header = DataSetEdit.Tables[0].Columns[i].ColumnName.Trim();
-                                colcb.ItemsSource = listCV;
-                                colcb.DisplayMemberPath = "Name";
-                                colcb.SelectedValuePath = "ID";
-                                colcb.SelectedValueBinding = new Binding(DataSetEdit.Tables[0].Columns[i].ColumnName.Trim());
-                                colcb.IsReadOnly = true;
-                                dataGridSelectedNV.Columns.Add(colcb);
+                                //colcb = new MaterialDataGridComboBoxColumn();
+                                //colcb.Header = DataSetEdit.Tables[0].Columns[i].ColumnName.Trim();
+                                //colcb.ItemsSource = listCV;
+                                //colcb.DisplayMemberPath = "Name";
+                                //colcb.SelectedValuePath = "ID";
+                                //colcb.SelectedValueBinding = new Binding(DataSetEdit.Tables[0].Columns[i].ColumnName.Trim());
+                                //colcb.IsReadOnly = true;
+                                //dataGridSelectedNV.Columns.Add(colcb);
                                 break;
                             //case "MaLoaiLuong":
                             //    colcb = new MaterialDataGridComboBoxColumn();
