@@ -32,5 +32,29 @@ namespace DAO
             }
             return null;
         }
+
+        public static DataTable GetBoPhanPhongBan()
+        {
+            DataTable tb = new DataTable();
+            string query = "select * from PhongBan pb join BoPhan bp on pb.MaBP=bp.MaBP order by bp.Mabp";
+            DataProvider dataProvider = new DataProvider();
+            try
+            {
+                dataProvider.connect();
+                tb = dataProvider.ExecuteQuery_DataTble(query);
+                return tb;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.StackTrace);
+                MessageBox.Show(ex.Message);
+            }
+            finally
+            {
+                dataProvider.disconnect();
+            }
+            return null;
+        }
+
     }
 }

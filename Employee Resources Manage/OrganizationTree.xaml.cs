@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MaterialDesignThemes.Wpf;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -23,6 +24,16 @@ namespace Employee_Resources_Manage
         public OrganizationTree()
         {
             InitializeComponent();
+            treeView.DataContext = new DTO.OrganizationTree(BUS.BoPhanBUS.GetBoPhanPhongBan());
+        }
+
+
+        private void dialogHost_DialogClosing(object sender, DialogClosingEventArgs eventArgs)
+        {
+            if ((bool)eventArgs.Parameter == true)
+            {
+                
+            }
         }
     }
 }

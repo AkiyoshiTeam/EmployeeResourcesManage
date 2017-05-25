@@ -270,6 +270,10 @@ namespace Employee_Resources_Manage
                             var contractControl = new Contract();
                             tab.Content = contractControl;
                             break;
+                        case "Organization Tree":
+                            var organizationTreeControl = new OrganizationTree();
+                            tab.Content = organizationTreeControl;
+                            break;
                         case "Report":
                             var reportControl = new BaoCao();
                             tab.Content = reportControl;
@@ -511,5 +515,6 @@ namespace Employee_Resources_Manage
                         tabMain.FixedHeaderCount = 1;
             }
         }
+        
     }
 }

@@ -74,6 +74,7 @@
     <Compile Include="NguoiDungDTO.cs" />
     <Compile Include="NhanVienDTO.cs" />
     <Compile Include="NotifyPropertyChangedExtension.cs" />
+    <Compile Include="OrganizationTree.cs" />
     <Compile Include="PhanQuyenDTO.cs" />
     <Compile Include="PhongBanDTO.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

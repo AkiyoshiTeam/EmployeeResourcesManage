@@ -17,5 +17,9 @@ namespace BUS
         {
             DAO.ChamCongDAO.AddChamCong(cc);
         }
+        public static bool CheckExistsChamCong(DTO.ChamCongDTO cc)
+        {
+            return DAO.ChamCongDAO.CheckExistsChamCong(cc);
+        }
     }
 }

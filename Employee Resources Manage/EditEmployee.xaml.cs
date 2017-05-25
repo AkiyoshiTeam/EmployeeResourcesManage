@@ -222,6 +222,7 @@ namespace Employee_Resources_Manage
                                 colcb.DisplayMemberPath = "Name";
                                 colcb.SelectedValuePath = "ID";
                                 colcb.SelectedValueBinding = new Binding(DataSetEdit.Tables[0].Columns[i].ColumnName.Trim());
+                                colcb.IsReadOnly = true;
                                 dataGridSelectedNV.Columns.Add(colcb);
                                 break;
                             //case "MaLoaiLuong":

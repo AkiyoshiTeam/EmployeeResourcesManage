@@ -12,30 +12,30 @@ namespace DAO
     {
         public static DataTable GetLastChamCong()
         {
-                DataTable tb = new DataTable();
-                string query = "Select TOP 1 cc.MaChamCong From ChamCong cc Order by cc.MaChamCong DESC";
+            DataTable tb = new DataTable();
+            string query = "Select TOP 1 cc.MaChamCong From ChamCong cc Order by cc.MaChamCong DESC";
 
-                DataProvider dataProvider = new DataProvider();
-                try
-                {
-                    dataProvider.connect();
-                    tb = dataProvider.ExecuteQuery_DataTble(query);
-                    return tb;
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show(ex.Message);
-                }
-                finally
-                {
-                    dataProvider.disconnect();
-                }
-                return null;
+            DataProvider dataProvider = new DataProvider();
+            try
+            {
+                dataProvider.connect();
+                tb = dataProvider.ExecuteQuery_DataTble(query);
+                return tb;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            finally
+            {
+                dataProvider.disconnect();
+            }
+            return null;
         }
 
         public static void AddChamCong(DTO.ChamCongDTO cc)
         {
-            string query = " INSERT INTO ChamCong(MaChamCong, Thang, Nam, NgayPhatLuong) VALUES('" + cc.MaChamCong + "', "+cc.Thang.ToString()+", "+cc.Nam+", '"+cc.NgayPhatLuong.ToString("yyyy-MM-dd")+"')";
+            string query = " INSERT INTO ChamCong(MaChamCong, Thang, Nam, NgayPhatLuong) VALUES('" + cc.MaChamCong + "', " + cc.Thang.ToString() + ", " + cc.Nam + ", '" + cc.NgayPhatLuong.ToString("yyyy-MM-dd") + "')";
 
             DataProvider dataProvider = new DataProvider();
             try
@@ -51,6 +51,34 @@ namespace DAO
             {
                 dataProvider.disconnect();
             }
+        }
+
+
+        public static bool CheckExistsChamCong(DTO.ChamCongDTO cc)
+        {
+            DataTable tb = new DataTable();
+            string query = "Select TOP 1 cc.MaChamCong From ChamCong cc where cc.Thang=" + cc.Thang + " and cc.Nam=" + cc.Nam + " Order by cc.MaChamCong DESC";
+
+            DataProvider dataProvider = new DataProvider();
+            try
+            {
+                dataProvider.connect();
+                tb = dataProvider.ExecuteQuery_DataTble(query);
+                dataProvider.disconnect();
+                if (tb.Rows.Count == 0)
+                    return false;
+                else
+                    return true;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            finally
+            {
+                dataProvider.disconnect();
+            }
+            return false;
         }
     }
 }

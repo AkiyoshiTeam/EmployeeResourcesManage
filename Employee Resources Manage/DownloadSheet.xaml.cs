@@ -45,42 +45,44 @@ namespace Employee_Resources_Manage
                 {
                     sheet = wb.Sheets[1];
                     Excel.Range range = sheet.UsedRange;
-                    int rows = range.Rows.Count;
-                    int cols = range.Columns.Count;
-                    DataTable dtTableTemp = new DataTable();
-                    dtTableTemp.Columns.Add("MaNV");
-                    dtTableTemp.Columns.Add("NgayCong");
-                    for (int i = 10; i <= rows; i++)
-                    {
-                        DataRow dtRow = dtTableTemp.NewRow();
-                        if (string.IsNullOrEmpty(range.Cells[i, 117].Text.ToString()))
-                        {
-                            break;
-                        }
-                        else
-                        {
-                            dtRow[0] = range.Cells[i, 117].Value;
-                            dtRow[1] = range.Cells[i, 131].Value;
-                        }
-                        dtTableTemp.Rows.Add(dtRow);
-                    }
                     DTO.ChamCongDTO chamCong = new DTO.ChamCongDTO();
-
                     string maccLast = BUS.ChamCongBUS.GetLastChamCong().Rows[0][0].ToString();
                     chamCong.MaChamCong = NextID(maccLast, "CC");
                     chamCong.Thang = Convert.ToInt16(range.Cells[2, 3].Text.ToString());
                     chamCong.Nam = Convert.ToInt16(range.Cells[2, 4].Text.ToString());
-                    chamCong.NgayPhatLuong = Convert.ToDateTime("5/"+chamCong.Thang.ToString()+"/"+chamCong.Nam.ToString());
-                    BUS.ChamCongBUS.AddChamCong(chamCong);
-                    BUS.ChiTietChamCongBUS.AddCTCC(dtTableTemp, chamCong.MaChamCong);
-                    tbAlert.Text = "Tải dữ liệu chấm công hoàn thành!";
-                    //Task.Factory.StartNew(() =>
-                    //{
-                    //    Thread.Sleep(1500);
-                    //}).ContinueWith(t =>
-                    //{
+                    chamCong.NgayPhatLuong = Convert.ToDateTime("5/" + chamCong.Thang.ToString() + "/" + chamCong.Nam.ToString());
 
-                    //}, TaskScheduler.FromCurrentSynchronizationContext());
+                    if (BUS.ChamCongBUS.CheckExistsChamCong(chamCong))
+                    {
+                        tbAlert.Text = "Dữ liệu chấm công " + chamCong.Thang + "/" + chamCong.Nam + " đã tồn tại!";
+                    }
+                    else
+                    {
+                        int rows = range.Rows.Count;
+                        int cols = range.Columns.Count;
+                        DataTable dtTableTemp = new DataTable();
+                        dtTableTemp.Columns.Add("MaNV");
+                        dtTableTemp.Columns.Add("NgayCong");
+
+                        for (int i = 10; i <= rows; i++)
+                        {
+                            DataRow dtRow = dtTableTemp.NewRow();
+                            if (string.IsNullOrEmpty(range.Cells[i, 117].Text.ToString()))
+                            {
+                                break;
+                            }
+                            else
+                            {
+                                dtRow[0] = range.Cells[i, 117].Value;
+                                dtRow[1] = range.Cells[i, 131].Value;
+                            }
+                            dtTableTemp.Rows.Add(dtRow);
+                        }
+                        BUS.ChamCongBUS.AddChamCong(chamCong);
+                        BUS.ChiTietChamCongBUS.AddCTCC(dtTableTemp, chamCong.MaChamCong);
+                        tbAlert.Text = "Tải dữ liệu chấm công hoàn thành!";
+                    }
+
                 }
                 catch (Exception ex)
                 {

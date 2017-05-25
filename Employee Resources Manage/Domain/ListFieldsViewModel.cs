@@ -23,7 +23,7 @@ namespace Employee_Resources_Manage.Domain
         {
             _items1 = CreateData1();
             _items2 = CreateData2();
-            _items3 = CreateData3();
+            //_items3 = CreateData3();
             _items5 = CreateData5();
             _items6 = CreateData6();
         }
@@ -63,15 +63,6 @@ namespace Employee_Resources_Manage.Domain
                     Code = 'E',
                     Name = "Employees Resources",
                     Description = "Manage Employee Resources"
-                },
-                new SelectableViewModel
-                {
-                    IsSelected=true,
-                    Icon = "HomeModern",
-                    IconNum = 825,
-                    Code = 'C',
-                    Name = "Company",
-                    Description = "Company Resources"
                 },
                 new SelectableViewModel
                 {
@@ -156,6 +147,15 @@ namespace Employee_Resources_Manage.Domain
                 },
                 new SelectableViewModel
                 {
+                    IsSelected=true,
+                    Icon = "HomeModern",
+                    IconNum = 825,
+                    Code = 'O',
+                    Name = "Organization Tree",
+                    Description = "Organization Tree of Company"
+                },
+                new SelectableViewModel
+                {
                     IsSelected=false,
                     Icon = "ChartBar",
                     Code = 'R',
@@ -165,45 +165,45 @@ namespace Employee_Resources_Manage.Domain
             };
         }
 
-        private static ObservableCollection<SelectableViewModel> CreateData3()
-        {
-            return new ObservableCollection<SelectableViewModel>
-            {
-                new SelectableViewModel
-                {
-                    IsSelected=false,
-                    Icon = "TableLarge",
-                    Code = 'P',
-                    Name = "Parts of Company",
-                    Description = "Watch Parts for Company"
-                },
-                new SelectableViewModel
-                {
-                    IsSelected=false,
-                    Icon = "TableRowPlusAfter",
-                    Code = 'A',
-                    Name = "Add Part(s)",
-                    Description = "Add Part(s) for Company"
-                },
-                new SelectableViewModel
-                {
-                    IsSelected=false,
-                    Icon = "TableEdit",
-                    Code = 'E',
-                    Name = "Edit Part(s)",
-                    Description = "Edit Part(s) of Company"
-                },
-                new SelectableViewModel
-                {
-                    IsSelected=false,
-                    Icon = "TableRowRemove",
-                    Code = 'R',
-                    Name = "Remove Part(s)",
-                    Description = "Remove Part(s) of Company"
-                }
+        //private static ObservableCollection<SelectableViewModel> CreateData3()
+        //{
+        //    return new ObservableCollection<SelectableViewModel>
+        //    {
+        //        new SelectableViewModel
+        //        {
+        //            IsSelected=false,
+        //            Icon = "TableLarge",
+        //            Code = 'P',
+        //            Name = "Parts of Company",
+        //            Description = "Watch Parts for Company"
+        //        },
+        //        new SelectableViewModel
+        //        {
+        //            IsSelected=false,
+        //            Icon = "TableRowPlusAfter",
+        //            Code = 'A',
+        //            Name = "Add Part(s)",
+        //            Description = "Add Part(s) for Company"
+        //        },
+        //        new SelectableViewModel
+        //        {
+        //            IsSelected=false,
+        //            Icon = "TableEdit",
+        //            Code = 'E',
+        //            Name = "Edit Part(s)",
+        //            Description = "Edit Part(s) of Company"
+        //        },
+        //        new SelectableViewModel
+        //        {
+        //            IsSelected=false,
+        //            Icon = "TableRowRemove",
+        //            Code = 'R',
+        //            Name = "Remove Part(s)",
+        //            Description = "Remove Part(s) of Company"
+        //        }
 
-            };
-        }
+        //    };
+        //}
 
         private static ObservableCollection<SelectableViewModel> CreateData5()
         {

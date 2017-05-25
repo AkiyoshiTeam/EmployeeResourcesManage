@@ -13,7 +13,7 @@
         <StackPanel VerticalAlignment="Center">
             <TextBlock Name="tbAlert" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="{DynamicResource MaterialDesignBody}" FontSize="20" Margin="0,0,0,20" >Tải về dữ liệu từ máy chấm công?</TextBlock>
             <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center" >
-                <Button Name="btnOK"  Style="{StaticResource MaterialDesignFlatButton}" Width="120" Margin="0 0 20 0" Click="btnOK_Click" >OK</Button>
+                <Button Name="btnOK"  Style="{StaticResource MaterialDesignFlatButton}" Width="120" Margin="0 0 20 0" Click="btnOK_Click" >Load File</Button>
                 <Button Style="{StaticResource MaterialDesignFlatButton}" Width="120" Margin="20 0 0 0" Command="{x:Static materialDesign:DialogHost.CloseDialogCommand}">Cancel</Button>
             </StackPanel>
         </StackPanel>

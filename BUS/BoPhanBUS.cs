@@ -13,5 +13,10 @@ namespace BUS
         {
             return DAO.BoPhanDAO.GetBoPhan();
         }
+
+        public static DataTable GetBoPhanPhongBan()
+        {
+            return DAO.BoPhanDAO.GetBoPhanPhongBan();
+        }
     }
 }

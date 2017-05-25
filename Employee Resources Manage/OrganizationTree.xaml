@@ -2,11 +2,93 @@
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:system="clr-namespace:System;assembly=mscorlib"
              xmlns:local="clr-namespace:Employee_Resources_Manage"
+             xmlns:materialDesignColors="clr-namespace:MaterialDesignColors;assembly=MaterialDesignColors"
+             xmlns:wpf="clr-namespace:MaterialDesignThemes.Wpf;assembly=MaterialDesignThemes.Wpf"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             xmlns:domain="clr-namespace:Employee_Resources_Manage.Domain"
+             xmlns:DTO="clr-namespace:DTO;assembly=DTO"
              mc:Ignorable="d" 
-             d:DesignHeight="300" d:DesignWidth="300">
-    <Grid>
-            
-    </Grid>
+             d:DesignHeight="450" d:DesignWidth="800">
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </UserControl.Resources>
+    <materialDesign:DialogHost Name="dialogHost" DialogClosing="dialogHost_DialogClosing" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2">
+        <materialDesign:DialogHost.DialogContent>
+            <StackPanel Margin="16">
+                <TextBlock Margin="0 8 0 0" HorizontalAlignment="Stretch" Text="{Binding}" FontWeight="Bold" FontSize="14"/>
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Right"  >
+                    <Button Style="{StaticResource MaterialDesignFlatButton}"
+                                        IsDefault="True"
+                                        Margin="0 8 8 0"
+                                        Command="materialDesign:DialogHost.CloseDialogCommand">
+                        <Button.CommandParameter>
+                            <system:Boolean>True</system:Boolean>
+                        </Button.CommandParameter>
+                        ACCEPT
+                    </Button>
+                    <Button Style="{StaticResource MaterialDesignFlatButton}"
+                                        IsCancel="True"
+                                        Margin="0 8 8 0"
+                                        Command="materialDesign:DialogHost.CloseDialogCommand">
+                        <Button.CommandParameter>
+                            <system:Boolean>False</system:Boolean>
+                        </Button.CommandParameter>
+                        CANCEL
+                    </Button>
+                </StackPanel>
+            </StackPanel>
+        </materialDesign:DialogHost.DialogContent>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="auto" />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <GroupBox Grid.Column="0" Header="Cây công ty" Style="{DynamicResource MaterialDesignGroupBox}" Margin="2,5,2,0" materialDesign:ShadowAssist.ShadowDepth="Depth2" BorderThickness="0" materialDesign:ColorZoneAssist.Mode="Accent" Padding="5" >
+                <TreeView Name="treeView" Style="{StaticResource MaterialDesignTreeView}" 
+                          ItemsSource="{Binding Companys}" MaxWidth="200" ScrollViewer.HorizontalScrollBarVisibility="Auto">
+                    <TreeView.ItemContainerStyle>
+                        <Style TargetType="{x:Type TreeViewItem}" BasedOn="{StaticResource MaterialDesignTreeViewItem}">
+                            <Setter Property="IsExpanded" Value="True"/>
+                        </Style>
+                    </TreeView.ItemContainerStyle>
+                    <TreeView.Resources>
+                        <HierarchicalDataTemplate DataType="{x:Type DTO:Company}"
+                                                  ItemsSource="{Binding Components}">
+                            <TextBlock Text="{Binding Name}" Margin="3 2"/>
+                        </HierarchicalDataTemplate>
+                        <HierarchicalDataTemplate DataType="{x:Type DTO:Component}"
+                                                  ItemsSource="{Binding Parts}">
+                            <TextBlock Text="{Binding Name}" Margin="3 2"/>
+                        </HierarchicalDataTemplate>
+                        <DataTemplate DataType="{x:Type DTO:Part}">
+                            <TextBlock Text="{Binding Name}"/>
+                        </DataTemplate>
+                    </TreeView.Resources>
+                </TreeView>
+            </GroupBox>
+            <GridSplitter Grid.Column="1" Width="3"/>
+            <GroupBox Grid.Column="1" Header="Chi tiết" Style="{DynamicResource MaterialDesignGroupBox}" Margin="2,5,2,0" materialDesign:ShadowAssist.ShadowDepth="Depth2" BorderThickness="0" materialDesign:ColorZoneAssist.Mode="Accent" Padding="5">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <DataGrid Name="dataGridNhanVien"  Style="{StaticResource MaterialDesignDataGrid}" ItemsSource="{Binding}" 
+                                  CanUserSortColumns="True" CanUserAddRows="False" AutoGenerateColumns="False" IsReadOnly="True"
+                                  materialDesign:DataGridAssist.CellPadding="4 2 2 2" materialDesign:DataGridAssist.ColumnHeaderPadding="4 2 2 2" 
+                                  DockPanel.Dock="Top" GridLinesVisibility="Horizontal" CanUserReorderColumns="False">
+                    </DataGrid>
+                </Grid>
+            </GroupBox>
+        </Grid>
+    </materialDesign:DialogHost>
 </UserControl>

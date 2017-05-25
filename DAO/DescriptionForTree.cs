@@ -46,5 +46,42 @@ namespace DAO
             }
             return null;
         }
+
+        public static DataSet GetDescriptionForOrganizationTree()
+        {
+            DataSet dtSet = new DataSet();
+            string queryNV = @"select st.name[Table], sc.name[Column], sep.value[Description]
+                            from sys.tables st inner join sys.columns sc on st.object_id = sc.object_id 
+                            left join sys.extended_properties sep on st.object_id = sep.major_id and sc.column_id = sep.minor_id and sep.name = 'MS_Description'
+                            where st.name = 'BoPhan' ";
+            string queryTTCT = @"select st.name[Table], sc.name[Column], sep.value[Description]
+                            from sys.tables st inner join sys.columns sc on st.object_id = sc.object_id 
+                            left join sys.extended_properties sep on st.object_id = sep.major_id and sc.column_id = sep.minor_id and sep.name = 'MS_Description'
+                            where st.name = 'PhongBan' ";
+
+            DataProvider dataProvider = new DataProvider();
+            try
+            {
+                dataProvider.connect();
+                DataTable tb = dataProvider.ExecuteQuery_DataTble(queryNV).Copy();
+                tb.TableName = "DesBoPhan";
+                dtSet.Tables.Add(tb);
+                tb = dataProvider.ExecuteQuery_DataTble(queryTTCT).Copy();
+                tb.TableName = "DesPhongBan";
+                dtSet.Tables.Add(tb);
+                dataProvider.disconnect();
+                return dtSet;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.StackTrace);
+                MessageBox.Show(ex.Message);
+            }
+            finally
+            {
+                dataProvider.disconnect();
+            }
+            return null;
+        }
     }
 }

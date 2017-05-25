@@ -18,6 +18,7 @@ using System.IO;
 using Novacode;
 using System.Data;
 using MaterialDesignThemes.Wpf;
+using System.Globalization;
 
 namespace Employee_Resources_Manage
 {
