@@ -94,7 +94,7 @@ namespace Employee_Resources_Manage
         public string Name { get; set; }
         public string ID { get; set; }
     }
-    
+
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
@@ -111,7 +111,7 @@ namespace Employee_Resources_Manage
         public MainWindow()
         {
             InitializeComponent();
-            
+
             manageItemsControl.DataContext = manageItems;
             manageItemsControl2.DataContext = manageItems;
             Task.Factory.StartNew(() =>
@@ -163,7 +163,7 @@ namespace Employee_Resources_Manage
                 tbManage1.Text = ((SelectableViewModel)manageItemsControl.SelectedItem).Name;
                 Transitioner.SelectedIndex = 0;
             }
-            switch(((SelectableViewModel)manageItemsControl.SelectedItem).Name)
+            switch (((SelectableViewModel)manageItemsControl.SelectedItem).Name)
             {
                 case "Employees Resources":
                     manageItemsControl2.ItemsSource = manageItems.Items2;
@@ -243,14 +243,20 @@ namespace Employee_Resources_Manage
                         case "Edit Employees":
                             if (selectedTableStatic != null)
                             {
-                                var editEmployeeControl = new EditEmployee();
-                                tab.Content = editEmployeeControl;
+                                if (selectedTableStatic.Rows.Count == 0)
+                                {
+                                    var editEmployeeControl = new EditEmployee();
+                                    tab.Content = editEmployeeControl;
+                                }
                             }
                             else
                             {
-                                tab.Header = "Employees Selector";
-                                var selectorControlTemp1 = new SelectorEmployee();
-                                tab.Content = selectorControlTemp1;
+                                if (selectedTableStatic.Rows.Count == 0)
+                                {
+                                    tab.Header = "Employees Selector";
+                                    var selectorControlTemp1 = new SelectorEmployee();
+                                    tab.Content = selectorControlTemp1;
+                                }
                             }
                             break;
                         case "Layoff Employees":
@@ -306,7 +312,7 @@ namespace Employee_Resources_Manage
                             }
                             i++;
                         }
-                        if(tabHome==true)
+                        if (tabHome == true)
                             tabMain.Items.RemoveAt(i);
                         tabHomeExist = false;
                         tabMain.FixedHeaderCount = 0;
@@ -405,7 +411,7 @@ namespace Employee_Resources_Manage
                 var view = CollectionViewSource.GetDefaultView(tabMain.Items);
                 view.CollectionChanged += (o, ev) =>
                 {
-                    if (tabMain.Items.Count == 0 )
+                    if (tabMain.Items.Count == 0)
                     {
                         TabItem tabItem = new TabItem();
                         tabItem.Header = "Home";
@@ -510,11 +516,11 @@ namespace Employee_Resources_Manage
         {
             if (tabMain != null)
             {
-                if(tabMain.Items.Count>0)
+                if (tabMain.Items.Count > 0)
                     if ((tabMain.Items[0] as TabItem).Header.ToString() == "Home")
                         tabMain.FixedHeaderCount = 1;
             }
         }
-        
+
     }
 }

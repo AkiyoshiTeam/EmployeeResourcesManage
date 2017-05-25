@@ -50,6 +50,8 @@ namespace Employee_Resources_Manage
             if (part != null)
             {
                 where = part.Content;
+                exThem.IsEnabled = false;
+                exXoa.Header = "Ngừng hoạt động phòng ban";
             }
             else
             {
@@ -57,11 +59,15 @@ namespace Employee_Resources_Manage
                 if (component != null)
                 {
                     where = component.Content;
+                    exThem.Header = "Thêm phòng ban";
+                    exXoa.Header = "Ngừng hoạt động bộ phận";
                 }
                 else
                 {
                     var company = organizationTreeViewModel.SelectedItem as DTO.Company;
                     where = company.Content;
+                    exThem.Header = "Thêm bộ phận";
+                    exXoa.IsEnabled = false;
                 }
             }
             dt = BUS.NhanVienBUS.GetNhanVienBPPB(where);

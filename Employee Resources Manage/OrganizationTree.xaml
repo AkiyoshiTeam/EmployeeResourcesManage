@@ -92,21 +92,21 @@
                               CanUserSortColumns="True" CanUserAddRows="False" AutoGenerateColumns="True" IsReadOnly="True" 
                               GridLinesVisibility="Horizontal" CanUserReorderColumns="False">
                     </DataGrid>
-                    <ScrollViewer Grid.Column="1" >
+                    <ScrollViewer Grid.Column="1" VerticalScrollBarVisibility="Auto">
                         <StackPanel>
                             <Expander VerticalAlignment="Top" IsExpanded="True" Header="Chỉnh sửa">
                                 <StackPanel Margin="40 0">
-                                    <TextBox Name="tbMa" Style="{StaticResource MaterialDesignFloatingHintTextBox}" materialDesign:HintAssist.Hint="Mã bộ phận" IsReadOnly="True" />
-                                    <TextBox Name="tbTen" Style="{StaticResource MaterialDesignFloatingHintTextBox}" materialDesign:HintAssist.Hint="Tên bộ phận" MaxLength="49"/>
+                                    <TextBox Name="tbMa" Style="{StaticResource MaterialDesignFloatingHintTextBox}" materialDesign:HintAssist.Hint="Mã" IsReadOnly="True" />
+                                    <TextBox Name="tbTen" Style="{StaticResource MaterialDesignFloatingHintTextBox}" materialDesign:HintAssist.Hint="Tên" MaxLength="49"/>
                                     <TextBox Name="tbViTri" Style="{StaticResource MaterialDesignFloatingHintTextBox}" materialDesign:HintAssist.Hint="Vị trí" MaxLength="99"/>
-                                    <ComboBox Name="cbTruong" Style="{StaticResource MaterialDesignFloatingHintComboBox}" IsEditable="True" materialDesign:HintAssist.Hint="Trưởng bộ phận"/>
+                                    <ComboBox Name="cbTruong" Style="{StaticResource MaterialDesignFloatingHintComboBox}" IsEditable="True" materialDesign:HintAssist.Hint="Chủ Trưởng"/>
                                     <Button Name="btnSua" Style="{StaticResource MaterialDesignFlatButton}" Width="120" Content="Update" HorizontalAlignment="Center" Margin="10"/>
                                 </StackPanel>
                             </Expander>
-                            <Expander Name="exThem" VerticalAlignment="Top" Header="Thêm phòng ban">
+                            <Expander Name="exThem" VerticalAlignment="Top" Header="Thêm phòng ban" >
                                 <StackPanel Margin="40 0">
-                                    <TextBox Name="tbMaNew" Style="{StaticResource MaterialDesignFloatingHintTextBox}" materialDesign:HintAssist.Hint="Mã phòng ban mới" IsReadOnly="True" />
-                                    <TextBox Name="tbTenNew" Style="{StaticResource MaterialDesignFloatingHintTextBox}" materialDesign:HintAssist.Hint="Tên phòng ban mới" MaxLength="49"/>
+                                    <TextBox Name="tbMaNew" Style="{StaticResource MaterialDesignFloatingHintTextBox}" materialDesign:HintAssist.Hint="Mã mới" IsReadOnly="True" />
+                                    <TextBox Name="tbTenNew" Style="{StaticResource MaterialDesignFloatingHintTextBox}" materialDesign:HintAssist.Hint="Tên mới" MaxLength="49"/>
                                     <TextBox Name="tbViTriNew" Style="{StaticResource MaterialDesignFloatingHintTextBox}" materialDesign:HintAssist.Hint="Vị trí" MaxLength="99"/>
                                     <Button Name="btnThem" Style="{StaticResource MaterialDesignFlatButton}" Width="120" Content="Add New" HorizontalAlignment="Center" Margin="10"/>
                                 </StackPanel>
