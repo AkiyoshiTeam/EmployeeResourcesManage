@@ -55,7 +55,7 @@ namespace DAO
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show(ex.StackTrace);
+                    MessageBox.Show(ex.Message);
                 }
                 finally
                 {
@@ -109,7 +109,7 @@ namespace DAO
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show(ex.StackTrace);
+                    MessageBox.Show(ex.Message);
                 }
                 finally
                 {
@@ -133,7 +133,7 @@ namespace DAO
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.StackTrace);
+                MessageBox.Show(ex.Message);
             }
             finally
             {
@@ -157,7 +157,7 @@ namespace DAO
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.StackTrace);
+                MessageBox.Show(ex.Message);
             }
             finally
             {
@@ -179,7 +179,7 @@ namespace DAO
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.StackTrace);
+                MessageBox.Show(ex.Message);
                 MessageBox.Show(ex.Message);
             }
         }
@@ -197,7 +197,7 @@ namespace DAO
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.StackTrace);
+                MessageBox.Show(ex.Message);
                 MessageBox.Show(ex.Message);
             }
         }
@@ -226,7 +226,7 @@ namespace DAO
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.StackTrace);
+                MessageBox.Show(ex.Message);
                 MessageBox.Show(ex.Message);
             }
         }
@@ -256,7 +256,7 @@ namespace DAO
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.StackTrace);
+                MessageBox.Show(ex.Message);
                 MessageBox.Show(ex.Message);
             }
         }
@@ -275,7 +275,7 @@ namespace DAO
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.StackTrace);
+                MessageBox.Show(ex.Message);
             }
             finally
             {
@@ -337,7 +337,7 @@ namespace DAO
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.StackTrace);
+                MessageBox.Show(ex.Message);
                 MessageBox.Show(ex.Message);
             }
             finally
@@ -384,7 +384,7 @@ namespace DAO
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.StackTrace);
+                MessageBox.Show(ex.Message);
                 MessageBox.Show(ex.Message);
             }
             finally
@@ -416,7 +416,7 @@ namespace DAO
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.StackTrace);
+                MessageBox.Show(ex.Message);
             }
             finally
             {
@@ -444,7 +444,7 @@ namespace DAO
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.StackTrace);
+                MessageBox.Show(ex.Message);
             }
             finally
             {
@@ -472,7 +472,31 @@ namespace DAO
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.StackTrace);
+                MessageBox.Show(ex.Message);
+            }
+            finally
+            {
+                dataProvider.disconnect();
+            }
+            return null;
+        }
+
+
+        public static DataTable GetNhanVienBPPB(string where)
+        {
+            DataTable tb = new DataTable();
+            string query = @"Select nv.MaNV as 'Mã nhân viên', nv.HoTen as 'Họ tên' from NhanVien nv join PhongBan pb on nv.MaPB=pb.MaPB join BoPhan bp on pb.MaBP=bp.MaBP ";
+            query += where;
+            DataProvider dataProvider = new DataProvider();
+            try
+            {
+                dataProvider.connect();
+                tb = dataProvider.ExecuteQuery_DataTble(query);
+                return tb;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
             }
             finally
             {

@@ -80,7 +80,18 @@ namespace DTO
         public ObservableCollection<Component> Components { get; }
 
         public ObservableCollection<Part> Parts { get; }
-        
+
+        private object _selectedItem;
+
+        public object SelectedItem
+        {
+            get { return _selectedItem; }
+            set
+            {
+                this.MutateVerbose(ref _selectedItem, value, args => PropertyChanged?.Invoke(this, args));
+            }
+        }
+
         public OrganizationTree(DataTable TableOrganizationTree)
         {
             Company co = new Company("Công ty Akiyoshi", "");

@@ -1,6 +1,7 @@
 ﻿using MaterialDesignThemes.Wpf;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -21,10 +22,14 @@ namespace Employee_Resources_Manage
     /// </summary>
     public partial class OrganizationTree : UserControl
     {
+        DataTable dt = new DataTable();
+        DTO.OrganizationTree organizationTreeViewModel = new DTO.OrganizationTree(BUS.BoPhanBUS.GetBoPhanPhongBan());
         public OrganizationTree()
         {
             InitializeComponent();
-            treeView.DataContext = new DTO.OrganizationTree(BUS.BoPhanBUS.GetBoPhanPhongBan());
+            treeView.DataContext = organizationTreeViewModel;
+            dt = BUS.NhanVienBUS.GetNhanVienBPPB("");
+            dataGridNhanVien.DataContext = dt;
         }
 
 
@@ -34,6 +39,34 @@ namespace Employee_Resources_Manage
             {
                 
             }
+        }
+
+        private void treeView_SelectedItemChanged(object sender, RoutedPropertyChangedEventArgs<object> e)
+        {
+            if (organizationTreeViewModel == null) return;
+            organizationTreeViewModel.SelectedItem = e.NewValue;
+            var part = organizationTreeViewModel.SelectedItem as DTO.Part;
+            string where = "";
+            if (part != null)
+            {
+                where = part.Content;
+            }
+            else
+            {
+                var component = organizationTreeViewModel.SelectedItem as DTO.Component;
+                if (component != null)
+                {
+                    where = component.Content;
+                }
+                else
+                {
+                    var company = organizationTreeViewModel.SelectedItem as DTO.Company;
+                    where = company.Content;
+                }
+            }
+            dt = BUS.NhanVienBUS.GetNhanVienBPPB(where);
+            dataGridNhanVien.DataContext = dt;
+
         }
     }
 }

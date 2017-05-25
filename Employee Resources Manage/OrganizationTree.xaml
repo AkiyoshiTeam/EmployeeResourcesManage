@@ -11,7 +11,7 @@
              xmlns:domain="clr-namespace:Employee_Resources_Manage.Domain"
              xmlns:DTO="clr-namespace:DTO;assembly=DTO"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
+             d:DesignHeight="1000" d:DesignWidth="800">
     <UserControl.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
@@ -52,9 +52,12 @@
             <Grid.RowDefinitions>
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
-            <GroupBox Grid.Column="0" Header="Cây công ty" Style="{DynamicResource MaterialDesignGroupBox}" Margin="2,5,2,0" materialDesign:ShadowAssist.ShadowDepth="Depth2" BorderThickness="0" materialDesign:ColorZoneAssist.Mode="Accent" Padding="5" >
+            <GroupBox Grid.Column="0" Style="{DynamicResource MaterialDesignGroupBox}" Margin="2,5,2,0" materialDesign:ShadowAssist.ShadowDepth="Depth2" BorderThickness="0" materialDesign:ColorZoneAssist.Mode="Accent" Padding="5" >
+                <GroupBox.Header>
+                    <TextBlock FontSize="15" FontWeight="Bold" >Cây công ty</TextBlock>
+                </GroupBox.Header>
                 <TreeView Name="treeView" Style="{StaticResource MaterialDesignTreeView}" 
-                          ItemsSource="{Binding Companys}" MaxWidth="200" ScrollViewer.HorizontalScrollBarVisibility="Auto">
+                          ItemsSource="{Binding Companys}" MaxWidth="200" ScrollViewer.HorizontalScrollBarVisibility="Auto" SelectedItemChanged="treeView_SelectedItemChanged">
                     <TreeView.ItemContainerStyle>
                         <Style TargetType="{x:Type TreeViewItem}" BasedOn="{StaticResource MaterialDesignTreeViewItem}">
                             <Setter Property="IsExpanded" Value="True"/>
@@ -76,17 +79,45 @@
                 </TreeView>
             </GroupBox>
             <GridSplitter Grid.Column="1" Width="3"/>
-            <GroupBox Grid.Column="1" Header="Chi tiết" Style="{DynamicResource MaterialDesignGroupBox}" Margin="2,5,2,0" materialDesign:ShadowAssist.ShadowDepth="Depth2" BorderThickness="0" materialDesign:ColorZoneAssist.Mode="Accent" Padding="5">
+            <GroupBox Grid.Column="1" Style="{DynamicResource MaterialDesignGroupBox}" Margin="2,5,2,0" materialDesign:ShadowAssist.ShadowDepth="Depth2" BorderThickness="0" materialDesign:ColorZoneAssist.Mode="Accent" Padding="5">
+                <GroupBox.Header>
+                    <TextBlock FontSize="15" FontWeight="Bold" >Chi tiết</TextBlock>
+                </GroupBox.Header>
                 <Grid>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition/>
                         <ColumnDefinition/>
                     </Grid.ColumnDefinitions>
                     <DataGrid Name="dataGridNhanVien"  Style="{StaticResource MaterialDesignDataGrid}" ItemsSource="{Binding}" 
-                                  CanUserSortColumns="True" CanUserAddRows="False" AutoGenerateColumns="False" IsReadOnly="True"
-                                  materialDesign:DataGridAssist.CellPadding="4 2 2 2" materialDesign:DataGridAssist.ColumnHeaderPadding="4 2 2 2" 
-                                  DockPanel.Dock="Top" GridLinesVisibility="Horizontal" CanUserReorderColumns="False">
+                              CanUserSortColumns="True" CanUserAddRows="False" AutoGenerateColumns="True" IsReadOnly="True" 
+                              GridLinesVisibility="Horizontal" CanUserReorderColumns="False">
                     </DataGrid>
+                    <ScrollViewer Grid.Column="1" >
+                        <StackPanel>
+                            <Expander VerticalAlignment="Top" IsExpanded="True" Header="Chỉnh sửa">
+                                <StackPanel Margin="40 0">
+                                    <TextBox Name="tbMa" Style="{StaticResource MaterialDesignFloatingHintTextBox}" materialDesign:HintAssist.Hint="Mã bộ phận" IsReadOnly="True" />
+                                    <TextBox Name="tbTen" Style="{StaticResource MaterialDesignFloatingHintTextBox}" materialDesign:HintAssist.Hint="Tên bộ phận" MaxLength="49"/>
+                                    <TextBox Name="tbViTri" Style="{StaticResource MaterialDesignFloatingHintTextBox}" materialDesign:HintAssist.Hint="Vị trí" MaxLength="99"/>
+                                    <ComboBox Name="cbTruong" Style="{StaticResource MaterialDesignFloatingHintComboBox}" IsEditable="True" materialDesign:HintAssist.Hint="Trưởng bộ phận"/>
+                                    <Button Name="btnSua" Style="{StaticResource MaterialDesignFlatButton}" Width="120" Content="Update" HorizontalAlignment="Center" Margin="10"/>
+                                </StackPanel>
+                            </Expander>
+                            <Expander Name="exThem" VerticalAlignment="Top" Header="Thêm phòng ban">
+                                <StackPanel Margin="40 0">
+                                    <TextBox Name="tbMaNew" Style="{StaticResource MaterialDesignFloatingHintTextBox}" materialDesign:HintAssist.Hint="Mã phòng ban mới" IsReadOnly="True" />
+                                    <TextBox Name="tbTenNew" Style="{StaticResource MaterialDesignFloatingHintTextBox}" materialDesign:HintAssist.Hint="Tên phòng ban mới" MaxLength="49"/>
+                                    <TextBox Name="tbViTriNew" Style="{StaticResource MaterialDesignFloatingHintTextBox}" materialDesign:HintAssist.Hint="Vị trí" MaxLength="99"/>
+                                    <Button Name="btnThem" Style="{StaticResource MaterialDesignFlatButton}" Width="120" Content="Add New" HorizontalAlignment="Center" Margin="10"/>
+                                </StackPanel>
+                            </Expander>
+                            <Expander Name="exXoa" VerticalAlignment="Top" Header="Ngừng hoạt động bộ phận">
+                                <StackPanel Margin="40 0">
+                                    <Button Name="btnXoa" Style="{StaticResource MaterialDesignFlatButton}" Width="120" Content="Shutdown" HorizontalAlignment="Center"/>
+                                </StackPanel>
+                            </Expander>
+                        </StackPanel>
+                    </ScrollViewer>
                 </Grid>
             </GroupBox>
         </Grid>

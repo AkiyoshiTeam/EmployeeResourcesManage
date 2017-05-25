@@ -27,7 +27,7 @@ namespace Employee_Resources_Manage
             DataContext = palDataContext;
             //togDarkMode.DataContext = palDataContext;
             togStyleMode.IsChecked = true;
-            togDarkMode.IsChecked = true;
+            togDarkMode.IsChecked = false;
         }
     }
 }
