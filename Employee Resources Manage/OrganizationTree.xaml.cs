@@ -53,6 +53,7 @@ namespace Employee_Resources_Manage
                 where = part.Content;
                 exThem.IsEnabled = false;
                 exXoa.IsEnabled = true;
+                exSua.IsEnabled = true;
                 exXoa.Header = "Ngừng hoạt động phòng ban";
                 dt = BUS.NhanVienBUS.GetNhanVienBPPB(where);
                 dataGridNhanVien.DataContext = dt;
@@ -72,6 +73,7 @@ namespace Employee_Resources_Manage
                     where = component.Content;
                     exThem.IsEnabled = true;
                     exXoa.IsEnabled = true;
+                    exSua.IsEnabled = true;
                     exThem.Header = "Thêm phòng ban";
                     exXoa.Header = "Ngừng hoạt động bộ phận";
                     dt = BUS.NhanVienBUS.GetNhanVienBPPB(where);
@@ -90,9 +92,9 @@ namespace Employee_Resources_Manage
                     exThem.Header = "Thêm bộ phận";
                     exThem.IsEnabled = true;
                     exXoa.IsEnabled = false;
+                    exSua.IsEnabled = false;
                     dt = BUS.NhanVienBUS.GetNhanVienBPPB(where);
                     dataGridNhanVien.DataContext = dt;
-                    tbViTri.IsEnabled = false;
                 }
             }
             

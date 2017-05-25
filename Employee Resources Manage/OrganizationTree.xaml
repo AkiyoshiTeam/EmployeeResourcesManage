@@ -94,7 +94,7 @@
                     </DataGrid>
                     <ScrollViewer Grid.Column="1" VerticalScrollBarVisibility="Auto">
                         <StackPanel>
-                            <Expander VerticalAlignment="Top" IsExpanded="True" Header="Chỉnh sửa">
+                            <Expander Name="exSua" VerticalAlignment="Top" IsExpanded="True" Header="Chỉnh sửa">
                                 <StackPanel Margin="40 0">
                                     <TextBox Name="tbMa" Style="{StaticResource MaterialDesignFloatingHintTextBox}" materialDesign:HintAssist.Hint="Mã" IsReadOnly="True" />
                                     <TextBox Name="tbTen" Style="{StaticResource MaterialDesignFloatingHintTextBox}" materialDesign:HintAssist.Hint="Tên" MaxLength="49"/>

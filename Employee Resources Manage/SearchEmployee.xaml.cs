@@ -238,8 +238,7 @@ namespace Employee_Resources_Manage
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.StackTrace);
-                MessageBox.Show(ex.Message);
+                MessageBox.Show("Kiểm tra lại dữ liệu tìm kiếm!");
             }
         }
 
@@ -424,12 +423,8 @@ namespace Employee_Resources_Manage
                     }
                     else if (Table.Columns[i].DataType.Name.ToString() == "DateTime")
                     {
-                        tooltipText.Text = String.Format("Định dạng: tháng/ngày/năm\nSo sánh hỗ trợ: = (mặc định), <, >, <=, >=, <>(khác), &.\nVí dụ: >4/23/2016, <>5/17/2016(khác 5/17/2016), \n>=4/23/2016&<=5/17/2016 (từ 4/23/2016 đến 5/17/2016)...");
+                        tooltipText.Text = String.Format("Định dạng: ngày/tháng/năm\nSo sánh hỗ trợ: = (mặc định), <, >, <=, >=, <>(khác), &.\nVí dụ: >4/23/2016, <>5/17/2016(khác 5/17/2016), \n>=4/23/2016&<=5/17/2016 (từ 4/23/2016 đến 5/17/2016)...");
                         tbFilter.ToolTip = tooltipText;
-                        foreach (DataRow row in Table.Columns[i].Table.Rows)
-                        {
-                            row[Table.Columns[i]] = DateTime.Parse(row[Table.Columns[i]].ToString()).ToString("dd/MM/yyyy");
-                        }
                         TableFilter = Table;
                         dataGridCustom.DataContext = TableFilter;
                     }
@@ -517,11 +512,28 @@ namespace Employee_Resources_Manage
                         {
                             if (TreeSearchViewModel.SearchObjects[i].SearchElements[j].SearchElementDetails[n].StrSearch.Trim() != "tt.MaNV")
                             {
-                                MaterialDataGridTextColumn col = new MaterialDataGridTextColumn();
-                                col.Header = TreeSearchViewModel.SearchObjects[i].SearchElements[j].SearchElementDetails[n].Content;
-                                col.EditingElementStyle = (Style)FindResource("MaterialDesignDataGridTextColumnPopupEditingStyle");
-                                col.Binding = new Binding(Table.Columns[x].ColumnName);
-                                dataGridCustom.Columns.Add(col);
+                                if (TreeSearchViewModel.SearchObjects[i].SearchElements[j].SearchElementDetails[n].StrSearch.Trim().Contains("Ngay") == true)
+                                {
+                                    var c = new DataGridTemplateColumn();
+                                    var template = new DataTemplate();
+                                    var textBlockFactory = new FrameworkElementFactory(typeof(TextBlock));
+                                    Binding bd = new Binding();
+                                    bd.StringFormat = "{0:dd/MM/yyyy}";
+                                    bd.Path = new PropertyPath(Table.Columns[x].ColumnName.Trim());
+                                    textBlockFactory.SetBinding(TextBlock.TextProperty, bd);
+                                    template.VisualTree = textBlockFactory;
+                                    c.CellTemplate = template;
+                                    c.Header = Table.Columns[x].ColumnName.Trim();
+                                    dataGridCustom.Columns.Add(c);
+                                }
+                                else
+                                {
+                                    MaterialDataGridTextColumn col = new MaterialDataGridTextColumn();
+                                    col.Header = TreeSearchViewModel.SearchObjects[i].SearchElements[j].SearchElementDetails[n].Content;
+                                    col.EditingElementStyle = (Style)FindResource("MaterialDesignDataGridTextColumnPopupEditingStyle");
+                                    col.Binding = new Binding(Table.Columns[x].ColumnName);
+                                    dataGridCustom.Columns.Add(col);
+                                }
                             }
                             else x--;
                             x++;
@@ -529,7 +541,7 @@ namespace Employee_Resources_Manage
                     }
                 }
             }
-            
+
         }
 
         private void btnSelect_Click(object sender, RoutedEventArgs e)
@@ -544,7 +556,7 @@ namespace Employee_Resources_Manage
                 }
                 if ((sender as Button).Content.ToString() == "Select New")
                 {
-                    if (MainWindow.selectedTableStatic.Rows.Count==0)
+                    if (MainWindow.selectedTableStatic.Rows.Count == 0)
                     {
                         foreach (DataRow row in TableFilter.Rows)
                         {
