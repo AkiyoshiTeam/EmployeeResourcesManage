@@ -63,6 +63,8 @@ namespace Employee_Resources_Manage
                                 tongHoaDon = Convert.ToInt64(tbtemp.Rows[0][0].ToString());
                             Stack<long> stk = new Stack<long>();
                             IEnumerable<string> enumer = congThuc.Split(' ');
+                            bool isPhuCap = false;
+                            bool isHoaDon = false;
                             foreach (string s in enumer)
                             {
                                 if (s == "")
@@ -79,9 +81,11 @@ namespace Employee_Resources_Manage
                                             break;
                                         case "C":
                                             stk.Push(phucCap);
+                                            isPhuCap = true;
                                             break;
                                         case "D":
                                             stk.Push(tongHoaDon);
+                                            isHoaDon = true;
                                             break;
                                         default:
                                             stk.Push(long.Parse(s));
@@ -104,7 +108,12 @@ namespace Employee_Resources_Manage
                                     stk.Push(y);
                                 }
                             }
-                            long tongLuongChuaThue = stk.Pop() - phucCap - tongHoaDon;
+                            
+                            long tongLuongChuaThue = stk.Pop();
+                            if (isPhuCap == true)
+                                tongLuongChuaThue -= phucCap;
+                            if (isHoaDon == true)
+                                tongLuongChuaThue -= tongHoaDon;
                             long tongLuongDaThue = 0;
                             long thue = 0;
                             if (tongLuongChuaThue <= 5000000)
@@ -136,13 +145,17 @@ namespace Employee_Resources_Manage
                                 thue = 18150000 + (tongLuongChuaThue - 80000000) * 35 / 100;
                             }
                             tongLuongDaThue = tongLuongChuaThue - thue;
-                            tongLuongDaThue += phucCap + tongHoaDon;
+                            if (isPhuCap == true)
+                                tongLuongDaThue += phucCap;
+                            if (isHoaDon == true)
+                                tongLuongDaThue += tongHoaDon;
                             BUS.BangLuongBUS.AddBangLuong(manv, ctcc.MaChamCong, luongCB.ToString(), phucCap.ToString(), tongHoaDon.ToString(), tongLuongDaThue.ToString());
                             DAO.ChiTietChamCongDAO.UpdateCTCC(ctcc);
-                            dialogHostWarning.DataContext = "Đã tính lương xong!";
-                            dialogHostWarning.IsOpen = true;
                         }
                     }
+
+                    dialogHostWarning.DataContext = "Đã tính lương xong!";
+                    dialogHostWarning.IsOpen = true;
                 }
             }
             catch (Exception ex)
