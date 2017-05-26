@@ -21,5 +21,9 @@ namespace BUS
         {
             return DAO.ChamCongDAO.CheckExistsChamCong(cc);
         }
+        public static DataTable GetChamCongByMaCC(string macc)
+        {
+            return DAO.ChamCongDAO.GetChamCongByMaCC(macc);
+        }
     }
 }

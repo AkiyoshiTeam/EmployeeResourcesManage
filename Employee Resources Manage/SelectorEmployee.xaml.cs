@@ -69,7 +69,6 @@ namespace Employee_Resources_Manage
             cbBoPhan.ItemsSource = listBP;
             cbBoPhan.DisplayMemberPath = "Name";
             cbBoPhan.SelectedValuePath = "ID";
-            //cbBoPhan.SelectedValue = "0";
 
             tbTemp = BUS.PhongBanBUS.GetPhongBan();
             listPB = new List<PhongBan>();
@@ -81,7 +80,6 @@ namespace Employee_Resources_Manage
             cbPhongBan.ItemsSource = listPB;
             cbPhongBan.DisplayMemberPath = "Name";
             cbPhongBan.SelectedValuePath = "ID";
-            //cbPhongBan.SelectedValue = "0";
 
             tbTemp = BUS.LoaiHopDongBUS.GetLoaiHopDong();
             listLHD = new List<LoaiHopDong>();
@@ -93,19 +91,6 @@ namespace Employee_Resources_Manage
             cbLoaiHopDong.ItemsSource = listLHD;
             cbLoaiHopDong.DisplayMemberPath = "Name";
             cbLoaiHopDong.SelectedValuePath = "ID";
-            //cbLoaiHopDong.SelectedValue = "0";
-
-            //tbTemp = BUS.LoaiLuongBUS.GetLoaiLuong();
-            //listLL = new List<LoaiLuong>();
-            //listLL.Add(new LoaiLuong { ID = "0", Name = "Tất cả" });
-            //foreach (DataRow row in tbTemp.Rows)
-            //{
-            //    listLL.Add(new LoaiLuong { ID = row[0].ToString(), Name = row[1].ToString() });
-            //}
-            //cbLoaiLuong.ItemsSource = listLL;
-            //cbLoaiLuong.DisplayMemberPath = "Name";
-            //cbLoaiLuong.SelectedValuePath = "ID";
-            //cbLoaiLuong.SelectedValue = "0";
 
             tbTemp = BUS.TinhTrangBUS.GetTinhTrang();
             listTT = new List<TinhTrang>();
@@ -117,8 +102,6 @@ namespace Employee_Resources_Manage
             cbTinhTrang.ItemsSource = listTT;
             cbTinhTrang.DisplayMemberPath = "Name";
             cbTinhTrang.SelectedValuePath = "ID";
-            //cbTinhTrang.SelectedValue = "0";
-
             isOkay = true;
         }
 
@@ -249,7 +232,6 @@ namespace Employee_Resources_Manage
                 if (cbBoPhan.SelectedValue.ToString() == "0")
                 {
                     cbPhongBan.ItemsSource = listPB;
-                    //cbPhongBan.SelectedValue = "0";
                 }
                 else
                 {
@@ -261,7 +243,6 @@ namespace Employee_Resources_Manage
                             listPBonBP.Add(new PhongBan { ID = row.ID, Name = row.Name, MaBP = row.MaBP });
                     }
                     cbPhongBan.ItemsSource = listPBonBP;
-                    //cbPhongBan.SelectedValue = "0";
                 }
                 GetForChoose();
             }
@@ -327,23 +308,6 @@ namespace Employee_Resources_Manage
                 else maLHD = "";
             }
             else maLHD = "";
-
-            //if (tgLoaiLuong.IsChecked == true)
-            //{
-            //    if (cbLoaiLuong.SelectedValue != null)
-            //    {
-            //        if (cbLoaiLuong.SelectedValue.ToString() == "0")
-            //        {
-            //            maLL = "";
-            //        }
-            //        else
-            //        {
-            //            maLL = cbLoaiLuong.SelectedValue.ToString().Trim();
-            //        }
-            //    }
-            //    else maLL = "";
-            //}
-            //else maLL = "";
 
             if (tgTinhTrang.IsChecked == true)
             {

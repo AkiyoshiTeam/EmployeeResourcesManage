@@ -52,19 +52,17 @@
             <materialDesign:ColorZone materialDesign:ShadowAssist.ShadowDepth="Depth2" Height="22" VerticalAlignment="Top" VerticalContentAlignment="Center" HorizontalContentAlignment="Stretch" DockPanel.Dock="Top" Panel.ZIndex="20">
                 <Menu IsMainMenu="True" Height="22" Background="{DynamicResource MaterialDesignPaper}" Foreground="{DynamicResource MaterialDesignBody}" VerticalAlignment="Top" FontSize="12">
                     <MenuItem Header="_Hệ thống" Height="22" >
-                        <MenuItem Header="Save" Height="22">
+                        <!--<MenuItem Header="Save" Height="22">
                             <MenuItem.Icon>
                                 <materialDesign:PackIcon Kind="ContentSave" />
                             </MenuItem.Icon>
                         </MenuItem>
-                        <MenuItem Header="Save As.." Height="22"/>
+                        <MenuItem Header="Save As.." Height="22"/>-->
                         <MenuItem Header="Exit" Height="22" InputGestureText="Ctrl+E" Click="MenuItemExit_Click">
                             <MenuItem.Icon>
                                 <materialDesign:PackIcon Kind="ExitToApp" />
                             </MenuItem.Icon>
                         </MenuItem>
-                        <Separator />
-                        <MenuItem Header="Excellent" Height="22" IsCheckable="True" IsChecked="True" />
 
                     </MenuItem>
                     <MenuItem Header="_Phụ lục" Height="22" >
@@ -274,7 +272,7 @@
                     <Border Grid.Column="0" VerticalAlignment="Bottom" HorizontalAlignment="Right" Margin="0,0,-20,30" Panel.ZIndex="20" 
                         Background="{DynamicResource MaterialDesignPaper}" CornerRadius="20">
                         <Button Name="btnCollapse" Style="{StaticResource MaterialDesignFloatingActionMiniButton}" Background="{DynamicResource MaterialDesignDivider}" Width="36" Height="36"
-                        Foreground="{DynamicResource MaterialDesignBody}" materialDesign:ShadowAssist.ShadowDepth="Depth0" BorderBrush="#00000000" Click="btnCollapse_Click">
+                        Foreground="{DynamicResource MaterialDesignBody}" materialDesign:ShadowAssist.ShadowDepth="Depth2" BorderBrush="#00000000" Click="btnCollapse_Click">
                             <materialDesign:PackIcon Name="packIconCollapse"  Kind="ChevronRight" Height="18" Width="18" Margin="0" />
                         </Button>
                     </Border>

@@ -48,10 +48,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BangLuongBUS.cs" />
     <Compile Include="BoPhanBUS.cs" />
     <Compile Include="ChamCongBUS.cs" />
     <Compile Include="ChamCongMacDinhBUS.cs" />
     <Compile Include="ChiTietChamCongBUS.cs" />
+    <Compile Include="CongThucTinhLuongBUS.cs" />
     <Compile Include="DanTocBUS.cs" />
     <Compile Include="DescriptionForTreeBUS.cs" />
     <Compile Include="GioiTinhBUS.cs" />

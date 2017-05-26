@@ -8,12 +8,12 @@ using System.Windows;
 
 namespace DAO
 {
-    public class LoaiHopDongDAO
+    public class CongThucTinhLuongDAO
     {
-        public static DataTable GetLoaiHopDong()
+        public static DataTable GetCongThucTinhLuong()
         {
             DataTable tb = new DataTable();
-            string query = "Select MaLoaiHD, TenLoai From LoaiHopDong";
+            string query = "select CongThuc from CongThucTinhLuong";
             DataProvider dataProvider = new DataProvider();
             try
             {

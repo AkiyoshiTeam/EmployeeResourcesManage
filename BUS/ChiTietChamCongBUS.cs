@@ -13,5 +13,13 @@ namespace BUS
         {
             DAO.ChiTietChamCongDAO.AddCTCC(dt, macc);
         }
+        public static DataTable GetCTCCByMANV(string manv)
+        {
+            return DAO.ChiTietChamCongDAO.GetCTCCByMANV(manv);
+        }
+        public static void UpdateCTCC(DTO.ChiTietChamCongDTO ctcc)
+        {
+            DAO.ChiTietChamCongDAO.UpdateCTCC(ctcc);
+        }
     }
 }

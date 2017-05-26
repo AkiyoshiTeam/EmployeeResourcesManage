@@ -40,7 +40,7 @@
                     </DockPanel>
                     <DockPanel Margin="5 10">
                         <TextBlock >04. Lương căn bản</TextBlock>
-                        <TextBlock DockPanel.Dock="Right" HorizontalAlignment="Right">(LuongCB)</TextBlock>
+                        <TextBlock DockPanel.Dock="Right" HorizontalAlignment="Right">(LuongCB)(*)</TextBlock>
                     </DockPanel>
                     <DockPanel Margin="5 10">
                         <TextBlock >05. Hình ảnh</TextBlock>

@@ -101,7 +101,7 @@ namespace Employee_Resources_Manage
         {
             if (lastID == "")
             {
-                return prefixID + "001";  // fixwidth default
+                return prefixID + "0001";  // fixwidth default
             }
             int nextID = int.Parse(lastID.Remove(0, prefixID.Length)) + 1;
             int lengthNumerID = lastID.Trim().Length - prefixID.Length;

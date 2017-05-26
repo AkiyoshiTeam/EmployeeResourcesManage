@@ -79,5 +79,17 @@ namespace BUS
         {
             return DAO.NhanVienDAO.GetNhanVienBPPB(where);
         }
+        public static DataTable GetNhanVienLuongCB(DataTable tbTemp)
+        {
+            return DAO.NhanVienDAO.GetNhanVienLuongCB(tbTemp);
+        }
+        public static DataTable GetNhanVienPhuCap(string manv)
+        {
+            return DAO.NhanVienDAO.GetNhanVienPhuCap(manv);
+        }
+        public static DataTable GetNhanVienTongHoaDon(string manv, string thang, string nam)
+        {
+            return DAO.NhanVienDAO.GetNhanVienTongHoaDon(manv, thang, nam);
+        }
     }
 }

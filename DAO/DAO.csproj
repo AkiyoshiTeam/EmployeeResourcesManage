@@ -59,10 +59,12 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BangLuongDAO.cs" />
     <Compile Include="BoPhanDAO.cs" />
     <Compile Include="ChamCongDAO.cs" />
     <Compile Include="ChamCongMacDinhDAO.cs" />
     <Compile Include="ChiTietChamCongDAO.cs" />
+    <Compile Include="CongThucTinhLuongDAO.cs" />
     <Compile Include="DanTocDAO.cs" />
     <Compile Include="DataProvider.cs" />
     <Compile Include="DescriptionForTree.cs" />

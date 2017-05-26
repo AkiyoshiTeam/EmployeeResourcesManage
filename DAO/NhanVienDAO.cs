@@ -203,14 +203,15 @@ namespace DAO
         {
             string query = @"UPDATE NhanVien SET MaTT=5 ";
             bool IsExists = false;
-            foreach(DataRow row in dt.Rows)
+            foreach (DataRow row in dt.Rows)
             {
                 if (IsExists == false)
                 {
                     query += " WHERE MaNV IN ('" + row[0].ToString() + "' ";
                     IsExists = true;
                 }
-                else {
+                else
+                {
                     query += " , '" + row[0].ToString() + "' ";
                 }
             }
@@ -306,7 +307,7 @@ namespace DAO
                 daEdit = new SqlDataAdapter();
                 daEdit.SelectCommand = new SqlCommand(query, cnn);
                 cbEdit = new SqlCommandBuilder(daEdit);
-                daEdit.Fill(ds,"NhanVien");
+                daEdit.Fill(ds, "NhanVien");
                 cnn.Close();
                 cnn.Open();
 
@@ -341,14 +342,15 @@ namespace DAO
             return null;
         }
 
-        public static bool UpdateNhanVienByElementForEdit(DataTable tbTemp1 ,DataTable tbTemp2)
+        public static bool UpdateNhanVienByElementForEdit(DataTable tbTemp1, DataTable tbTemp2)
         {
-            try {
+            try
+            {
                 daEdit.Update(tbTemp1);
                 daEditCT.Update(tbTemp2);
                 return true;
             }
-            catch(Exception ex)
+            catch (Exception ex)
             { MessageBox.Show(ex.Message); }
             return false;
         }
@@ -387,7 +389,7 @@ namespace DAO
             }
             return null;
         }
-        
+
         /// <summary>
         /// Lấy thông tin nhân viên theo một điều kiện XXX
         /// </summary>
@@ -480,6 +482,84 @@ namespace DAO
             DataTable tb = new DataTable();
             string query = @"Select nv.MaNV as 'Mã nhân viên', nv.HoTen as 'Họ tên', ttnv.TenTT as 'Tình trạng nhân viên' from NhanVien nv join PhongBan pb on nv.MaPB=pb.MaPB join BoPhan bp on pb.MaBP=bp.MaBP join TinhTrangNhanVien ttnv on nv.MaTT=ttnv.MaTT ";
             query += where;
+            DataProvider dataProvider = new DataProvider();
+            try
+            {
+                dataProvider.connect();
+                tb = dataProvider.ExecuteQuery_DataTble(query);
+                return tb;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            finally
+            {
+                dataProvider.disconnect();
+            }
+            return null;
+        }
+
+        public static DataTable GetNhanVienLuongCB(DataTable tbTemp)
+        {
+            DataTable tb = new DataTable();
+            bool isnull = true;
+            string query = @"Select nv.MaNV, nv.LuongCB From NhanVien nv ";
+            query += "where nv.MaNV IN (";
+            for (int i = 0; i < tbTemp.Rows.Count; i++)
+            {
+                if (isnull == true)
+                {
+                    query += "'" + tbTemp.Rows[i][0].ToString().Trim() + "'";
+                    isnull = false;
+                }
+                else query += ", '" + tbTemp.Rows[i][0].ToString().Trim() + "'";
+            }
+            query += ") and nv.LuongCB>0 ";
+            DataProvider dataProvider = new DataProvider();
+            try
+            {
+                dataProvider.connect();
+                tb = dataProvider.ExecuteQuery_DataTble(query);
+                return tb;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            finally
+            {
+                dataProvider.disconnect();
+            }
+            return null;
+        }
+
+        public static DataTable GetNhanVienPhuCap(string manv)
+        {
+            DataTable tb = new DataTable();
+            string query = @"Select * From PhuCap pc where pc.MaNV='" + manv + "'";
+            DataProvider dataProvider = new DataProvider();
+            try
+            {
+                dataProvider.connect();
+                tb = dataProvider.ExecuteQuery_DataTble(query);
+                return tb;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            finally
+            {
+                dataProvider.disconnect();
+            }
+            return null;
+        }
+
+        public static DataTable GetNhanVienTongHoaDon(string manv, string thang, string nam)
+        {
+            DataTable tb = new DataTable();
+            string query = " select sum(hd.Tien) as TongHoaDon from HoaDon hd where hd.MaNV = '" + manv + "' and hd.Thang = " + thang + " and hd.Nam = " + nam;
             DataProvider dataProvider = new DataProvider();
             try
             {

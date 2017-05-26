@@ -9,7 +9,7 @@ namespace DTO
     public class ChiTietChamCongDTO
     {
         string _maChamCong, _maNV;
-        int _ngayCong, _ngayNghi;
+        int _ngayCong, _trangThai;
         public string MaChamCong
         {
             get => _maChamCong;
@@ -25,10 +25,10 @@ namespace DTO
             get => _ngayCong;
             set => _ngayCong = value;
         }
-        public int NgayNghi
+        public int TrangThai
         {
-            get => _ngayNghi;
-            set => _ngayNghi = value;
+            get => _trangThai;
+            set => _trangThai = value;
         }
     }
 }

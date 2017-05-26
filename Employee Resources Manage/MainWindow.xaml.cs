@@ -310,11 +310,32 @@ namespace Employee_Resources_Manage
                         case "Download":
                             DialogHost.Show(new DownloadSheet(), "RootDialog");
                             return;
-                            //case "Assign Shift":
-                            //    var assignControl = new SearchEmployee();
-                            //    tab.Content = assignControl;
-                            //    break;
-
+                        //case "Assign Shift":
+                        //    var assignControl = new SearchEmployee();
+                        //    tab.Content = assignControl;
+                        //    break;
+                        case "Salary Calculating":
+                            if (selectedTableStatic != null)
+                            {
+                                if (selectedTableStatic.Rows.Count > 0)
+                                {
+                                    var salaryCalControl = new SalaryCalculating();
+                                    tab.Content = salaryCalControl;
+                                }
+                                else
+                                {
+                                    tab.Header = "Employees Selector";
+                                    var selectorControlTemp1 = new SelectorEmployee();
+                                    tab.Content = selectorControlTemp1;
+                                }
+                            }
+                            else
+                            {
+                                tab.Header = "Employees Selector";
+                                var selectorControlTemp1 = new SelectorEmployee();
+                                tab.Content = selectorControlTemp1;
+                            }
+                            break;
                     }
                     tab.IsSelected = true;
                     tabMain.Items.Add(tab);

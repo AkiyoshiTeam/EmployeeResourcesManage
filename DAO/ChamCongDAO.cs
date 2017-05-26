@@ -10,6 +10,29 @@ namespace DAO
 {
     public class ChamCongDAO
     {
+        public static DataTable GetChamCongByMaCC(string macc)
+        {
+            DataTable tb = new DataTable();
+            string query = "Select * From ChamCong cc Where cc.MaChamCong='" + macc + "'";
+
+            DataProvider dataProvider = new DataProvider();
+            try
+            {
+                dataProvider.connect();
+                tb = dataProvider.ExecuteQuery_DataTble(query);
+                return tb;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            finally
+            {
+                dataProvider.disconnect();
+            }
+            return null;
+        }
+
         public static DataTable GetLastChamCong()
         {
             DataTable tb = new DataTable();
