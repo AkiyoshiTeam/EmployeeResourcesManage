@@ -15,6 +15,9 @@ using System.Windows.Interop;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using DTO;
+using BUS;
+using System.Data;
 
 namespace Employee_Resources_Manage
 {
@@ -56,7 +59,7 @@ namespace Employee_Resources_Manage
 
     public class TextFieldsViewModel : INotifyPropertyChanged
     {
-        
+
         public TextFieldsViewModel()
         {
         }
@@ -81,7 +84,7 @@ namespace Employee_Resources_Manage
             TextFieldsViewModel tfvm = new TextFieldsViewModel();
             txtTaiKhoan.DataContext = tfvm;
         }
-        
+
         private void Thoat_Click(object sender, RoutedEventArgs e)
         {
             this.Close();
@@ -94,53 +97,68 @@ namespace Employee_Resources_Manage
         {
             DangNhap();
         }
-        
+
         private void txtMatKhau_PasswordChanged(object sender, RoutedEventArgs e)
         {
-
+            lbThongbao.Content = "";
         }
 
         private void txtDangNhap_KeyDown(object sender, KeyEventArgs e)
         {
-            if(e.Key == Key.Enter)
+            if (e.Key == Key.Enter)
                 DangNhap();
         }
 
 
         private void DangNhap()
         {
-            if (ch == true && txtMatKhau.Password != "123456")
+            NguoiDungDTO nd = new NguoiDungDTO();
+            string pass = "", username = "", phanquyen = "", hinhanh = "";
+            username = txtTaiKhoan.Text;
+            if (NguoiDungBUS.DangNhap(username).Rows.Count > 0)
             {
-                ell.Stroke = Brushes.Red;
-                ell.StrokeThickness = 1;
+                foreach (DataRow row in NguoiDungBUS.DangNhap(username).Rows)
+                {
+                    pass = row["Password"].ToString();
+                    phanquyen = row["MaPQ"].ToString();
+                    hinhanh = row["HinhAnh"].ToString();
+                }
+                if (ch == true && txtMatKhau.Password != pass)
+                {
+                    ell.Stroke = Brushes.Red;
+                    ell.StrokeThickness = 1;
+                    lbThongbao.Content = "Sai mật khẩu.";
+                }
+                if (ch == false && txtTaiKhoan.Text == username)
+                {
+                    TransitioningContent transitioningContent = new TransitioningContent();
+                    TransitionEffect effect = new TransitionEffect();
+                    effect.Kind = TransitionEffectKind.ExpandIn;
+                    transitioningContent.OpeningEffect = effect;
+                    object avatarContent;
+                    ell.Height = 150;
+                    ell.Width = 150;
+                    //Binding bnd = new Binding("BorderBrush") { ElementName = "txtMatKhau" };
+                    //BindingOperations.SetBinding(ell, Ellipse.StrokeProperty, bnd);
+                    ell.Stroke = Brushes.Transparent;
+                    ell.StrokeThickness = 1;
+                    ell.Fill = new ImageBrush(new BitmapImage(new Uri(@"..\..\Resources\Images\Avatar\" + hinhanh, UriKind.RelativeOrAbsolute)));
+                    avatarContent = ell;
+                    transitioningContent.Content = avatarContent;
+                    avatarContentControl.Content = transitioningContent;
+                    ch = true;
+                    transitionerField.SelectedIndex = 1;
+                    FocusManager.SetFocusedElement(gridSumary, txtMatKhau);
+                }
+                if (ch == true && txtMatKhau.Password == pass)
+                {
+                    MainWindow mainWindow = new MainWindow();
+                    mainWindow.Show();
+                    this.Close();
+                }
             }
-            if (ch == false && txtTaiKhoan.Text == "admin")
-            {
-                TransitioningContent transitioningContent = new TransitioningContent();
-                TransitionEffect effect = new TransitionEffect();
-                effect.Kind = TransitionEffectKind.ExpandIn;
-                transitioningContent.OpeningEffect = effect;
-                object avatarContent;
-                ell.Height = 150;
-                ell.Width = 150;
-                //Binding bnd = new Binding("BorderBrush") { ElementName = "txtMatKhau" };
-                //BindingOperations.SetBinding(ell, Ellipse.StrokeProperty, bnd);
-                ell.Stroke = Brushes.Transparent;
-                ell.StrokeThickness = 1;
-                ell.Fill = new ImageBrush(new BitmapImage(new Uri(@"..\..\Resources\Images\Avatar\56535968_p0.jpg", UriKind.RelativeOrAbsolute)));
-                avatarContent = ell;
-                transitioningContent.Content = avatarContent;
-                avatarContentControl.Content = transitioningContent;
-                ch = true;
-                transitionerField.SelectedIndex = 1;
-                FocusManager.SetFocusedElement(gridSumary, txtMatKhau);
-            }
-            if (ch == true && txtMatKhau.Password == "123456")
-            {
-                MainWindow mainWindow = new MainWindow();
-                mainWindow.Show();
-                this.Close();
-            }
+            else
+                lbThongbao.Content = "Sai tên đăng nhập.";
         }
 
         internal void EnableBlur()
@@ -171,7 +189,7 @@ namespace Employee_Resources_Manage
             if (e.Key == Key.Escape)
                 this.Close();
         }
-        
+
         private void Window_MouseDown(object sender, MouseButtonEventArgs e)
         {
             if (e.ChangedButton == MouseButton.Left)
@@ -181,6 +199,11 @@ namespace Employee_Resources_Manage
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             EnableBlur();
+        }
+
+        private void txtTaiKhoan_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            lbThongbao.Content = "";
         }
     }
 }

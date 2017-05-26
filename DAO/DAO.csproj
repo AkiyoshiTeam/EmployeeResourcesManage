@@ -73,6 +73,7 @@
     <Compile Include="IEnumerableToDataTable.cs" />
     <Compile Include="LoaiHopDongDAO.cs" />
     <Compile Include="LoaiLuongDAO.cs" />
+    <Compile Include="NguoiDungDAO.cs" />
     <Compile Include="NhanVienDAO.cs" />
     <Compile Include="PhongBanDAO.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

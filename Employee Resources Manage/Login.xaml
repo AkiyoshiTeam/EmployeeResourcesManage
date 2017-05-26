@@ -49,7 +49,7 @@
             <materialDesign:Transitioner Name="transitionerField" SelectedIndex="0" Grid.Row="0" Grid.Column="3" Margin="5,102,0,10" HorizontalAlignment="Left" VerticalAlignment="Center" Focusable="False" >
                 <StackPanel x:Name="spnTaiKhoan" Orientation="Horizontal" Focusable="False" >
                     <TextBox Name="txtTaiKhoan" Style="{StaticResource MaterialDesignFloatingHintTextBox}" Width="235" 
-                         VerticalAlignment="Center" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" KeyDown="txtDangNhap_KeyDown" Padding="2,0,0,0">
+                         VerticalAlignment="Center" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" KeyDown="txtDangNhap_KeyDown" Padding="2,0,0,0" TextChanged="txtTaiKhoan_TextChanged">
                         <materialDesign:HintAssist.Hint>
                             <StackPanel Orientation="Horizontal" Margin="-1 0 0 0">
                                 <materialDesign:PackIcon Kind="Account" Margin="0 0 2 0"/>
@@ -84,6 +84,7 @@
                 <Button Style="{StaticResource MaterialDesignRaisedButton}" Width="120" Margin="0 0 10 0" Click="DangNhap_Click" Background="#33000000" Foreground="#7FFFFFFF" FontSize="12" BorderBrush="{x:Null}" >ĐĂNG NHẬP</Button>
                 <Button Style="{StaticResource MaterialDesignRaisedButton}" Width="120" Margin="5 0 0 0" Click="Thoat_Click" Background="#33000000" Foreground="#7FFFFFFF" FontSize="12" BorderBrush="{x:Null}">THOÁT</Button>
             </StackPanel>
+            <Label x:Name="lbThongbao" Content="" Grid.Column="3" HorizontalAlignment="Left" Margin="10,0,0,0" Grid.Row="1" VerticalAlignment="Top" />
         </Grid>
     </Border>
 </Window>

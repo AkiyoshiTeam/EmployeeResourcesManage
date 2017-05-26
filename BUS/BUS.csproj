@@ -60,6 +60,7 @@
     <Compile Include="HopDongBUS.cs" />
     <Compile Include="LoaiHopDongBUS.cs" />
     <Compile Include="LoaiLuongBUS.cs" />
+    <Compile Include="NguoiDungBUS.cs" />
     <Compile Include="NhanVienBUS.cs" />
     <Compile Include="PhongBanBUS.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
