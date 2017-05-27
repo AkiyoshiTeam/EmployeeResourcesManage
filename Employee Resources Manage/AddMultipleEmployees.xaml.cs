@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -26,7 +27,7 @@ namespace Employee_Resources_Manage
         string manvLast = "";
         string mahdLast = "";
         OpenFileDialog fopen = new OpenFileDialog();
-
+        List<string> listError = new List<string>();
         public AddMultipleEmployees()
         {
             InitializeComponent();
@@ -158,6 +159,7 @@ namespace Employee_Resources_Manage
                                                         switch (hd.MaLoaiHD.ToString())
                                                         {
                                                             case "1":
+                                                                hd.NgayHetHan = Convert.ToDateTime("1/1/2500");
                                                                 break;
                                                             case "2":
                                                                 hd.NgayHetHan = Convert.ToDateTime(range.Cells[i, col + 21].Text.ToString()).AddYears(5).AddDays(-1);
@@ -179,14 +181,45 @@ namespace Employee_Resources_Manage
                                                     hd.MaTTHD = Int16.Parse(range.Cells[i, col + 23].Text.ToString());
                                                     BUS.HopDongBUS.AddHopDongMulti(hd);
                                                 }
+                                                else
+                                                {
+                                                    string error = "Lỗi ở dòng " + i.ToString() + " cột Tình trạng hợp đồng.";
+                                                    listError.Add(error);
+                                                }
+                                            }
+                                            else
+                                            {
+                                                string error = "Lỗi ở dòng " + i.ToString() + " cột Ngày ký hợp đồng.";
+                                                listError.Add(error);
                                             }
                                         }
+                                        else
+                                        {
+                                            string error = "Lỗi ở dòng " + i.ToString() + " cột Loại hợp đồng.";
+                                            listError.Add(error);
+                                        }
+                                    }
+                                    else
+                                    {
+                                        string error = "Lỗi ở dòng " + i.ToString() + " cột Ngày sinh.";
+                                        listError.Add(error);
                                     }
                                 }
+                                else
+                                {
+                                    string error = "Lỗi ở dòng " + i.ToString() + " cột CMND.";
+                                    listError.Add(error);
+                                }
                             }
-                            else break;
+                            else
+                            {
+                                string error = "Lỗi ở dòng " + i.ToString() + " cột Ngày vào làm.";
+                                listError.Add(error);
+                            }
                         }
+                        else break;
                     }
+                    MessageBox.Show("Thêm nhân viên thành công!");
                 }
                 catch (Exception ex)
                 {
@@ -198,9 +231,7 @@ namespace Employee_Resources_Manage
                     app.Quit();
                 }
             }
-
         }
-
 
         public string NextID(string lastID, string prefixID)
         {
@@ -224,5 +255,45 @@ namespace Employee_Resources_Manage
             }
             return prefixID + nextID;
         }
+
+        private void btnTemplate_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                string path = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
+                string sourceFile = Directory.GetParent(Directory.GetParent(Directory.GetCurrentDirectory()).ToString()).ToString() + @"\Resources\ImportEmployeeTemplate.xlsx";
+                string destinationFile = path + "\\ImportEmployeeTemplate.xlsx";
+                try { 
+                File.Copy(sourceFile, destinationFile);
+                }
+                catch { }
+                System.Diagnostics.Process.Start(destinationFile);
+            }
+            catch (Exception ex)
+            { }
+        }
+
+        private void btnError_Click(object sender, RoutedEventArgs e)
+        {
+            if(listError.Count>0)
+            {
+                string errors = "";
+                int counterror = 0;
+                foreach(string error in listError)
+                {
+                    counterror++;
+                    errors += error + "\n";
+                }
+                errors += "Tổng cộng: " + counterror.ToString()+" lỗi!";
+                dialogError.DataContext = errors;
+                dialogError.IsOpen = true;
+            }
+            else
+            {
+                dialogError.DataContext = "Không có lỗi xảy ra!";
+                dialogError.IsOpen = true;
+            }
+        }
     }
 }
+

@@ -79,7 +79,6 @@ namespace DAO
             try
             {
                 dataProvider.ExecuteUpdateQuery(query);
-                MessageBox.Show("Thêm hợp đồng thành công!");
             }
             catch (Exception ex)
             {

@@ -191,7 +191,6 @@ namespace DAO
             {
                 dataProvider.ExecuteUpdateQuery(query);
                 dataProvider.ExecuteUpdateQuery(query2);
-                MessageBox.Show("Thêm nhân viên thành công!");
             }
             catch (Exception ex)
             {

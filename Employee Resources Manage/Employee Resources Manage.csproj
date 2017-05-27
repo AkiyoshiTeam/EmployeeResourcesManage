@@ -144,6 +144,15 @@
     <Compile Include="SalaryCalculating.xaml.cs">
       <DependentUpon>SalaryCalculating.xaml</DependentUpon>
     </Compile>
+    <Compile Include="SalaryDeleteByID.xaml.cs">
+      <DependentUpon>SalaryDeleteByID.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SalaryDeleteByTime.xaml.cs">
+      <DependentUpon>SalaryDeleteByTime.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SalaryFormula.xaml.cs">
+      <DependentUpon>SalaryFormula.xaml</DependentUpon>
+    </Compile>
     <Compile Include="SearchEmployee.xaml.cs">
       <DependentUpon>SearchEmployee.xaml</DependentUpon>
     </Compile>
@@ -248,6 +257,18 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="SalaryCalculating.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="SalaryDeleteByID.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="SalaryDeleteByTime.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="SalaryFormula.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -18,6 +18,7 @@ using System.Windows.Shapes;
 using DTO;
 using BUS;
 using System.Data;
+using System.Threading;
 
 namespace Employee_Resources_Manage
 {
@@ -77,12 +78,14 @@ namespace Employee_Resources_Manage
     {
         [DllImport("user32.dll")]
         internal static extern int SetWindowCompositionAttribute(IntPtr hwnd, ref WindowCompositionAttributeData data);
-
+        System.Windows.Threading.DispatcherTimer dispatcherTimer = new System.Windows.Threading.DispatcherTimer();
         public Login()
         {
             InitializeComponent();
             TextFieldsViewModel tfvm = new TextFieldsViewModel();
             txtTaiKhoan.DataContext = tfvm;
+            dispatcherTimer.Tick += dispatcherTimer_Tick;
+            dispatcherTimer.Interval = new TimeSpan(0, 0, 0, 0, 100);
         }
 
         private void Thoat_Click(object sender, RoutedEventArgs e)
@@ -100,7 +103,12 @@ namespace Employee_Resources_Manage
 
         private void txtMatKhau_PasswordChanged(object sender, RoutedEventArgs e)
         {
-            lbThongbao.Content = "";
+            tbThongbao.Text = "";
+        }
+
+        private void txtTaiKhoan_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            tbThongbao.Text = "";
         }
 
         private void txtDangNhap_KeyDown(object sender, KeyEventArgs e)
@@ -125,9 +133,11 @@ namespace Employee_Resources_Manage
                 }
                 if (ch == true && txtMatKhau.Password != pass)
                 {
-                    ell.Stroke = Brushes.Red;
-                    ell.StrokeThickness = 1;
-                    lbThongbao.Content = "Sai mật khẩu.";
+                    if (txtMatKhau.Password != "")
+                    {
+                        tbThongbao.Text = "※Sai mật khẩu※";
+                        dispatcherTimer.Start();
+                    }
                 }
                 if (ch == false && txtTaiKhoan.Text == username)
                 {
@@ -138,8 +148,6 @@ namespace Employee_Resources_Manage
                     object avatarContent;
                     ell.Height = 150;
                     ell.Width = 150;
-                    //Binding bnd = new Binding("BorderBrush") { ElementName = "txtMatKhau" };
-                    //BindingOperations.SetBinding(ell, Ellipse.StrokeProperty, bnd);
                     ell.Stroke = Brushes.Transparent;
                     ell.StrokeThickness = 1;
                     ell.Fill = new ImageBrush(new BitmapImage(new Uri(@"..\..\Resources\Images\Avatar\" + hinhanh, UriKind.RelativeOrAbsolute)));
@@ -158,7 +166,36 @@ namespace Employee_Resources_Manage
                 }
             }
             else
-                lbThongbao.Content = "Sai tên đăng nhập.";
+            {
+                if (txtTaiKhoan.Text != "")
+                {
+                    tbThongbao.Text = "※Tài khoản không tồn tại※";
+                    dispatcherTimer.Start();
+                }
+            }
+        }
+
+        bool colorTB = true;
+        int i = 0;
+
+        private void dispatcherTimer_Tick(object sender, EventArgs e)
+        {
+            if (colorTB == false)
+            {
+                tbThongbao.SetResourceReference(ForegroundProperty, "PrimaryHueLightBrush");
+                colorTB = true;
+            }
+            else
+            {
+                tbThongbao.SetResourceReference(ForegroundProperty, "MaterialDesignBody");
+                colorTB = false;
+            }
+            i++;
+            if (i == 4)
+            {
+                dispatcherTimer.Stop();
+                i = 0;
+            }
         }
 
         internal void EnableBlur()
@@ -201,9 +238,5 @@ namespace Employee_Resources_Manage
             EnableBlur();
         }
 
-        private void txtTaiKhoan_TextChanged(object sender, TextChangedEventArgs e)
-        {
-            lbThongbao.Content = "";
-        }
     }
 }

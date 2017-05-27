@@ -272,6 +272,7 @@ namespace Employee_Resources_Manage
 
                     for (int i = 1; i <= TableFilter.Columns.Count; i++)
                     {
+                        sheet.Columns[i].ColumnWidth = 30;
                         sheet.Cells[2, i] = Table.Columns[i - 1].ColumnName;
                         sheet.Cells[2, i].HorizontalAlignment = Excel.XlHAlign.xlHAlignCenter;
                         sheet.Cells[2, i].Font.Bold = true;

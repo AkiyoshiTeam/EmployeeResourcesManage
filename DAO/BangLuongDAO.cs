@@ -51,5 +51,48 @@ namespace DAO
             }
             return null;
         }
+
+        public static void DeleteBangLuongByTime(string thang, string nam)
+        {
+            string query = "delete BangLuong where MaChamCong = (select MaChamCong from ChamCong where " + thang + " and " + nam + ")";
+            DataProvider dataProvider = new DataProvider();
+            try
+            {
+                dataProvider.connect();
+                dataProvider.ExecuteUpdateQuery(query);
+                query = "update ChiTietChamCong set TrangThai = 0 where MaChamCong = (select MaChamCong from ChamCong where " + thang + " and " + nam + ")";
+                dataProvider.ExecuteUpdateQuery(query);
+                MessageBox.Show("Xóa bảng lương thành công!");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            finally
+            {
+                dataProvider.disconnect();
+            }
+        }
+
+        public static void DeleteBangLuongByID(string manv)
+        {
+            string query = "delete BangLuong where MaNV = '" + manv + "'";
+            DataProvider dataProvider = new DataProvider();
+            try
+            {
+                dataProvider.connect();
+                dataProvider.ExecuteUpdateQuery(query);
+                query = "update ChiTietChamCong set TrangThai = 0 where MaNV = '" + manv + "'";
+                dataProvider.ExecuteUpdateQuery(query);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            finally
+            {
+                dataProvider.disconnect();
+            }
+        }
     }
 }

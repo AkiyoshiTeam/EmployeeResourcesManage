@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MaterialDesignThemes.Wpf;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Data;
@@ -27,8 +28,44 @@ namespace Employee_Resources_Manage
         {
             InitializeComponent();
             dataGridNhanVien.DataContext = MainWindow.selectedTableStatic;
+            MaterialDataGridTextColumn col;
+            col = new MaterialDataGridTextColumn();
+            col.Header = "Tháng";
+            col.Binding = new Binding("Tháng");
+            dataGridSalary.Columns.Add(col);
+            col = new MaterialDataGridTextColumn();
+            col.Header = "Năm";
+            col.Binding = new Binding("Năm");
+            dataGridSalary.Columns.Add(col);
+            col = new MaterialDataGridTextColumn();
+            col.Header = "Lương căn bản";
+            Binding bd = new Binding("Lương căn bản");
+            bd.StringFormat = "#,# đ";
+            col.Binding = bd;
+            dataGridSalary.Columns.Add(col);
+            col = new MaterialDataGridTextColumn();
+            col.Header = "Ngày công";
+            col.Binding = new Binding("Ngày công");
+            dataGridSalary.Columns.Add(col);
+            col = new MaterialDataGridTextColumn();
+            col.Header = "Phụ cấp";
+            bd = new Binding("Phụ cấp");
+            bd.StringFormat = "#,# đ";
+            col.Binding = bd;
+            dataGridSalary.Columns.Add(col);
+            col = new MaterialDataGridTextColumn();
+            col.Header = "Hóa đơn chi trả";
+            bd = new Binding("Hóa đơn chi trả");
+            bd.StringFormat = "#,# đ";
+            col.Binding = bd;
+            dataGridSalary.Columns.Add(col);
+            col = new MaterialDataGridTextColumn();
+            col.Header = "Tổng lương đã tính thuế";
+            bd = new Binding("Tổng lương đã tính thuế");
+            bd.StringFormat = "#,# đ";
+            col.Binding = bd;
+            dataGridSalary.Columns.Add(col);
         }
-
         private void btnTinhLuong_Click(object sender, RoutedEventArgs e)
         {
             try
@@ -65,6 +102,7 @@ namespace Employee_Resources_Manage
                             IEnumerable<string> enumer = congThuc.Split(' ');
                             bool isPhuCap = false;
                             bool isHoaDon = false;
+                            long number = 0;
                             foreach (string s in enumer)
                             {
                                 if (s == "")
@@ -89,6 +127,7 @@ namespace Employee_Resources_Manage
                                             break;
                                         default:
                                             stk.Push(long.Parse(s));
+                                            number += long.Parse(s);
                                             break;
                                     }
                                 }
@@ -108,12 +147,13 @@ namespace Employee_Resources_Manage
                                     stk.Push(y);
                                 }
                             }
-                            
+
                             long tongLuongChuaThue = stk.Pop();
                             if (isPhuCap == true)
                                 tongLuongChuaThue -= phucCap;
                             if (isHoaDon == true)
                                 tongLuongChuaThue -= tongHoaDon;
+                            tongLuongChuaThue -= number;
                             long tongLuongDaThue = 0;
                             long thue = 0;
                             if (tongLuongChuaThue <= 5000000)
@@ -145,6 +185,7 @@ namespace Employee_Resources_Manage
                                 thue = 18150000 + (tongLuongChuaThue - 80000000) * 35 / 100;
                             }
                             tongLuongDaThue = tongLuongChuaThue - thue;
+                            tongLuongDaThue += number;
                             if (isPhuCap == true)
                                 tongLuongDaThue += phucCap;
                             if (isHoaDon == true)
@@ -153,9 +194,8 @@ namespace Employee_Resources_Manage
                             DAO.ChiTietChamCongDAO.UpdateCTCC(ctcc);
                         }
                     }
-
-                    dialogHostWarning.DataContext = "Đã tính lương xong!";
-                    dialogHostWarning.IsOpen = true;
+                    MessageBox.Show("Đã tính lương xong!");
+                    dataGridSalary.DataContext = null;
                 }
             }
             catch (Exception ex)
@@ -231,11 +271,40 @@ namespace Employee_Resources_Manage
 
         private void dataGridNhanVien_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            if(dataGridNhanVien.SelectedItem !=null)
+            if (dataGridNhanVien.SelectedItem != null)
             {
                 DataRowView rv = (dataGridNhanVien.SelectedItems[0] as DataRowView);
                 string manv = rv[0].ToString();
                 dataGridSalary.DataContext = BUS.BangLuongBUS.GetBangLuong(manv);
+            }
+        }
+
+        private void btnXoaTheoThoiGian_Click(object sender, RoutedEventArgs e)
+        {
+            DialogHost.Show(new SalaryDeleteByTime(), "RootDialog");
+        }
+
+        private void btnXoaTheoNhanVien_Click(object sender, RoutedEventArgs e)
+        {
+            dialogHostWarning.DataContext = "Bạn muốn xóa bảng lương của những nhân viên đã chọn?";
+            dialogHostWarning.IsOpen = true;
+        }
+
+        private void dialogHost_DialogClosing(object sender, DialogClosingEventArgs eventArgs)
+        {
+            if ((bool)eventArgs.Parameter == true)
+            {
+                try
+                {
+                    foreach (DataRow row in MainWindow.selectedTableStatic.Rows)
+                    {
+                        string manv = row[0].ToString();
+                        BUS.BangLuongBUS.DeleteBangLuongByID(manv);
+                    }
+                    MessageBox.Show("Xoá bảng lương thành công!");
+                    dataGridSalary.DataContext = null;
+                }
+                catch { }
             }
         }
     }

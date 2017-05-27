@@ -1,0 +1,21 @@
+﻿<UserControl x:Class="Employee_Resources_Manage.SalaryDeleteByTime"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Employee_Resources_Manage"
+             xmlns:c="clr-namespace:Employee_Resources_Manage"
+             xmlns:system="clr-namespace:System;assembly=mscorlib"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             xmlns:domain="clr-namespace:Employee_Resources_Manage.Domain"
+             mc:Ignorable="d" 
+             d:DesignHeight="145" d:DesignWidth="370"
+             Height="145" Width="370">
+    <Grid>
+        <Button Name="btnDelete" Content="Delete" HorizontalAlignment="Left" Margin="90,90,0,0" VerticalAlignment="Top" Width="75" IsEnabled="False" Click="btnDelete_Click"/>
+        <Button Content="Cancel" HorizontalAlignment="Right" Margin="0,90,90,0" VerticalAlignment="Top" Width="75" 
+                                        Command="materialDesign:DialogHost.CloseDialogCommand"/>
+        <TextBox Name="tbThang" Style="{StaticResource MaterialDesignFloatingHintTextBox}" materialDesign:HintAssist.Hint="Tháng" HorizontalAlignment="Left" Margin="50,30,0,0" Text="" VerticalAlignment="Top" Width="120" PreviewTextInput="txtInt_PreviewTextInput" TextChanged="TextBox_TextChanged" MaxLength="2"/>
+        <TextBox Name="tbNam" Style="{StaticResource MaterialDesignFloatingHintTextBox}" materialDesign:HintAssist.Hint="Năm" HorizontalAlignment="Right" Margin="0,30,50,0" Text="" VerticalAlignment="Top" Width="120" PreviewTextInput="txtInt_PreviewTextInput" TextChanged="TextBox_TextChanged" MaxLength="4"/>
+    </Grid>
+</UserControl>

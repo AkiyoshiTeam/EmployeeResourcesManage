@@ -13,5 +13,10 @@ namespace BUS
         {
             return DAO.CongThucTinhLuongDAO.GetCongThucTinhLuong();
         }
+        public static void UpdateCongThuc(string ct)
+        {
+            DAO.CongThucTinhLuongDAO.UpdateCongThuc(ct);
+        }
+
     }
 }

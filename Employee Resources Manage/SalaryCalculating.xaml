@@ -10,12 +10,12 @@
              xmlns:domain="clr-namespace:Employee_Resources_Manage.Domain"
              mc:Ignorable="d" 
              d:DesignHeight="600" d:DesignWidth="800">
-    <materialDesign:DialogHost Name="dialogHostWarning" Identifier="dialogHostWarning" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="3" Grid.RowSpan="2" Margin="0" >
+    <materialDesign:DialogHost Name="dialogHostWarning" Identifier="dialogHostWarning" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="3" Grid.RowSpan="2" Margin="0" DialogClosing="dialogHost_DialogClosing">
         <materialDesign:DialogHost.DialogContent>
             <StackPanel Margin="16">
                 <TextBlock Margin="0 8" HorizontalAlignment="Center" Text="{Binding}" FontWeight="Bold" FontSize="14"/>
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Center"  >
-                    <!--<Button Style="{StaticResource MaterialDesignFlatButton}"
+                    <Button Style="{StaticResource MaterialDesignFlatButton}"
                                         IsDefault="True"
                                         Margin="0 8 8 0"
                                         Command="materialDesign:DialogHost.CloseDialogCommand">
@@ -23,7 +23,7 @@
                             <system:Boolean>True</system:Boolean>
                         </Button.CommandParameter>
                         ACCEPT
-                    </Button>-->
+                    </Button>
                     <Button Style="{StaticResource MaterialDesignFlatButton}"
                                         IsCancel="True"
                                         Margin="8 8 0 0"
@@ -51,6 +51,7 @@
                       CanUserAddRows="False" AutoGenerateColumns="True" IsReadOnly="True" ItemsSource="{Binding}"
                        materialDesign:DataGridAssist.CellPadding="4 2 2 2" materialDesign:DataGridAssist.ColumnHeaderPadding="4 2 2 2" Foreground="{DynamicResource MaterialDesignBody}" SelectionChanged="dataGridNhanVien_SelectionChanged" >
                     </DataGrid>
+                    <Button Name="btnTinhLuong" Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Center" Content="Tính lương tự động" Click="btnTinhLuong_Click"/>
                 </Grid>
             </GroupBox>
             <GroupBox Grid.Column="1" Header="Chi tiết tính lương" Style="{DynamicResource MaterialDesignGroupBox}" Margin="5,10,5,5" materialDesign:ShadowAssist.ShadowDepth="Depth2" BorderThickness="0" materialDesign:ColorZoneAssist.Mode="Accent" Padding="5" FontWeight="Bold" >
@@ -60,10 +61,11 @@
                         <RowDefinition Height="50"/>
                     </Grid.RowDefinitions>
                     <DataGrid Name="dataGridSalary"  Style="{StaticResource MaterialDesignDataGrid}" Grid.Row="0" 
-                      CanUserAddRows="False" AutoGenerateColumns="true" IsReadOnly="True" ItemsSource="{Binding}" ColumnWidth="*"
+                      CanUserAddRows="False" AutoGenerateColumns="False" IsReadOnly="True" ItemsSource="{Binding}" ColumnWidth="*"
                        materialDesign:DataGridAssist.CellPadding="4 2 2 2" materialDesign:DataGridAssist.ColumnHeaderPadding="4 2 2 2" Foreground="{DynamicResource MaterialDesignBody}" >
                     </DataGrid>
-                    <Button Name="btnTinhLuong" Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Right" Content="Tính lương tự động" Click="btnTinhLuong_Click"/>
+                    <Button Name="btnXoaTheoThoiGian" Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Right" Content="Xóa bảng lương theo thời gian" Margin="0,0,250,0" Click="btnXoaTheoThoiGian_Click"/>
+                    <Button Name="btnXoaTheoNhanVien" Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Right" Content="Xóa bảng lương theo nhân viên" Click="btnXoaTheoNhanVien_Click" />
                 </Grid>
             </GroupBox>
         </Grid>

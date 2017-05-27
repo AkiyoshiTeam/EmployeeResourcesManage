@@ -243,3 +243,9 @@ D:\EmployeeResourcesManage\Employee Resources Manage\obj\Debug\Employee_Resource
 D:\EmployeeResourcesManage\Employee Resources Manage\obj\Debug\Employee Resources Manage.csproj.GenerateResource.Cache
 D:\EmployeeResourcesManage\Employee Resources Manage\obj\Debug\Employee Resources Manage.exe
 D:\EmployeeResourcesManage\Employee Resources Manage\obj\Debug\Employee Resources Manage.pdb
+C:\Users\mjnht\Desktop\Project Employee Manager\EmployeeResourcesManage\Employee Resources Manage\obj\Debug\SalaryFormula.g.cs
+C:\Users\mjnht\Desktop\Project Employee Manager\EmployeeResourcesManage\Employee Resources Manage\obj\Debug\SalaryFormula.baml
+C:\Users\mjnht\Desktop\Project Employee Manager\EmployeeResourcesManage\Employee Resources Manage\obj\Debug\SalaryDeleteByID.g.cs
+C:\Users\mjnht\Desktop\Project Employee Manager\EmployeeResourcesManage\Employee Resources Manage\obj\Debug\SalaryDeleteByTime.g.cs
+C:\Users\mjnht\Desktop\Project Employee Manager\EmployeeResourcesManage\Employee Resources Manage\obj\Debug\SalaryDeleteByID.baml
+C:\Users\mjnht\Desktop\Project Employee Manager\EmployeeResourcesManage\Employee Resources Manage\obj\Debug\SalaryDeleteByTime.baml

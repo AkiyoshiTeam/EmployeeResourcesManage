@@ -81,10 +81,10 @@
             </materialDesign:Transitioner>
 
             <StackPanel Grid.Column="2" Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.ColumnSpan="3" Margin="15,62,38,56" Width="259" >
-                <Button Style="{StaticResource MaterialDesignRaisedButton}" Width="120" Margin="0 0 10 0" Click="DangNhap_Click" Background="#33000000" Foreground="#7FFFFFFF" FontSize="12" BorderBrush="{x:Null}" >ĐĂNG NHẬP</Button>
-                <Button Style="{StaticResource MaterialDesignRaisedButton}" Width="120" Margin="5 0 0 0" Click="Thoat_Click" Background="#33000000" Foreground="#7FFFFFFF" FontSize="12" BorderBrush="{x:Null}">THOÁT</Button>
+                <Button Style="{StaticResource MaterialDesignRaisedButton}" Width="120" Margin="0 0 10 0" Click="DangNhap_Click" Background="#33000000" Foreground="#7FFFFFFF" BorderThickness="0" FontSize="12">ĐĂNG NHẬP</Button>
+                <Button Style="{StaticResource MaterialDesignRaisedButton}" Width="120" Margin="5 0 0 0" Click="Thoat_Click" Background="#33000000" Foreground="#7FFFFFFF" BorderThickness="0"  FontSize="12">THOÁT</Button>
             </StackPanel>
-            <Label x:Name="lbThongbao" Content="" Grid.Column="3" HorizontalAlignment="Left" Margin="10,0,0,0" Grid.Row="1" VerticalAlignment="Top" />
+            <TextBlock x:Name="tbThongbao" Grid.Column="3" HorizontalAlignment="Left" Margin="5,145,0,0" VerticalAlignment="Top" Text="" Grid.RowSpan="2" Foreground="{DynamicResource PrimaryHueLightBrush}" />
         </Grid>
     </Border>
 </Window>

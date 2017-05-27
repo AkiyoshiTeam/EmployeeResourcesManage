@@ -17,5 +17,14 @@ namespace BUS
         {
             return DAO.BangLuongDAO.GetBangLuong(manv);
         }
+        public static void DeleteBangLuongByTime(string thang, string nam)
+        {
+            DAO.BangLuongDAO.DeleteBangLuongByTime(thang, nam);
+        }
+
+        public static void DeleteBangLuongByID(string manv)
+        {
+            DAO.BangLuongDAO.DeleteBangLuongByID(manv);
+        }
     }
 }

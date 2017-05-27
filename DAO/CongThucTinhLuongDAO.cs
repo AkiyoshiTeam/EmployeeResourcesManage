@@ -31,5 +31,20 @@ namespace DAO
             }
             return null;
         }
+
+        public static void UpdateCongThuc(string ct)
+        {
+            string query = @"Update CongThucTinhLuong Set CongThuc ='" + ct + "' Where ID = 1";
+            DataProvider dataProvider = new DataProvider();
+            try
+            {
+                dataProvider.ExecuteUpdateQuery(query);
+                MessageBox.Show("Update công thức thành công!");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
     }
 }

@@ -115,6 +115,9 @@ namespace Employee_Resources_Manage
         bool IsChangedTheme = false;
         object palContent;
         bool isOkay = false;
+
+        bool searchExists = false;
+
         public MainWindow()
         {
             InitializeComponent();
@@ -128,7 +131,6 @@ namespace Employee_Resources_Manage
             {
                 MainSnackbar.MessageQueue.Enqueue("Phần mềm quản lý nhân sự Công Ty Akiyoshi");
             }, TaskScheduler.FromCurrentSynchronizationContext());
-
         }
 
         private void MenuItemExit_Click(object sender, RoutedEventArgs e)
@@ -336,6 +338,9 @@ namespace Employee_Resources_Manage
                                 tab.Content = selectorControlTemp1;
                             }
                             break;
+                        case "Salary Formula":
+                            DialogHost.Show(new SalaryFormula(), "RootDialog");
+                            return;
                     }
                     tab.IsSelected = true;
                     tabMain.Items.Add(tab);
