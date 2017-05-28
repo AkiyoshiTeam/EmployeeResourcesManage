@@ -91,5 +91,9 @@ namespace BUS
         {
             return DAO.NhanVienDAO.GetNhanVienTongHoaDon(manv, thang, nam);
         }
+        public static void DeleteNhanVien(DataTable dt)
+        {
+            DAO.NhanVienDAO.DeleteNhanVien(dt);
+        }
     }
 }

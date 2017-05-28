@@ -27,10 +27,23 @@
     <Window.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
-                
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Window.Resources>
+    <Controls:MetroWindow.RightWindowCommands>
+        <Controls:WindowCommands>
+            <Ellipse Name="ellAvatar" Margin="5 0"></Ellipse>
+            <Button>
+                <TextBlock Name="tbAccount" VerticalAlignment="Center" />
+            </Button>
+            <Button>
+                <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                    <TextBlock Name="tbDate" Margin="0 0 5 0"></TextBlock>
+                    <TextBlock Name="tbTime"></TextBlock>
+                </StackPanel>
+            </Button>
+        </Controls:WindowCommands>
+    </Controls:MetroWindow.RightWindowCommands>
     <materialDesign:DialogHost Identifier="RootDialog" SnackbarMessageQueue="{Binding ElementName=MainSnackbar, Path=MessageQueue}">
         <materialDesign:DialogHost.DialogContent>
             <StackPanel Margin="16">
@@ -63,9 +76,8 @@
                                 <materialDesign:PackIcon Kind="ExitToApp" />
                             </MenuItem.Icon>
                         </MenuItem>
-
                     </MenuItem>
-                    <MenuItem Header="_Phụ lục" Height="22" >
+                    <!--<MenuItem Header="_Phụ lục" Height="22" >
                         <MenuItem Header="_Cut" Height="22" Command="Cut">
                             <MenuItem.Icon>
                                 <materialDesign:PackIcon Kind="ContentCut" />
@@ -91,7 +103,7 @@
                     <MenuItem Header="_Công cụ"  Height="22">
                     </MenuItem>
                     <MenuItem Header="_Cửa sổ" Height="22" >
-                    </MenuItem>
+                    </MenuItem>-->
                     <MenuItem Header="_Trợ giúp"  Height="22">
                         <MenuItem Header="_Theme" Height="22" Click="MenuItemTheme_Click" >
                             <MenuItem.Icon>
@@ -101,6 +113,12 @@
                         <MenuItem Header="_Change Password" Height="22" Click="MenuItemChangePassword_Click" >
                             <MenuItem.Icon>
                                 <materialDesign:PackIcon Kind="Settings" />
+                            </MenuItem.Icon>
+                        </MenuItem>
+                        <Separator />
+                        <MenuItem Header="_About Us" Height="22" Click="MenuItemChangePassword_Click" >
+                            <MenuItem.Icon>
+                                <materialDesign:PackIcon Kind="Xml" />
                             </MenuItem.Icon>
                         </MenuItem>
                     </MenuItem>
@@ -190,13 +208,13 @@
                     </ToolBar>
                 </ToolBarTray>
             </materialDesign:ColorZone>
-            
+
             <materialDesign:ColorZone Background="{DynamicResource PrimaryHueLightBrush}" Height="23" VerticalAlignment="Bottom" VerticalContentAlignment="Stretch" 
                                   HorizontalContentAlignment="Stretch" DockPanel.Dock="Bottom" BorderThickness="0,2,0,0" BorderBrush="{DynamicResource MaterialDesignDivider}"/>
             <materialDesign:ColorZone materialDesign:ShadowAssist.ShadowDepth="Depth0" DockPanel.Dock="Top" VerticalAlignment="Stretch">
                 <Grid DockPanel.Dock="Top" Background="{DynamicResource MaterialDesignPaper}">
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Name="colChucNang" MinWidth="40" MaxWidth="40" Width="200"/>
+                        <ColumnDefinition Name="colChucNang" MinWidth="47" MaxWidth="47" Width="200"/>
                         <ColumnDefinition Width="3"/>
                         <ColumnDefinition />
                     </Grid.ColumnDefinitions>
@@ -209,7 +227,7 @@
                             <materialDesign:ColorZone DockPanel.Dock="Top" materialDesign:ShadowAssist.ShadowDepth="Depth2" Foreground="{DynamicResource PrimaryHueMidForegroundBrush}">
                                 <DockPanel  Background="{DynamicResource PrimaryHueMidBrush}">
                                     <ToggleButton Style="{StaticResource MaterialDesignHamburgerToggleButton}" IsChecked="False"
-                                            x:Name="MenuToggleButton" HorizontalAlignment="Right" VerticalAlignment="Top" Width="20" Height="20" Margin="10" DockPanel.Dock="Right" />
+                                            x:Name="MenuToggleButton" HorizontalAlignment="Right" VerticalAlignment="Top" Width="20" Height="20" Margin="13 10" DockPanel.Dock="Right" />
                                     <materialDesign:Transitioner Name="Transitioner" SelectedIndex="0" DefaultTransitionOrigin="1,1" DockPanel.Dock="Right" PreviewMouseLeftButtonUp="UIManageControl_OnPreviewMouseLeftButtonUp">
                                         <Border Name="borderManageControl1" Background="{DynamicResource PrimaryHueMidBrush}" >
                                             <StackPanel Orientation="Horizontal">
@@ -258,7 +276,7 @@
                                 <ListView.ItemTemplate>
                                     <DataTemplate>
                                         <StackPanel Orientation="Horizontal" VerticalAlignment="Stretch" ToolTip="{Binding Name}" Background="Transparent">
-                                            <materialDesign:PackIcon Kind="{Binding Icon}" Height="20" Width="20" Margin="2 0" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                                            <materialDesign:PackIcon Kind="{Binding Icon}" Height="20" Width="20" Margin="6 0" HorizontalAlignment="Center" VerticalAlignment="Center" />
                                             <StackPanel Margin="8 0 0 0">
                                                 <TextBlock FontWeight="Bold" Text="{Binding Name}"/>
                                                 <TextBlock Text="{Binding Description}"/>
@@ -295,7 +313,6 @@
                     <materialDesign:Snackbar MessageQueue="{materialDesign:MessageQueue}" x:Name="MainSnackbar" Grid.Column="2" Grid.Row="0" Panel.ZIndex="10" HorizontalContentAlignment="Center"/>
                 </Grid>
             </materialDesign:ColorZone>
-            
         </DockPanel>
     </materialDesign:DialogHost>
 </Controls:MetroWindow>

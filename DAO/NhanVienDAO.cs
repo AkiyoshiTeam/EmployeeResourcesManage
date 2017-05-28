@@ -256,6 +256,53 @@ namespace DAO
             }
         }
 
+        public static void DeleteNhanVien(DataTable dt)
+        {
+            string query = @" ";
+            string where = " ";
+            bool IsExists = false;
+            foreach (DataRow row in dt.Rows)
+            {
+                if (IsExists == false)
+                {
+                    where += " WHERE MaNV IN ('" + row[0].ToString() + "' ";
+                    IsExists = true;
+                }
+                else
+                {
+                    where += " , '" + row[0].ToString() + "' ";
+                }
+            }
+            where += ") ";
+
+            query += " delete from ThongTinChiTietNhanVien " + where;
+            query += " delete from ChiTietKhenThuong " + where;
+            query += " delete from ChiTietKhenThuong " + where;
+            query += " delete from ChuyenCongTac " + where;
+            query += " delete from ChiTietChuyenMon " + where;
+            query += " delete from PhuCap " + where;
+            query += " delete from ChiTietChamCong " + where;
+            query += " delete from BangLuong " + where;
+            query += " delete from NguoiDung " + where;
+            query += " delete from HoaDon " + where;
+            query += " delete from ThongBao " + where;
+            query += " delete from HopDong " + where;
+            query += " delete from ChiTietKiLuat " + where;
+            query += " delete from ChamCongMacDinh " + where;
+            query += " delete from NhanVien " + where;
+
+            DataProvider dataProvider = new DataProvider();
+            try
+            {
+                dataProvider.ExecuteUpdateQuery(query);
+                MessageBox.Show("Xóa nhân viên thành công!");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
         public static DataTable GetNhanVienByElementForChoose(string mabp, string mapb, string malhd, string matt)
         {
             DataTable tb = new DataTable();
@@ -373,8 +420,11 @@ namespace DAO
             DataProvider dataProvider = new DataProvider();
             try
             {
-                dataProvider.connect();
-                tb = dataProvider.ExecuteQuery_DataTble(query);
+                if (isnull == false)
+                {
+                    dataProvider.connect();
+                    tb = dataProvider.ExecuteQuery_DataTble(query);
+                }
                 return tb;
             }
             catch (Exception ex)
@@ -384,7 +434,6 @@ namespace DAO
             finally
             {
                 dataProvider.disconnect();
-
             }
             return null;
         }

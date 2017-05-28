@@ -31,17 +31,15 @@ namespace Employee_Resources_Manage
     public partial class SelectorEmployee : UserControl
     {
         DataTable TableSearchFilter;
-        DataTable TableChoose;
+        public static DataTable TableChoose;
         DataTable TableChooseFilter;
         List<BoPhan> listBP;
         List<PhongBan> listPB;
         List<LoaiHopDong> listLHD;
-        List<LoaiLuong> listLL;
         List<TinhTrang> listTT;
         string maBP = "";
         string maPB = "";
         string maLHD = "";
-        string maLL = "";
         string maTT = "";
         bool isOkay = false;
         bool filterSelect = false;

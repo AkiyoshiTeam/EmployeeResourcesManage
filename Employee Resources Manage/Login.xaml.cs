@@ -79,6 +79,8 @@ namespace Employee_Resources_Manage
         [DllImport("user32.dll")]
         internal static extern int SetWindowCompositionAttribute(IntPtr hwnd, ref WindowCompositionAttributeData data);
         System.Windows.Threading.DispatcherTimer dispatcherTimer = new System.Windows.Threading.DispatcherTimer();
+        public static string Account = "";
+        public static string Avatar = "";
         public Login()
         {
             InitializeComponent();
@@ -160,6 +162,8 @@ namespace Employee_Resources_Manage
                 }
                 if (ch == true && txtMatKhau.Password == pass)
                 {
+                    Account = username;
+                    Avatar = hinhanh;
                     MainWindow mainWindow = new MainWindow();
                     mainWindow.Show();
                     this.Close();

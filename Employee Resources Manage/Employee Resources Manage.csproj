@@ -126,6 +126,9 @@
     <Compile Include="DefaultTime.xaml.cs">
       <DependentUpon>DefaultTime.xaml</DependentUpon>
     </Compile>
+    <Compile Include="DeleteEmployee.xaml.cs">
+      <DependentUpon>DeleteEmployee.xaml</DependentUpon>
+    </Compile>
     <Compile Include="DownloadSheet.xaml.cs">
       <DependentUpon>DownloadSheet.xaml</DependentUpon>
     </Compile>
@@ -180,6 +183,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="DefaultTime.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="DeleteEmployee.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

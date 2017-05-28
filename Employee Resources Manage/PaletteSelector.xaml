@@ -9,7 +9,7 @@
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              Background="{DynamicResource MaterialDesignPaper}"
              mc:Ignorable="d" 
-             d:DesignHeight="405" d:DesignWidth="300">
+             d:DesignHeight="500" d:DesignWidth="800">
     <UserControl.Resources>
         <Style TargetType="Button" BasedOn="{StaticResource MaterialDesignFlatButton}">
             <Setter Property="Margin" Value="0" />
@@ -109,7 +109,7 @@
                     </ItemsControl.ItemsPanel>
                 </ItemsControl>
             </ScrollViewer>
+            <Button Style="{StaticResource MaterialDesignRaisedButton}" Grid.Row="1" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="100" Click="Button_Click" Margin="0,0,30,10">Cancel</Button>
         </Grid>
     </DockPanel>
-
 </UserControl>

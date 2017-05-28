@@ -3,7 +3,6 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
-using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -15,31 +14,17 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using System.Globalization;
-using System.IO;
 
 namespace Employee_Resources_Manage
 {
     /// <summary>
-    /// Interaction logic for LayoffEmployees.xaml
+    /// Interaction logic for DeleteEmployee.xaml
     /// </summary>
-
-    public partial class LayoffEmployees : UserControl
+    public partial class DeleteEmployee : UserControl
     {
         DataTable dt;
-        //public static List<ChucVu> listCV = new List<ChucVu>();
-        //public static List<PhongBan> listPB = new List<PhongBan>();
-        //public static List<TinhTrang> listTT = new List<TinhTrang>();
-        //public static List<GioiTinh> listGT = new List<GioiTinh>();
-        //public static List<QuanHuyen> listQH = new List<QuanHuyen>();
-        //public static List<TinhTP> listTTP = new List<TinhTP>();
-        //public static List<QuocGia> listQG = new List<QuocGia>();
-        //public static List<DanToc> listDT = new List<DanToc>();
-        //public static List<TonGiao> listTG = new List<TonGiao>();
-        //public static List<LoaiHopDong> listLHD = new List<LoaiHopDong>();
-        //public static List<TinhTrangHopDong> listTTHD = new List<TinhTrangHopDong>();
 
-        public LayoffEmployees()
+        public DeleteEmployee()
         {
             InitializeComponent();
             CreateColumns();
@@ -60,7 +45,7 @@ namespace Employee_Resources_Manage
                     {
                         MainWindow.listPB.Add(new PhongBan { ID = row[0].ToString(), Name = row[1].ToString() });
                     }
-                    
+
                     tbTemp = BUS.TinhTrangBUS.GetTinhTrang();
                     foreach (DataRow row in tbTemp.Rows)
                     {
@@ -239,18 +224,15 @@ namespace Employee_Resources_Manage
             }
         }
 
-        bool layOff = true;
-
-        private void btnLayoff_Click(object sender, RoutedEventArgs e)
+        private void btnDelete_Click(object sender, RoutedEventArgs e)
         {
             if (MainWindow.selectedTableStatic != null)
             {
                 if (MainWindow.selectedTableStatic.Rows.Count != 0)
                 {
-                    layOff = true;
                     DialogWarning dlgWarning = new DialogWarning();
                     dlgWarning.Acc = "true";
-                    dlgWarning.Content = "Bạn có chắc muốn sa thải " + dt.Rows.Count.ToString() + " nhân viên?";
+                    dlgWarning.Content = "Bạn có chắc muốn xóa " + dt.Rows.Count.ToString() + " nhân viên?";
                     dialogHostWarning.DataContext = dlgWarning;
                     dialogHostWarning.IsOpen = true;
                 }
@@ -259,31 +241,6 @@ namespace Employee_Resources_Manage
             {
                 DialogWarning dlgWarning = new DialogWarning();
                 dlgWarning.Acc = "false";
-                dlgWarning.Content = "Không có nhân viên nào được chọn!!!";
-                dialogHostWarning.DataContext = dlgWarning;
-                dialogHostWarning.IsOpen = true;
-            }
-        }
-
-
-        private void btnUnLayoff_Click(object sender, RoutedEventArgs e)
-        {
-            if (MainWindow.selectedTableStatic != null)
-            {
-                if (MainWindow.selectedTableStatic.Rows.Count != 0)
-                {
-                    layOff = false;
-                    DialogWarning dlgWarning = new DialogWarning();
-                    dlgWarning.Acc = "Visible";
-                    dlgWarning.Content = "Bạn muốn hồi phục " + dt.Rows.Count.ToString() + " nhân viên?";
-                    dialogHostWarning.DataContext = dlgWarning;
-                    dialogHostWarning.IsOpen = true;
-                }
-            }
-            else
-            {
-                DialogWarning dlgWarning = new DialogWarning();
-                dlgWarning.Acc = "Hidden";
                 dlgWarning.Content = "Không có nhân viên nào được chọn!!!";
                 dialogHostWarning.DataContext = dlgWarning;
                 dialogHostWarning.IsOpen = true;
@@ -301,15 +258,18 @@ namespace Employee_Resources_Manage
         {
             if ((bool)eventArgs.Parameter == true)
             {
-                if (layOff == true)
+                BUS.NhanVienBUS.DeleteNhanVien(dt);
+                RefreshData();
+
+                SelectorEmployee.TableChoose.Rows.Clear();
+                MainWindow.selectedTableStatic.Rows.Clear();
+                DataTable dttemp = BUS.NhanVienBUS.GetNhanVienForChoose();
+                foreach (DataRow row in dttemp.Rows)
                 {
-                    BUS.NhanVienBUS.LayoffNhanVien(dt);
-                    RefreshData();
-                }
-                else
-                {
-                    BUS.NhanVienBUS.UnLayoffNhanVien(dt);
-                    RefreshData();
+                    DataRow destRow = SelectorEmployee.TableChoose.NewRow();
+                    destRow["MaNV"] = row["MaNV"];
+                    destRow["HoTen"] = row["HoTen"];
+                    SelectorEmployee.TableChoose.Rows.Add(destRow);
                 }
             }
         }

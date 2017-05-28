@@ -27,8 +27,6 @@ namespace Employee_Resources_Manage
     public partial class AddEmployee : UserControl
     {
         List<PhongBan> listPB;
-        List<ChucVu> listCV;
-        //List<LoaiLuong> listLL;
         List<TinhTrang> listTT;
         List<GioiTinh> listGT;
         List<QuanHuyen> listQH;

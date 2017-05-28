@@ -22,6 +22,8 @@ using MaterialDesignThemes.Wpf;
 using Dragablz;
 using System.Data;
 using System.Data.SqlClient;
+using System.Globalization;
+using System.IO;
 
 namespace Employee_Resources_Manage
 {
@@ -94,7 +96,6 @@ namespace Employee_Resources_Manage
         public string Name { get; set; }
         public string ID { get; set; }
     }
-
     public class DialogWarning
     {
         string acc;
@@ -102,6 +103,217 @@ namespace Employee_Resources_Manage
         public string Acc { get => acc; set => acc = value; }
         public string Content { get => content; set => content = value; }
     }
+    public class ImageConverter : IValueConverter
+    {
+        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            try
+            {
+                return new BitmapImage(new Uri(Directory.GetParent(Directory.GetParent(Directory.GetCurrentDirectory()).ToString()).ToString() + @"\Resources\Images\Avatar\" + ((string)value), UriKind.RelativeOrAbsolute));
+            }
+            catch
+            {
+                return new BitmapImage(new Uri(@"../../Resources/Images/account-card-details-black-2.png", UriKind.RelativeOrAbsolute));
+            }
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            throw new NotImplementedException();
+        }
+    }
+    public class MaPBConverter : IValueConverter
+    {
+        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            try
+            {
+                return MainWindow.listPB.Find(x => x.ID.Contains((string)value)).Name;
+            }
+            catch
+            {
+                return "";
+            }
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            throw new NotImplementedException();
+        }
+    }
+    public class MaTTConverter : IValueConverter
+    {
+        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            try
+            {
+                return MainWindow.listTT.Find(x => x.ID.Contains(((int)value).ToString())).Name;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                return "";
+            }
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            throw new NotImplementedException();
+        }
+    }
+    public class MaGTConverter : IValueConverter
+    {
+        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            try
+            {
+                return MainWindow.listGT.Find(x => x.ID == (bool)value).Name;
+            }
+            catch
+            {
+                return "";
+            }
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            throw new NotImplementedException();
+        }
+    }
+    public class MaQHConverter : IValueConverter
+    {
+        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            try
+            {
+                return MainWindow.listQH.Find(x => x.ID.Contains((string)value)).Name;
+            }
+            catch
+            {
+                return "";
+            }
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            throw new NotImplementedException();
+        }
+    }
+    public class MaTTPConverter : IValueConverter
+    {
+        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            try
+            {
+                return MainWindow.listTTP.Find(x => x.ID.Contains((string)value)).Name;
+            }
+            catch
+            {
+                return "";
+            }
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            throw new NotImplementedException();
+        }
+    }
+    public class MaQGConverter : IValueConverter
+    {
+        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            try
+            {
+                return MainWindow.listQG.Find(x => x.ID.Contains((string)value)).Name;
+            }
+            catch
+            {
+                return "";
+            }
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            throw new NotImplementedException();
+        }
+    }
+    public class MaDTConverter : IValueConverter
+    {
+        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            try
+            {
+                return MainWindow.listDT.Find(x => x.ID.Contains((string)value)).Name;
+            }
+            catch
+            {
+                return "";
+            }
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            throw new NotImplementedException();
+        }
+    }
+    public class MaTGConverter : IValueConverter
+    {
+        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            try
+            {
+                return MainWindow.listTG.Find(x => x.ID.Contains((string)value)).Name;
+            }
+            catch
+            {
+                return "";
+            }
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            throw new NotImplementedException();
+        }
+    }
+    public class MaLHDConverter : IValueConverter
+    {
+        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            try
+            {
+                return MainWindow.listLHD.Find(x => x.ID.Contains(((int)value).ToString())).Name;
+            }
+            catch
+            {
+                return "";
+            }
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            throw new NotImplementedException();
+        }
+    }
+    public class MaTTHDConverter : IValueConverter
+    {
+        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            try
+            {
+                return MainWindow.listTTHD.Find(x => x.ID.Contains(((int)value).ToString())).Name;
+            }
+            catch
+            {
+                return "";
+            }
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            throw new NotImplementedException();
+        }
+    }
+
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
@@ -110,13 +322,23 @@ namespace Employee_Resources_Manage
         ListsAndGridsViewModel manageItems = new ListsAndGridsViewModel();
         public static DataTable selectedTableStatic;
         public static DataTable selectedTableDesStatic;
+        public static List<PhongBan> listPB = new List<PhongBan>();
+        public static List<TinhTrang> listTT = new List<TinhTrang>();
+        public static List<GioiTinh> listGT = new List<GioiTinh>();
+        public static List<QuanHuyen> listQH = new List<QuanHuyen>();
+        public static List<TinhTP> listTTP = new List<TinhTP>();
+        public static List<QuocGia> listQG = new List<QuocGia>();
+        public static List<DanToc> listDT = new List<DanToc>();
+        public static List<TonGiao> listTG = new List<TonGiao>();
+        public static List<LoaiHopDong> listLHD = new List<LoaiHopDong>();
+        public static List<TinhTrangHopDong> listTTHD = new List<TinhTrangHopDong>();
         //public static SqlCommandBuilder cbEditEmployee;
+
+        System.Windows.Threading.DispatcherTimer dispatcherTimer = new System.Windows.Threading.DispatcherTimer();
         bool tabHomeExist = true;
         bool IsChangedTheme = false;
         object palContent;
         bool isOkay = false;
-
-        bool searchExists = false;
 
         public MainWindow()
         {
@@ -124,6 +346,10 @@ namespace Employee_Resources_Manage
 
             manageItemsControl.DataContext = manageItems;
             manageItemsControl2.DataContext = manageItems;
+            tbAccount.Text = Login.Account;
+            ellAvatar.Height = 22;
+            ellAvatar.Width = 22;
+            ellAvatar.Fill = new ImageBrush(new BitmapImage(new Uri(@"..\..\Resources\Images\Avatar\" + Login.Avatar, UriKind.RelativeOrAbsolute)));
             Task.Factory.StartNew(() =>
             {
                 Thread.Sleep(1500);
@@ -131,12 +357,16 @@ namespace Employee_Resources_Manage
             {
                 MainSnackbar.MessageQueue.Enqueue("Phần mềm quản lý nhân sự Công Ty Akiyoshi");
             }, TaskScheduler.FromCurrentSynchronizationContext());
+            dispatcherTimer.Tick += dispatcherTimer_Tick;
+            dispatcherTimer.Interval = new TimeSpan(0, 0, 0, 1, 0);
+            dispatcherTimer.Start();
+
+            tbDate.Text = DateTime.Today.ToString("yyyy/MM/dd");
         }
 
         private void MenuItemExit_Click(object sender, RoutedEventArgs e)
         {
-            //Close();
-            contentControl.Content = null;
+            Close();
         }
 
         private void MetroWindow_KeyDown(object sender, KeyEventArgs e)
@@ -293,6 +523,28 @@ namespace Employee_Resources_Manage
                                 tab.Content = selectorControlTemp2;
                             }
                             break;
+                        case "Delete Employees":
+                            if (selectedTableStatic != null)
+                            {
+                                if (selectedTableStatic.Rows.Count > 0)
+                                {
+                                    var deleteEmployeeControl = new DeleteEmployee();
+                                    tab.Content = deleteEmployeeControl;
+                                }
+                                else
+                                {
+                                    tab.Header = "Employees Selector";
+                                    var selectorControlTemp1 = new SelectorEmployee();
+                                    tab.Content = selectorControlTemp1;
+                                }
+                            }
+                            else
+                            {
+                                tab.Header = "Employees Selector";
+                                var selectorControlTemp2 = new SelectorEmployee();
+                                tab.Content = selectorControlTemp2;
+                            }
+                            break;
                         case "Contract":
                             var contractControl = new Contract();
                             tab.Content = contractControl;
@@ -378,7 +630,7 @@ namespace Employee_Resources_Manage
 
             if (IsChangedTheme == false)
             {
-                palContent = new PaletteSelector();
+                palContent = new PaletteSelector(contentControl);
                 transitioningContent.Content = palContent;
                 contentControl.Content = transitioningContent;
                 IsChangedTheme = true;
@@ -408,8 +660,8 @@ namespace Employee_Resources_Manage
         {
             if (collapseIsCheck == false)
             {
-                colChucNang.MinWidth = 40;
-                colChucNang.MaxWidth = 40;
+                colChucNang.MinWidth = 47;
+                colChucNang.MaxWidth = 47;
                 packIconCollapse.Kind = PackIconKind.ChevronRight;
                 collapseIsCheck = true;
             }
@@ -567,5 +819,13 @@ namespace Employee_Resources_Manage
             }
         }
 
+        private void dispatcherTimer_Tick(object sender, EventArgs e)
+        {
+            tbTime.Text = DateTime.Now.ToString("hh:mm:ss tt");
+            if (tbTime.Text == "00:00:00 CH" || tbTime.Text == "00:00:01 CH")
+            {
+                tbDate.Text = DateTime.Today.ToString("yyyy/MM/dd");
+            }
+        }
     }
 }

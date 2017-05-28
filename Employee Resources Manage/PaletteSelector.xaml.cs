@@ -20,7 +20,8 @@ namespace Employee_Resources_Manage
     /// </summary>
     public partial class PaletteSelector : UserControl
     {
-        public PaletteSelector()
+        ContentControl contentControl;
+        public PaletteSelector(ContentControl ct)
         {
             InitializeComponent();
             PaletteSelectorViewModel palDataContext = new PaletteSelectorViewModel();
@@ -28,6 +29,12 @@ namespace Employee_Resources_Manage
             //togDarkMode.DataContext = palDataContext;
             togStyleMode.IsChecked = true;
             togDarkMode.IsChecked = false;
+            contentControl = ct;
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            contentControl.Content = null;
         }
     }
 }

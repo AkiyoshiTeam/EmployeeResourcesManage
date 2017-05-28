@@ -18,7 +18,6 @@
             <Setter Property="IsReadOnly" Value="True"/>
             <Setter Property="Focusable" Value="False"/>
         </Style>
-        <local:MaCVConverter x:Key="MaCVConverter"/>
     </UserControl.Resources>
     <Grid>
         <Grid.RowDefinitions>

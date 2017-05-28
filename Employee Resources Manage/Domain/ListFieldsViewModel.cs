@@ -140,6 +140,14 @@ namespace Employee_Resources_Manage.Domain
                 new SelectableViewModel
                 {
                     IsSelected=false,
+                    Icon = "AccountRemove",
+                    Code = 'L',
+                    Name = "Delete Employees",
+                    Description = "Delete Multiple Employees Setting"
+                },
+                new SelectableViewModel
+                {
+                    IsSelected=false,
                     Icon = "FileDocumentBox",
                     Code = 'C',
                     Name = "Contract",
