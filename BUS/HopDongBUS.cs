@@ -30,5 +30,33 @@ namespace BUS
         {
             DAO.HopDongDAO.AddHopDongMulti(hd);
         }
+        public static DataTable GetHopDongAlert(string date)
+        {
+            return DAO.HopDongDAO.GetHopDongAlert(date);
+        }
+        public static int GetHopDongCountAlert(string date)
+        {
+            return DAO.HopDongDAO.GetHopDongCountAlert(date);
+        }
+        public static void UpdateHopDongTimeOut()
+        {
+            DAO.HopDongDAO.UpdateHopDongTimeOut();
+        }
+        public static int GetHopDongCountTimeOut()
+        {
+            return DAO.HopDongDAO.GetHopDongCountTimeOut();
+        }
+        public static DataTable GetHopDongTimeOut()
+        {
+            return DAO.HopDongDAO.GetHopDongTimeOut();
+        }
+        public static void UpdateTinhTrangHopDongTimeOut(List<string> listMaHD)
+        {
+            DAO.HopDongDAO.UpdateTinhTrangHopDongTimeOut(listMaHD);
+        }
+        public static void UpdateTinhTrangTimeOut(string mahd)
+        {
+            DAO.HopDongDAO.UpdateTinhTrangTimeOut(mahd);
+        }
     }
 }

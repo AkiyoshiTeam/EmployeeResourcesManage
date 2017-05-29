@@ -332,6 +332,20 @@ namespace Employee_Resources_Manage
         public static List<TonGiao> listTG = new List<TonGiao>();
         public static List<LoaiHopDong> listLHD = new List<LoaiHopDong>();
         public static List<TinhTrangHopDong> listTTHD = new List<TinhTrangHopDong>();
+
+        //public static bool Search = false;
+        //public static bool Selector = false;
+        //public static bool Add = false;
+        //public static bool AddMulti = false;
+        //public static bool Edit = false;
+        //public static bool Layoff = false;
+        //public static bool Delete = false;
+        //public static bool Contract = false;
+        //public static bool Tree = false;
+        //public static bool Report = false;
+        //public static bool Salary = false;
+        //public static bool Default = false;
+
         //public static SqlCommandBuilder cbEditEmployee;
 
         System.Windows.Threading.DispatcherTimer dispatcherTimer = new System.Windows.Threading.DispatcherTimer();
@@ -339,6 +353,8 @@ namespace Employee_Resources_Manage
         bool IsChangedTheme = false;
         object palContent;
         bool isOkay = false;
+        string timeLogin = "";
+        string timeLogout = "";
 
         public MainWindow()
         {
@@ -347,6 +363,7 @@ namespace Employee_Resources_Manage
             manageItemsControl.DataContext = manageItems;
             manageItemsControl2.DataContext = manageItems;
             tbAccount.Text = Login.Account;
+            timeLogin = DateTime.Now.ToString("yyyy-MM-dd hh:mm");
             ellAvatar.Height = 22;
             ellAvatar.Width = 22;
             ellAvatar.Fill = new ImageBrush(new BitmapImage(new Uri(@"..\..\Resources\Images\Avatar\" + Login.Avatar, UriKind.RelativeOrAbsolute)));
@@ -432,6 +449,8 @@ namespace Employee_Resources_Manage
                         TabItem tabItem = new TabItem();
                         tabItem.Header = "Home";
                         tabItem.Name = "tabHome";
+                        var homeControl = new Home();
+                        tabItem.Content = homeControl;
                         tabHomeExist = true;
                         tabItem.IsSelected = true;
                         tabMain.Items.Add(tabItem);
@@ -464,18 +483,50 @@ namespace Employee_Resources_Manage
                     switch (((SelectableViewModel)manageItemsControl2.SelectedItem).Name)
                     {
                         case "Employees Search":
+                            foreach (TabItem ti in tabMain.Items)
+                            {
+                                if (ti.Header.ToString() == "Employees Search")
+                                {
+                                    ti.IsSelected = true;
+                                    return;
+                                }
+                            }
                             var searchControl = new SearchEmployee();
                             tab.Content = searchControl;
                             break;
                         case "Employees Selector":
+                            foreach (TabItem ti in tabMain.Items)
+                            {
+                                if (ti.Header.ToString() == "Employees Selector")
+                                {
+                                    ti.IsSelected = true;
+                                    return;
+                                }
+                            }
                             var selectorControl = new SelectorEmployee();
                             tab.Content = selectorControl;
                             break;
                         case "Add Employee":
+                            foreach (TabItem ti in tabMain.Items)
+                            {
+                                if (ti.Header.ToString() == "Add Employee")
+                                {
+                                    ti.IsSelected = true;
+                                    return;
+                                }
+                            }
                             var addEmployeeControl = new AddEmployee();
                             tab.Content = addEmployeeControl;
                             break;
                         case "Add Multiple Employees":
+                            foreach (TabItem ti in tabMain.Items)
+                            {
+                                if (ti.Header.ToString() == "Add Multiple Employees")
+                                {
+                                    ti.IsSelected = true;
+                                    return;
+                                }
+                            }
                             var addMultipleEmployeeControl = new AddMultipleEmployees();
                             tab.Content = addMultipleEmployeeControl;
                             break;
@@ -484,11 +535,27 @@ namespace Employee_Resources_Manage
                             {
                                 if (selectedTableStatic.Rows.Count > 0)
                                 {
+                                    foreach (TabItem ti in tabMain.Items)
+                                    {
+                                        if (ti.Header.ToString() == "Edit Employees")
+                                        {
+                                            ti.IsSelected = true;
+                                            return;
+                                        }
+                                    }
                                     var editEmployeeControl = new EditEmployee();
                                     tab.Content = editEmployeeControl;
                                 }
                                 else
                                 {
+                                    foreach (TabItem ti in tabMain.Items)
+                                    {
+                                        if (ti.Header.ToString() == "Employees Selector")
+                                        {
+                                            ti.IsSelected = true;
+                                            return;
+                                        }
+                                    }
                                     tab.Header = "Employees Selector";
                                     var selectorControlTemp1 = new SelectorEmployee();
                                     tab.Content = selectorControlTemp1;
@@ -496,6 +563,14 @@ namespace Employee_Resources_Manage
                             }
                             else
                             {
+                                foreach (TabItem ti in tabMain.Items)
+                                {
+                                    if (ti.Header.ToString() == "Employees Selector")
+                                    {
+                                        ti.IsSelected = true;
+                                        return;
+                                    }
+                                }
                                 tab.Header = "Employees Selector";
                                 var selectorControlTemp1 = new SelectorEmployee();
                                 tab.Content = selectorControlTemp1;
@@ -506,11 +581,27 @@ namespace Employee_Resources_Manage
                             {
                                 if (selectedTableStatic.Rows.Count > 0)
                                 {
+                                    foreach (TabItem ti in tabMain.Items)
+                                    {
+                                        if (ti.Header.ToString() == "Layoff Employees")
+                                        {
+                                            ti.IsSelected = true;
+                                            return;
+                                        }
+                                    }
                                     var layoffEmployeeControl = new LayoffEmployees();
                                     tab.Content = layoffEmployeeControl;
                                 }
                                 else
                                 {
+                                    foreach (TabItem ti in tabMain.Items)
+                                    {
+                                        if (ti.Header.ToString() == "Employees Selector")
+                                        {
+                                            ti.IsSelected = true;
+                                            return;
+                                        }
+                                    }
                                     tab.Header = "Employees Selector";
                                     var selectorControlTemp1 = new SelectorEmployee();
                                     tab.Content = selectorControlTemp1;
@@ -518,6 +609,14 @@ namespace Employee_Resources_Manage
                             }
                             else
                             {
+                                foreach (TabItem ti in tabMain.Items)
+                                {
+                                    if (ti.Header.ToString() == "Employees Selector")
+                                    {
+                                        ti.IsSelected = true;
+                                        return;
+                                    }
+                                }
                                 tab.Header = "Employees Selector";
                                 var selectorControlTemp2 = new SelectorEmployee();
                                 tab.Content = selectorControlTemp2;
@@ -528,11 +627,27 @@ namespace Employee_Resources_Manage
                             {
                                 if (selectedTableStatic.Rows.Count > 0)
                                 {
+                                    foreach (TabItem ti in tabMain.Items)
+                                    {
+                                        if (ti.Header.ToString() == "Delete Employees")
+                                        {
+                                            ti.IsSelected = true;
+                                            return;
+                                        }
+                                    }
                                     var deleteEmployeeControl = new DeleteEmployee();
                                     tab.Content = deleteEmployeeControl;
                                 }
                                 else
                                 {
+                                    foreach (TabItem ti in tabMain.Items)
+                                    {
+                                        if (ti.Header.ToString() == "Employees Selector")
+                                        {
+                                            ti.IsSelected = true;
+                                            return;
+                                        }
+                                    }
                                     tab.Header = "Employees Selector";
                                     var selectorControlTemp1 = new SelectorEmployee();
                                     tab.Content = selectorControlTemp1;
@@ -540,24 +655,64 @@ namespace Employee_Resources_Manage
                             }
                             else
                             {
+                                foreach (TabItem ti in tabMain.Items)
+                                {
+                                    if (ti.Header.ToString() == "Employees Selector")
+                                    {
+                                        ti.IsSelected = true;
+                                        return;
+                                    }
+                                }
                                 tab.Header = "Employees Selector";
                                 var selectorControlTemp2 = new SelectorEmployee();
                                 tab.Content = selectorControlTemp2;
                             }
                             break;
                         case "Contract":
+                            foreach (TabItem ti in tabMain.Items)
+                            {
+                                if (ti.Header.ToString() == "Contract")
+                                {
+                                    ti.IsSelected = true;
+                                    return;
+                                }
+                            }
                             var contractControl = new Contract();
                             tab.Content = contractControl;
                             break;
                         case "Organization Tree":
+                            foreach (TabItem ti in tabMain.Items)
+                            {
+                                if (ti.Header.ToString() == "Organization Tree")
+                                {
+                                    ti.IsSelected = true;
+                                    return;
+                                }
+                            }
                             var organizationTreeControl = new OrganizationTree();
                             tab.Content = organizationTreeControl;
                             break;
                         case "Report":
+                            foreach (TabItem ti in tabMain.Items)
+                            {
+                                if (ti.Header.ToString() == "Report")
+                                {
+                                    ti.IsSelected = true;
+                                    return;
+                                }
+                            }
                             var reportControl = new BaoCao();
                             tab.Content = reportControl;
                             break;
                         case "Default":
+                            foreach (TabItem ti in tabMain.Items)
+                            {
+                                if (ti.Header.ToString() == "Default")
+                                {
+                                    ti.IsSelected = true;
+                                    return;
+                                }
+                            }
                             var defaultControl = new DefaultTime();
                             tab.Content = defaultControl;
                             break;
@@ -573,11 +728,27 @@ namespace Employee_Resources_Manage
                             {
                                 if (selectedTableStatic.Rows.Count > 0)
                                 {
+                                    foreach (TabItem ti in tabMain.Items)
+                                    {
+                                        if (ti.Header.ToString() == "Salary Calculating")
+                                        {
+                                            ti.IsSelected = true;
+                                            return;
+                                        }
+                                    }
                                     var salaryCalControl = new SalaryCalculating();
                                     tab.Content = salaryCalControl;
                                 }
                                 else
                                 {
+                                    foreach (TabItem ti in tabMain.Items)
+                                    {
+                                        if (ti.Header.ToString() == "Employees Selector")
+                                        {
+                                            ti.IsSelected = true;
+                                            return;
+                                        }
+                                    }
                                     tab.Header = "Employees Selector";
                                     var selectorControlTemp1 = new SelectorEmployee();
                                     tab.Content = selectorControlTemp1;
@@ -585,6 +756,14 @@ namespace Employee_Resources_Manage
                             }
                             else
                             {
+                                foreach (TabItem ti in tabMain.Items)
+                                {
+                                    if (ti.Header.ToString() == "Employees Selector")
+                                    {
+                                        ti.IsSelected = true;
+                                        return;
+                                    }
+                                }
                                 tab.Header = "Employees Selector";
                                 var selectorControlTemp1 = new SelectorEmployee();
                                 tab.Content = selectorControlTemp1;
@@ -681,6 +860,8 @@ namespace Employee_Resources_Manage
                 TabItem tabItem = new TabItem();
                 tabItem.Header = "Home";
                 tabItem.Name = "tabHome";
+                var homeControl = new Home();
+                tabItem.Content = homeControl;
                 tabItem.IsSelected = true;
                 tabMain.Items.Add(tabItem);
                 tabHomeExist = true;
@@ -697,116 +878,116 @@ namespace Employee_Resources_Manage
         }
         private void btnSelector_Click(object sender, RoutedEventArgs e)
         {
-            TabItem tab = new TabItem();
-            tab.Header = "Selector";
-            SelectorEmployee selectorControl = new SelectorEmployee();
-            tab.Content = selectorControl;
-            tab.IsSelected = true;
-            tabMain.Items.Add(tab);
-            if (isOkay == false)
-            {
-                var view = CollectionViewSource.GetDefaultView(tabMain.Items);
-                view.CollectionChanged += (o, ev) =>
-                {
-                    if (tabMain.Items.Count == 0)
-                    {
-                        TabItem tabItem = new TabItem();
-                        tabItem.Header = "Home";
-                        tabItem.Name = "tabHome";
-                        tabItem.IsSelected = true;
-                        tabMain.Items.Add(tabItem);
-                        tabHomeExist = true;
-                    }
-                    else if (tabMain.Items.Count == 1)
-                    {
-                        if (tabHomeExist)
-                            tabMain.FixedHeaderCount = 1;
-                        else
-                            tabMain.FixedHeaderCount = 0;
-                        tabMain.InterTabController = null;
-                    }
-                    else
-                    {
-                        tabMain.InterTabController = new InterTabController();
-                    }
-                };
-                isOkay = true;
-            }
-            if (tabHomeExist == true)
-            {
-                int i = 0;
-                bool tabHome = false;
-                foreach (TabItem ti in tabMain.Items)
-                {
-                    if (ti.Name == "tabHome")
-                    {
-                        tabHome = true;
-                        break;
-                    }
-                    i++;
-                }
-                if (tabHome == true)
-                    tabMain.Items.RemoveAt(i);
-                tabHomeExist = false;
-                tabMain.FixedHeaderCount = 0;
-            }
+            //TabItem tab = new TabItem();
+            //tab.Header = "Selector";
+            //SelectorEmployee selectorControl = new SelectorEmployee();
+            //tab.Content = selectorControl;
+            //tab.IsSelected = true;
+            //tabMain.Items.Add(tab);
+            //if (isOkay == false)
+            //{
+            //    var view = CollectionViewSource.GetDefaultView(tabMain.Items);
+            //    view.CollectionChanged += (o, ev) =>
+            //    {
+            //        if (tabMain.Items.Count == 0)
+            //        {
+            //            TabItem tabItem = new TabItem();
+            //            tabItem.Header = "Home";
+            //            tabItem.Name = "tabHome";
+            //            tabItem.IsSelected = true;
+            //            tabMain.Items.Add(tabItem);
+            //            tabHomeExist = true;
+            //        }
+            //        else if (tabMain.Items.Count == 1)
+            //        {
+            //            if (tabHomeExist)
+            //                tabMain.FixedHeaderCount = 1;
+            //            else
+            //                tabMain.FixedHeaderCount = 0;
+            //            tabMain.InterTabController = null;
+            //        }
+            //        else
+            //        {
+            //            tabMain.InterTabController = new InterTabController();
+            //        }
+            //    };
+            //    isOkay = true;
+            //}
+            //if (tabHomeExist == true)
+            //{
+            //    int i = 0;
+            //    bool tabHome = false;
+            //    foreach (TabItem ti in tabMain.Items)
+            //    {
+            //        if (ti.Name == "tabHome")
+            //        {
+            //            tabHome = true;
+            //            break;
+            //        }
+            //        i++;
+            //    }
+            //    if (tabHome == true)
+            //        tabMain.Items.RemoveAt(i);
+            //    tabHomeExist = false;
+            //    tabMain.FixedHeaderCount = 0;
+            //}
         }
 
         private void btnEditEmployee_Click(object sender, RoutedEventArgs e)
         {
-            TabItem tab = new TabItem();
-            tab.Header = "Edit Employee";
-            EditEmployee selectorControl = new EditEmployee();
-            tab.Content = selectorControl;
-            tab.IsSelected = true;
-            tabMain.Items.Add(tab);
-            if (isOkay == false)
-            {
-                var view = CollectionViewSource.GetDefaultView(tabMain.Items);
-                view.CollectionChanged += (o, ev) =>
-                {
-                    if (tabMain.Items.Count == 0)
-                    {
-                        TabItem tabItem = new TabItem();
-                        tabItem.Header = "Home";
-                        tabItem.Name = "tabHome";
-                        tabItem.IsSelected = true;
-                        tabMain.Items.Add(tabItem);
-                        tabHomeExist = true;
-                    }
-                    else if (tabMain.Items.Count == 1)
-                    {
-                        if (tabHomeExist)
-                            tabMain.FixedHeaderCount = 1;
-                        else
-                            tabMain.FixedHeaderCount = 0;
-                        tabMain.InterTabController = null;
-                    }
-                    else
-                    {
-                        tabMain.InterTabController = new InterTabController();
-                    }
-                };
-                isOkay = true;
-            }
-            if (tabHomeExist == true)
-            {
-                int i = 0;
-                bool tabHome = false;
-                foreach (TabItem ti in tabMain.Items)
-                {
-                    if (ti.Name == "tabHome")
-                    {
-                        tabHome = true;
-                        break;
-                    }
-                    i++;
-                }
-                if (tabHome == true)
-                    tabMain.Items.RemoveAt(i);
-                tabHomeExist = false;
-                tabMain.FixedHeaderCount = 0;
-            }
+            //TabItem tab = new TabItem();
+            //tab.Header = "Edit Employee";
+            //EditEmployee selectorControl = new EditEmployee();
+            //tab.Content = selectorControl;
+            //tab.IsSelected = true;
+            //tabMain.Items.Add(tab);
+            //if (isOkay == false)
+            //{
+            //    var view = CollectionViewSource.GetDefaultView(tabMain.Items);
+            //    view.CollectionChanged += (o, ev) =>
+            //    {
+            //        if (tabMain.Items.Count == 0)
+            //        {
+            //            TabItem tabItem = new TabItem();
+            //            tabItem.Header = "Home";
+            //            tabItem.Name = "tabHome";
+            //            tabItem.IsSelected = true;
+            //            tabMain.Items.Add(tabItem);
+            //            tabHomeExist = true;
+            //        }
+            //        else if (tabMain.Items.Count == 1)
+            //        {
+            //            if (tabHomeExist)
+            //                tabMain.FixedHeaderCount = 1;
+            //            else
+            //                tabMain.FixedHeaderCount = 0;
+            //            tabMain.InterTabController = null;
+            //        }
+            //        else
+            //        {
+            //            tabMain.InterTabController = new InterTabController();
+            //        }
+            //    };
+            //    isOkay = true;
+            //}
+            //if (tabHomeExist == true)
+            //{
+            //    int i = 0;
+            //    bool tabHome = false;
+            //    foreach (TabItem ti in tabMain.Items)
+            //    {
+            //        if (ti.Name == "tabHome")
+            //        {
+            //            tabHome = true;
+            //            break;
+            //        }
+            //        i++;
+            //    }
+            //    if (tabHome == true)
+            //        tabMain.Items.RemoveAt(i);
+            //    tabHomeExist = false;
+            //    tabMain.FixedHeaderCount = 0;
+            //}
         }
 
         private void MetroWindow_Loaded(object sender, RoutedEventArgs e)
@@ -817,15 +998,38 @@ namespace Employee_Resources_Manage
                     if ((tabMain.Items[0] as TabItem).Header.ToString() == "Home")
                         tabMain.FixedHeaderCount = 1;
             }
+            BUS.HopDongBUS.UpdateHopDongTimeOut();
+            DataTable tbLastLog = BUS.NguoiDungBUS.GetLastDangNhap(Login.Account);
+            tbKyLuong.Text = "Kỳ lương: 01/" + DateTime.Today.ToString("MM/yyyy") + " - " + DateTime.DaysInMonth(DateTime.Today.Year, DateTime.Today.Month) + "/" + DateTime.Today.ToString("MM/yyyy");
+            tbKyChamCong.Text = "Kỳ lương: 01/" + DateTime.Today.ToString("MM/yyyy") + " - " + DateTime.DaysInMonth(DateTime.Today.Year, DateTime.Today.Month) + "/" + DateTime.Today.ToString("MM/yyyy");
+            if (tbLastLog.Rows.Count > 0)
+            {
+                tbLastLogin.Text = "Đăng nhập: " + Convert.ToDateTime(tbLastLog.Rows[0][2].ToString()).ToString("yyyy/MM/dd hh:mm");
+                tbLastLogout.Text = "Đăng xuất: " + Convert.ToDateTime(tbLastLog.Rows[0][3].ToString()).ToString("yyyy/MM/dd hh:mm");
+            }
         }
+
+        int tick = 0;
 
         private void dispatcherTimer_Tick(object sender, EventArgs e)
         {
+            tick++;
             tbTime.Text = DateTime.Now.ToString("hh:mm:ss tt");
-            if (tbTime.Text == "00:00:00 CH" || tbTime.Text == "00:00:01 CH")
+            if (tbTime.Text == "12:00:00 SA" || tbTime.Text == "12:00:01 SA")
             {
                 tbDate.Text = DateTime.Today.ToString("yyyy/MM/dd");
             }
+            if (tick == 5)
+            {
+                BUS.HopDongBUS.UpdateHopDongTimeOut();
+                tick = 0;
+            }
+        }
+
+        private void MetroWindow_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            timeLogout = DateTime.Now.ToString("yyyy-MM-dd hh:mm");
+            BUS.NguoiDungBUS.AddGhiChuDangNhap(Login.Account, timeLogin, timeLogout);
         }
     }
 }

@@ -545,7 +545,6 @@ namespace Employee_Resources_Manage
             cbMaLoaiHD.SelectionChanged += cbMaLoaiHD_SelectionChanged;
             dpNgayKyHD.SelectedDateChanged += DpNgayKyHD_SelectedDateChanged;
         }
-
-
+        
     }
 }

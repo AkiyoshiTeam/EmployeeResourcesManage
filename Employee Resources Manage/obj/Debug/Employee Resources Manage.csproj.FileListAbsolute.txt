@@ -251,3 +251,15 @@ C:\Users\mjnht\Desktop\Project Employee Manager\EmployeeResourcesManage\Employee
 C:\Users\mjnht\Desktop\Project Employee Manager\EmployeeResourcesManage\Employee Resources Manage\obj\Debug\SalaryDeleteByTime.baml
 C:\Users\mjnht\Desktop\Project Employee Manager\EmployeeResourcesManage\Employee Resources Manage\obj\Debug\DeleteEmployee.g.cs
 C:\Users\mjnht\Desktop\Project Employee Manager\EmployeeResourcesManage\Employee Resources Manage\obj\Debug\DeleteEmployee.baml
+C:\Users\mjnht\Desktop\Project Employee Manager\EmployeeResourcesManage\Employee Resources Manage\obj\Debug\Home.g.cs
+C:\Users\mjnht\Desktop\Project Employee Manager\EmployeeResourcesManage\Employee Resources Manage\obj\Debug\Home.baml
+C:\Users\mjnht\Desktop\Project Employee Manager\EmployeeResourcesManage\Employee Resources Manage\obj\Debug\NotificationTimeOut.g.cs
+C:\Users\mjnht\Desktop\Project Employee Manager\EmployeeResourcesManage\Employee Resources Manage\obj\Debug\NotificationTimeOut.baml
+C:\Users\mjnht\Desktop\Project Employee Manager\EmployeeResourcesManage\Employee Resources Manage\obj\Debug\NotificationAlert.g.cs
+C:\Users\mjnht\Desktop\Project Employee Manager\EmployeeResourcesManage\Employee Resources Manage\obj\Debug\NotificationAlert.baml
+C:\Users\mjnht\Desktop\Project Employee Manager\EmployeeResourcesManage\Employee Resources Manage\obj\Debug\AlertContract.g.cs
+C:\Users\mjnht\Desktop\Project Employee Manager\EmployeeResourcesManage\Employee Resources Manage\obj\Debug\AlertContract.baml
+C:\Users\mjnht\Desktop\Project Employee Manager\EmployeeResourcesManage\Employee Resources Manage\obj\Debug\TimeOutContract.g.cs
+C:\Users\mjnht\Desktop\Project Employee Manager\EmployeeResourcesManage\Employee Resources Manage\obj\Debug\TimeOutContract.baml
+C:\Users\mjnht\Desktop\Project Employee Manager\EmployeeResourcesManage\Employee Resources Manage\obj\Debug\TimeOutCheck.g.cs
+C:\Users\mjnht\Desktop\Project Employee Manager\EmployeeResourcesManage\Employee Resources Manage\obj\Debug\TimeOutCheck.baml

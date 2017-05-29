@@ -94,10 +94,10 @@
                             <Button Name="btnLuongBP" Style="{StaticResource MaterialDesignRaisedAccentButton}" Width="200" Content="Xuất báo cáo" HorizontalAlignment="Center" VerticalAlignment="Top" Height="24" Padding="16,2"/>
                         </StackPanel>
                     </Expander> <Border Background="{DynamicResource MaterialDesignDivider}" Height="1" HorizontalAlignment="Stretch" SnapsToDevicePixels="True" />
-                    <Expander Header="Bảng Lương theo Phòng ban" HorizontalAlignment="Stretch"  BorderBrush="{DynamicResource MaterialDesignBody}" Foreground="{DynamicResource MaterialDesignBody}">
+                    <Expander Header="Bảng Lương theo phòng ban" HorizontalAlignment="Stretch"  BorderBrush="{DynamicResource MaterialDesignBody}" Foreground="{DynamicResource MaterialDesignBody}">
                         <StackPanel Margin="10">
                             <StackPanel Name="stkLuongPB" />
-                            <Button Name="btnLuongPB" Style="{StaticResource MaterialDesignRaisedAccentButton}" Width="200" Content="Xuất báo cáo"  BorderBrush="{DynamicResource MaterialDesignBody}" HorizontalAlignment="Center" VerticalAlignment="Top"  Height="24" Padding="16,2" Click="btnDSNVPB_Click"/>
+                            <Button Name="btnLuongPB" Style="{StaticResource MaterialDesignRaisedAccentButton}" Width="200" Content="Xuất báo cáo" HorizontalAlignment="Center" VerticalAlignment="Top"  Height="24" Padding="16,2" Click="btnDSNVPB_Click"/>
                         </StackPanel>
                     </Expander> <Border Background="{DynamicResource MaterialDesignDivider}" Height="1" HorizontalAlignment="Stretch" SnapsToDevicePixels="True" />
                     <Expander Header="Hợp đồng lao động" HorizontalAlignment="Stretch"  BorderBrush="{DynamicResource MaterialDesignBody}" Foreground="{DynamicResource MaterialDesignBody}">

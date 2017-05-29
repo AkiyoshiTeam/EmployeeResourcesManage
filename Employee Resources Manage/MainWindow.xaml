@@ -23,7 +23,7 @@
                       Background="{DynamicResource MaterialDesignPaper}"
                       BorderBrush="{DynamicResource PrimaryHueMidBrush}"
                       GlowBrush="{DynamicResource AccentColorBrush}"
-                      KeyDown="MetroWindow_KeyDown" Loaded="MetroWindow_Loaded">
+                      KeyDown="MetroWindow_KeyDown" Loaded="MetroWindow_Loaded" Closing="MetroWindow_Closing">
     <Window.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
@@ -209,8 +209,68 @@
                 </ToolBarTray>
             </materialDesign:ColorZone>
 
-            <materialDesign:ColorZone Background="{DynamicResource PrimaryHueLightBrush}" Height="23" VerticalAlignment="Bottom" VerticalContentAlignment="Stretch" 
-                                  HorizontalContentAlignment="Stretch" DockPanel.Dock="Bottom" BorderThickness="0,2,0,0" BorderBrush="{DynamicResource MaterialDesignDivider}"/>
+            <materialDesign:ColorZone Background="{DynamicResource PrimaryHueLightBrush}" Height="25" VerticalAlignment="Bottom" VerticalContentAlignment="Stretch" 
+                                  HorizontalContentAlignment="Stretch" DockPanel.Dock="Bottom" BorderThickness="0,2,0,0" BorderBrush="{DynamicResource MaterialDesignDivider}">
+                <DockPanel>
+                    <TextBlock HorizontalAlignment="Left" Margin="15,0,0,0" VerticalAlignment="Center">Công ty: CTY TNHH AKIYOSHI  GAME </TextBlock>
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Center">
+                        <Separator Height="1" Width="18" Background="{DynamicResource MaterialDesignBody}" Opacity="0.5" RenderTransformOrigin="0.5,0.5" Margin="0,1">
+                            <Separator.RenderTransform>
+                                <TransformGroup>
+                                    <ScaleTransform/>
+                                    <SkewTransform/>
+                                    <RotateTransform Angle="90"/>
+                                    <TranslateTransform/>
+                                </TransformGroup>
+                            </Separator.RenderTransform>
+                        </Separator>
+                        <TextBlock Name="tbKyLuong" >Kỳ lương: 01/05/2017</TextBlock>
+                        <Separator Height="1" Width="18" Background="{DynamicResource MaterialDesignBody}" Opacity="0.5" RenderTransformOrigin="0.5,0.5" Margin="0,1">
+                            <Separator.RenderTransform>
+                                <TransformGroup>
+                                    <ScaleTransform/>
+                                    <SkewTransform/>
+                                    <RotateTransform Angle="90"/>
+                                    <TranslateTransform/>
+                                </TransformGroup>
+                            </Separator.RenderTransform>
+                        </Separator>
+                        <TextBlock Name="tbKyChamCong" >Kỳ chấm công: 01/05/2017</TextBlock>
+                        <Separator Height="1" Width="18" Background="{DynamicResource MaterialDesignBody}" Opacity="0.5" RenderTransformOrigin="0.5,0.5" Margin="0,1">
+                            <Separator.RenderTransform>
+                                <TransformGroup>
+                                    <ScaleTransform/>
+                                    <SkewTransform/>
+                                    <RotateTransform Angle="90"/>
+                                    <TranslateTransform/>
+                                </TransformGroup>
+                            </Separator.RenderTransform>
+                        </Separator>
+                        <TextBlock Name="tbLastLogin"></TextBlock>
+                        <Separator Height="1" Width="18" Background="{DynamicResource MaterialDesignBody}" Opacity="0.5" RenderTransformOrigin="0.5,0.5" Margin="0,1">
+                            <Separator.RenderTransform>
+                                <TransformGroup>
+                                    <ScaleTransform/>
+                                    <SkewTransform/>
+                                    <RotateTransform Angle="90"/>
+                                    <TranslateTransform/>
+                                </TransformGroup>
+                            </Separator.RenderTransform>
+                        </Separator>
+                        <TextBlock Name="tbLastLogout"></TextBlock>
+                        <Separator Height="1" Width="18" Background="{DynamicResource MaterialDesignBody}" Opacity="0.5" RenderTransformOrigin="0.5,0.5" Margin="0,1">
+                            <Separator.RenderTransform>
+                                <TransformGroup>
+                                    <ScaleTransform/>
+                                    <SkewTransform/>
+                                    <RotateTransform Angle="90"/>
+                                    <TranslateTransform/>
+                                </TransformGroup>
+                            </Separator.RenderTransform>
+                        </Separator>
+                    </StackPanel>
+                </DockPanel>
+            </materialDesign:ColorZone>
             <materialDesign:ColorZone materialDesign:ShadowAssist.ShadowDepth="Depth0" DockPanel.Dock="Top" VerticalAlignment="Stretch">
                 <Grid DockPanel.Dock="Top" Background="{DynamicResource MaterialDesignPaper}">
                     <Grid.ColumnDefinitions>
@@ -305,7 +365,8 @@
                             <dragablz:TabablzControl.InterTabController>
                                 <dragablz:InterTabController/>
                             </dragablz:TabablzControl.InterTabController>
-                            <TabItem Name="tabHome"  Header="Home" IsSelected="True" >
+                            <TabItem Header="Home" Name="tabHome">
+                                <Employee_Resources_Manage:Home/>
                             </TabItem>
                         </dragablz:TabablzControl>
                     </dockablz:Layout>

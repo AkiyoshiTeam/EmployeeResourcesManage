@@ -95,6 +95,7 @@ namespace Employee_Resources_Manage
             switch (cbMaLoaiHD.SelectedValue.ToString())
             {
                 case "1":
+                    dpNgayHetHan.SelectedDate = Convert.ToDateTime("1/1/2500");
                     break;
                 case "2":
                     dpNgayHetHan.SelectedDate = ((DateTime)dpNgayKyHD.SelectedDate).AddYears(5).AddDays(-1);
