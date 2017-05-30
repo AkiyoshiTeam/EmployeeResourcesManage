@@ -303,11 +303,13 @@ namespace Employee_Resources_Manage
             {
                 if (layOff == true)
                 {
+                    BUS.NguoiDungBUS.SetIsUpdated(Login.Account);
                     BUS.NhanVienBUS.LayoffNhanVien(dt);
                     RefreshData();
                 }
                 else
                 {
+                    BUS.NguoiDungBUS.SetIsUpdated(Login.Account);
                     BUS.NhanVienBUS.UnLayoffNhanVien(dt);
                     RefreshData();
                 }

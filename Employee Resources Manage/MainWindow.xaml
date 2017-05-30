@@ -65,12 +65,12 @@
             <materialDesign:ColorZone materialDesign:ShadowAssist.ShadowDepth="Depth2" Height="22" VerticalAlignment="Top" VerticalContentAlignment="Center" HorizontalContentAlignment="Stretch" DockPanel.Dock="Top" Panel.ZIndex="20">
                 <Menu IsMainMenu="True" Height="22" Background="{DynamicResource MaterialDesignPaper}" Foreground="{DynamicResource MaterialDesignBody}" VerticalAlignment="Top" FontSize="12">
                     <MenuItem Header="_Hệ thống" Height="22" >
-                        <!--<MenuItem Header="Save" Height="22">
+                        <MenuItem Header="Theo dõi chương trính làm việc" Height="22" Click="MenuItemBackTracking_Click">
                             <MenuItem.Icon>
-                                <materialDesign:PackIcon Kind="ContentSave" />
+                                <materialDesign:PackIcon Kind="CameraTimer" />
                             </MenuItem.Icon>
                         </MenuItem>
-                        <MenuItem Header="Save As.." Height="22"/>-->
+                        <!--<MenuItem Header="Save As.." Height="22"/>-->
                         <MenuItem Header="Exit" Height="22" InputGestureText="Ctrl+E" Click="MenuItemExit_Click">
                             <MenuItem.Icon>
                                 <materialDesign:PackIcon Kind="ExitToApp" />
@@ -116,7 +116,7 @@
                             </MenuItem.Icon>
                         </MenuItem>
                         <Separator />
-                        <MenuItem Header="_About Us" Height="22" Click="MenuItemChangePassword_Click" >
+                        <MenuItem Header="_About Us" Height="22" >
                             <MenuItem.Icon>
                                 <materialDesign:PackIcon Kind="Xml" />
                             </MenuItem.Icon>

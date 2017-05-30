@@ -137,6 +137,7 @@ namespace Employee_Resources_Manage
                     bp.MaBP = tbMa.Text;
                     bp.TenBP = tbTen.Text;
                     bp.TruongBP = cbTruong.SelectedValue.ToString();
+                    BUS.NguoiDungBUS.SetIsUpdated(Login.Account);
                     BUS.BoPhanBUS.UpdateBoPhan(bp);
                 }
                 if (elementType == 2)
@@ -146,6 +147,7 @@ namespace Employee_Resources_Manage
                     pb.ViTri = tbViTri.Text;
                     pb.TenPB = tbTen.Text;
                     pb.TruongPB = cbTruong.SelectedValue.ToString();
+                    BUS.NguoiDungBUS.SetIsUpdated(Login.Account);
                     BUS.PhongBanBUS.UpdatePhongBan(pb);
                 }
                 Refresh();
@@ -171,6 +173,7 @@ namespace Employee_Resources_Manage
                     tbMaNew.Text = NextID(maLast, "BP");
                     bp.MaBP = tbMaNew.Text;
                     bp.TenBP = tbTenNew.Text;
+                    BUS.NguoiDungBUS.SetIsUpdated(Login.Account);
                     BUS.BoPhanBUS.AddBoPhan(bp);
                 }
                 if (elementType == 1)
@@ -182,6 +185,7 @@ namespace Employee_Resources_Manage
                     pb.TenPB = tbTenNew.Text;
                     pb.ViTri = tbViTriNew.Text;
                     pb.MaBP = maBP;
+                    BUS.NguoiDungBUS.SetIsUpdated(Login.Account);
                     BUS.PhongBanBUS.AddPhongBan(pb);
                 }
                 Refresh();
@@ -291,6 +295,7 @@ namespace Employee_Resources_Manage
                 {
                     if (dt.Rows.Count > 0)
                     {
+                        BUS.NguoiDungBUS.SetIsUpdated(Login.Account);
                         BUS.NhanVienBUS.LayoffNhanVien(dt);
                     }
                     if (elementType == 1)
@@ -299,6 +304,7 @@ namespace Employee_Resources_Manage
                         bp.MaBP = tbMa.Text;
                         bp.TenBP = tbTen.Text;
                         bp.TruongBP = cbTruong.SelectedValue.ToString();
+                        BUS.NguoiDungBUS.SetIsUpdated(Login.Account);
                         BUS.BoPhanBUS.ShutdownBoPhan(bp);
                     }
                     if (elementType == 2)
@@ -308,6 +314,7 @@ namespace Employee_Resources_Manage
                         pb.ViTri = tbViTri.Text;
                         pb.TenPB = tbTen.Text;
                         pb.TruongPB = cbTruong.SelectedValue.ToString();
+                        BUS.NguoiDungBUS.SetIsUpdated(Login.Account);
                         BUS.PhongBanBUS.ShutdownPhongBan(pb);
                     }
                 }
@@ -319,6 +326,7 @@ namespace Employee_Resources_Manage
                         bp.MaBP = tbMa.Text;
                         bp.TenBP = tbTen.Text;
                         bp.TruongBP = cbTruong.SelectedValue.ToString();
+                        BUS.NguoiDungBUS.SetIsUpdated(Login.Account);
                         BUS.BoPhanBUS.StartBoPhan(bp);
                     }
                     if (elementType == 2)
@@ -328,6 +336,7 @@ namespace Employee_Resources_Manage
                         pb.ViTri = tbViTri.Text;
                         pb.TenPB = tbTen.Text;
                         pb.TruongPB = cbTruong.SelectedValue.ToString();
+                        BUS.NguoiDungBUS.SetIsUpdated(Login.Account);
                         BUS.PhongBanBUS.StartPhongBan(pb);
                     }
                 }

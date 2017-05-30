@@ -22,5 +22,9 @@ namespace BUS
         {
             return DAO.NguoiDungDAO.GetLastDangNhap(username);
         }
+        public static void SetIsUpdated(string username)
+        {
+            DAO.NguoiDungDAO.SetIsUpdated(username);
+        }
     }
 }

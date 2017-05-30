@@ -8,6 +8,6 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("aki.ico")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("aki2.ico")]
 
 

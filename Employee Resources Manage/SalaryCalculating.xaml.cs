@@ -190,6 +190,7 @@ namespace Employee_Resources_Manage
                                 tongLuongDaThue += phucCap;
                             if (isHoaDon == true)
                                 tongLuongDaThue += tongHoaDon;
+                            BUS.NguoiDungBUS.SetIsUpdated(Login.Account);
                             BUS.BangLuongBUS.AddBangLuong(manv, ctcc.MaChamCong, luongCB.ToString(), phucCap.ToString(), tongHoaDon.ToString(), tongLuongDaThue.ToString());
                             DAO.ChiTietChamCongDAO.UpdateCTCC(ctcc);
                         }
@@ -299,6 +300,7 @@ namespace Employee_Resources_Manage
                     foreach (DataRow row in MainWindow.selectedTableStatic.Rows)
                     {
                         string manv = row[0].ToString();
+                        BUS.NguoiDungBUS.SetIsUpdated(Login.Account);
                         BUS.BangLuongBUS.DeleteBangLuongByID(manv);
                     }
                     MessageBox.Show("Xoá bảng lương thành công!");

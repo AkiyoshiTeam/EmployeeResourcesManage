@@ -402,6 +402,7 @@ namespace Employee_Resources_Manage
                     {
                         if (isAllowUpdateCMND)
                         {
+                            BUS.NguoiDungBUS.SetIsUpdated(Login.Account);
                             if (BUS.NhanVienBUS.UpdateNhanVienByElementForEdit(DataSetEdit.Tables[0], DataSetEdit.Tables[1]))
                                 MessageBox.Show("Update complete");
                             else MessageBox.Show("Update fail");

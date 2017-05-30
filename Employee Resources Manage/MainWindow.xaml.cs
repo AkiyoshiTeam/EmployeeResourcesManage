@@ -827,6 +827,72 @@ namespace Employee_Resources_Manage
             DialogHost.Show(changePw, "RootDialog");
         }
 
+        private void MenuItemBackTracking_Click(object sender, RoutedEventArgs e)
+        {
+            foreach (TabItem ti in tabMain.Items)
+            {
+                if (ti.Header.ToString() == "Back Tracking")
+                {
+                    ti.IsSelected = true;
+                    return;
+                }
+            }
+            TabItem tab = new TabItem();
+            tab.Header = "Back Tracking";
+            BackTracking backTrackingControl = new BackTracking();
+            tab.Content = backTrackingControl;
+            tab.IsSelected = true;
+            tabMain.Items.Add(tab);
+            if (isOkay == false)
+            {
+                var view = CollectionViewSource.GetDefaultView(tabMain.Items);
+                view.CollectionChanged += (o, ev) =>
+                {
+                    if (tabMain.Items.Count == 0)
+                    {
+                        TabItem tabItem = new TabItem();
+                        tabItem.Header = "Home";
+                        tabItem.Name = "tabHome";
+                        var homeControl = new Home();
+                        tabItem.Content = homeControl;
+                        tabItem.IsSelected = true;
+                        tabMain.Items.Add(tabItem);
+                        tabHomeExist = true;
+                    }
+                    else if (tabMain.Items.Count == 1)
+                    {
+                        if (tabHomeExist)
+                            tabMain.FixedHeaderCount = 1;
+                        else
+                            tabMain.FixedHeaderCount = 0;
+                        tabMain.InterTabController = null;
+                    }
+                    else
+                    {
+                        tabMain.InterTabController = new InterTabController();
+                    }
+                };
+                isOkay = true;
+            }
+            if (tabHomeExist == true)
+            {
+                int i = 0;
+                bool tabHome = false;
+                foreach (TabItem ti in tabMain.Items)
+                {
+                    if (ti.Name == "tabHome")
+                    {
+                        tabHome = true;
+                        break;
+                    }
+                    i++;
+                }
+                if (tabHome == true)
+                    tabMain.Items.RemoveAt(i);
+                tabHomeExist = false;
+                tabMain.FixedHeaderCount = 0;
+            }
+        }
 
         private void UIManageControl_OnPreviewMouseLeftButtonUp(object sender, MouseButtonEventArgs e)
         {

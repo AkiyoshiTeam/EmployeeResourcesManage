@@ -81,6 +81,7 @@ namespace Employee_Resources_Manage
                 nam = "1=1";
             else nam = "Nam=" + tbNam.Text;
 
+            BUS.NguoiDungBUS.SetIsUpdated(Login.Account);
             BUS.BangLuongBUS.DeleteBangLuongByTime(thang, nam);
         }
     }

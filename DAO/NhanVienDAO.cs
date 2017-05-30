@@ -285,7 +285,6 @@ namespace DAO
             query += " delete from BangLuong " + where;
             query += " delete from NguoiDung " + where;
             query += " delete from HoaDon " + where;
-            query += " delete from ThongBao " + where;
             query += " delete from HopDong " + where;
             query += " delete from ChiTietKiLuat " + where;
             query += " delete from ChamCongMacDinh " + where;

@@ -258,6 +258,7 @@ namespace Employee_Resources_Manage
         {
             if ((bool)eventArgs.Parameter == true)
             {
+                BUS.NguoiDungBUS.SetIsUpdated(Login.Account);
                 BUS.NhanVienBUS.DeleteNhanVien(dt);
                 RefreshData();
 

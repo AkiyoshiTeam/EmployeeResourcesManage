@@ -167,6 +167,7 @@ namespace Employee_Resources_Manage
         {
             if ((bool)eventArgs.Parameter == true)
             {
+                BUS.NguoiDungBUS.SetIsUpdated(Login.Account);
                 BUS.CongThucTinhLuongBUS.UpdateCongThuc(tbCongThucMoi.Text);
                 Refresh();
             }

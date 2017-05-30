@@ -145,6 +145,7 @@ namespace Employee_Resources_Manage
                                                         ttct.Email = range.Cells[i, col + 19].Text.ToString();
                                                     else ttct.Email = "";
 
+                                                    BUS.NguoiDungBUS.SetIsUpdated(Login.Account);
                                                     BUS.NhanVienBUS.AddNhanVienMulti(nv, ttct);
                                                     DTO.HopDongDTO hd = new DTO.HopDongDTO();
                                                     mahdLast = BUS.HopDongBUS.GetLastHopDong().Rows[0][0].ToString();
@@ -179,6 +180,7 @@ namespace Employee_Resources_Manage
                                                         }
                                                     }
                                                     hd.MaTTHD = Int16.Parse(range.Cells[i, col + 23].Text.ToString());
+                                                    BUS.NguoiDungBUS.SetIsUpdated(Login.Account);
                                                     BUS.HopDongBUS.AddHopDongMulti(hd);
                                                 }
                                                 else

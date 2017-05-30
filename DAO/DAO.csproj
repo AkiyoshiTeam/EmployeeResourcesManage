@@ -59,6 +59,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BackTrackingDAO.cs" />
     <Compile Include="BangLuongDAO.cs" />
     <Compile Include="BoPhanDAO.cs" />
     <Compile Include="ChamCongDAO.cs" />

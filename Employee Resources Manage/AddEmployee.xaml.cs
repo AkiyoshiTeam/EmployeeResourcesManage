@@ -370,6 +370,7 @@ namespace Employee_Resources_Manage
                                         ttct.MaTG = cbTonGiao.SelectedValue.ToString();
                                         ttct.SoTheATM = tbATM.Text;
                                         ttct.Email = tbEmail.Text;
+                                        BUS.NguoiDungBUS.SetIsUpdated(Login.Account);
                                         BUS.NhanVienBUS.AddNhanVien(nv, ttct);
                                         DTO.HopDongDTO hd = new DTO.HopDongDTO();
                                         mahdLast = BUS.HopDongBUS.GetLastHopDong().Rows[0][0].ToString();
@@ -381,6 +382,7 @@ namespace Employee_Resources_Manage
                                             hd.NgayHetHan = Convert.ToDateTime(dpNgayHetHan.Text);
                                         else hd.NgayHetHan = Convert.ToDateTime("1/1/2500");
                                         hd.MaTTHD = Int16.Parse(cbMaTTHD.SelectedValue.ToString());
+                                        BUS.NguoiDungBUS.SetIsUpdated(Login.Account);
                                         BUS.HopDongBUS.AddHopDong(hd);
                                         RefreshField();
                                     }

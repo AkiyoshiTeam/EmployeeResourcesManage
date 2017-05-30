@@ -150,6 +150,7 @@ namespace Employee_Resources_Manage
                     hd.NgayHetHan = Convert.ToDateTime(dpNgayHetHan.Text);
                 else hd.NgayHetHan = Convert.ToDateTime("1/1/2500");
                 hd.MaTTHD = 1;
+                BUS.NguoiDungBUS.SetIsUpdated(Login.Account);
                 BUS.HopDongBUS.NewHopDong(hd);
                 RefreshData();
             }

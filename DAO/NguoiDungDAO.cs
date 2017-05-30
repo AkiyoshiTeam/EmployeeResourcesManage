@@ -11,7 +11,7 @@ namespace DAO
 {
     public class NguoiDungDAO
     {
-        public static DataTable DangNhap( string username)
+        public static DataTable DangNhap(string username)
         {
             DataProvider dataprovider = new DataProvider();
             DataTable dt = new DataTable();
@@ -67,6 +67,22 @@ namespace DAO
                 dataprovider.disconnect();
             }
             return null;
+        }
+
+        public static void SetIsUpdated(string username)
+        {
+            string query = @"Update NguoiDung Set IsUpdated='false'";
+            DataProvider dataProvider = new DataProvider();
+            try
+            {
+                dataProvider.ExecuteUpdateQuery(query);
+                query = @"Update NguoiDung Set IsUpdated='true' where Username='" + username + "'";
+                dataProvider.ExecuteUpdateQuery(query);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
     }
 }
