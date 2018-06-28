@@ -4,16 +4,16 @@
 winexe
 C#
 .cs
-C:\Users\mjnht\Desktop\Project Employee Manager\EmployeeResourcesManage\Employee Resources Manage\obj\Debug\
+G:\Góc Học\Nhap Mon CNPM\Project Employee Manager\EmployeeResourcesManage\Employee Resources Manage\obj\Debug\
 Employee_Resources_Manage
 none
 false
 DEBUG;TRACE
-C:\Users\mjnht\Desktop\Project Employee Manager\EmployeeResourcesManage\Employee Resources Manage\App.xaml
+G:\Góc Học\Nhap Mon CNPM\Project Employee Manager\EmployeeResourcesManage\Employee Resources Manage\App.xaml
 31-1793610045
 
 491993414841
-351195337956
+351864354146
 AddEmployee.xaml;AddMultipleEmployees.xaml;AlertContract.xaml;BackTracking.xaml;BaoCao.xaml;ChangePassword.xaml;Contract.xaml;DefaultTime.xaml;DeleteEmployee.xaml;Domain\SampleMessageDialog.xaml;Domain\SampleProgressDialog.xaml;DownloadSheet.xaml;EditEmployee.xaml;Home.xaml;LayoffEmployees.xaml;Login.xaml;MainWindow.xaml;NotificationAlert.xaml;NotificationTimeOut.xaml;OrganizationTree.xaml;Palette.xaml;PaletteSelector.xaml;QRCode.xaml;SalaryCalculating.xaml;SalaryDeleteByID.xaml;SalaryDeleteByTime.xaml;SalaryFormula.xaml;SearchEmployee.xaml;SelectorEmployee.xaml;TimeOutCheck.xaml;TimeOutContract.xaml;
 
 True
